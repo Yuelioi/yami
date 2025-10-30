@@ -1,0 +1,449 @@
+/* Tooltip 提示框组件 */
+
+/* === Tooltip 基础样式 === */
+@utility tooltip {
+  @apply relative inline-block;
+
+  & .tooltip-content {
+    @apply absolute z-50 px-3 py-2 text-sm font-medium rounded-md;
+    @apply bg-[var(--popover)] text-[var(--popover-foreground)];
+    @apply border border-[var(--border)] shadow-lg;
+    @apply opacity-0 invisible pointer-events-none;
+    @apply transition-all duration-200 ease-in-out;
+    white-space: nowrap;
+  }
+
+  &:hover .tooltip-content,
+  &:focus .tooltip-content {
+    @apply opacity-100 visible;
+  }
+}
+
+/* === Tooltip 位置 - 顶部 === */
+@utility tooltip-top {
+  & .tooltip-content {
+    @apply bottom-full left-1/2 -translate-x-1/2 mb-2;
+
+    &::after {
+      content: "";
+      @apply absolute top-full left-1/2 -translate-x-1/2;
+      @apply border-4 border-transparent;
+      border-top-color: var(--border);
+      margin-top: -1px;
+    }
+
+    &::before {
+      content: "";
+      @apply absolute top-full left-1/2 -translate-x-1/2;
+      @apply border-[5px] border-transparent;
+      border-top-color: var(--popover);
+    }
+  }
+
+  &:hover .tooltip-content,
+  &:focus .tooltip-content {
+    @apply -translate-y-1 -translate-x-1/2;
+  }
+}
+
+/* === Tooltip 位置 - 底部 === */
+@utility tooltip-bottom {
+  & .tooltip-content {
+    @apply top-full left-1/2 -translate-x-1/2 mt-2;
+
+    &::after {
+      content: "";
+      @apply absolute bottom-full left-1/2 -translate-x-1/2;
+      @apply border-4 border-transparent;
+      border-bottom-color: var(--border);
+      margin-bottom: -1px;
+    }
+
+    &::before {
+      content: "";
+      @apply absolute bottom-full left-1/2 -translate-x-1/2;
+      @apply border-[5px] border-transparent;
+      border-bottom-color: var(--popover);
+    }
+  }
+
+  &:hover .tooltip-content,
+  &:focus .tooltip-content {
+    @apply translate-y-1 -translate-x-1/2;
+  }
+}
+
+/* === Tooltip 位置 - 左侧 === */
+@utility tooltip-left {
+  & .tooltip-content {
+    @apply right-full top-1/2 -translate-y-1/2 mr-2;
+
+    &::after {
+      content: "";
+      @apply absolute left-full top-1/2 -translate-y-1/2;
+      @apply border-4 border-transparent;
+      border-left-color: var(--border);
+      margin-left: -1px;
+    }
+
+    &::before {
+      content: "";
+      @apply absolute left-full top-1/2 -translate-y-1/2;
+      @apply border-[5px] border-transparent;
+      border-left-color: var(--popover);
+    }
+  }
+
+  &:hover .tooltip-content,
+  &:focus .tooltip-content {
+    @apply -translate-x-1 -translate-y-1/2;
+  }
+}
+
+/* === Tooltip 位置 - 右侧 === */
+@utility tooltip-right {
+  & .tooltip-content {
+    @apply left-full top-1/2 -translate-y-1/2 ml-2;
+
+    &::after {
+      content: "";
+      @apply absolute right-full top-1/2 -translate-y-1/2;
+      @apply border-4 border-transparent;
+      border-right-color: var(--border);
+      margin-right: -1px;
+    }
+
+    &::before {
+      content: "";
+      @apply absolute right-full top-1/2 -translate-y-1/2;
+      @apply border-[5px] border-transparent;
+      border-right-color: var(--popover);
+    }
+  }
+
+  &:hover .tooltip-content,
+  &:focus .tooltip-content {
+    @apply translate-x-1 -translate-y-1/2;
+  }
+}
+
+/* === Tooltip 配色方案 === */
+
+/* Primary */
+@utility tooltip-primary {
+  & .tooltip-content {
+    @apply bg-[var(--primary)] text-[var(--primary-foreground)];
+    @apply border-[var(--primary)];
+  }
+
+  &.tooltip-top .tooltip-content {
+    &::after {
+      border-top-color: var(--primary);
+    }
+    &::before {
+      border-top-color: var(--primary);
+    }
+  }
+
+  &.tooltip-bottom .tooltip-content {
+    &::after {
+      border-bottom-color: var(--primary);
+    }
+    &::before {
+      border-bottom-color: var(--primary);
+    }
+  }
+
+  &.tooltip-left .tooltip-content {
+    &::after {
+      border-left-color: var(--primary);
+    }
+    &::before {
+      border-left-color: var(--primary);
+    }
+  }
+
+  &.tooltip-right .tooltip-content {
+    &::after {
+      border-right-color: var(--primary);
+    }
+    &::before {
+      border-right-color: var(--primary);
+    }
+  }
+}
+
+/* Secondary */
+@utility tooltip-secondary {
+  & .tooltip-content {
+    @apply bg-[var(--secondary)] text-[var(--secondary-foreground)];
+    @apply border-[var(--secondary)];
+  }
+
+  &.tooltip-top .tooltip-content {
+    &::after {
+      border-top-color: var(--secondary);
+    }
+    &::before {
+      border-top-color: var(--secondary);
+    }
+  }
+
+  &.tooltip-bottom .tooltip-content {
+    &::after {
+      border-bottom-color: var(--secondary);
+    }
+    &::before {
+      border-bottom-color: var(--secondary);
+    }
+  }
+
+  &.tooltip-left .tooltip-content {
+    &::after {
+      border-left-color: var(--secondary);
+    }
+    &::before {
+      border-left-color: var(--secondary);
+    }
+  }
+
+  &.tooltip-right .tooltip-content {
+    &::after {
+      border-right-color: var(--secondary);
+    }
+    &::before {
+      border-right-color: var(--secondary);
+    }
+  }
+}
+
+/* Accent */
+@utility tooltip-accent {
+  & .tooltip-content {
+    @apply bg-[var(--accent)] text-[var(--accent-foreground)];
+    @apply border-[var(--accent)];
+  }
+
+  &.tooltip-top .tooltip-content {
+    &::after {
+      border-top-color: var(--accent);
+    }
+    &::before {
+      border-top-color: var(--accent);
+    }
+  }
+
+  &.tooltip-bottom .tooltip-content {
+    &::after {
+      border-bottom-color: var(--accent);
+    }
+    &::before {
+      border-bottom-color: var(--accent);
+    }
+  }
+
+  &.tooltip-left .tooltip-content {
+    &::after {
+      border-left-color: var(--accent);
+    }
+    &::before {
+      border-left-color: var(--accent);
+    }
+  }
+
+  &.tooltip-right .tooltip-content {
+    &::after {
+      border-right-color: var(--accent);
+    }
+    &::before {
+      border-right-color: var(--accent);
+    }
+  }
+}
+
+/* Destructive */
+@utility tooltip-destructive {
+  & .tooltip-content {
+    @apply bg-[var(--destructive)] text-[var(--destructive-foreground)];
+    @apply border-[var(--destructive)];
+  }
+
+  &.tooltip-top .tooltip-content {
+    &::after {
+      border-top-color: var(--destructive);
+    }
+    &::before {
+      border-top-color: var(--destructive);
+    }
+  }
+
+  &.tooltip-bottom .tooltip-content {
+    &::after {
+      border-bottom-color: var(--destructive);
+    }
+    &::before {
+      border-bottom-color: var(--destructive);
+    }
+  }
+
+  &.tooltip-left .tooltip-content {
+    &::after {
+      border-left-color: var(--destructive);
+    }
+    &::before {
+      border-left-color: var(--destructive);
+    }
+  }
+
+  &.tooltip-right .tooltip-content {
+    &::after {
+      border-right-color: var(--destructive);
+    }
+    &::before {
+      border-right-color: var(--destructive);
+    }
+  }
+}
+
+/* === Tooltip 尺寸 === */
+@utility tooltip-sm {
+  & .tooltip-content {
+    @apply px-2 py-1 text-xs;
+  }
+}
+
+@utility tooltip-lg {
+  & .tooltip-content {
+    @apply px-4 py-3 text-base;
+  }
+}
+
+/* === Tooltip 无箭头 === */
+@utility tooltip-no-arrow {
+  & .tooltip-content::before,
+  & .tooltip-content::after {
+    @apply hidden;
+  }
+}
+
+/* === Tooltip 始终显示 === */
+@utility tooltip-open {
+  & .tooltip-content {
+    @apply opacity-100 visible;
+  }
+}
+
+/* === Tooltip 延迟显示 === */
+@utility tooltip-delay {
+  & .tooltip-content {
+    transition-delay: 0.3s;
+  }
+
+  &:hover .tooltip-content {
+    transition-delay: 0s;
+  }
+}
+
+/* === Tooltip 文本换行 === */
+@utility tooltip-wrap {
+  & .tooltip-content {
+    white-space: normal;
+    @apply max-w-xs;
+  }
+}
+
+/* === Tooltip 宽度变体 === */
+@utility tooltip-w-sm {
+  & .tooltip-content {
+    @apply max-w-[150px];
+    white-space: normal;
+  }
+}
+
+@utility tooltip-w-md {
+  & .tooltip-content {
+    @apply max-w-[250px];
+    white-space: normal;
+  }
+}
+
+@utility tooltip-w-lg {
+  & .tooltip-content {
+    @apply max-w-[350px];
+    white-space: normal;
+  }
+}
+
+/* === Tooltip 动画变体 === */
+@utility tooltip-fade {
+  & .tooltip-content {
+    @apply transition-opacity duration-200;
+  }
+}
+
+@utility tooltip-scale {
+  & .tooltip-content {
+    @apply scale-95;
+    transition:
+      opacity 0.2s,
+      visibility 0.2s,
+      transform 0.2s;
+  }
+
+  &:hover .tooltip-content,
+  &:focus .tooltip-content {
+    @apply scale-100;
+  }
+}
+
+/* === Tooltip 圆角变体 === */
+@utility tooltip-rounded-none {
+  & .tooltip-content {
+    @apply rounded-none;
+  }
+}
+
+@utility tooltip-rounded-sm {
+  & .tooltip-content {
+    @apply rounded-sm;
+  }
+}
+
+@utility tooltip-rounded-lg {
+  & .tooltip-content {
+    @apply rounded-lg;
+  }
+}
+
+@utility tooltip-rounded-xl {
+  & .tooltip-content {
+    @apply rounded-xl;
+  }
+}
+
+/* === Tooltip 阴影变体 === */
+@utility tooltip-shadow-sm {
+  & .tooltip-content {
+    box-shadow: var(--shadow-sm);
+  }
+}
+
+@utility tooltip-shadow-md {
+  & .tooltip-content {
+    box-shadow: var(--shadow-md);
+  }
+}
+
+@utility tooltip-shadow-lg {
+  & .tooltip-content {
+    box-shadow: var(--shadow-lg);
+  }
+}
+
+/* === Tooltip 响应式 === */
+@utility tooltip-responsive {
+  & .tooltip-content {
+    @apply max-w-[calc(100vw-2rem)];
+    white-space: normal;
+  }
+}

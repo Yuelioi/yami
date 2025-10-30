@@ -1,0 +1,337 @@
+/* Skeleton 骨架屏组件
+
+用于内容加载时的占位显示
+*/
+
+/* === Skeleton 基础样式 === */
+@utility skeleton {
+  @apply relative overflow-hidden rounded bg-muted animate-pulse;
+  @apply bg-gradient-to-r from-muted via-muted-foreground/15 to-muted;
+  @apply bg-[length:400%_100%];
+}
+
+@keyframes skeleton-loading {
+  0% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0 50%;
+  }
+}
+
+/* === Skeleton 波浪动画 === */
+@utility skeleton-wave {
+  @apply skeleton;
+  animation: skeleton-wave 1.6s ease-in-out infinite;
+
+  background: linear-gradient(
+    90deg,
+    transparent,
+    theme(colors.muted.foreground / 0.15) / 0.1,
+    transparent
+  );
+  background-size: 200% 100%;
+}
+
+@keyframes skeleton-wave {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+/* === Skeleton 脉冲动画 === */
+@utility skeleton-pulse {
+  @apply bg-[var(--muted)] rounded;
+  animation: skeleton-pulse 1.5s ease-in-out infinite;
+}
+
+@keyframes skeleton-pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+/* === Skeleton 文本行 === */
+@utility skeleton-text {
+  @apply skeleton h-4;
+}
+
+@utility skeleton-text-sm {
+  @apply skeleton h-3;
+}
+
+@utility skeleton-text-lg {
+  @apply skeleton h-5;
+}
+
+@utility skeleton-text-xl {
+  @apply skeleton h-6;
+}
+
+/* === Skeleton 标题 === */
+@utility skeleton-title {
+  @apply skeleton h-8 w-3/4;
+}
+
+@utility skeleton-title-sm {
+  @apply skeleton h-6 w-2/3;
+}
+
+@utility skeleton-title-lg {
+  @apply skeleton h-10 w-4/5;
+}
+
+/* === Skeleton 头像 === */
+@utility skeleton-avatar {
+  @apply skeleton rounded-full;
+  @apply size-10;
+}
+
+@utility skeleton-avatar-sm {
+  @apply skeleton-avatar size-8;
+}
+
+@utility skeleton-avatar-lg {
+  @apply skeleton-avatar size-12;
+}
+
+@utility skeleton-avatar-xl {
+  @apply skeleton-avatar size-16;
+}
+
+/* === Skeleton 圆形 === */
+@utility skeleton-circle {
+  @apply skeleton rounded-full aspect-square;
+}
+
+/* === Skeleton 方形 === */
+@utility skeleton-square {
+  @apply skeleton rounded aspect-square;
+}
+
+/* === Skeleton 矩形 === */
+@utility skeleton-rect {
+  @apply skeleton;
+}
+
+/* === Skeleton 图片/卡片 === */
+@utility skeleton-image {
+  @apply skeleton w-full aspect-video relative;
+}
+
+@utility skeleton-card {
+  @apply skeleton w-full h-48;
+}
+
+@utility skeleton-thumbnail {
+  @apply skeleton size-20 rounded-md;
+}
+
+/* === Skeleton 按钮 === */
+@utility skeleton-button {
+  @apply skeleton h-10 w-24 rounded-md;
+}
+
+@utility skeleton-button-sm {
+  @apply skeleton h-8 w-20 rounded-md;
+}
+
+@utility skeleton-button-lg {
+  @apply skeleton h-12 w-32 rounded-md;
+}
+
+/* === Skeleton 输入框 === */
+@utility skeleton-input {
+  @apply skeleton h-10 w-full rounded-md;
+}
+
+@utility skeleton-input-sm {
+  @apply skeleton h-8 w-full rounded-md;
+}
+
+@utility skeleton-input-lg {
+  @apply skeleton h-12 w-full rounded-md;
+}
+
+/* === Skeleton 徽章 === */
+@utility skeleton-badge {
+  @apply skeleton h-5 w-16 rounded-full;
+}
+
+/* === Skeleton 段落 === */
+@utility skeleton-paragraph {
+  @apply space-y-2;
+
+  & > * {
+    @apply skeleton h-4;
+  }
+
+  & > *:last-child {
+    @apply w-4/5;
+  }
+}
+
+/* === Skeleton 列表项 === */
+@utility skeleton-list-item {
+  @apply flex items-center gap-3 p-3;
+
+  & .skeleton-avatar {
+    @apply flex-shrink-0;
+  }
+
+  & .skeleton-content {
+    @apply flex-1 space-y-2;
+  }
+}
+
+/* === Skeleton 卡片布局 === */
+@utility skeleton-card-layout {
+  @apply space-y-4 p-4 border border-[var(--border)] rounded-lg;
+
+  &:has(.skeleton-image) {
+    /* 图片卡片 需要撑开宽度 */
+    @apply w-full;
+  }
+}
+
+/* === Skeleton 无动画 === */
+@utility skeleton-static {
+  @apply bg-[var(--muted)] rounded;
+  animation: none;
+}
+
+/* === Skeleton 圆角变体 === */
+@utility skeleton-rounded-none {
+  @apply rounded-none;
+}
+
+@utility skeleton-rounded-sm {
+  @apply rounded-sm;
+}
+
+@utility skeleton-rounded-md {
+  @apply rounded-md;
+}
+
+@utility skeleton-rounded-lg {
+  @apply rounded-lg;
+}
+
+@utility skeleton-rounded-xl {
+  @apply rounded-xl;
+}
+
+@utility skeleton-rounded-full {
+  @apply rounded-full;
+}
+
+/* === Skeleton 容器 === */
+@utility skeleton-container {
+  @apply space-y-4;
+}
+
+/* === Skeleton 表格行 === */
+@utility skeleton-table-row {
+  @apply flex gap-4 items-center p-3;
+
+  & > * {
+    @apply skeleton h-4;
+  }
+}
+
+/* === Skeleton 进度条 === */
+@utility skeleton-progress {
+  @apply skeleton h-2 w-full rounded-full;
+}
+
+/* === Skeleton 标签 === */
+@utility skeleton-tag {
+  @apply skeleton h-6 w-16 rounded;
+}
+
+/* === Skeleton 评分 === */
+@utility skeleton-rating {
+  @apply flex gap-1;
+
+  & > * {
+    @apply skeleton size-4 rounded-sm;
+  }
+}
+
+/* === Skeleton 颜色变体 === */
+@utility skeleton-primary {
+  background: linear-gradient(
+    90deg,
+    var(--primary) / 0.1 25%,
+    var(--primary) / 0.2 37%,
+    var(--primary) / 0.1 63%
+  );
+  background-size: 400% 100%;
+}
+
+@utility skeleton-secondary {
+  background: linear-gradient(
+    90deg,
+    var(--secondary) / 0.1 25%,
+    var(--secondary) / 0.2 37%,
+    var(--secondary) / 0.1 63%
+  );
+  background-size: 400% 100%;
+}
+
+/* === Skeleton 组合布局预设 === */
+
+/* 用户卡片骨架 */
+@utility skeleton-user-card {
+  @apply skeleton-card-layout;
+
+  & .skeleton-header {
+    @apply flex items-center gap-3;
+  }
+
+  & .skeleton-body {
+    @apply space-y-2;
+  }
+}
+
+/* 文章列表骨架 */
+@utility skeleton-article {
+  @apply flex gap-4 p-4 border-b border-[var(--border)];
+
+  & .skeleton-thumbnail {
+    @apply flex-shrink-0;
+  }
+
+  & .skeleton-content {
+    @apply flex-1 space-y-2;
+  }
+}
+
+/* 评论骨架 */
+@utility skeleton-comment {
+  @apply flex gap-3 p-3;
+
+  & .skeleton-avatar {
+    @apply flex-shrink-0;
+  }
+
+  & .skeleton-content {
+    @apply flex-1 space-y-2;
+  }
+}
+
+/* === Skeleton 响应式 === */
+@utility skeleton-responsive {
+  @apply w-full;
+
+  @media (max-width: 640px) {
+    @apply h-auto min-h-[100px];
+  }
+}

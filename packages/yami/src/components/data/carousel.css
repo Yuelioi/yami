@@ -1,0 +1,271 @@
+/* Carousel 轮播图组件 */
+@utility carousel {
+  @apply relative w-full overflow-hidden;
+}
+
+/* 轮播容器 */
+@utility carousel-container {
+  @apply flex transition-transform duration-500 ease-out;
+}
+
+/* 轮播项 */
+@utility carousel-item {
+  @apply min-w-full flex-shrink-0;
+}
+
+/* === 导航按钮 === */
+
+/* 导航按钮容器 */
+@utility carousel-navigation {
+  @apply absolute inset-0 flex items-center justify-between pointer-events-none;
+  @apply px-4;
+}
+
+/* 导航按钮 */
+@utility carousel-btn {
+  @apply pointer-events-auto;
+  @apply size-10 rounded-full bg-background/80 backdrop-blur-sm;
+  @apply border shadow-md;
+  @apply flex items-center justify-center;
+  @apply text-foreground hover:bg-background;
+  @apply transition-all duration-200;
+  @apply disabled:opacity-40 disabled:cursor-not-allowed;
+  @apply focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring;
+  @apply cursor-pointer;
+}
+
+/* 上一个按钮 */
+@utility carousel-btn-prev {
+  @apply carousel-btn;
+}
+
+/* 下一个按钮 */
+@utility carousel-btn-next {
+  @apply carousel-btn;
+}
+
+/* === 指示器 === */
+
+/* 指示器容器 */
+@utility carousel-indicators {
+  @apply absolute bottom-4 left-1/2 -translate-x-1/2;
+  @apply flex items-center gap-2;
+}
+
+/* 指示器点 */
+@utility carousel-indicator {
+  @apply size-2 rounded-full bg-background/60 backdrop-blur-sm;
+  @apply transition-all duration-300 cursor-pointer;
+  @apply hover:bg-background/80;
+  @apply focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2;
+}
+
+/* 激活的指示器 */
+@utility carousel-indicator-active {
+  @apply w-8 bg-background;
+}
+
+/* === 轮播变体 === */
+
+/* 淡入淡出效果 */
+@utility carousel-fade {
+  & .carousel-container {
+    @apply transition-opacity duration-500;
+  }
+
+  & .carousel-item {
+    @apply absolute inset-0 opacity-0 transition-opacity duration-500;
+
+    &.carousel-item-active {
+      @apply opacity-100 relative;
+    }
+  }
+}
+
+/* 卡片式轮播 */
+@utility carousel-cards {
+  @apply px-12;
+
+  & .carousel-item {
+    @apply min-w-0 w-1/3 px-2;
+  }
+}
+
+/* 响应式卡片轮播 */
+@utility carousel-cards-responsive {
+  @apply px-4 sm:px-8 lg:px-12;
+
+  & .carousel-item {
+    @apply min-w-full sm:min-w-[50%] lg:min-w-[33.333%];
+    @apply px-2;
+  }
+}
+
+/* 居中模式 */
+@utility carousel-center {
+  & .carousel-container {
+    @apply justify-center;
+  }
+
+  & .carousel-item {
+    @apply flex items-center justify-center;
+  }
+}
+
+/* === 尺寸变体 === */
+
+/* 小型轮播 */
+@utility carousel-sm {
+  @apply h-48;
+
+  & .carousel-btn {
+    @apply size-8 text-sm;
+  }
+
+  & .carousel-indicators {
+    @apply bottom-2;
+  }
+
+  & .carousel-indicator {
+    @apply size-1.5;
+  }
+
+  &.carousel-indicator-active {
+    @apply w-6;
+  }
+}
+
+/* 默认轮播 */
+@utility carousel-md {
+  @apply h-64 sm:h-80;
+}
+
+/* 大型轮播 */
+@utility carousel-lg {
+  @apply h-96 sm:h-[32rem];
+
+  & .carousel-btn {
+    @apply size-12 text-lg;
+  }
+
+  & .carousel-indicators {
+    @apply bottom-6;
+  }
+
+  & .carousel-indicator {
+    @apply size-3;
+  }
+
+  & .carousel-indicator-active {
+    @apply w-12;
+  }
+}
+
+/* 全屏轮播 */
+@utility carousel-fullscreen {
+  @apply h-screen;
+}
+
+/* === 自动播放指示 === */
+
+/* 带进度条的指示器 */
+@utility carousel-indicator-progress {
+  @apply relative overflow-hidden;
+
+  &::after {
+    content: "";
+    @apply absolute inset-0 bg-primary origin-left;
+    @apply scale-x-0 transition-transform duration-[3000ms];
+  }
+
+  &.carousel-indicator-active::after {
+    @apply scale-x-100;
+  }
+}
+
+/* === 内容覆盖层 === */
+
+/* 轮播标题容器 */
+@utility carousel-caption {
+  @apply absolute bottom-0 left-0 right-0;
+  @apply bg-gradient-to-t from-black/60 to-transparent;
+  @apply p-6 text-white;
+}
+
+/* 轮播标题 */
+@utility carousel-caption-title {
+  @apply text-2xl font-bold mb-2;
+}
+
+/* 轮播描述 */
+@utility carousel-caption-description {
+  @apply text-sm opacity-90;
+}
+
+/* === 缩略图导航 === */
+
+/* 缩略图容器 */
+@utility carousel-thumbnails {
+  @apply flex gap-2 mt-4 overflow-x-auto;
+}
+
+/* 缩略图 */
+@utility carousel-thumbnail {
+  @apply size-16 flex-shrink-0 rounded-md overflow-hidden;
+  @apply border-2 border-transparent;
+  @apply cursor-pointer transition-all duration-200;
+  @apply hover:border-muted;
+  @apply focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring;
+
+  & img {
+    @apply size-full object-cover;
+  }
+}
+
+/* 激活的缩略图 */
+@utility carousel-thumbnail-active {
+  @apply border-primary ring-2 ring-primary/20;
+}
+
+/* === 垂直轮播 === */
+
+@utility carousel-vertical {
+  & .carousel-container {
+    @apply flex-col;
+  }
+
+  & .carousel-item {
+    @apply min-w-0 min-h-full;
+  }
+
+  & .carousel-navigation {
+    @apply flex-col px-0 py-4;
+  }
+
+  & .carousel-indicator-active {
+    @apply w-2 h-8;
+  }
+}
+
+/* === 3D 效果轮播 === */
+
+@utility carousel-3d {
+  /* @apply perspective-1000; */
+
+  & .carousel-item {
+    @apply transition-transform duration-500;
+    transform-style: preserve-3d;
+  }
+
+  & .carousel-item:not(.carousel-item-active) {
+    @apply scale-90 opacity-50;
+  }
+}
+
+/* === 无缝循环 === */
+
+@utility carousel-loop {
+  & .carousel-container {
+    @apply transition-none;
+  }
+}

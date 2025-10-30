@@ -1,0 +1,225 @@
+/* ========================================
+   按钮基础 - 所有按钮共享的基础样式
+   ======================================== */
+
+@import "../../utilities/style.css";
+
+@utility btn {
+  /* 布局 */
+  @apply inline-flex items-center justify-center gap-2;
+  @apply max-w-max;
+
+  /* 文本 */
+  @apply text-sm font-medium;
+  @apply whitespace-nowrap;
+
+  /* 交互 */
+  @apply select-none cursor-pointer;
+  @apply transition-colors duration-200;
+
+  /* 边框 */
+  @apply border;
+  border-radius: theme(borderRadius.DEFAULT);
+
+  /* 焦点状态 */
+  @apply focus-visible:outline-none;
+  @apply focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2;
+
+  /* 禁用状态 */
+  @apply disabled:pointer-events-none;
+  @apply disabled:opacity-50;
+
+  /* 默认尺寸 */
+  @apply h-md px-4 py-2;
+
+  /* 默认配色(ghost风格) */
+  @apply bg-transparent border-transparent text-foreground;
+  @apply hover:bg-accent hover:text-accent-foreground;
+}
+
+/* ========================================
+   尺寸变体
+   ======================================== */
+
+@utility btn-xs {
+  @apply h-xs px-2 text-xs;
+}
+
+@utility btn-sm {
+  @apply h-sm px-3 text-sm;
+}
+
+@utility btn-md {
+  @apply h-md px-4 text-sm;
+}
+
+@utility btn-lg {
+  @apply h-lg px-5 text-base;
+}
+
+@utility btn-xl {
+  @apply h-xl px-7 text-base;
+}
+
+/* ========================================
+   配色变体 - 实心按钮
+   ======================================== */
+
+@utility btn-primary {
+  @apply bg-primary text-primary-foreground border-transparent;
+  @apply hover:bg-primary/90;
+}
+
+@utility btn-secondary {
+  @apply bg-secondary text-secondary-foreground border-transparent;
+  @apply hover:bg-secondary/90;
+}
+
+@utility btn-destructive {
+  @apply bg-destructive text-destructive-foreground border-transparent;
+  @apply hover:bg-destructive/90;
+}
+
+@utility btn-muted {
+  @apply bg-muted text-muted-foreground border-transparent;
+  @apply hover:bg-muted/90;
+}
+
+/* ========================================
+   配色变体 - 描边按钮
+   ======================================== */
+
+@utility btn-outline {
+  @apply bg-background text-foreground border-input;
+  @apply hover:bg-accent hover:text-accent-foreground;
+}
+
+@utility btn-outline-primary {
+  @apply bg-transparent text-primary border-primary;
+  @apply hover:bg-primary hover:text-primary-foreground;
+}
+
+@utility btn-outline-secondary {
+  @apply bg-transparent text-secondary border-secondary;
+  @apply hover:bg-secondary hover:text-secondary-foreground;
+}
+
+@utility btn-outline-destructive {
+  @apply bg-transparent text-destructive border-destructive;
+  @apply hover:bg-destructive hover:text-destructive-foreground;
+}
+
+/* ========================================
+   配色变体 - 幽灵按钮
+   ======================================== */
+
+@utility btn-ghost {
+  @apply bg-transparent text-foreground border-transparent;
+  @apply hover:bg-accent hover:text-accent-foreground;
+}
+
+@utility btn-ghost-primary {
+  @apply bg-transparent text-primary border-transparent;
+  @apply hover:bg-primary/10;
+}
+
+@utility btn-ghost-secondary {
+  @apply bg-transparent text-secondary border-transparent;
+  @apply hover:bg-secondary/10;
+}
+
+@utility btn-ghost-destructive {
+  @apply bg-transparent text-destructive border-transparent;
+  @apply hover:bg-destructive/10;
+}
+
+/* ========================================
+   特殊变体
+   ======================================== */
+
+@utility btn-link {
+  @apply bg-transparent text-primary border-transparent;
+  @apply underline-offset-4 px-1 h-auto;
+  @apply hover:underline;
+}
+
+/* ========================================
+   图标按钮
+   ======================================== */
+
+@utility btn-icon {
+  @apply p-0 aspect-square;
+}
+
+@utility btn-icon-xs {
+  @apply btn-icon h-xs w-7;
+}
+
+@utility btn-icon-sm {
+  @apply btn-icon h-sm w-8;
+}
+
+@utility btn-icon-md {
+  @apply btn-icon h-md w-10;
+}
+
+@utility btn-icon-lg {
+  @apply btn-icon h-lg w-12;
+}
+
+@utility btn-icon-xl {
+  @apply btn-icon h-xl w-14;
+}
+
+/* ========================================
+   形状变体
+   ======================================== */
+
+@utility btn-pill {
+  @apply rounded-full;
+}
+
+@utility btn-square {
+  @apply rounded-none;
+}
+
+/* ========================================
+   宽度变体
+   ======================================== */
+
+@utility btn-block {
+  @apply w-full max-w-none;
+}
+
+@utility btn-wide {
+  @apply w-full max-w-64;
+}
+
+/* ========================================
+   增强效果
+   ======================================== */
+
+@utility btn-shadow {
+  @apply shadow-sm hover:shadow-md;
+}
+
+@utility btn-lift {
+  @apply transition-all duration-200;
+  @apply hover:scale-105 hover:-translate-y-0.5;
+}
+
+/* ========================================
+   加载状态
+   ======================================== */
+
+@utility btn-loading {
+  @apply relative text-transparent pointer-events-none;
+
+  &::after {
+    content: "";
+    @apply absolute inset-0 m-auto;
+    @apply size-4 rounded-full;
+    @apply border-2 border-current border-t-transparent;
+    @apply animate-spin;
+  }
+}

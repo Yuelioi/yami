@@ -1,0 +1,116 @@
+/* Badge 徽章组件 */
+@utility badge {
+  @apply inline-flex items-center justify-center gap-1;
+  @apply px-2.5 h-5 text-xs font-semibold rounded-full;
+  @apply border transition-colors select-none;
+
+  --badge-bg: var(--background);
+  --badge-fg: var(--foreground);
+  --badge-border: var(--input);
+
+  @apply border-[var(--badge-border)] text-[var(--badge-fg)] bg-[var(--badge-bg)];
+}
+
+/* === 徽章配色 === */
+
+/* 主色徽章 */
+@utility badge-primary {
+  --badge-bg: theme(colors.primary.DEFAULT);
+  --badge-fg: theme(colors.primary.foreground);
+  --badge-border: theme(colors.primary.DEFAULT);
+}
+
+/* 次级徽章 */
+@utility badge-secondary {
+  --badge-bg: theme(colors.secondary.DEFAULT);
+  --badge-fg: theme(colors.secondary.foreground);
+  --badge-border: theme(colors.secondary.DEFAULT);
+}
+
+/* 危险徽章 */
+@utility badge-destructive {
+  --badge-bg: theme(colors.destructive.DEFAULT);
+  --badge-fg: theme(colors.destructive.foreground);
+  --badge-border: theme(colors.destructive.DEFAULT);
+}
+
+/* 弱色徽章 */
+@utility badge-muted {
+  --badge-bg: theme(colors.muted.DEFAULT);
+  --badge-fg: theme(colors.muted.foreground);
+  --badge-border: theme(colors.muted.DEFAULT);
+}
+
+/* 强调徽章 */
+@utility badge-accent {
+  --badge-bg: theme(colors.accent.DEFAULT);
+  --badge-fg: theme(colors.accent.foreground);
+  --badge-border: theme(colors.accent.DEFAULT);
+}
+
+/* 描边徽章 */
+@utility badge-outline {
+  --badge-bg: transparent;
+  --badge-border: currentColor;
+
+  &:is(.badge-primary) {
+    --badge-fg: theme(colors.primary.DEFAULT);
+    --badge-border: theme(colors.primary.DEFAULT);
+  }
+
+  &:is(.badge-secondary) {
+    --badge-fg: theme(colors.secondary.DEFAULT);
+    --badge-border: theme(colors.secondary.DEFAULT);
+  }
+
+  &:is(.badge-destructive) {
+    --badge-fg: theme(colors.destructive.DEFAULT);
+    --badge-border: theme(colors.destructive.DEFAULT);
+  }
+
+  &:is(.badge-muted) {
+    --badge-fg: theme(colors.muted.DEFAULT);
+    --badge-border: theme(colors.muted.DEFAULT);
+  }
+
+  &:is(.badge-accent) {
+    --badge-fg: theme(colors.accent.DEFAULT);
+    --badge-border: theme(colors.accent.DEFAULT);
+  }
+}
+
+/* === 尺寸 === */
+@utility badge-sm {
+  @apply text-[10px] px-1.5 h-4;
+}
+@utility badge-md {
+  @apply text-xs px-2.5 h-5;
+}
+@utility badge-lg {
+  @apply text-sm px-3 h-6;
+}
+@utility badge-xl {
+  @apply text-sm px-4 h-7;
+}
+
+/* === 形状 === */
+@utility badge-square {
+  @apply rounded-sm;
+}
+@utility badge-rounded {
+  @apply rounded-md;
+}
+
+/* === 扩展 === */
+/* 带点徽章 */
+@utility badge-dot {
+  &::before {
+    content: "";
+    @apply inline-block size-1.5 rounded-full mr-1 bg-current;
+  }
+}
+
+/* 可关闭徽章（需要配合 JavaScript） */
+@utility badge-closable {
+  @apply pr-1;
+}

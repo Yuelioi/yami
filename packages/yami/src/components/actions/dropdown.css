@@ -1,0 +1,70 @@
+/* === dropdown 基础 === */
+@utility dropdown {
+  @apply relative inline-block;
+
+  & summary {
+    list-style: none;
+    cursor: pointer;
+
+    &::-webkit-details-marker {
+      display: none;
+    }
+  }
+
+  /* & .menu {
+    @apply flex flex-col gap-1 p-2;
+  } */
+
+  /* 适配按钮 下拉菜单按钮文字应该居左 */
+  & .btn {
+    @apply text-left w-full justify-start content-start select-none [text-wrap:balance];
+  }
+}
+
+/* === dropdown 内容层 === */
+@utility dropdown-content {
+  @apply absolute opacity-0  pointer-events-none;
+  @apply bg-popover border border-border rounded shadow-md z-50;
+  @apply w-auto min-w-max;
+
+  details[open] & {
+    @apply opacity-100 pointer-events-auto;
+  }
+}
+
+/* === 方向修饰 === */
+
+/* 默认向下 */
+@utility dropdown-bottom {
+  .dropdown-content {
+    @apply top-full bottom-auto  origin-top;
+  }
+}
+
+/* 向上 */
+@utility dropdown-top {
+  .dropdown-content {
+    @apply bottom-full top-auto  origin-bottom;
+  }
+}
+
+/* 向左 */
+@utility dropdown-start {
+  .dropdown-content {
+    @apply right-full top-0 bottom-auto  origin-right;
+  }
+}
+
+/* 向右 */
+@utility dropdown-end {
+  .dropdown-content {
+    @apply left-full top-0 bottom-auto origin-left;
+  }
+}
+
+/* 居中 */
+@utility dropdown-center {
+  .dropdown-content {
+    @apply top-full left-1/2 -translate-x-1/2  origin-top;
+  }
+}

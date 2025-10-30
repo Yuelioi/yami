@@ -1,0 +1,182 @@
+/* Toast 消息组件 */
+
+/* === Toast 基础容器 === */
+@utility toast {
+  @apply rounded-md p-3 backdrop-blur-sm;
+  @apply bg-card border border-border text-card-foreground;
+  @apply flex items-start gap-3 relative;
+}
+
+@utility toast-title {
+  @apply font-semibold text-sm;
+  @apply text-card-foreground;
+}
+
+@utility toast-message {
+  @apply text-sm mt-1;
+  @apply text-muted-foreground;
+}
+
+/* 关闭按钮通用样式 */
+@utility toast-close {
+  @apply rounded-sm p-1 transition-colors duration-200 size-6 cursor-pointer;
+  @apply flex items-center justify-center ml-auto;
+  @apply text-muted-foreground;
+
+  &::before {
+    content: "";
+    @apply block size-4;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='currentColor'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M6 18L18 6M6 6l12 12'/%3E%3C/svg%3E");
+    background-size: contain;
+    background-repeat: no-repeat;
+  }
+}
+
+@utility toast-info {
+  @apply toast border-l-4;
+  border-left-color: theme(colors.info.DEFAULT);
+
+  &::before {
+    content: "";
+    @apply block size-5 flex-shrink-0;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%236366f1'%3E%3Cpath fill-rule='evenodd' d='M2.25 12c0-5.385 4.365-9.75 9.75-9.75s9.75 4.365 9.75 9.75-4.365 9.75-9.75 9.75S2.25 17.385 2.25 12zm8.706-1.442c1.146-.573 2.437.463 2.126 1.706l-.709 2.836.042-.02a.75.75 0 01.67 1.34l-.04.022c-1.147.573-2.438-.463-2.127-1.706l.71-2.836-.042.02a.75.75 0 11-.671-1.34l.041-.022zM12 9a.75.75 0 100-1.5.75.75 0 000 1.5z' clip-rule='evenodd'/%3E%3C/svg%3E");
+    background-size: contain;
+    background-repeat: no-repeat;
+  }
+
+  & .toast-close {
+    @apply hover:bg-info/50;
+  }
+}
+
+@utility toast-success {
+  @apply toast border-l-4;
+  @apply border-l-success;
+
+  &::before {
+    content: "";
+    @apply block size-5 flex-shrink-0;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%2310b981'%3E%3Cpath fill-rule='evenodd' d='M2.25 12c0-5.385 4.365-9.75 9.75-9.75s9.75 4.365 9.75 9.75-4.365 9.75-9.75 9.75S2.25 17.385 2.25 12zm13.36-1.814a.75.75 0 10-1.22-.872l-3.236 4.53L9.53 12.22a.75.75 0 00-1.06 1.06l2.25 2.25a.75.75 0 001.14-.094l3.75-5.25z' clip-rule='evenodd'/%3E%3C/svg%3E");
+    background-size: contain;
+    background-repeat: no-repeat;
+  }
+
+  & .toast-close {
+    @apply hover:bg-success/50;
+  }
+}
+
+@utility toast-warning {
+  @apply toast border-l-4;
+  @apply border-l-warning;
+
+  &::before {
+    content: "";
+    @apply block size-5 flex-shrink-0;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23f59e0b'%3E%3Cpath fill-rule='evenodd' d='M9.401 3.003c1.155-2 4.043-2 5.197 0l7.355 12.748c1.154 2-.29 4.5-2.599 4.5H4.645c-2.309 0-3.752-2.5-2.598-4.5L9.4 3.003zM12 8.25a.75.75 0 01.75.75v3.75a.75.75 0 01-1.5 0V9a.75.75 0 01.75-.75zm0 8.25a.75.75 0 100-1.5.75.75 0 000 1.5z' clip-rule='evenodd'/%3E%3C/svg%3E");
+    background-size: contain;
+    background-repeat: no-repeat;
+  }
+
+  & .toast-close {
+    @apply hover:bg-warning/50;
+  }
+}
+
+@utility toast-error {
+  @apply toast border-l-4;
+  @apply border-l-danger;
+
+  &::before {
+    content: "";
+    @apply block size-5 flex-shrink-0;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23ef4444'%3E%3Cpath fill-rule='evenodd' d='M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25zm-1.72 6.97a.75.75 0 10-1.06 1.06L10.94 12l-1.72 1.72a.75.75 0 101.06 1.06L12 13.06l1.72 1.72a.75.75 0 101.06-1.06L13.06 12l1.72-1.72a.75.75 0 10-1.06-1.06L12 10.94l-1.72-1.72z' clip-rule='evenodd'/%3E%3C/svg%3E");
+    background-size: contain;
+    background-repeat: no-repeat;
+  }
+
+  & .toast-close {
+    @apply hover:bg-danger/50;
+  }
+}
+
+/* === Toast 尺寸 === */
+@utility toast-sm {
+  @apply p-2 pr-3 gap-2;
+
+  &::before {
+    @apply size-4;
+  }
+
+  & .toast-title {
+    @apply text-xs;
+  }
+
+  & .toast-message {
+    @apply text-xs;
+  }
+
+  & .toast-close {
+    @apply size-5;
+
+    &::before {
+      @apply size-3;
+    }
+  }
+}
+
+@utility toast-lg {
+  @apply p-4 gap-4;
+
+  &::before {
+    @apply size-6;
+  }
+
+  & .toast-title {
+    @apply text-base;
+  }
+
+  & .toast-message {
+    @apply text-sm;
+  }
+
+  & .toast-close {
+    @apply size-7;
+
+    &::before {
+      @apply size-5;
+    }
+  }
+}
+
+/* === Toast 无图标样式 === */
+@utility toast-no-icon {
+  &::before {
+    @apply hidden;
+  }
+}
+
+/* === Toast 动画效果 === */
+@utility toast-enter {
+  @apply translate-x-full opacity-0;
+}
+
+@utility toast-enter-active {
+  @apply transition-all duration-300 ease-out;
+}
+
+@utility toast-enter-to {
+  @apply translate-x-0 opacity-100;
+}
+
+@utility toast-leave {
+  @apply translate-x-0 opacity-100;
+}
+
+@utility toast-leave-active {
+  @apply transition-all duration-300 ease-in;
+}
+
+@utility toast-leave-to {
+  @apply translate-x-full opacity-0;
+}

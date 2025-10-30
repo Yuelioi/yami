@@ -1,0 +1,194 @@
+/* Calendar 日历组件 */
+@utility calendar {
+  @apply w-full max-w-sm p-3 rounded-lg border bg-background;
+}
+
+/* 日历头部 */
+@utility calendar-header {
+  @apply flex items-center justify-between mb-4;
+}
+
+@utility calendar-title {
+  @apply text-sm font-semibold;
+}
+
+@utility calendar-nav {
+  @apply flex items-center gap-1;
+}
+
+/* 星期标题 */
+@utility calendar-weekdays {
+  @apply grid grid-cols-7 gap-1 mb-2;
+}
+
+@utility calendar-weekday {
+  @apply h-9 flex items-center justify-center;
+  @apply text-xs font-medium text-muted-foreground;
+}
+
+/* 日期网格 */
+@utility calendar-days {
+  @apply grid grid-cols-7 gap-1;
+}
+
+/* 日期单元格 */
+@utility calendar-day {
+  @apply relative h-9 w-full flex items-center justify-center;
+  @apply text-sm rounded-md transition-colors;
+  @apply hover:bg-accent hover:text-accent-foreground;
+  @apply focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring;
+  @apply cursor-pointer select-none;
+
+  --day-bg: transparent;
+  --day-fg: var(--foreground);
+
+  @apply bg-[var(--day-bg)] text-[var(--day-fg)];
+}
+
+/* === 日期状态 === */
+
+/* 今天 */
+@utility calendar-day-today {
+  @apply font-semibold;
+  @apply after:absolute after:bottom-1 after:left-1/2 after:-translate-x-1/2;
+  @apply after:w-1 after:h-1 after:rounded-full after:bg-primary;
+}
+
+/* 选中的日期 */
+@utility calendar-day-selected {
+  --day-bg: theme(colors.primary.DEFAULT);
+  --day-fg: theme(colors.primary.foreground);
+  @apply font-semibold;
+
+  &:hover {
+    --day-bg: theme(colors.primary.DEFAULT / 0.9);
+  }
+}
+
+/* 范围选择 - 起始 */
+@utility calendar-day-range-start {
+  --day-bg: theme(colors.primary.DEFAULT);
+  --day-fg: theme(colors.primary.foreground);
+  @apply rounded-r-none;
+}
+
+/* 范围选择 - 中间 */
+@utility calendar-day-range-middle {
+  --day-bg: theme(colors.primary.DEFAULT / 0.1);
+  --day-fg: var(--foreground);
+  @apply rounded-none;
+}
+
+/* 范围选择 - 结束 */
+@utility calendar-day-range-end {
+  --day-bg: theme(colors.primary.DEFAULT);
+  --day-fg: theme(colors.primary.foreground);
+  @apply rounded-l-none;
+}
+
+/* 其他月份的日期 */
+@utility calendar-day-outside {
+  --day-fg: theme(colors.muted.foreground / 0.5);
+  @apply pointer-events-none;
+}
+
+/* 禁用的日期 */
+@utility calendar-day-disabled {
+  --day-fg: theme(colors.muted.foreground / 0.3);
+  @apply pointer-events-none cursor-not-allowed;
+}
+
+/* 周末 */
+@utility calendar-day-weekend {
+  --day-fg: theme(colors.destructive.DEFAULT / 0.8);
+}
+
+/* === 多选模式 === */
+@utility calendar-day-multiple {
+  &.calendar-day-selected {
+    @apply after:absolute after:top-1 after:right-1;
+    @apply after:w-1.5 after:h-1.5 after:rounded-full after:bg-primary-foreground;
+  }
+}
+
+/* === 紧凑模式 === */
+@utility calendar-compact {
+  @apply p-2;
+
+  & .calendar-header {
+    @apply mb-2;
+  }
+
+  & .calendar-weekday {
+    @apply h-7 text-[10px];
+  }
+
+  & .calendar-day {
+    @apply h-7 text-xs;
+  }
+}
+
+/* === 大尺寸 === */
+@utility calendar-lg {
+  @apply max-w-md p-4;
+
+  & .calendar-title {
+    @apply text-base;
+  }
+
+  & .calendar-weekday {
+    @apply h-10 text-sm;
+  }
+
+  & .calendar-day {
+    @apply h-10 text-base;
+  }
+}
+
+/* === 带事件标记 === */
+@utility calendar-day-event {
+  @apply before:absolute before:top-1 before:right-1;
+  @apply before:w-1.5 before:h-1.5 before:rounded-full before:bg-accent;
+}
+
+@utility calendar-day-event-primary {
+  @apply before:bg-primary;
+}
+
+@utility calendar-day-event-destructive {
+  @apply before:bg-destructive;
+}
+
+/* === 月份选择器 === */
+@utility calendar-months {
+  @apply grid grid-cols-3 gap-2 p-2;
+}
+
+@utility calendar-month {
+  @apply h-12 flex items-center justify-center;
+  @apply text-sm rounded-md transition-colors;
+  @apply hover:bg-accent hover:text-accent-foreground;
+  @apply focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring;
+  @apply cursor-pointer select-none;
+
+  &.calendar-month-selected {
+    @apply bg-primary text-primary-foreground font-semibold;
+  }
+}
+
+/* === 年份选择器 === */
+@utility calendar-years {
+  @apply grid grid-cols-4 gap-2 p-2;
+}
+
+@utility calendar-year {
+  @apply h-12 flex items-center justify-center;
+  @apply text-sm rounded-md transition-colors;
+  @apply hover:bg-accent hover:text-accent-foreground;
+  @apply focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring;
+  @apply cursor-pointer select-none;
+
+  &.calendar-year-selected {
+    @apply bg-primary text-primary-foreground font-semibold;
+  }
+}

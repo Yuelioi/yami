@@ -1,0 +1,278 @@
+/* Label 标签组件 */
+@utility label {
+  @apply inline-block;
+  @apply text-sm font-medium leading-none;
+  @apply text-foreground;
+  @apply cursor-pointer;
+  @apply select-none;
+
+  /* 与表单控件的间距 */
+  &:has(+ input, + textarea, + select) {
+    @apply mb-2;
+  }
+}
+
+/* 必填标记 */
+@utility label-required {
+  &::after {
+    content: " *";
+    @apply text-destructive;
+  }
+}
+
+/* 带描述文本 */
+@utility label-description {
+  @apply flex flex-col gap-1;
+
+  & > .description {
+    @apply text-xs font-normal text-muted-foreground;
+  }
+}
+
+/* 水平布局（label 和控件在一行） */
+@utility label-inline {
+  @apply inline-flex items-center gap-2;
+  @apply mb-0;
+}
+
+/* 尺寸变体 */
+@utility label-xs {
+  @apply text-xs;
+}
+
+@utility label-sm {
+  @apply text-sm;
+}
+
+@utility label-md {
+  @apply text-base;
+}
+
+@utility label-lg {
+  @apply text-lg;
+}
+
+/* 禁用状态 */
+@utility label-disabled {
+  @apply opacity-40 cursor-not-allowed;
+}
+
+/* 错误状态 */
+@utility label-error {
+  @apply text-destructive;
+}
+
+/* 成功状态 */
+@utility label-success {
+  @apply text-success;
+}
+
+/* Dot 样式的 label (带圆点指示器) */
+@utility label-dot {
+  @apply inline-flex items-center gap-1.5;
+
+  &::before {
+    content: "";
+    @apply w-2 h-2 rounded-full;
+    @apply bg-current;
+  }
+}
+
+/* Floating Label 浮动标签 */
+@utility label-float {
+  @apply relative;
+
+  /* 标签文字 */
+  & > label {
+    @apply absolute left-3 top-2.5;
+    @apply text-sm text-muted-foreground;
+    @apply transition-all duration-200;
+    @apply pointer-events-none;
+    @apply origin-left;
+    @apply bg-background px-1;
+  }
+
+  /* 输入框 */
+  & > input,
+  & > textarea,
+  & > select {
+    @apply w-full px-3 py-2.5;
+    @apply border border-input rounded-md;
+    @apply bg-background;
+    @apply text-foreground;
+    @apply transition-colors duration-200;
+    @apply focus:outline-none focus:ring-2 focus:ring-ring focus:border-transparent;
+  }
+
+  & > textarea {
+    @apply min-h-20 pt-6;
+  }
+
+  /* 浮动效果 - 当输入框有内容或获得焦点时 */
+  & > input:focus ~ label,
+  & > input:not(:placeholder-shown) ~ label,
+  & > textarea:focus ~ label,
+  & > textarea:not(:placeholder-shown) ~ label,
+  & > select:focus ~ label,
+  & > select:not([value=""]) ~ label {
+    @apply -top-2 left-2;
+    @apply text-xs;
+    @apply text-primary;
+    @apply scale-90;
+  }
+
+  /* 禁用状态 */
+  & > input:disabled,
+  & > textarea:disabled,
+  & > select:disabled {
+    @apply opacity-40 cursor-not-allowed;
+  }
+
+  & > input:disabled ~ label,
+  & > textarea:disabled ~ label,
+  & > select:disabled ~ label {
+    @apply opacity-40;
+  }
+}
+
+/* 必填标记 */
+@utility label-float-required {
+  & > label::after {
+    content: " *";
+    @apply text-red-500;
+  }
+}
+
+/* 错误状态 */
+@utility label-float-error {
+  & > input,
+  & > textarea,
+  & > select {
+    @apply border-red-500 focus:ring-red-500;
+  }
+
+  & > label {
+    @apply text-red-600 dark:text-red-500;
+  }
+
+  & > input:focus ~ label,
+  & > input:not(:placeholder-shown) ~ label,
+  & > textarea:focus ~ label,
+  & > textarea:not(:placeholder-shown) ~ label,
+  & > select:focus ~ label {
+    @apply text-red-600 dark:text-red-500;
+  }
+}
+
+/* 成功状态 */
+@utility label-float-success {
+  & > input,
+  & > textarea,
+  & > select {
+    @apply border-green-500 focus:ring-green-500;
+  }
+
+  & > label {
+    @apply text-green-600 dark:text-green-500;
+  }
+
+  & > input:focus ~ label,
+  & > input:not(:placeholder-shown) ~ label,
+  & > textarea:focus ~ label,
+  & > textarea:not(:placeholder-shown) ~ label,
+  & > select:focus ~ label {
+    @apply text-green-600 dark:text-green-500;
+  }
+}
+
+/* 尺寸变体 */
+@utility label-float-sm {
+  & > label {
+    @apply text-xs top-2;
+  }
+
+  & > input,
+  & > textarea,
+  & > select {
+    @apply py-2 text-sm;
+  }
+
+  & > input:focus ~ label,
+  & > input:not(:placeholder-shown) ~ label,
+  & > textarea:focus ~ label,
+  & > textarea:not(:placeholder-shown) ~ label,
+  & > select:focus ~ label {
+    @apply -top-2 text-xs;
+    @apply scale-90;
+  }
+}
+
+@utility label-float-lg {
+  & > label {
+    @apply text-base top-3.5;
+  }
+
+  & > input,
+  & > textarea,
+  & > select {
+    @apply py-3.5 text-base;
+  }
+
+  & > textarea {
+    @apply pt-8;
+  }
+
+  & > input:focus ~ label,
+  & > input:not(:placeholder-shown) ~ label,
+  & > textarea:focus ~ label,
+  & > textarea:not(:placeholder-shown) ~ label,
+  & > select:focus ~ label {
+    @apply -top-2.5 text-sm;
+  }
+}
+
+/* 带图标的浮动标签 */
+@utility label-float-icon {
+  & > input,
+  & > textarea {
+    @apply pl-10;
+  }
+
+  & > .icon {
+    @apply absolute left-3 top-1/2 -translate-y-1/2;
+    @apply text-muted-foreground;
+    @apply pointer-events-none;
+    @apply transition-colors duration-200;
+  }
+
+  & > input:focus ~ .icon,
+  & > textarea:focus ~ .icon {
+    @apply text-primary;
+  }
+
+  & > label {
+    @apply left-10;
+  }
+
+  & > input:focus ~ label,
+  & > input:not(:placeholder-shown) ~ label,
+  & > textarea:focus ~ label,
+  & > textarea:not(:placeholder-shown) ~ label {
+    @apply left-2;
+  }
+}
+
+/* Outlined 风格（Material Design 风格） */
+@utility label-float-outlined {
+  & > label {
+    @apply -top-2 left-2;
+    @apply text-xs;
+    @apply scale-100;
+  }
+
+  & > input,
+  & > textarea,
+  & > select {
+    @apply border-2;
+  }
+}

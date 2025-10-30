@@ -1,0 +1,442 @@
+/* === Collapse 基础样式 === */
+@utility collapse {
+  @apply grid relative overflow-hidden w-full isolate;
+  @apply rounded-lg;
+  grid-template-rows: max-content 0fr;
+  grid-template-columns: minmax(0, 1fr);
+
+  --collapse-bg: var(--background);
+  --collapse-fg: var(--foreground);
+  --collapse-border: var(--border);
+  --collapse-title-bg: transparent;
+  --collapse-title-fg: var(--foreground);
+  --collapse-content-bg: transparent;
+  --collapse-content-fg: var(--foreground);
+
+  @apply bg-[var(--collapse-bg)] text-[var(--collapse-fg)];
+  @apply transition-[grid-template-rows] duration-200;
+
+  /* 隐藏 checkbox/radio  */
+  & > input[type="radio"],
+  & > input[type="checkbox"] {
+    @apply appearance-none opacity-0;
+    @apply absolute z-10 w-full cursor-pointer;
+    @apply px-4 pr-12 py-3 min-h-12;
+    grid-column-start: 1;
+    grid-row-start: 1;
+    @apply transition-colors duration-200;
+  }
+
+  /* === 展开状态 === */
+  /* 使用 checkbox/radio */
+  &:not(.collapse-close):has(> input[type="checkbox"]:checked),
+  &:not(.collapse-close):has(> input[type="radio"]:checked) {
+    grid-template-rows: max-content 1fr;
+
+    & > .collapse-content {
+      @apply visible py-4;
+      min-height: fit-content;
+
+      &:has(table) {
+        @apply py-0;
+      }
+    }
+  }
+
+  /* 使用 tabindex focus */
+  &[tabindex]:focus:not(.collapse-close),
+  &[tabindex]:focus-within:not(.collapse-close) {
+    grid-template-rows: max-content 1fr;
+
+    & > .collapse-content {
+      @apply visible py-4;
+      min-height: fit-content;
+
+      &:has(table) {
+        @apply py-0;
+      }
+    }
+
+    & > .collapse-title {
+      cursor: unset;
+    }
+  }
+
+  /* 使用 details/summary */
+  &[open]:not(.collapse-close) {
+    grid-template-rows: max-content 1fr;
+
+    & > .collapse-content {
+      @apply visible py-4;
+      min-height: fit-content;
+
+      &:has(table) {
+        @apply py-0;
+      }
+    }
+  }
+
+  /* 焦点样式 */
+  &:focus-visible,
+  &:has(> input[type="checkbox"]:focus-visible),
+  &:has(> input[type="radio"]:focus-visible),
+  &:has(summary:focus-visible) {
+    @apply outline-2 outline-offset-2 outline-ring;
+  }
+
+  &:not(.collapse-close) {
+    & > input[type="checkbox"],
+    & > input[type="radio"]:not(:checked) {
+      @apply absolute inset-0;
+      @apply opacity-0;
+    }
+  }
+
+  /* 光标样式 */
+  &:not(.collapse-close) {
+    & > input[type="checkbox"],
+    & > input[type="radio"]:not(:checked),
+    & > .collapse-title {
+      @apply cursor-pointer;
+    }
+  }
+
+  &:not(td, tr, colgroup) {
+    visibility: revert-layer;
+  }
+}
+
+@utility collapse-title {
+  @apply relative w-full cursor-pointer;
+  @apply px-4 pr-12 py-3 min-h-12;
+  @apply bg-[var(--collapse-title-bg)] text-[var(--collapse-title-fg)];
+  @apply transition-colors duration-200;
+  @apply select-none;
+  grid-column-start: 1;
+  grid-row-start: 1;
+
+  &:has(summary) {
+    @apply relative block w-full outline-none;
+    @apply px-4 pr-12 py-3 min-h-12;
+    @apply bg-[var(--collapse-title-bg)] text-[var(--collapse-title-fg)];
+    @apply transition-colors duration-200;
+
+    &::-webkit-details-marker,
+    &::marker {
+      @apply hidden;
+    }
+  }
+}
+
+@utility collapse-content {
+  @apply invisible  px-4;
+  @apply bg-[var(--collapse-content-bg)] text-[var(--collapse-content-fg)];
+  @apply transition-all duration-200 ease-out;
+  grid-column-start: 1;
+  grid-row-start: 2;
+  cursor: unset;
+  min-height: 0;
+
+  &:has(table) {
+    @apply px-0;
+  }
+}
+
+/* === Collapse 图标变体 === */
+
+/* 箭头图标 */
+@utility collapse-arrow {
+  & > .collapse-title::after,
+  & > summary.collapse-title::after {
+    content: "";
+    @apply absolute block;
+    @apply h-2 w-2 transition-all duration-200;
+    top: 50%;
+    right: 1.5rem;
+    transform: translateY(-100%) rotate(45deg);
+    transform-origin: 75% 75%;
+    box-shadow: 2px 2px;
+    pointer-events: none;
+  }
+
+  /* 展开时旋转箭头 */
+  &[open] > .collapse-title::after,
+  &[open] > summary.collapse-title::after,
+  &.collapse-open > .collapse-title::after,
+  &.collapse-open > summary.collapse-title::after {
+    transform: translateY(-50%) rotate(225deg);
+  }
+
+  &[tabindex]:focus:not(.collapse-close) > .collapse-title::after,
+  &[tabindex]:focus-within:not(.collapse-close) > .collapse-title::after {
+    transform: translateY(-50%) rotate(225deg);
+  }
+
+  &:not(.collapse-close):has(> input[type="checkbox"]:checked)
+    > .collapse-title::after,
+  &:not(.collapse-close):has(> input[type="radio"]:checked)
+    > .collapse-title::after {
+    transform: translateY(-50%) rotate(225deg);
+  }
+}
+
+/* 加号/减号图标 */
+@utility collapse-plus {
+  & > .collapse-title::after,
+  & > summary.collapse-title::after {
+    content: "+";
+    @apply absolute block;
+    @apply h-2 w-2 transition-all duration-300;
+    top: 0.9rem;
+    right: 1.4rem;
+    pointer-events: none;
+    @apply text-xl leading-none;
+  }
+
+  /* 展开时变成减号 */
+  &[open] > .collapse-title::after,
+  &[open] > summary.collapse-title::after,
+  &.collapse-open > .collapse-title::after,
+  &.collapse-open > summary.collapse-title::after {
+    content: "−";
+  }
+
+  &[tabindex]:focus:not(.collapse-close) > .collapse-title::after {
+    content: "−";
+  }
+
+  &:not(.collapse-close):has(> input[type="checkbox"]:checked)
+    > .collapse-title::after,
+  &:not(.collapse-close):has(> input[type="radio"]:checked)
+    > .collapse-title::after {
+    content: "−";
+  }
+}
+
+/* === Collapse 状态控制 === */
+
+/* 强制展开 */
+@utility collapse-open {
+  grid-template-rows: max-content 1fr;
+
+  & > .collapse-content {
+    @apply visible pb-4;
+    min-height: fit-content;
+  }
+}
+
+/* 强制关闭 */
+@utility collapse-close {
+  grid-template-rows: max-content 0fr;
+
+  & > .collapse-content {
+    @apply invisible;
+    min-height: 0;
+    padding-bottom: 0;
+  }
+}
+
+/* === Collapse 配色方案 === */
+
+/* 主色 */
+@utility collapse-primary {
+  --collapse-title-bg: theme(colors.primary.DEFAULT / 0.1);
+  --collapse-title-fg: theme(colors.primary.DEFAULT);
+  --collapse-content-bg: theme(colors.primary.DEFAULT / 0.05);
+  --collapse-border: theme(colors.primary.DEFAULT);
+
+  &[open],
+  &.collapse-open,
+  &[tabindex]:focus:not(.collapse-close),
+  &[tabindex]:focus-within:not(.collapse-close),
+  &:not(.collapse-close):has(> input:checked) {
+    --collapse-title-bg: theme(colors.primary.DEFAULT);
+    --collapse-title-fg: theme(colors.primary.foreground);
+  }
+}
+
+/* 次级 */
+@utility collapse-secondary {
+  --collapse-title-bg: theme(colors.secondary.DEFAULT / 0.1);
+  --collapse-title-fg: theme(colors.secondary.DEFAULT);
+  --collapse-content-bg: theme(colors.secondary.DEFAULT / 0.05);
+  --collapse-border: theme(colors.secondary.DEFAULT);
+
+  &[open],
+  &.collapse-open,
+  &[tabindex]:focus:not(.collapse-close),
+  &[tabindex]:focus-within:not(.collapse-close),
+  &:not(.collapse-close):has(> input:checked) {
+    --collapse-title-bg: theme(colors.secondary.DEFAULT);
+    --collapse-title-fg: theme(colors.secondary.foreground);
+  }
+}
+
+/* 强调 */
+@utility collapse-accent {
+  --collapse-title-bg: theme(colors.accent.DEFAULT / 0.1);
+  --collapse-title-fg: theme(colors.accent.foreground);
+  --collapse-content-bg: theme(colors.accent.DEFAULT / 0.05);
+  --collapse-border: theme(colors.accent.DEFAULT);
+
+  &[open],
+  &.collapse-open,
+  &[tabindex]:focus:not(.collapse-close),
+  &[tabindex]:focus-within:not(.collapse-close),
+  &:not(.collapse-close):has(> input:checked) {
+    --collapse-title-bg: theme(colors.accent.DEFAULT);
+    --collapse-title-fg: theme(colors.accent.foreground);
+  }
+}
+
+/* 危险 */
+@utility collapse-destructive {
+  --collapse-title-bg: theme(colors.destructive.DEFAULT / 0.1);
+  --collapse-title-fg: theme(colors.destructive.DEFAULT);
+  --collapse-content-bg: theme(colors.destructive.DEFAULT / 0.05);
+  --collapse-border: theme(colors.destructive.DEFAULT);
+
+  &[open],
+  &.collapse-open,
+  &[tabindex]:focus:not(.collapse-close),
+  &[tabindex]:focus-within:not(.collapse-close),
+  &:not(.collapse-close):has(> input:checked) {
+    --collapse-title-bg: theme(colors.destructive.DEFAULT);
+    --collapse-title-fg: theme(colors.destructive.foreground);
+  }
+}
+
+/* 弱色 */
+@utility collapse-muted {
+  --collapse-title-bg: theme(colors.muted.DEFAULT);
+  --collapse-title-fg: theme(colors.muted.foreground);
+  --collapse-content-bg: theme(colors.muted.DEFAULT / 0.5);
+  --collapse-border: theme(colors.muted.DEFAULT);
+}
+
+/* === Collapse 边框样式 === */
+
+/* 带边框 */
+@utility collapse-bordered {
+  @apply border border-[var(--collapse-border)];
+}
+
+/* 阴影效果 */
+@utility collapse-shadow {
+  @apply shadow-md hover:shadow-lg transition-shadow;
+}
+
+/* === Collapse 尺寸变体 === */
+
+@utility collapse-sm {
+  & > input[type="checkbox"],
+  & > input[type="radio"],
+  & > .collapse-title,
+  & > summary.collapse-title {
+    @apply px-3 pr-10 py-2 min-h-10 text-sm;
+  }
+
+  & > .collapse-content {
+    @apply px-3 text-sm;
+  }
+
+  /* 展开状态 */
+  &[open] > .collapse-content,
+  &.collapse-open > .collapse-content,
+  &[tabindex]:focus:not(.collapse-close) > .collapse-content,
+  &[tabindex]:focus-within:not(.collapse-close) > .collapse-content,
+  &:not(.collapse-close):has(> input:checked) > .collapse-content {
+    @apply pb-3;
+  }
+
+  &.collapse-arrow > .collapse-title::after,
+  &.collapse-arrow > summary.collapse-title::after {
+    @apply right-3;
+  }
+
+  &.collapse-plus > .collapse-title::after,
+  &.collapse-plus > summary.collapse-title::after {
+    @apply right-3 text-base;
+  }
+}
+
+@utility collapse-lg {
+  & > input[type="checkbox"],
+  & > input[type="radio"],
+  & > .collapse-title,
+  & > summary.collapse-title {
+    @apply px-6 pr-16 py-4 min-h-16 text-base;
+  }
+
+  & > .collapse-content {
+    @apply px-6 text-base;
+  }
+
+  /* 展开状态 */
+  &[open] > .collapse-content,
+  &.collapse-open > .collapse-content,
+  &[tabindex]:focus:not(.collapse-close) > .collapse-content,
+  &[tabindex]:focus-within:not(.collapse-close) > .collapse-content,
+  &:not(.collapse-close):has(> input:checked) > .collapse-content {
+    @apply pb-6;
+  }
+
+  &.collapse-arrow > .collapse-title::after,
+  &.collapse-arrow > summary.collapse-title::after {
+    @apply right-6 h-3 w-3;
+  }
+
+  &.collapse-plus > .collapse-title::after,
+  &.collapse-plus > summary.collapse-title::after {
+    @apply right-6 text-2xl;
+  }
+}
+
+/* === Collapse 组合样式（手风琴） === */
+
+/* 手风琴容器 */
+@utility collapse-group {
+  @apply space-y-2;
+
+  & > .collapse {
+    @apply rounded-lg;
+  }
+
+  & > .collapse + .collapse {
+    @apply mt-0 border-t-0 rounded-t-none;
+  }
+
+  & > .collapse:first-child {
+    @apply rounded-b-none;
+  }
+
+  & > .collapse:last-child {
+    @apply rounded-t-none;
+  }
+
+  & > .collapse:not(:first-child):not(:last-child) {
+    @apply rounded-none;
+  }
+}
+
+/* 紧凑的手风琴组 */
+@utility collapse-group-compact {
+  @apply space-y-0;
+
+  & > .collapse + .collapse {
+    @apply border-t;
+  }
+}
+
+/* === Collapse 悬停效果 === */
+@utility collapse-hover {
+  & > .collapse-title:hover,
+  & > summary.collapse-title:hover {
+    @apply bg-[var(--collapse-title-bg)];
+  }
+}
+
+/* === Collapse 禁用状态 === */
+@utility collapse-disabled {
+  @apply opacity-60 pointer-events-none cursor-not-allowed;
+}

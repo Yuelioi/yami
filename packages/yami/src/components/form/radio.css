@@ -1,0 +1,243 @@
+/* Radio 单选框组件 */
+@utility radio {
+  @apply relative inline-flex items-center justify-center;
+  @apply appearance-none cursor-pointer;
+  @apply w-4 h-4 rounded-full border-2 border-input;
+  @apply bg-background;
+  @apply transition-all duration-200;
+  @apply focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2;
+  @apply disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-40;
+
+  /* 选中状态的圆点 */
+  &::after {
+    content: "";
+    @apply absolute;
+    @apply w-2 h-2 rounded-full;
+    @apply bg-background;
+    @apply scale-0 opacity-0;
+    @apply transition-all duration-200;
+  }
+
+  /* 选中状态 */
+  &:checked {
+    @apply bg-primary border-primary;
+  }
+
+  &:checked::after {
+    @apply scale-100 opacity-100;
+  }
+}
+
+/* 颜色变体 */
+@utility radio-primary {
+  &:checked {
+    @apply bg-primary border-primary;
+  }
+}
+
+@utility radio-secondary {
+  &:checked {
+    @apply bg-secondary border-secondary;
+  }
+}
+
+@utility radio-accent {
+  &:checked {
+    @apply bg-accent border-accent;
+  }
+}
+
+@utility radio-success {
+  &:checked {
+    @apply bg-green-600 border-green-600 dark:bg-green-500 dark:border-green-500;
+  }
+}
+
+@utility radio-warning {
+  &:checked {
+    @apply bg-amber-500 border-amber-500;
+  }
+}
+
+@utility radio-error {
+  &:checked {
+    @apply bg-red-600 border-red-600 dark:bg-red-500 dark:border-red-500;
+  }
+}
+
+/* 尺寸变体 */
+@utility radio-xs {
+  @apply w-3 h-3;
+
+  &::after {
+    @apply w-1.5 h-1.5;
+  }
+}
+
+@utility radio-sm {
+  @apply w-3.5 h-3.5;
+
+  &::after {
+    @apply w-1.5 h-1.5;
+  }
+}
+
+@utility radio-md {
+  @apply w-4 h-4;
+
+  &::after {
+    @apply w-2 h-2;
+  }
+}
+
+@utility radio-lg {
+  @apply w-5 h-5;
+
+  &::after {
+    @apply w-2.5 h-2.5;
+  }
+}
+
+@utility radio-xl {
+  @apply w-6 h-6;
+
+  &::after {
+    @apply w-3 h-3;
+  }
+}
+
+/* Radio 组 */
+@utility radio-group {
+  @apply flex flex-col gap-2;
+}
+
+@utility radio-group-inline {
+  @apply flex flex-wrap items-center gap-4;
+}
+
+/* Radio 卡片样式 */
+@utility radio-card {
+  @apply relative;
+
+  & > input[type="radio"] {
+    @apply absolute opacity-0 pointer-events-none;
+  }
+
+  & > label {
+    @apply flex items-center gap-3 p-4;
+    @apply border-2 border-input rounded-lg;
+    @apply bg-background;
+    @apply cursor-pointer;
+    @apply transition-all duration-200;
+    @apply hover:border-primary/50 hover:bg-muted/50;
+  }
+
+  & > input[type="radio"]:checked + label {
+    @apply border-primary bg-primary/5;
+  }
+
+  & > input[type="radio"]:disabled + label {
+    @apply opacity-40 cursor-not-allowed;
+  }
+
+  & > input[type="radio"]:focus-visible + label {
+    @apply ring-2 ring-ring ring-offset-2;
+  }
+}
+
+/* Radio 按钮样式 */
+@utility radio-button {
+  @apply relative;
+
+  & > input[type="radio"] {
+    @apply absolute opacity-0 pointer-events-none;
+  }
+
+  & > label {
+    @apply inline-flex items-center justify-center;
+    @apply px-4 py-2;
+    @apply text-sm font-medium;
+    @apply border border-input;
+    @apply bg-background text-foreground;
+    @apply cursor-pointer;
+    @apply transition-all duration-200;
+    @apply hover:bg-muted;
+  }
+
+  & > input[type="radio"]:checked + label {
+    @apply bg-primary text-primary-foreground border-primary;
+  }
+
+  & > input[type="radio"]:disabled + label {
+    @apply opacity-40 cursor-not-allowed;
+  }
+
+  & > input[type="radio"]:focus-visible + label {
+    @apply ring-2 ring-ring ring-offset-2;
+  }
+}
+
+/* Radio 按钮组 */
+@utility radio-button-group {
+  @apply inline-flex;
+
+  & > .radio-button:first-child > label {
+    @apply rounded-l-md;
+  }
+
+  & > .radio-button:last-child > label {
+    @apply rounded-r-md;
+  }
+
+  & > .radio-button:not(:first-child) > label {
+    @apply -ml-px;
+  }
+}
+
+/* Radio 带描述 */
+@utility radio-description {
+  @apply flex items-start gap-3;
+
+  & > input[type="radio"] {
+    @apply mt-1;
+  }
+
+  & > .content {
+    @apply flex flex-col gap-1;
+  }
+
+  & > .content > .title {
+    @apply text-sm font-medium text-foreground;
+  }
+
+  & > .content > .description {
+    @apply text-xs text-muted-foreground;
+  }
+}
+
+/* Radio 图标样式 */
+@utility radio-icon {
+  @apply relative;
+
+  & > input[type="radio"] {
+    @apply absolute opacity-0 pointer-events-none;
+  }
+
+  & > label {
+    @apply flex flex-col items-center justify-center gap-2;
+    @apply w-20 h-20 p-2;
+    @apply border-2 border-input rounded-lg;
+    @apply bg-background;
+    @apply cursor-pointer;
+    @apply transition-all duration-200;
+    @apply hover:border-primary/50;
+  }
+
+  & > input[type="radio"]:checked + label {
+    @apply border-primary bg-primary/5;
+  }
+
+  & > input[type="radio"]:disabled + label {
+    @apply opacity-40 cursor-not-allowed;
+  }
+}

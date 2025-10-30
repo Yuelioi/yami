@@ -1,0 +1,340 @@
+/* === Timeline 基础组件 === */
+@utility timeline {
+  @apply relative flex;
+}
+
+/* === Timeline Item === */
+@utility timeline-item {
+  @apply relative grid shrink-0 items-center;
+  grid-template-rows: minmax(0, 1fr) auto minmax(0, 1fr);
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+}
+
+/* === Timeline 连接线 === */
+@utility timeline-line {
+  @apply bg-border h-0.5 border-none;
+
+  &:first-child {
+    @apply col-start-1 row-start-2;
+  }
+
+  &:last-child {
+    @apply col-start-3 col-end-[none] row-start-2 row-end-auto;
+  }
+}
+
+/* === Timeline 内容位置 === */
+@utility timeline-start {
+  @apply col-start-1 col-end-4 row-start-1 row-end-2 m-2 self-end justify-self-center;
+}
+
+@utility timeline-middle {
+  @apply col-start-2 row-start-2 z-10;
+}
+
+@utility timeline-end {
+  @apply col-start-1 col-end-4 row-start-3 row-end-4 m-2 self-start justify-self-center;
+}
+
+/* === Timeline 内容盒子 === */
+@utility timeline-box {
+  @apply rounded-lg bg-card border border-border px-4 py-3 text-sm text-card-foreground;
+  box-shadow: var(--shadow-sm);
+
+  &:hover {
+    box-shadow: var(--shadow-md);
+    @apply transition-shadow duration-200;
+  }
+}
+
+/* === Timeline 图标/节点样式 === */
+@utility timeline-icon {
+  @apply size-10 rounded-full bg-primary text-primary-foreground;
+  @apply flex items-center justify-center;
+  box-shadow: var(--shadow-sm);
+}
+
+@utility timeline-dot {
+  @apply size-3 rounded-full bg-primary;
+  box-shadow:
+    0 0 0 4px var(--background),
+    0 0 0 6px var(--border);
+}
+
+/* === Timeline 配色变体 === */
+@utility timeline-primary {
+  .timeline-line {
+    @apply bg-primary/30;
+  }
+
+  .timeline-icon {
+    @apply bg-primary text-primary-foreground;
+  }
+
+  .timeline-dot {
+    @apply bg-primary;
+  }
+}
+
+@utility timeline-secondary {
+  .timeline-line {
+    @apply bg-secondary/30;
+  }
+
+  .timeline-icon {
+    @apply bg-secondary text-secondary-foreground;
+  }
+
+  .timeline-dot {
+    @apply bg-secondary;
+  }
+}
+
+@utility timeline-accent {
+  .timeline-line {
+    @apply bg-accent/30;
+  }
+
+  .timeline-icon {
+    @apply bg-accent text-accent-foreground;
+  }
+
+  .timeline-dot {
+    @apply bg-accent;
+  }
+}
+
+@utility timeline-muted {
+  .timeline-line {
+    @apply bg-muted;
+  }
+
+  .timeline-icon {
+    @apply bg-muted text-muted-foreground;
+  }
+
+  .timeline-dot {
+    @apply bg-muted-foreground;
+  }
+}
+
+/* === Timeline 垂直布局 === */
+@utility timeline-vertical {
+  @apply flex-col;
+
+  .timeline-item {
+    @apply justify-items-center;
+    grid-template-rows: minmax(0, 1fr) auto minmax(0, 1fr);
+  }
+
+  .timeline-line {
+    @apply h-full w-0.5;
+
+    &:first-child {
+      @apply col-start-2 row-start-1;
+    }
+
+    &:last-child {
+      @apply col-start-2 col-end-auto row-start-3 row-end-[none];
+    }
+  }
+
+  .timeline-start {
+    @apply col-start-1 col-end-2 row-start-1 row-end-4 self-center justify-self-end mr-4;
+  }
+
+  .timeline-end {
+    @apply col-start-3 col-end-4 row-start-1 row-end-4 self-center justify-self-start ml-4;
+  }
+}
+
+/* === Timeline 水平布局 (默认) === */
+@utility timeline-horizontal {
+  @apply flex-row;
+
+  .timeline-item {
+    @apply items-center;
+  }
+
+  .timeline-line {
+    @apply h-0.5 w-full;
+
+    &:first-child {
+      @apply col-start-1 row-start-2;
+    }
+
+    &:last-child {
+      @apply col-start-3 col-end-[none] row-start-2 row-end-auto;
+    }
+  }
+
+  .timeline-start {
+    @apply col-start-1 col-end-4 row-start-1 row-end-2 self-end justify-self-center mb-2;
+  }
+
+  .timeline-end {
+    @apply col-start-1 col-end-4 row-start-3 row-end-4 self-start justify-self-center mt-2;
+  }
+}
+
+/* === Timeline 紧凑模式 === */
+@utility timeline-compact {
+  .timeline-item {
+    grid-template-rows: 0 auto minmax(0, 1fr);
+  }
+
+  .timeline-start {
+    @apply col-start-1 col-end-4 row-start-3 row-end-4 self-start;
+  }
+
+  &.timeline-vertical {
+    .timeline-item {
+      grid-template-columns: 0 auto minmax(0, 1fr);
+    }
+
+    .timeline-start {
+      @apply col-start-3 col-end-4 row-start-1 row-end-4 self-center justify-self-start;
+    }
+  }
+}
+
+/* === Timeline 尺寸变体 === */
+@utility timeline-sm {
+  .timeline-box {
+    @apply px-3 py-2 text-xs;
+  }
+
+  .timeline-icon {
+    @apply size-8 text-sm;
+  }
+
+  .timeline-dot {
+    @apply size-2;
+    box-shadow:
+      0 0 0 3px var(--background),
+      0 0 0 5px var(--border);
+  }
+}
+
+@utility timeline-lg {
+  .timeline-box {
+    @apply px-5 py-4 text-base;
+  }
+
+  .timeline-icon {
+    @apply size-12 text-lg;
+  }
+
+  .timeline-dot {
+    @apply size-4;
+    box-shadow:
+      0 0 0 5px var(--background),
+      0 0 0 7px var(--border);
+  }
+
+  .timeline-line {
+    @apply h-1;
+
+    &.timeline-vertical {
+      @apply w-1 h-full;
+    }
+  }
+}
+
+/* === Timeline 连接线样式 === */
+@utility timeline-line-dashed {
+  .timeline-line {
+    @apply bg-transparent border-t-2 border-dashed border-border;
+
+    &.timeline-vertical {
+      @apply border-t-0 border-l-2;
+    }
+  }
+}
+
+@utility timeline-line-dotted {
+  .timeline-line {
+    @apply bg-transparent border-t-2 border-dotted border-border;
+
+    &.timeline-vertical {
+      @apply border-t-0 border-l-2;
+    }
+  }
+}
+
+/* === Timeline 动画效果 === */
+@utility timeline-animated {
+  .timeline-item {
+    @apply opacity-0 translate-y-4;
+    animation: timeline-fade-in 0.5s ease-out forwards;
+  }
+
+  .timeline-item:nth-child(1) {
+    animation-delay: 0.1s;
+  }
+  .timeline-item:nth-child(2) {
+    animation-delay: 0.2s;
+  }
+  .timeline-item:nth-child(3) {
+    animation-delay: 0.3s;
+  }
+  .timeline-item:nth-child(4) {
+    animation-delay: 0.4s;
+  }
+  .timeline-item:nth-child(5) {
+    animation-delay: 0.5s;
+  }
+  .timeline-item:nth-child(6) {
+    animation-delay: 0.6s;
+  }
+
+  &.timeline-vertical .timeline-item {
+    @apply translate-y-0 translate-x-4;
+  }
+}
+
+/* === Timeline 连接线圆角 === */
+@utility timeline-rounded {
+  .timeline-line:first-child {
+    @apply rounded-l-full;
+  }
+
+  .timeline-line:last-child {
+    @apply rounded-r-full;
+  }
+
+  &.timeline-vertical {
+    .timeline-line:first-child {
+      @apply rounded-l-none rounded-t-full;
+    }
+
+    .timeline-line:last-child {
+      @apply rounded-r-none rounded-b-full;
+    }
+  }
+}
+
+/* === Timeline 交替布局 (仅垂直) === */
+@utility timeline-alternate {
+  &.timeline-vertical {
+    .timeline-item:nth-child(odd) {
+      .timeline-start {
+        @apply col-start-1 col-end-2 justify-self-end;
+      }
+
+      .timeline-end {
+        @apply col-start-3 col-end-4 justify-self-start;
+      }
+    }
+
+    .timeline-item:nth-child(even) {
+      .timeline-start {
+        @apply col-start-3 col-end-4 justify-self-start;
+      }
+
+      .timeline-end {
+        @apply col-start-1 col-end-2 justify-self-end;
+      }
+    }
+  }
+}

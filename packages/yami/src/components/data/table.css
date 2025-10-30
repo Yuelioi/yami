@@ -1,0 +1,384 @@
+/* === Table 基础样式 === */
+@utility table {
+  @apply w-full border-collapse text-sm;
+
+  --table-bg: var(--background);
+  --table-fg: var(--foreground);
+  --table-border: var(--border);
+  --table-header-bg: theme(colors.muted.DEFAULT);
+  --table-header-fg: theme(colors.muted.foreground);
+  --table-row-hover-bg: theme(colors.muted.DEFAULT / 0.5);
+  --table-stripe-bg: theme(colors.muted.DEFAULT / 0.3);
+
+  @apply bg-[var(--table-bg)] text-[var(--table-fg)];
+
+  /* 表头样式 */
+  & thead {
+    @apply bg-[var(--table-header-bg)] text-[var(--table-header-fg)];
+
+    & tr {
+      @apply border-b border-[var(--table-border)];
+    }
+
+    & th {
+      @apply px-4 py-3 text-left font-semibold;
+      @apply first:rounded-tl-lg last:rounded-tr-lg;
+    }
+  }
+
+  /* 表体样式 */
+  & tbody {
+    & tr {
+      @apply border-b border-[var(--table-border)] transition-colors;
+
+      &:last-child {
+        @apply border-b-0;
+      }
+    }
+
+    & td {
+      @apply px-4 py-3;
+    }
+  }
+
+  /* 表尾样式 */
+  & tfoot {
+    @apply bg-[var(--table-header-bg)] text-[var(--table-header-fg)] font-medium;
+
+    & tr {
+      @apply border-t border-[var(--table-border)];
+    }
+
+    & td {
+      @apply px-4 py-3;
+      @apply first:rounded-bl-lg last:rounded-br-lg;
+    }
+  }
+}
+
+/* === Table 变体 === */
+
+/* 斑马纹表格 */
+@utility table-zebra {
+  & tbody tr:nth-child(even) {
+    @apply bg-[var(--table-stripe-bg)];
+  }
+}
+
+/* 可悬停行 */
+@utility table-hover {
+  & tbody tr {
+    @apply cursor-pointer;
+
+    &:hover {
+      @apply bg-[var(--table-row-hover-bg)];
+    }
+  }
+}
+
+/* 固定表头 */
+@utility table-pin-rows {
+  & thead {
+    @apply sticky top-0 z-10;
+  }
+}
+
+/* 固定列 */
+@utility table-pin-cols {
+  & th:first-child,
+  & td:first-child {
+    @apply sticky left-0 z-10;
+    @apply bg-[var(--table-bg)];
+  }
+
+  & thead th:first-child {
+    @apply bg-[var(--table-header-bg)] z-20;
+  }
+
+  &.table-zebra tbody tr:nth-child(even) td:first-child {
+    @apply bg-[var(--table-stripe-bg)];
+  }
+}
+
+/* 紧凑表格 */
+@utility table-compact {
+  @apply text-xs;
+
+  & thead th {
+    @apply px-3 py-2;
+  }
+
+  & tbody td {
+    @apply px-3 py-2;
+  }
+
+  & tfoot td {
+    @apply px-3 py-2;
+  }
+}
+
+/* 宽松表格 */
+@utility table-comfortable {
+  @apply text-base;
+
+  & thead th {
+    @apply px-6 py-4;
+  }
+
+  & tbody td {
+    @apply px-6 py-4;
+  }
+
+  & tfoot td {
+    @apply px-6 py-4;
+  }
+}
+
+/* === Table 配色方案 === */
+
+/* 主色表格 */
+@utility table-primary {
+  --table-header-bg: theme(colors.primary.DEFAULT);
+  --table-header-fg: theme(colors.primary.foreground);
+  --table-row-hover-bg: theme(colors.primary.DEFAULT / 0.1);
+  --table-stripe-bg: theme(colors.primary.DEFAULT / 0.05);
+}
+
+/* 次级表格 */
+@utility table-secondary {
+  --table-header-bg: theme(colors.secondary.DEFAULT);
+  --table-header-fg: theme(colors.secondary.foreground);
+  --table-row-hover-bg: theme(colors.secondary.DEFAULT / 0.1);
+  --table-stripe-bg: theme(colors.secondary.DEFAULT / 0.05);
+}
+
+/* 强调表格 */
+@utility table-accent {
+  --table-header-bg: theme(colors.accent.DEFAULT);
+  --table-header-fg: theme(colors.accent.foreground);
+  --table-row-hover-bg: theme(colors.accent.DEFAULT / 0.1);
+  --table-stripe-bg: theme(colors.accent.DEFAULT / 0.05);
+}
+
+/* 危险表格 */
+@utility table-destructive {
+  --table-header-bg: theme(colors.destructive.DEFAULT);
+  --table-header-fg: theme(colors.destructive.foreground);
+  --table-row-hover-bg: theme(colors.destructive.DEFAULT / 0.1);
+  --table-stripe-bg: theme(colors.destructive.DEFAULT / 0.05);
+}
+
+/* === Table 边框样式 === */
+
+/* 无边框 */
+@utility table-borderless {
+  & thead tr,
+  & tbody tr,
+  & tfoot tr {
+    @apply border-0;
+  }
+}
+
+/* 完整边框 */
+@utility table-bordered {
+  @apply border border-[var(--table-border)] rounded-lg overflow-hidden;
+
+  & thead th,
+  & tbody td,
+  & tfoot td {
+    @apply border-r border-[var(--table-border)] last:border-r-0;
+  }
+}
+
+/* 仅横向边框 */
+@utility table-horizontal {
+  & thead th,
+  & tbody td,
+  & tfoot td {
+    @apply border-r-0;
+  }
+}
+
+/* 仅竖向边框 */
+@utility table-vertical {
+  & thead tr,
+  & tbody tr,
+  & tfoot tr {
+    @apply border-b-0;
+  }
+
+  & thead th,
+  & tbody td,
+  & tfoot td {
+    @apply border-r border-[var(--table-border)] last:border-r-0;
+  }
+}
+
+/* === Table 对齐方式 === */
+
+/* 居中对齐 */
+@utility table-center {
+  & thead th,
+  & tbody td,
+  & tfoot td {
+    @apply text-center;
+  }
+}
+
+/* 右对齐 */
+@utility table-right {
+  & thead th,
+  & tbody td,
+  & tfoot td {
+    @apply text-right;
+  }
+}
+
+/* === Table 特殊功能 === */
+
+/* 可选择行 */
+@utility table-selectable {
+  & tbody tr {
+    @apply cursor-pointer select-none;
+
+    &:hover {
+      @apply bg-[var(--table-row-hover-bg)];
+    }
+
+    &:active {
+      @apply scale-[0.99];
+    }
+  }
+}
+
+/* 高亮行 */
+@utility table-highlight {
+  & tbody tr.active {
+    @apply bg-[var(--table-header-bg)] text-[var(--table-header-fg)] font-medium;
+  }
+}
+
+/* 响应式表格容器 */
+@utility table-container {
+  @apply w-full overflow-x-auto rounded-lg border;
+  @apply shadow-sm;
+
+  &::-webkit-scrollbar {
+    @apply h-2;
+  }
+
+  &::-webkit-scrollbar-track {
+    @apply bg-[var(--table-bg)] rounded-full;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    @apply bg-[var(--table-border)] rounded-full;
+
+    &:hover {
+      @apply bg-[var(--table-header-bg)];
+    }
+  }
+}
+
+/* === Table 加载状态 === */
+@utility table-loading {
+  @apply relative;
+
+  &::after {
+    content: "";
+    @apply absolute inset-0 bg-[var(--table-bg)] opacity-50;
+    @apply flex items-center justify-center;
+    @apply backdrop-blur-sm;
+  }
+}
+
+/* === Table 空状态 === */
+@utility table-empty {
+  & tbody tr.empty {
+    @apply border-0;
+
+    & td {
+      @apply text-center py-12 text-[var(--table-header-fg)];
+    }
+  }
+}
+
+/* === Table 排序指示器 === */
+@utility table-sortable {
+  & thead th {
+    @apply cursor-pointer select-none relative;
+    @apply hover:bg-[var(--table-row-hover-bg)] transition-colors;
+
+    &.sort-asc::after,
+    &.sort-desc::after {
+      content: "";
+      @apply inline-block ml-1 w-0 h-0 align-middle;
+      @apply border-l-4 border-r-4 border-transparent;
+    }
+
+    &.sort-asc::after {
+      @apply border-b-4 border-b-current;
+    }
+
+    &.sort-desc::after {
+      @apply border-t-4 border-t-current;
+    }
+  }
+}
+
+/* === Table 卡片式 === */
+@utility table-card {
+  @apply rounded-lg shadow-md overflow-hidden;
+  @apply border border-[var(--table-border)];
+}
+
+/* === Table 尺寸变体 === */
+@utility table-xs {
+  @apply text-xs;
+
+  & thead th,
+  & tbody td,
+  & tfoot td {
+    @apply px-2 py-1;
+  }
+}
+
+@utility table-sm {
+  @apply text-xs;
+
+  & thead th,
+  & tbody td,
+  & tfoot td {
+    @apply px-3 py-2;
+  }
+}
+
+@utility table-md {
+  @apply text-sm;
+
+  & thead th,
+  & tbody td,
+  & tfoot td {
+    @apply px-4 py-3;
+  }
+}
+
+@utility table-lg {
+  @apply text-base;
+
+  & thead th,
+  & tbody td,
+  & tfoot td {
+    @apply px-5 py-4;
+  }
+}
+
+@utility table-xl {
+  @apply text-lg;
+
+  & thead th,
+  & tbody td,
+  & tfoot td {
+    @apply px-6 py-5;
+  }
+}

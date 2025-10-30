@@ -1,0 +1,158 @@
+/* Kbd 键盘按键组件 */
+@utility kbd {
+  @apply inline-flex items-center justify-center gap-1;
+  @apply px-1.5 h-5 min-w-5 text-xs font-semibold;
+  @apply rounded border select-none font-mono;
+  @apply shadow-sm;
+
+  --kbd-bg: var(--background);
+  --kbd-fg: var(--muted-foreground);
+  --kbd-border: var(--input);
+  --kbd-shadow: theme(colors.black / 0.1);
+
+  @apply bg-[var(--kbd-bg)] text-[var(--kbd-fg)] border-[var(--kbd-border)];
+  box-shadow:
+    0 1px 0 var(--kbd-shadow),
+    inset 0 1px 0 theme(colors.white / 0.1);
+}
+
+/* === 样式变体 === */
+
+/* 主色按键 */
+@utility kbd-primary {
+  --kbd-bg: theme(colors.primary.DEFAULT / 0.1);
+  --kbd-fg: theme(colors.primary.DEFAULT);
+  --kbd-border: theme(colors.primary.DEFAULT / 0.3);
+}
+/* 次色按键 */
+@utility kbd-secondary {
+  --kbd-bg: theme(colors.secondary.DEFAULT / 0.1);
+  --kbd-fg: theme(colors.secondary.DEFAULT);
+  --kbd-border: theme(colors.secondary.DEFAULT / 0.3);
+}
+
+/* 主色按键 */
+@utility kbd-destructive {
+  --kbd-bg: theme(colors.destructive.DEFAULT / 0.1);
+  --kbd-fg: theme(colors.destructive.DEFAULT);
+  --kbd-border: theme(colors.destructive.DEFAULT / 0.3);
+}
+
+@utility kbd-muted {
+  --kbd-bg: theme(colors.muted.DEFAULT);
+  --kbd-fg: theme(colors.muted.foreground);
+  --kbd-border: theme(colors.border);
+}
+
+/* 扁平样式 */
+@utility kbd-flat {
+  @apply shadow-none border-0;
+}
+
+/* === 尺寸 === */
+@utility kbd-xs {
+  @apply px-1 h-4 min-w-4 text-[10px];
+}
+@utility kbd-sm {
+  @apply px-1.5 h-5 min-w-5 text-xs;
+}
+@utility kbd-md {
+  @apply px-2 h-6 min-w-6 text-sm;
+}
+@utility kbd-lg {
+  @apply px-2.5 h-7 min-w-7 text-sm;
+}
+
+/* === 组合键 === */
+@utility kbd-group {
+  @apply inline-flex items-center gap-1;
+
+  & .kbd-separator {
+    @apply text-muted-foreground text-xs mx-0.5;
+  }
+}
+
+/* === 特殊按键图标 === */
+@utility kbd-command {
+  &::before {
+    content: "⌘";
+  }
+}
+
+@utility kbd-shift {
+  &::before {
+    content: "⇧";
+  }
+}
+
+@utility kbd-ctrl {
+  &::before {
+    content: "⌃";
+  }
+}
+
+@utility kbd-alt {
+  &::before {
+    content: "⌥";
+  }
+}
+
+@utility kbd-option {
+  &::before {
+    content: "⌥";
+  }
+}
+
+@utility kbd-enter {
+  &::before {
+    content: "↵";
+  }
+}
+
+@utility kbd-delete {
+  &::before {
+    content: "⌫";
+  }
+}
+
+@utility kbd-escape {
+  &::before {
+    content: "⎋";
+  }
+}
+
+@utility kbd-tab {
+  &::before {
+    content: "⇥";
+  }
+}
+
+@utility kbd-caps {
+  &::before {
+    content: "⇪";
+  }
+}
+
+@utility kbd-up {
+  &::before {
+    content: "↑";
+  }
+}
+
+@utility kbd-down {
+  &::before {
+    content: "↓";
+  }
+}
+
+@utility kbd-left {
+  &::before {
+    content: "←";
+  }
+}
+
+@utility kbd-right {
+  &::before {
+    content: "→";
+  }
+}

@@ -1,0 +1,130 @@
+@import "../../utilities/style.css";
+
+/* ========================================
+   Input 基础样式
+   ======================================== */
+
+@utility input {
+  /* 布局 */
+  @apply flex w-full;
+
+  /* 文本 */
+  @apply text-sm text-foreground;
+  @apply placeholder:text-muted-foreground;
+
+  /* 边框和背景 */
+  @apply rounded-md border border-input bg-background;
+
+  /* 间距 */
+  @apply h-md px-3 py-2;
+
+  /* 交互 */
+  @apply transition-colors;
+  @apply outline-none;
+
+  /* 焦点状态 */
+  @apply focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2;
+
+  /* 禁用状态 */
+  @apply disabled:cursor-not-allowed disabled:opacity-50;
+
+  /* 只读状态 */
+  @apply read-only:cursor-default read-only:focus-visible:ring-0;
+}
+
+/* ========================================
+   尺寸变体
+   ======================================== */
+
+@utility input-xs {
+  @apply h-xs text-xs px-2 py-1;
+}
+
+@utility input-sm {
+  @apply h-sm text-sm px-2.5 py-1.5;
+}
+
+@utility input-md {
+  @apply h-md text-sm px-3 py-2;
+}
+
+@utility input-lg {
+  @apply h-lg text-base px-4 py-3;
+}
+
+@utility input-xl {
+  @apply h-xl text-lg px-5 py-3.5;
+}
+
+/* ========================================
+   配色变体
+   ======================================== */
+
+@utility input-primary {
+  @apply border-primary focus-visible:ring-primary;
+}
+
+@utility input-secondary {
+  @apply border-secondary focus-visible:ring-secondary;
+}
+
+@utility input-destructive {
+  @apply border-destructive focus-visible:ring-destructive;
+}
+
+/* ========================================
+   风格变体
+   ======================================== */
+
+@utility input-ghost {
+  @apply border-transparent bg-transparent;
+  @apply hover:bg-muted/50;
+  @apply focus-visible:bg-background focus-visible:border-input;
+}
+
+@utility input-filled {
+  @apply border-transparent bg-muted;
+  @apply focus-visible:bg-background focus-visible:border-input;
+}
+
+/* ========================================
+   边框变体
+   ======================================== */
+
+@utility input-bordered {
+  @apply border-2;
+}
+
+@utility input-borderless {
+  @apply border-0 focus-visible:ring-0 focus-visible:ring-offset-0;
+}
+
+/* ========================================
+   Input Group 容器
+   ======================================== */
+
+@utility input-group {
+  @apply flex items-stretch w-full;
+
+  & > .input {
+    @apply flex-1;
+  }
+
+  /* 中间元素无圆角 */
+  & > :not(:first-child):not(:last-child),
+  & > :not(:first-child):not(:last-child) .input {
+    @apply rounded-none;
+  }
+
+  /* 首元素右侧无圆角 */
+  & > :first-child:not(:only-child),
+  & > :first-child:not(:only-child) .input {
+    @apply rounded-r-none;
+  }
+
+  /* 末元素左侧无圆角 */
+  & > :last-child:not(:only-child),
+  & > :last-child:not(:only-child) .input {
+    @apply rounded-l-none;
+  }
+}

@@ -1,0 +1,113 @@
+/* 基础 容器 */
+@utility modal {
+  @apply fixed inset-0 z-[99];
+  @apply grid h-full w-full items-center justify-items-center;
+  @apply m-0 p-0;
+  @apply max-w-none max-h-none;
+  @apply bg-transparent border-none;
+  @apply overflow-hidden invisible;
+  overscroll-behavior: contain;
+
+  @apply transition-colors duration-300;
+  transition: visibility 0.3s allow-discrete, background-color 0.3s ease-out;
+
+  &::backdrop {
+    @apply hidden;
+  }
+
+  &[open] {
+    @apply visible;
+    background-color: oklch(0% 0 0 / 0.4);
+
+    .modal-body {
+      scale: 1;
+      opacity: 1;
+    }
+  }
+
+  @starting-style {
+    &[open] {
+      @apply invisible;
+    }
+  }
+}
+
+/* Body 基础样式 */
+@utility modal-body {
+  @apply relative flex flex-col;
+  @apply p-6 max-w-[90vw] max-h-[90vh];
+  @apply bg-card text-foreground rounded-lg shadow-xl border border-border;
+  @apply overflow-y-auto;
+
+  transition-behavior: allow-discrete;
+
+  scale: 0.95;
+  opacity: 0;
+  transition: scale 0.3s ease-out, opacity 0.2s ease-out 0.05s;
+}
+
+/* Body 尺寸变体 */
+@utility modal-body-sm {
+  @apply w-80;
+}
+
+@utility modal-body-md {
+  @apply w-96;
+}
+
+@utility modal-body-lg {
+  @apply w-[32rem];
+}
+
+@utility modal-body-xl {
+  @apply w-[40rem];
+}
+
+@utility modal-body-full {
+  @apply w-[95vw];
+}
+
+/* Header */
+@utility modal-header {
+  @apply flex items-center justify-between mb-4 pb-4;
+}
+
+@utility modal-title {
+  @apply text-xl font-bold;
+}
+
+/* 对话框关闭按钮 */
+@utility modal-close {
+  @apply p-2 rounded-lg hover:bg-muted transition-colors;
+  @apply text-muted-foreground hover:text-foreground;
+  @apply cursor-pointer;
+}
+
+/* Content */
+@utility modal-content {
+  @apply flex-1 overflow-y-auto p-2;
+}
+
+/* Footer */
+@utility modal-footer {
+  @apply flex items-center justify-end gap-3 mt-4 pt-4;
+}
+
+/* 动画变体 - 缩放弹出 */
+@utility modal-bounce {
+  .modal-body {
+    @apply scale-80 opacity-0;
+  }
+
+  &[open] .modal-body {
+    @apply scale-100 opacity-100;
+    transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  }
+}
+
+/* 背景模糊效果 */
+@utility modal-blur {
+  &[open] {
+    backdrop-filter: blur(4px);
+  }
+}

@@ -1,0 +1,21 @@
+@utility title-deco {
+  @apply relative flex items-center;
+
+  &::before {
+    content: "";
+    @apply mr-3  w-1 h-8 bg-gradient-to-b from-primary to-primary/50 rounded-full mr-3;
+  }
+
+  & h2 {
+    @apply text-2xl font-bold;
+  }
+
+  &::after {
+    content: "";
+    @apply flex-1 h-px bg-gradient-to-r from-border to-transparent ml-4;
+  }
+
+  &:has(button)::after {
+    @apply flex-[0];
+  }
+}

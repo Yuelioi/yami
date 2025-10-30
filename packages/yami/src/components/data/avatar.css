@@ -1,0 +1,183 @@
+/* Avatar 头像组件 */
+@utility avatar {
+  @apply relative inline-flex items-center justify-center;
+  @apply shrink-0 rounded-full;
+  @apply size-10 bg-muted text-muted-foreground;
+  @apply font-medium select-none;
+
+  /* 头像图片样式 */
+  & img {
+    @apply size-full object-cover rounded-full;
+  }
+
+  /* 头像文字样式 */
+  & span {
+    @apply text-sm leading-none;
+  }
+}
+
+/* === 尺寸 === */
+@utility avatar-xs {
+  @apply size-6 text-xs;
+
+  &.avatar-status::after {
+    @apply size-2 border;
+  }
+}
+@utility avatar-sm {
+  @apply size-8 text-xs;
+
+  &.avatar-status::after {
+    @apply size-2.5 border;
+  }
+}
+@utility avatar-md {
+  @apply size-10 text-sm;
+}
+@utility avatar-lg {
+  @apply size-12 text-base;
+
+  &.avatar-status::after {
+    @apply size-3.5 border-[3px];
+  }
+}
+@utility avatar-xl {
+  @apply size-16 text-lg;
+
+  &.avatar-status::after {
+    @apply size-4 border-[3px];
+  }
+}
+@utility avatar-2xl {
+  @apply size-20 text-xl;
+
+  &.avatar-status::after {
+    @apply size-5 border-4;
+  }
+}
+
+/* === 形状 === */
+@utility avatar-square {
+  @apply rounded-none;
+
+  & img {
+    @apply rounded-none;
+  }
+}
+@utility avatar-rounded {
+  @apply rounded-lg;
+
+  & img {
+    @apply rounded-lg;
+  }
+}
+
+/* === 边框 === */
+@utility avatar-ring {
+  @apply ring-2 ring-background ring-offset-2 ring-offset-background;
+}
+
+@utility avatar-ring-primary {
+  @apply ring-2 ring-primary ring-offset-2 ring-offset-background;
+}
+
+@utility avatar-ring-destructive {
+  @apply ring-2 ring-destructive ring-offset-2 ring-offset-background;
+}
+
+@utility avatar-ring-accent {
+  @apply ring-2 ring-accent ring-offset-2 ring-offset-background;
+}
+
+/* === 状态指示器 === */
+@utility avatar-status {
+  &::after {
+    content: "";
+    @apply absolute bottom-0 right-0;
+    @apply size-3 rounded-full border-2 border-background;
+    @apply bg-muted;
+  }
+}
+
+@utility avatar-status-online {
+  @apply avatar-status;
+  &::after {
+    @apply bg-green-500;
+  }
+}
+
+@utility avatar-status-offline {
+  @apply avatar-status;
+
+  &::after {
+    @apply bg-gray-400;
+  }
+}
+
+@utility avatar-status-busy {
+  @apply avatar-status;
+
+  &::after {
+    @apply bg-red-500;
+  }
+}
+
+@utility avatar-status-away {
+  @apply avatar-status;
+
+  &::after {
+    @apply bg-yellow-500;
+  }
+}
+
+/* === 头像组 === */
+@utility avatar-group {
+  @apply inline-flex items-center;
+
+  & .avatar {
+    @apply transition-all duration-200;
+    @apply -ml-3 ring-2 ring-background;
+
+    &:first-child {
+      @apply ml-0;
+    }
+  }
+
+  &:hover .avatar {
+    @apply -ml-2 transition-all duration-200;
+
+    &:first-child {
+      @apply ml-0;
+    }
+  }
+}
+
+/* 紧凑头像组 */
+@utility avatar-group-compact {
+  & .avatar {
+    @apply transition-all duration-200;
+
+    @apply -ml-4;
+
+    &:first-child {
+      @apply ml-0;
+    }
+  }
+
+  &:hover .avatar {
+    @apply -ml-2;
+
+    &:first-child {
+      @apply ml-0;
+    }
+  }
+}
+
+/* === 扩展 === */
+@utility avatar-hover {
+  @apply hover:scale-110 transition-transform duration-200 cursor-pointer;
+}
+
+@utility avatar-clickable {
+  @apply hover:opacity-80 transition-opacity duration-200 cursor-pointer;
+}

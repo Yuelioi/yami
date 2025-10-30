@@ -1,0 +1,228 @@
+/* === Navbar 组件 === */
+@utility navbar {
+  @apply flex items-center justify-between gap-4;
+  @apply w-full px-4 py-3;
+  @apply bg-background border-b border-border;
+}
+
+/* === Navbar 区域 === */
+@utility navbar-start {
+  @apply flex items-center gap-3 flex-1;
+}
+
+@utility navbar-center {
+  @apply flex items-center gap-3 flex-shrink-0;
+}
+
+@utility navbar-end {
+  @apply flex items-center gap-3 flex-1 justify-end;
+}
+
+/* === Navbar 品牌/Logo === */
+@utility navbar-brand {
+  @apply flex items-center gap-2 text-lg font-semibold text-foreground;
+  @apply hover:opacity-90 transition-opacity;
+
+  & img {
+    @apply h-8 w-auto;
+  }
+}
+
+/* === Navbar 导航链接 === */
+@utility navbar-nav {
+  @apply flex items-center gap-1;
+}
+
+@utility navbar-link {
+  @apply inline-flex items-center gap-2 px-3 py-2 rounded-[var(--radius)];
+  @apply text-sm font-medium text-muted-foreground;
+  @apply hover:text-foreground hover:bg-muted;
+  @apply transition-colors cursor-pointer;
+
+  &[aria-current="page"],
+  &.active {
+    @apply text-foreground bg-muted;
+  }
+}
+
+/* === Navbar 样式变体 === */
+
+/* 固定在顶部 */
+@utility navbar-fixed-top {
+  @apply fixed top-0 left-0 right-0 z-50;
+}
+
+/* 固定在底部 */
+@utility navbar-fixed-bottom {
+  @apply fixed bottom-0 left-0 right-0 z-50;
+  @apply border-t border-b-0;
+}
+
+/* 粘性定位 */
+@utility navbar-sticky {
+  @apply sticky top-0 z-50;
+}
+
+/* 透明背景 */
+@utility navbar-glass {
+  @apply bg-background/80 backdrop-blur-md;
+  @apply border-border/50;
+}
+
+/* 无边框 */
+@utility navbar-borderless {
+  @apply border-0;
+}
+
+/* 带阴影 */
+@utility navbar-shadow {
+  @apply shadow-sm;
+}
+
+/* 主色背景 */
+@utility navbar-primary {
+  @apply bg-primary text-primary-foreground border-primary;
+
+  & .navbar-link {
+    @apply text-primary-foreground/80 hover:text-primary-foreground hover:bg-primary-foreground/10;
+
+    &[aria-current="page"],
+    &.active {
+      @apply text-primary-foreground bg-primary-foreground/15;
+    }
+  }
+}
+
+/* === Navbar 尺寸 === */
+@utility navbar-sm {
+  @apply px-3 py-2 text-sm;
+
+  & .navbar-brand {
+    @apply text-base;
+
+    & img {
+      @apply h-6;
+    }
+  }
+
+  & .navbar-link {
+    @apply px-2 py-1.5 text-xs;
+  }
+}
+
+@utility navbar-lg {
+  @apply px-6 py-4;
+
+  & .navbar-brand {
+    @apply text-xl;
+
+    & img {
+      @apply h-10;
+    }
+  }
+
+  & .navbar-link {
+    @apply px-4 py-2.5 text-base;
+  }
+}
+
+/* === Navbar 紧凑型 === */
+@utility navbar-compact {
+  @apply px-2 py-2 gap-2;
+
+  & .navbar-start,
+  & .navbar-center,
+  & .navbar-end {
+    @apply gap-1;
+  }
+}
+
+/* === Navbar 分隔符 === */
+@utility navbar-divider {
+  @apply w-px h-6 bg-border;
+}
+
+/* === Navbar 响应式 === */
+@utility navbar-responsive {
+  @apply flex-wrap;
+
+  & .navbar-start,
+  & .navbar-center,
+  & .navbar-end {
+    @apply flex-wrap;
+  }
+
+  @media (max-width: 768px) {
+    & .navbar-nav {
+      @apply hidden;
+    }
+
+    & .navbar-center {
+      @apply hidden;
+    }
+  }
+}
+
+/* === Navbar 搜索框 === */
+@utility navbar-search {
+  @apply flex items-center gap-2 px-3 py-1.5 rounded-[var(--radius)];
+  @apply bg-muted border border-transparent;
+  @apply focus-within:border-border focus-within:bg-background;
+  @apply transition-colors;
+  @apply max-w-xs w-full;
+}
+
+@utility navbar-search-input {
+  @apply flex-1 bg-transparent border-0 outline-none text-sm;
+  @apply placeholder:text-muted-foreground;
+}
+
+/* === Navbar 下拉菜单触发器 === */
+@utility navbar-dropdown {
+  @apply relative inline-flex;
+}
+
+@utility navbar-dropdown-toggle {
+  @apply inline-flex items-center gap-1 px-3 py-2 rounded-[var(--radius)];
+  @apply text-sm font-medium text-muted-foreground;
+  @apply hover:text-foreground hover:bg-muted;
+  @apply transition-colors cursor-pointer;
+}
+
+@utility navbar-dropdown-icon {
+  @apply inline-block transition-transform;
+
+  .navbar-dropdown[data-open="true"] & {
+    @apply rotate-180;
+  }
+}
+
+/* === Navbar 移动端菜单 === */
+@utility navbar-mobile {
+  @apply relative;
+}
+
+@utility navbar-mobile-toggle {
+  @apply inline-flex items-center justify-center;
+  @apply size-10 rounded-[var(--radius)];
+  @apply text-foreground hover:bg-muted;
+  @apply transition-colors cursor-pointer;
+  @apply md:hidden;
+}
+
+@utility navbar-mobile-menu {
+  @apply fixed top-[calc(var(--navbar-height,4rem))] left-0 right-0 bottom-0;
+  @apply bg-background border-t border-border;
+  @apply p-4 overflow-y-auto;
+  @apply hidden;
+
+  &[data-open="true"] {
+    @apply block;
+  }
+}
+
+/* === Navbar 容器 === */
+@utility navbar-container {
+  @apply max-w-7xl mx-auto w-full;
+  @apply flex items-center justify-between gap-4;
+}

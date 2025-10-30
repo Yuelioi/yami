@@ -1,0 +1,188 @@
+/* === Pagination 组件 === */
+/* 
+Pagination 是一组按钮，允许用户在相关内容之间导航
+通常与 join 组件配合使用，将多个按钮并排显示
+*/
+
+@utility pagination {
+  @apply inline-flex items-center gap-1;
+}
+
+/* === Pagination 按钮 === */
+@utility pagination-btn {
+  @apply inline-flex items-center justify-center;
+  @apply min-w-10 h-10 px-3 rounded-[var(--radius)];
+  @apply text-sm font-medium text-foreground;
+  @apply border border-border bg-background;
+  @apply hover:bg-muted hover:border-muted-foreground/20;
+  @apply transition-colors cursor-pointer select-none;
+  @apply focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2;
+  @apply disabled:pointer-events-none disabled:opacity-50 disabled:cursor-not-allowed;
+
+  &[aria-current="page"] {
+    @apply bg-primary text-primary-foreground border-primary;
+    @apply hover:bg-primary/90;
+  }
+}
+
+/* === Pagination 链接样式 === */
+@utility pagination-link {
+  @apply pagination-btn;
+}
+
+/* === Pagination 激活状态 === */
+@utility pagination-active {
+  @apply bg-primary text-primary-foreground border-primary;
+  @apply hover:bg-primary/90;
+}
+
+/* === Pagination 尺寸 === */
+@utility pagination-xs {
+  @apply gap-0.5;
+
+  & .pagination-btn,
+  & .pagination-link {
+    @apply min-w-7 h-7 px-2 text-xs;
+  }
+}
+
+@utility pagination-sm {
+  @apply gap-1;
+
+  & .pagination-btn,
+  & .pagination-link {
+    @apply min-w-8 h-8 px-2 text-sm;
+  }
+}
+
+@utility pagination-md {
+  @apply gap-1;
+}
+
+@utility pagination-lg {
+  @apply gap-2;
+
+  & .pagination-btn,
+  & .pagination-link {
+    @apply min-w-12 h-12 px-4 text-base;
+  }
+}
+
+@utility pagination-xl {
+  @apply gap-2;
+
+  & .pagination-btn,
+  & .pagination-link {
+    @apply min-w-14 h-14 px-5 text-lg;
+  }
+}
+
+/* === Pagination 省略号 === */
+@utility pagination-ellipsis {
+  @apply inline-flex items-center justify-center;
+  @apply min-w-10 h-10 px-3;
+  @apply text-sm text-muted-foreground;
+  @apply pointer-events-none select-none;
+}
+
+/* === Pagination 导航按钮 === */
+@utility pagination-prev {
+  @apply pagination-btn;
+}
+
+@utility pagination-next {
+  @apply pagination-btn;
+}
+
+/* === Pagination 样式变体 === */
+
+/* 圆形按钮 */
+@utility pagination-rounded {
+  & .pagination-btn,
+  & .pagination-link {
+    @apply rounded-full;
+  }
+}
+
+/* 方形按钮 */
+@utility pagination-square {
+  & .pagination-btn,
+  & .pagination-link {
+    @apply rounded-none;
+  }
+}
+
+/* 无边框样式 */
+@utility pagination-borderless {
+  & .pagination-btn,
+  & .pagination-link {
+    @apply border-0;
+  }
+}
+
+/* 幽灵样式 */
+@utility pagination-ghost {
+  & .pagination-btn,
+  & .pagination-link {
+    @apply border-0 bg-transparent;
+    @apply hover:bg-muted;
+  }
+
+  & .pagination-btn[aria-current="page"],
+  & .pagination-link[aria-current="page"],
+  & .pagination-active {
+    @apply bg-primary text-primary-foreground;
+  }
+}
+
+/* 紧凑型（无间距） */
+@utility pagination-compact {
+  @apply gap-0;
+
+  & .pagination-btn,
+  & .pagination-link {
+    @apply rounded-none border-r-0;
+  }
+
+  & .pagination-btn:first-child,
+  & .pagination-link:first-child {
+    @apply rounded-l-[var(--radius)];
+  }
+
+  & .pagination-btn:last-child,
+  & .pagination-link:last-child {
+    @apply rounded-r-[var(--radius)] border-r;
+  }
+}
+
+/* === Pagination 简单样式（仅上一页/下一页） === */
+@utility pagination-simple {
+  @apply flex items-center justify-between gap-4;
+
+  & .pagination-btn,
+  & .pagination-link {
+    @apply min-w-0 px-4;
+  }
+}
+
+/* === Pagination 信息文本 === */
+@utility pagination-info {
+  @apply inline-flex items-center px-3 text-sm text-muted-foreground;
+}
+
+/* === Pagination 容器变体 === */
+@utility pagination-centered {
+  @apply justify-center;
+}
+
+@utility pagination-start {
+  @apply justify-start;
+}
+
+@utility pagination-end {
+  @apply justify-end;
+}
+
+@utility pagination-between {
+  @apply justify-between w-full;
+}

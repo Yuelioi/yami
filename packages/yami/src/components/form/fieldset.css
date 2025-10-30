@@ -1,0 +1,365 @@
+/* Fieldset 表单字段集组件
+
+用于组织和分组表单字段
+
+*/
+
+/* === Fieldset 基础样式 === */
+@utility fieldset {
+  @apply border border-[var(--border)] rounded-lg p-4;
+  @apply bg-[var(--card)] text-[var(--card-foreground)];
+
+  & legend {
+    @apply px-2 text-sm font-semibold text-[var(--foreground)];
+    @apply -ml-2;
+  }
+
+  & .fieldset-description {
+    @apply text-sm text-[var(--muted-foreground)] mt-1 mb-4;
+  }
+
+  &:disabled {
+    @apply opacity-50 cursor-not-allowed;
+  }
+}
+
+/* === Fieldset 无边框样式 === */
+@utility fieldset-plain {
+  @apply border-0 p-0 bg-transparent;
+
+  & legend {
+    @apply ml-0 px-0 mb-4;
+  }
+}
+
+/* === Fieldset 卡片样式 === */
+@utility fieldset-card {
+  @apply border-2 border-[var(--border)] rounded-lg p-6 shadow-sm;
+  @apply bg-[var(--card)];
+
+  & legend {
+    @apply text-base font-bold;
+  }
+}
+
+/* === Fieldset 配色方案 === */
+@utility fieldset-primary {
+  @apply border-[var(--primary)]/30 bg-[var(--primary)]/5;
+
+  & legend {
+    @apply text-[var(--primary)];
+  }
+}
+
+@utility fieldset-secondary {
+  @apply border-[var(--secondary)]/30 bg-[var(--secondary)]/5;
+
+  & legend {
+    @apply text-[var(--secondary-foreground)];
+  }
+}
+
+@utility fieldset-accent {
+  @apply border-[var(--accent)]/30 bg-[var(--accent)]/5;
+
+  & legend {
+    @apply text-[var(--accent-foreground)];
+  }
+}
+
+@utility fieldset-destructive {
+  @apply border-[var(--destructive)]/30 bg-[var(--destructive)]/5;
+
+  & legend {
+    @apply text-[var(--destructive)];
+  }
+}
+
+/* === Fieldset 尺寸 === */
+@utility fieldset-sm {
+  @apply p-3 rounded-md;
+
+  & legend {
+    @apply text-xs px-1.5;
+  }
+
+  & .fieldset-description {
+    @apply text-xs;
+  }
+}
+
+@utility fieldset-md {
+  @apply p-4 rounded-lg;
+
+  & legend {
+    @apply text-sm px-2;
+  }
+
+  & .fieldset-description {
+    @apply text-sm;
+  }
+}
+
+@utility fieldset-lg {
+  @apply p-6 rounded-lg;
+
+  & legend {
+    @apply text-base px-2;
+  }
+
+  & .fieldset-description {
+    @apply text-sm;
+  }
+}
+
+/* === Fieldset 带图标 === */
+@utility fieldset-with-icon {
+  & legend {
+    @apply flex items-center gap-2;
+
+    &::before {
+      content: "";
+      @apply block size-4;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z'/%3E%3C/svg%3E");
+      background-size: contain;
+      background-repeat: no-repeat;
+    }
+  }
+}
+
+/* === Fieldset 可折叠样式 === */
+@utility fieldset-collapsible {
+  & legend {
+    @apply cursor-pointer select-none;
+    @apply flex items-center justify-between w-full;
+    @apply hover:text-[var(--primary)] transition-colors;
+
+    &::after {
+      content: "";
+      @apply block size-4 ml-auto;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'/%3E%3C/svg%3E");
+      background-size: contain;
+      background-repeat: no-repeat;
+      transition: transform 0.2s ease;
+    }
+  }
+
+  & .fieldset-content {
+    @apply overflow-hidden transition-all duration-300;
+    max-height: 1000px;
+    opacity: 1;
+  }
+
+  &.fieldset-collapsed {
+    & legend::after {
+      transform: rotate(-90deg);
+    }
+
+    & .fieldset-content {
+      max-height: 0;
+      opacity: 0;
+      @apply invisible;
+    }
+  }
+}
+
+/* === Fieldset 分隔样式 === */
+@utility fieldset-divided {
+  & .fieldset-group {
+    @apply space-y-4;
+
+    & > * + * {
+      @apply pt-4 border-t border-[var(--border)];
+    }
+  }
+}
+
+/* === Fieldset 网格布局 === */
+@utility fieldset-grid {
+  & .fieldset-content {
+    @apply grid grid-cols-1 gap-4;
+  }
+}
+
+@utility fieldset-grid-2 {
+  & .fieldset-content {
+    @apply grid grid-cols-1 md:grid-cols-2 gap-4;
+  }
+}
+
+@utility fieldset-grid-3 {
+  & .fieldset-content {
+    @apply grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4;
+  }
+}
+
+/* === Fieldset 内联布局 === */
+@utility fieldset-inline {
+  & .fieldset-content {
+    @apply flex flex-wrap gap-4 items-end;
+  }
+}
+
+/* === Fieldset 紧凑布局 === */
+@utility fieldset-compact {
+  @apply p-3 space-y-2;
+
+  & legend {
+    @apply mb-2;
+  }
+
+  & .fieldset-description {
+    @apply mb-2;
+  }
+
+  & .fieldset-content {
+    @apply space-y-2;
+  }
+}
+
+/* === Fieldset 边框样式变体 === */
+@utility fieldset-border-dashed {
+  @apply border-dashed;
+}
+
+@utility fieldset-border-dotted {
+  @apply border-dotted;
+}
+
+@utility fieldset-border-thick {
+  @apply border-2;
+}
+
+/* === Fieldset 左侧边框强调 === */
+@utility fieldset-border-left {
+  @apply border-l-4 border-l-[var(--primary)];
+}
+
+@utility fieldset-border-left-secondary {
+  @apply border-l-4 border-l-[var(--secondary)];
+}
+
+@utility fieldset-border-left-accent {
+  @apply border-l-4 border-l-[var(--accent)];
+}
+
+@utility fieldset-border-left-destructive {
+  @apply border-l-4 border-l-[var(--destructive)];
+}
+
+/* === Fieldset 顶部边框强调 === */
+@utility fieldset-border-top {
+  @apply border-t-4 border-t-[var(--primary)];
+}
+
+/* === Fieldset 阴影变体 === */
+@utility fieldset-shadow-sm {
+  box-shadow: var(--shadow-sm);
+}
+
+@utility fieldset-shadow-md {
+  box-shadow: var(--shadow-md);
+}
+
+@utility fieldset-shadow-lg {
+  box-shadow: var(--shadow-lg);
+}
+
+/* === Fieldset 圆角变体 === */
+@utility fieldset-rounded-none {
+  @apply rounded-none;
+}
+
+@utility fieldset-rounded-sm {
+  @apply rounded-sm;
+}
+
+@utility fieldset-rounded-lg {
+  @apply rounded-lg;
+}
+
+@utility fieldset-rounded-xl {
+  @apply rounded-xl;
+}
+
+/* === Fieldset 错误状态 === */
+@utility fieldset-error {
+  @apply border-[var(--destructive)] bg-[var(--destructive)]/5;
+
+  & legend {
+    @apply text-[var(--destructive)];
+  }
+
+  & .fieldset-error-message {
+    @apply text-xs text-[var(--destructive)] mt-2;
+  }
+}
+
+/* === Fieldset 成功状态 === */
+@utility fieldset-success {
+  @apply border-success bg-success/5;
+
+  & legend {
+    @apply text-success;
+  }
+}
+
+/* === Fieldset 警告状态 === */
+@utility fieldset-warning {
+  @apply border-warning bg-warning/5;
+
+  & legend {
+    @apply text-warning;
+  }
+}
+
+/* === Fieldset 必填标记 === */
+@utility fieldset-required {
+  & legend::after {
+    content: "*";
+    @apply text-[var(--destructive)] ml-1;
+  }
+}
+
+/* === Fieldset 标签位置 === */
+@utility fieldset-label-inside {
+  @apply pt-6;
+
+  & legend {
+    @apply absolute top-4 left-4;
+  }
+}
+
+/* === Fieldset 嵌套样式 === */
+@utility fieldset-nested {
+  & fieldset {
+    @apply mt-4 bg-[var(--muted)]/30;
+  }
+}
+
+/* === Fieldset 禁用状态样式增强 === */
+@utility fieldset-disabled {
+  @apply opacity-50 cursor-not-allowed pointer-events-none;
+  @apply bg-[var(--muted)];
+
+  & legend {
+    @apply text-[var(--muted-foreground)];
+  }
+}
+
+/* === Fieldset 响应式 === */
+@utility fieldset-responsive {
+  @apply p-3;
+
+  @media (min-width: 768px) {
+    @apply p-6;
+  }
+
+  & legend {
+    @apply text-sm;
+
+    @media (min-width: 768px) {
+      @apply text-base;
+    }
+  }
+}

@@ -1,0 +1,89 @@
+/* === Filter 容器 === */
+@utility filter-bar {
+  @apply flex items-center gap-2 p-4 rounded-[var(--radius)];
+  @apply bg-card border border-border;
+}
+
+@utility filter-bar-compact {
+  @apply p-2 gap-1.5;
+}
+
+@utility filter-bar-ghost {
+  @apply bg-transparent border-0 p-0;
+}
+
+/* === Filter 组 === */
+@utility filter-group {
+  @apply flex items-center gap-2 flex-wrap;
+}
+
+@utility filter-group-vertical {
+  @apply flex-col items-stretch;
+}
+
+/* === Filter 下拉菜单触发器 === */
+@utility filter-dropdown-trigger {
+  @apply inline-flex items-center gap-2 px-3 py-2 rounded-[var(--radius)];
+  @apply text-sm font-medium transition-colors;
+  @apply border border-border bg-background;
+  @apply hover:bg-muted cursor-pointer select-none;
+}
+
+@utility filter-dropdown-trigger-active {
+  @apply bg-primary/10 border-primary text-primary;
+}
+
+/* 下拉箭头 */
+@utility filter-dropdown-icon {
+  @apply inline-block transition-transform;
+
+  .filter-dropdown-trigger[data-open="true"] & {
+    @apply rotate-180;
+  }
+}
+
+/* === Filter 清除按钮 === */
+@utility filter-clear {
+  @apply inline-flex items-center gap-1 px-2 py-1 rounded-[var(--radius)];
+  @apply text-xs font-medium text-muted-foreground;
+  @apply hover:text-foreground hover:bg-muted;
+  @apply transition-colors cursor-pointer select-none;
+}
+
+/* === Filter 搜索框 === */
+@utility filter-search {
+  @apply flex items-center gap-2 px-3 py-2 rounded-[var(--radius)];
+  @apply bg-background border border-border;
+  @apply text-sm;
+  @apply focus-within:ring-2 focus-within:ring-ring focus-within:ring-offset-0;
+  @apply transition-colors;
+}
+
+@utility filter-search-input {
+  @apply flex-1 bg-transparent border-0 outline-none;
+  @apply placeholder:text-muted-foreground;
+}
+
+@utility filter-search-icon {
+  @apply text-muted-foreground shrink-0;
+}
+
+/* === Filter 数字徽章 === */
+@utility filter-count {
+  @apply inline-flex items-center justify-center;
+  @apply min-w-5 h-5 px-1 rounded;
+  @apply text-xs font-medium;
+  @apply bg-primary/10 text-primary;
+  @apply ml-auto;
+}
+
+/* === Filter 列表项 === */
+@utility filter-item {
+  @apply flex items-center gap-2 px-3 py-2 rounded-[var(--radius)];
+  @apply text-sm cursor-pointer select-none transition-colors;
+  @apply hover:bg-muted;
+
+  &[data-active="true"] {
+    @apply bg-primary/10 text-primary font-medium;
+  }
+}

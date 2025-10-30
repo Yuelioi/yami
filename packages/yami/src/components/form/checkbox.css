@@ -1,0 +1,274 @@
+/* Checkbox 复选框组件
+
+配色：primary, secondary, accent, destructive
+
+*/
+
+/* === Checkbox 基础样式 === */
+@utility checkbox {
+  @apply relative inline-flex items-center cursor-pointer;
+
+  & input[type="checkbox"] {
+    @apply size-5 appearance-none cursor-pointer;
+    @apply rounded border-2 border-[var(--input)];
+    @apply bg-[var(--background)] transition-all duration-200;
+
+    &:checked {
+      @apply bg-[var(--primary)] border-[var(--primary)];
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='white'%3E%3Cpath d='M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z'/%3E%3C/svg%3E");
+      background-size: 70%;
+      background-position: center;
+      background-repeat: no-repeat;
+    }
+
+    &:indeterminate {
+      @apply bg-[var(--primary)] border-[var(--primary)];
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='white'%3E%3Cpath d='M19 13H5v-2h14v2z'/%3E%3C/svg%3E");
+      background-size: 70%;
+      background-position: center;
+      background-repeat: no-repeat;
+    }
+
+    &:hover:not(:disabled) {
+      @apply border-[var(--primary)];
+    }
+
+    &:focus-visible {
+      @apply outline-none ring-2 ring-[var(--ring)] ring-offset-2;
+    }
+
+    &:disabled {
+      @apply opacity-50 cursor-not-allowed;
+    }
+  }
+
+  & .checkbox-label {
+    @apply ml-2 text-sm text-[var(--foreground)] cursor-pointer select-none;
+  }
+
+  & input[type="checkbox"]:disabled ~ .checkbox-label {
+    @apply opacity-50 cursor-not-allowed;
+  }
+}
+
+/* === Checkbox 配色方案 === */
+@utility checkbox-primary {
+  & input[type="checkbox"]:checked,
+  & input[type="checkbox"]:indeterminate {
+    @apply bg-[var(--primary)] border-[var(--primary)];
+  }
+
+  & input[type="checkbox"]:hover:not(:disabled) {
+    @apply border-[var(--primary)];
+  }
+}
+
+@utility checkbox-secondary {
+  & input[type="checkbox"]:checked,
+  & input[type="checkbox"]:indeterminate {
+    @apply bg-[var(--secondary)] border-[var(--secondary)];
+  }
+
+  & input[type="checkbox"]:hover:not(:disabled) {
+    @apply border-[var(--secondary)];
+  }
+}
+
+@utility checkbox-accent {
+  & input[type="checkbox"]:checked,
+  & input[type="checkbox"]:indeterminate {
+    @apply bg-[var(--accent)] border-[var(--accent)];
+  }
+
+  & input[type="checkbox"]:hover:not(:disabled) {
+    @apply border-[var(--accent)];
+  }
+
+  & input[type="checkbox"]:checked {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23000'%3E%3Cpath d='M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z'/%3E%3C/svg%3E");
+  }
+
+  & input[type="checkbox"]:indeterminate {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23000'%3E%3Cpath d='M19 13H5v-2h14v2z'/%3E%3C/svg%3E");
+  }
+}
+
+@utility checkbox-destructive {
+  & input[type="checkbox"]:checked,
+  & input[type="checkbox"]:indeterminate {
+    @apply bg-[var(--destructive)] border-[var(--destructive)];
+  }
+  & input[type="checkbox"]:not(:checked) {
+    @apply bg-[var(--background)] border-[var(--destructive)];
+  }
+
+  & input[type="checkbox"]:hover:not(:disabled) {
+    @apply border-[var(--destructive)];
+  }
+}
+
+/* === Checkbox 尺寸 === */
+@utility checkbox-sm {
+  & input[type="checkbox"] {
+    @apply size-4;
+  }
+
+  & .checkbox-label {
+    @apply text-xs;
+  }
+}
+
+@utility checkbox-md {
+  & input[type="checkbox"] {
+    @apply size-5;
+  }
+
+  & .checkbox-label {
+    @apply text-sm;
+  }
+}
+
+@utility checkbox-lg {
+  & input[type="checkbox"] {
+    @apply size-6;
+  }
+
+  & .checkbox-label {
+    @apply text-base;
+  }
+}
+
+@utility checkbox-xl {
+  & input[type="checkbox"] {
+    @apply size-7;
+  }
+
+  & .checkbox-label {
+    @apply text-lg;
+  }
+}
+
+/* === Checkbox 圆角变体 === */
+@utility checkbox-rounded-none {
+  & input[type="checkbox"] {
+    @apply rounded-none;
+  }
+}
+
+@utility checkbox-rounded-sm {
+  & input[type="checkbox"] {
+    @apply rounded-sm;
+  }
+}
+
+@utility checkbox-rounded-md {
+  & input[type="checkbox"] {
+    @apply rounded-md;
+  }
+}
+
+@utility checkbox-rounded-lg {
+  & input[type="checkbox"] {
+    @apply rounded-lg;
+  }
+}
+
+@utility checkbox-rounded-full {
+  & input[type="checkbox"] {
+    @apply rounded-full;
+  }
+}
+
+/* === Checkbox 带边框加粗 === */
+@utility checkbox-thick {
+  & input[type="checkbox"] {
+    @apply border-[3px];
+  }
+}
+
+/* === Checkbox 动画效果 === */
+@utility checkbox-animated {
+  & input[type="checkbox"] {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+
+    &:checked {
+      animation: checkbox-check 0.3s ease;
+    }
+  }
+}
+
+@keyframes checkbox-check {
+  0% {
+    transform: scale(0.8);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+/* === Checkbox 卡片样式 === */
+@utility checkbox-card {
+  & input[type="checkbox"] {
+    @apply hidden;
+  }
+
+  & .checkbox-card-content {
+    @apply flex items-center gap-3 p-4 rounded-lg border-2;
+    @apply border-[var(--border)] bg-[var(--card)];
+    @apply transition-all duration-200 cursor-pointer;
+  }
+
+  & input[type="checkbox"]:checked ~ .checkbox-card-content {
+    @apply border-[var(--primary)] bg-[var(--primary)]/5;
+  }
+
+  & input[type="checkbox"]:disabled ~ .checkbox-card-content {
+    @apply opacity-50 cursor-not-allowed;
+  }
+
+  & .checkbox-card-icon {
+    @apply size-5 rounded border-2 border-[var(--input)];
+    @apply bg-[var(--background)] flex items-center justify-center;
+    @apply transition-all duration-200;
+  }
+
+  &
+    input[type="checkbox"]:checked
+    ~ .checkbox-card-content
+    .checkbox-card-icon {
+    @apply bg-[var(--primary)] border-[var(--primary)];
+
+    &::before {
+      content: "";
+      @apply block size-4;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='white'%3E%3Cpath d='M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z'/%3E%3C/svg%3E");
+      background-size: contain;
+      background-repeat: no-repeat;
+    }
+  }
+}
+
+/* === Checkbox 分组 === */
+@utility checkbox-group {
+  @apply space-y-2;
+
+  & .checkbox-group-label {
+    @apply text-sm font-semibold text-[var(--foreground)]  block;
+  }
+
+  & .checkbox-group-item {
+    @apply flex items-center;
+  }
+
+  &.checkbox-group-horizontal {
+    @apply flex flex-wrap gap-4 space-y-0;
+  }
+}
+
+/* === Checkbox 描述文本 === */
+@utility checkbox-description {
+  @apply text-xs text-[var(--muted-foreground)] mt-0.5;
+}

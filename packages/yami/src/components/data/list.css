@@ -1,0 +1,113 @@
+/* List 列表组件 - 参考 DaisyUI */
+@utility list {
+  @apply flex flex-col;
+  font-size: 0.875rem;
+}
+
+/* 列表行 */
+@utility list-row {
+  --list-grid-cols: minmax(0, auto) 1fr;
+  @apply relative grid grid-flow-col gap-4 p-4 rounded-lg;
+  word-break: break-word;
+  grid-template-columns: var(--list-grid-cols);
+}
+
+/* 列表行之间的分隔线 */
+.list > :not(:last-child) {
+  &.list-row,
+  .list-row {
+    &::after {
+      content: "";
+      @apply absolute bottom-0 border-b border-border/50;
+      inset-inline: theme(borderRadius.lg);
+    }
+  }
+}
+
+/* === 列表列（根据 list-col-grow 位置动态调整网格） === */
+
+/* 第1列增长 */
+.list-row:has(.list-col-grow:nth-child(1)) {
+  --list-grid-cols: 1fr;
+}
+
+/* 第2列增长 */
+.list-row:has(.list-col-grow:nth-child(2)) {
+  --list-grid-cols: minmax(0, auto) 1fr;
+}
+
+/* 第3列增长 */
+.list-row:has(.list-col-grow:nth-child(3)) {
+  --list-grid-cols: minmax(0, auto) minmax(0, auto) 1fr;
+}
+
+/* 第4列增长 */
+.list-row:has(.list-col-grow:nth-child(4)) {
+  --list-grid-cols: minmax(0, auto) minmax(0, auto) minmax(0, auto) 1fr;
+}
+
+/* 第5列增长 */
+.list-row:has(.list-col-grow:nth-child(5)) {
+  --list-grid-cols: minmax(0, auto) minmax(0, auto) minmax(0, auto)
+    minmax(0, auto) 1fr;
+}
+
+/* 第6列增长 */
+.list-row:has(.list-col-grow:nth-child(6)) {
+  --list-grid-cols: minmax(0, auto) minmax(0, auto) minmax(0, auto)
+    minmax(0, auto) minmax(0, auto) 1fr;
+}
+
+/* 非换行列都在第一行 */
+.list-row :not(.list-col-wrap) {
+  @apply row-start-1;
+}
+
+/* === 列修饰符 === */
+
+/* 增长列 - 占据剩余空间 */
+@utility list-col-grow {
+  @apply min-w-0;
+}
+
+/* 换行列 - 独占第二行 */
+@utility list-col-wrap {
+  @apply row-start-2 col-span-full;
+}
+
+/* === 列表变体 === */
+
+/* 无边框列表 */
+@utility list-borderless {
+  & .list-row::after {
+    @apply hidden;
+  }
+}
+
+/* 悬浮效果 */
+@utility list-hoverable {
+  & .list-row {
+    @apply hover:bg-accent/50 cursor-pointer transition-colors;
+  }
+}
+
+/* 紧凑列表 */
+@utility list-compact {
+  & .list-row {
+    @apply p-2 gap-2;
+  }
+}
+
+/* 宽松列表 */
+@utility list-relaxed {
+  & .list-row {
+    @apply p-6 gap-6;
+  }
+}
+
+/* 斑马纹列表 */
+@utility list-zebra {
+  & .list-row:nth-child(even) {
+    @apply bg-muted/30;
+  }
+}

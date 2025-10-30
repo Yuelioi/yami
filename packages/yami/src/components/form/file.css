@@ -1,0 +1,352 @@
+/* File Input 文件上传组件
+
+配色：primary, secondary, accent, destructive
+
+*/
+
+/* === File Input 基础样式 === */
+@utility file-input {
+  @apply relative inline-flex items-center w-full;
+
+  & {
+    @apply h-10;
+  }
+
+  & input[type="file"] {
+    @apply w-full  px-3 py-2 text-sm;
+    @apply border border-[var(--input)] rounded-md;
+    @apply bg-[var(--background)] text-[var(--foreground)];
+    @apply cursor-pointer transition-colors duration-200;
+    @apply file:mr-4 file:py-2 file:px-4;
+    @apply file:rounded-md file:border-0;
+    @apply file:text-sm file:font-medium;
+    @apply file:bg-[var(--primary)] file:text-[var(--primary-foreground)];
+    @apply file:cursor-pointer file:transition-colors;
+    @apply hover:border-[var(--primary)];
+    @apply focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--ring)] focus-visible:ring-offset-2;
+    @apply disabled:opacity-50 disabled:cursor-not-allowed;
+
+    &:hover:not(:disabled)::file-selector-button {
+      @apply opacity-90;
+    }
+  }
+}
+
+/* === File Input 配色方案 === */
+@utility file-input-primary {
+  & input[type="file"] {
+    @apply file:bg-[var(--primary)] file:text-[var(--primary-foreground)];
+
+    &:hover:not(:disabled) {
+      @apply border-[var(--primary)];
+    }
+  }
+}
+
+@utility file-input-secondary {
+  & input[type="file"] {
+    @apply file:bg-[var(--secondary)] file:text-[var(--secondary-foreground)];
+
+    &:hover:not(:disabled) {
+      @apply border-[var(--secondary)];
+    }
+  }
+}
+
+@utility file-input-accent {
+  & input[type="file"] {
+    @apply file:bg-[var(--accent)] file:text-[var(--accent-foreground)];
+
+    &:hover:not(:disabled) {
+      @apply border-[var(--accent)];
+    }
+  }
+}
+
+@utility file-input-destructive {
+  & input[type="file"] {
+    @apply file:bg-[var(--destructive)] file:text-[var(--destructive-foreground)];
+
+    &:hover:not(:disabled) {
+      @apply border-[var(--destructive)];
+    }
+  }
+}
+
+/* === File Input 尺寸 === */
+@utility file-input-sm {
+  @apply h-8;
+  & input[type="file"] {
+    @apply px-2 py-1 text-xs;
+    @apply file:py-1 file:px-3 file:text-xs;
+  }
+}
+
+@utility file-input-md {
+  @apply h-10;
+
+  & input[type="file"] {
+    @apply px-3 py-2 text-sm;
+    @apply file:py-2 file:px-4 file:text-sm;
+  }
+}
+
+@utility file-input-lg {
+  @apply h-12;
+
+  & input[type="file"] {
+    @apply px-4 py-3 text-base;
+    @apply file:py-2 file:px-5 file:text-base;
+  }
+}
+
+/* === File Input 自定义样式 === */
+@utility file-input-custom {
+  & input[type="file"] {
+    @apply hidden;
+  }
+
+  & .file-input-label {
+    @apply flex items-center justify-center gap-2;
+    @apply w-full h-10 px-4 py-2 text-sm font-medium;
+    @apply border-2 border-dashed border-[var(--border)] rounded-md;
+    @apply bg-[var(--background)] text-[var(--foreground)];
+    @apply cursor-pointer transition-all duration-200;
+    @apply hover:border-[var(--primary)] hover:bg-[var(--muted)];
+
+    &::before {
+      content: "";
+      @apply block size-5;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12'/%3E%3C/svg%3E");
+      background-size: contain;
+      background-repeat: no-repeat;
+    }
+  }
+
+  & input[type="file"]:disabled ~ .file-input-label {
+    @apply opacity-50 cursor-not-allowed;
+  }
+
+  & input[type="file"]:focus-visible ~ .file-input-label {
+    @apply outline-none ring-2 ring-[var(--ring)] ring-offset-2;
+  }
+}
+
+/* === File Input 拖拽区域样式 === */
+@utility file-input-dropzone {
+  & input[type="file"] {
+    @apply hidden;
+  }
+
+  & .file-input-dropzone-area {
+    @apply flex flex-col items-center justify-center gap-3;
+    @apply w-full min-h-[200px] p-6;
+    @apply border-2 border-dashed border-[var(--border)] rounded-lg;
+    @apply bg-[var(--background)] text-[var(--muted-foreground)];
+    @apply cursor-pointer transition-all duration-200;
+
+    &::before {
+      content: "";
+      @apply block size-12;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%239ca3af'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12'/%3E%3C/svg%3E");
+      background-size: contain;
+      background-repeat: no-repeat;
+    }
+
+    &:hover {
+      @apply border-[var(--primary)] bg-[var(--muted)];
+    }
+  }
+
+  & .file-input-dropzone-text {
+    @apply text-sm text-center;
+  }
+
+  & .file-input-dropzone-hint {
+    @apply text-xs text-[var(--muted-foreground)];
+  }
+
+  & input[type="file"]:disabled ~ .file-input-dropzone-area {
+    @apply opacity-50 cursor-not-allowed;
+  }
+
+  & input[type="file"]:focus-visible ~ .file-input-dropzone-area {
+    @apply outline-none ring-2 ring-[var(--ring)] ring-offset-2;
+  }
+
+  &.file-input-dragging .file-input-dropzone-area {
+    @apply border-[var(--primary)] bg-[var(--primary)]/10;
+  }
+}
+
+/* === File Input 紧凑拖拽区域 === */
+@utility file-input-dropzone-compact {
+  & .file-input-dropzone-area {
+    @apply min-h-[120px] p-4;
+
+    &::before {
+      @apply size-8;
+    }
+  }
+
+  & .file-input-dropzone-text {
+    @apply text-xs;
+  }
+}
+
+/* === File Input 按钮样式 === */
+@utility file-input-button {
+  & input[type="file"] {
+    @apply hidden;
+  }
+
+  & .file-input-button-trigger {
+    @apply inline-flex items-center justify-center gap-2;
+    @apply h-10 px-4 py-2 text-sm font-medium;
+    @apply rounded-md border border-[var(--input)];
+    @apply bg-[var(--background)] text-[var(--foreground)];
+    @apply cursor-pointer transition-colors duration-200;
+    @apply hover:bg-[var(--muted)] hover:border-[var(--primary)];
+
+    &::before {
+      content: "";
+      @apply block size-4;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12'/%3E%3C/svg%3E");
+      background-size: contain;
+      background-repeat: no-repeat;
+    }
+  }
+
+  & input[type="file"]:disabled ~ .file-input-button-trigger {
+    @apply opacity-50 cursor-not-allowed;
+  }
+
+  & input[type="file"]:focus-visible ~ .file-input-button-trigger {
+    @apply outline-none ring-2 ring-[var(--ring)] ring-offset-2;
+  }
+}
+
+/* === File Input 按钮配色 === */
+@utility file-input-button-primary {
+  & .file-input-button-trigger {
+    @apply bg-[var(--primary)] text-[var(--primary-foreground)] border-[var(--primary)];
+    @apply hover:bg-[var(--primary)]/90;
+  }
+}
+
+@utility file-input-button-secondary {
+  & .file-input-button-trigger {
+    @apply bg-[var(--secondary)] text-[var(--secondary-foreground)] border-[var(--secondary)];
+    @apply hover:bg-[var(--secondary)]/90;
+  }
+}
+
+/* === File Input 文件列表 === */
+@utility file-input-with-list {
+  @apply space-y-3;
+
+  & .file-input-list {
+    @apply space-y-2;
+  }
+
+  & .file-input-item {
+    @apply flex items-center justify-between gap-3;
+    @apply p-3 rounded-md border border-[var(--border)];
+    @apply bg-[var(--card)] text-sm;
+
+    &::before {
+      content: "";
+      @apply block size-5 flex-shrink-0;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z'/%3E%3C/svg%3E");
+      background-size: contain;
+      background-repeat: no-repeat;
+    }
+  }
+
+  & .file-input-item-name {
+    @apply flex-1 truncate text-[var(--foreground)];
+  }
+
+  & .file-input-item-size {
+    @apply text-xs text-[var(--muted-foreground)];
+  }
+
+  & .file-input-item-remove {
+    @apply size-6 flex items-center justify-center;
+    @apply rounded-sm text-[var(--muted-foreground)];
+    @apply cursor-pointer transition-colors;
+    @apply hover:bg-[var(--destructive)]/10 hover:text-[var(--destructive)];
+
+    &::before {
+      content: "";
+      @apply block size-4;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M6 18L18 6M6 6l12 12'/%3E%3C/svg%3E");
+      background-size: contain;
+      background-repeat: no-repeat;
+    }
+  }
+}
+
+/* === File Input 圆角变体 === */
+@utility file-input-rounded-none {
+  & input[type="file"] {
+    @apply rounded-none;
+    @apply file:rounded-none;
+  }
+}
+
+@utility file-input-rounded-sm {
+  & input[type="file"] {
+    @apply rounded-sm;
+    @apply file:rounded-sm;
+  }
+}
+
+@utility file-input-rounded-lg {
+  & input[type="file"] {
+    @apply rounded-lg;
+    @apply file:rounded-lg;
+  }
+}
+
+@utility file-input-rounded-full {
+  & input[type="file"] {
+    @apply rounded-full;
+    @apply file:rounded-full;
+  }
+}
+
+/* === File Input 错误状态 === */
+@utility file-input-error {
+  & input[type="file"] {
+    @apply border-[var(--destructive)];
+
+    &:focus-visible {
+      @apply ring-[var(--destructive)];
+    }
+  }
+
+  & .file-input-error-message {
+    @apply text-xs text-[var(--destructive)] mt-1 block;
+  }
+}
+
+/* === File Input 成功状态 === */
+@utility file-input-success {
+  & input[type="file"] {
+    @apply border-success;
+
+    &:focus-visible {
+      @apply ring-success;
+    }
+  }
+}
+
+/* === File Input 全宽 === */
+@utility file-input-full {
+  @apply w-full;
+
+  & input[type="file"] {
+    @apply w-full;
+  }
+}

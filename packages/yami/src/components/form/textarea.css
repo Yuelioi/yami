@@ -1,0 +1,178 @@
+/* Textarea 文本域组件 */
+@utility textarea {
+  @apply w-full px-3 py-2;
+  @apply text-sm text-foreground;
+  @apply bg-background;
+  @apply border border-input rounded-md;
+  @apply transition-colors duration-200;
+  @apply resize-y;
+  @apply focus:outline-none focus:ring-2 focus:ring-ring focus:border-transparent;
+  @apply disabled:opacity-40 disabled:cursor-not-allowed disabled:resize-none;
+  @apply placeholder:text-muted-foreground;
+
+  /* 默认最小高度 */
+  @apply min-h-20;
+}
+
+/* 颜色变体 */
+@utility textarea-primary {
+  @apply border-primary focus:ring-primary;
+}
+
+@utility textarea-secondary {
+  @apply border-secondary focus:ring-secondary;
+}
+
+@utility textarea-accent {
+  @apply border-accent focus:ring-accent;
+}
+
+/* 尺寸变体 */
+@utility textarea-xs {
+  @apply px-2 py-1 text-xs min-h-16;
+}
+
+@utility textarea-sm {
+  @apply px-2.5 py-1.5 text-sm min-h-20;
+}
+
+@utility textarea-md {
+  @apply px-3 py-2 text-sm min-h-24;
+}
+
+@utility textarea-lg {
+  @apply px-4 py-3 text-base min-h-32;
+}
+
+@utility textarea-xl {
+  @apply px-5 py-4 text-lg min-h-40;
+}
+
+/* 高度变体 */
+@utility textarea-h-auto {
+  @apply min-h-0 h-auto;
+}
+
+@utility textarea-h-sm {
+  @apply min-h-20 max-h-40;
+}
+
+@utility textarea-h-md {
+  @apply min-h-32 max-h-64;
+}
+
+@utility textarea-h-lg {
+  @apply min-h-40 max-h-96;
+}
+
+@utility textarea-h-full {
+  @apply min-h-40 h-full;
+}
+
+/* Resize 变体 */
+@utility textarea-resize-none {
+  @apply resize-none;
+}
+
+@utility textarea-resize-y {
+  @apply resize-y;
+}
+
+@utility textarea-resize-x {
+  @apply resize-x;
+}
+
+@utility textarea-resize {
+  @apply resize;
+}
+
+/* Ghost 样式 */
+@utility textarea-ghost {
+  @apply border-transparent bg-transparent;
+  @apply hover:bg-muted;
+}
+
+/* Bordered 样式 */
+@utility textarea-bordered {
+  @apply border-2;
+}
+
+/* 无边框样式 */
+@utility textarea-borderless {
+  @apply border-transparent;
+  @apply focus:ring-0 focus:border-transparent;
+}
+
+/* Textarea 容器（带标签） */
+@utility textarea-wrapper {
+  @apply flex flex-col gap-1.5;
+
+  & > label {
+    @apply text-sm font-medium text-foreground;
+  }
+
+  & > .helper-text {
+    @apply text-xs text-muted-foreground;
+  }
+
+  & > .error-text {
+    @apply text-xs text-danger;
+  }
+
+  & > .counter {
+    @apply text-xs text-muted-foreground text-right;
+  }
+}
+
+/* 带字数统计的 Textarea */
+@utility textarea-counter {
+  @apply relative;
+
+  & > textarea {
+    @apply pb-8;
+  }
+
+  & > .count {
+    @apply absolute bottom-2 right-3;
+    @apply text-xs text-muted-foreground;
+    @apply pointer-events-none;
+  }
+
+  &.max-reached > .count {
+    @apply text-danger;
+  }
+}
+
+/* 带图标的 Textarea */
+@utility textarea-icon {
+  @apply relative;
+
+  & > .icon {
+    @apply absolute left-3 top-3;
+    @apply text-muted-foreground;
+    @apply pointer-events-none;
+  }
+
+  & > textarea {
+    @apply pl-10;
+  }
+}
+
+/* 代码编辑器样式 */
+@utility textarea-code {
+  @apply font-mono text-sm;
+  @apply bg-muted/50;
+  @apply leading-relaxed;
+
+  &:focus {
+    @apply bg-background;
+  }
+}
+
+/* 自动增长的 Textarea */
+@utility textarea-auto {
+  @apply overflow-hidden resize-none;
+  @apply min-h-10;
+
+  /* 需要配合 JavaScript 使用 */
+}

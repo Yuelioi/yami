@@ -1,0 +1,407 @@
+/* === Progress 基础容器 === */
+@utility progress {
+  @apply relative w-full overflow-hidden rounded-full;
+  @apply bg-muted h-2;
+}
+
+/* 进度条填充 */
+@utility progress-bar {
+  @apply h-full transition-all duration-300 ease-in-out;
+  @apply bg-primary rounded-full;
+}
+
+/* === Progress 配色方案 === */
+@utility progress-primary {
+  & .progress-bar {
+    @apply bg-primary;
+  }
+}
+
+@utility progress-secondary {
+  & .progress-bar {
+    @apply bg-secondary;
+  }
+}
+
+@utility progress-accent {
+  & .progress-bar {
+    @apply bg-accent;
+  }
+}
+
+@utility progress-info {
+  & .progress-bar {
+    @apply bg-info;
+  }
+}
+@utility progress-success {
+  & .progress-bar {
+    @apply bg-success;
+  }
+}
+
+@utility progress-warning {
+  & .progress-bar {
+    @apply bg-warning;
+  }
+}
+
+@utility progress-error {
+  & .progress-bar {
+    @apply bg-danger;
+  }
+}
+
+/* === Progress 尺寸 === */
+@utility progress-xs {
+  @apply h-1;
+}
+
+@utility progress-sm {
+  @apply h-1.5;
+}
+
+@utility progress-md {
+  @apply h-2;
+}
+
+@utility progress-lg {
+  @apply h-3;
+}
+
+@utility progress-xl {
+  @apply h-4;
+}
+
+/* === Progress 动画效果 === */
+@utility progress-animated {
+  & .progress-bar {
+    @apply relative overflow-hidden;
+
+    &::after {
+      content: "";
+      @apply absolute inset-0;
+      background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255, 255, 255, 0.3),
+        transparent
+      );
+      animation: progress-shine 1.5s infinite;
+    }
+  }
+}
+
+@keyframes progress-shine {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+/* 条纹动画 */
+@utility progress-striped {
+  & .progress-bar {
+    background-image: linear-gradient(
+      45deg,
+      rgba(255, 255, 255, 0.15) 25%,
+      transparent 25%,
+      transparent 50%,
+      rgba(255, 255, 255, 0.15) 50%,
+      rgba(255, 255, 255, 0.15) 75%,
+      transparent 75%,
+      transparent
+    );
+    background-size: 1rem 1rem;
+  }
+}
+
+@utility progress-striped-animated {
+  & .progress-bar {
+    background-image: linear-gradient(
+      45deg,
+      rgba(255, 255, 255, 0.15) 25%,
+      transparent 25%,
+      transparent 50%,
+      rgba(255, 255, 255, 0.15) 50%,
+      rgba(255, 255, 255, 0.15) 75%,
+      transparent 75%,
+      transparent
+    );
+    background-size: 1rem 1rem;
+    animation: progress-stripes 1s linear infinite;
+  }
+}
+
+@keyframes progress-stripes {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: 1rem 0;
+  }
+}
+
+/* === Progress 不确定状态 === */
+@utility progress-indeterminate {
+  & .progress-bar {
+    animation: progress-indeterminate 1.5s ease-in-out infinite;
+    @apply w-1/3;
+  }
+}
+
+@keyframes progress-indeterminate {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(400%);
+  }
+}
+
+/* === Progress 圆角变体 === */
+@utility progress-rounded-none {
+  @apply rounded-none;
+
+  & .progress-bar {
+    @apply rounded-none;
+  }
+}
+
+@utility progress-rounded-sm {
+  @apply rounded-sm;
+
+  & .progress-bar {
+    @apply rounded-sm;
+  }
+}
+
+@utility progress-rounded-md {
+  @apply rounded-md;
+
+  & .progress-bar {
+    @apply rounded-md;
+  }
+}
+
+@utility progress-rounded-lg {
+  @apply rounded-lg;
+
+  & .progress-bar {
+    @apply rounded-lg;
+  }
+}
+
+@utility progress-rounded-full {
+  @apply rounded-full;
+
+  & .progress-bar {
+    @apply rounded-full;
+  }
+}
+
+/* === Progress 带边框 === */
+@utility progress-bordered {
+  @apply border-2 border-border;
+}
+
+/* === Progress 渐变样式 === */
+@utility progress-gradient {
+  & .progress-bar {
+    background: linear-gradient(90deg, var(--primary), var(--accent));
+  }
+}
+
+@utility progress-gradient-success {
+  & .progress-bar {
+    background: linear-gradient(90deg, #10b981, #34d399);
+  }
+}
+
+@utility progress-gradient-warning {
+  & .progress-bar {
+    background: linear-gradient(90deg, #f59e0b, #fbbf24);
+  }
+}
+
+@utility progress-gradient-error {
+  & .progress-bar {
+    background: linear-gradient(90deg, #ef4444, #f87171);
+  }
+}
+
+/* === Progress 发光效果 === */
+@utility progress-glow {
+  & .progress-bar {
+    box-shadow: 0 0 10px currentColor;
+  }
+}
+
+/* === Progress 垂直方向 === */
+@utility progress-vertical {
+  @apply h-full w-2;
+
+  & .progress-bar {
+    @apply w-full h-0;
+    transition: height 0.3s ease-in-out;
+  }
+}
+
+@utility progress-vertical-xs {
+  @apply progress-vertical w-1;
+}
+
+@utility progress-vertical-sm {
+  @apply progress-vertical w-1.5;
+}
+
+@utility progress-vertical-md {
+  @apply progress-vertical w-2;
+}
+
+@utility progress-vertical-lg {
+  @apply progress-vertical w-3;
+}
+
+@utility progress-vertical-xl {
+  @apply progress-vertical w-4;
+}
+
+/* === Progress 带标签 === */
+@utility progress-labeled {
+  @apply relative;
+
+  & .progress-label {
+    @apply absolute inset-0 flex items-center justify-center;
+    @apply text-xs font-semibold text-card-foreground;
+  }
+}
+
+/* === Progress 分段样式 === */
+@utility progress-segmented {
+  @apply flex gap-1;
+
+  & .progress-segment {
+    @apply flex-1 h-full rounded-full;
+    @apply bg-muted;
+    @apply transition-colors duration-300;
+  }
+
+  & .progress-segment.active {
+    @apply bg-primary;
+  }
+}
+
+/* === Progress 步骤条 === */
+@utility progress-steps {
+  @apply relative flex items-center justify-between;
+  @apply w-full;
+
+  &::before {
+    content: "";
+    @apply absolute top-1/2 left-0 right-0;
+    @apply h-0.5 bg-muted -translate-y-1/2 z-0;
+  }
+
+  & .progress-step {
+    @apply relative z-10 flex flex-col items-center gap-2;
+    @apply text-sm text-muted-foreground;
+
+    &::before {
+      content: "";
+      @apply block size-8 rounded-full border-2;
+      @apply border-muted bg-card;
+      @apply transition-all duration-300;
+    }
+
+    &.active::before {
+      @apply border-primary bg-primary;
+      box-shadow: 0 0 0 4px var(--primary) / 0.2;
+    }
+
+    &.completed::before {
+      @apply border-primary bg-primary;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='white'%3E%3Cpath d='M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z'/%3E%3C/svg%3E");
+      background-size: 60%;
+      background-position: center;
+      background-repeat: no-repeat;
+    }
+
+    &.error::before {
+      @apply border-destructive bg-destructive;
+    }
+  }
+
+  & .progress-connector {
+    @apply flex-1 h-0.5 bg-muted mx-2;
+    @apply transition-colors duration-300;
+  }
+
+  & .progress-connector.completed {
+    @apply bg-primary;
+  }
+}
+
+/* === Progress 圆形进度条 === */
+@utility progress-circle {
+  @apply relative inline-flex items-center justify-center;
+  @apply size-24;
+
+  & svg {
+    @apply absolute inset-0;
+    transform: rotate(-90deg);
+  }
+
+  & .progress-circle-bg {
+    fill: none;
+    stroke: var(--muted);
+    stroke-width: 4;
+  }
+
+  & .progress-circle-bar {
+    fill: none;
+    stroke: var(--primary);
+    stroke-width: 4;
+    stroke-linecap: round;
+    transition: stroke-dashoffset 0.3s ease;
+  }
+
+  & .progress-circle-text {
+    @apply text-sm font-semibold text-foreground;
+  }
+}
+
+@utility progress-circle-sm {
+  @apply size-16;
+
+  & .progress-circle-text {
+    @apply text-xs;
+  }
+}
+
+@utility progress-circle-lg {
+  @apply size-32;
+
+  & .progress-circle-text {
+    @apply text-base;
+  }
+}
+
+/* === Progress 容器 === */
+@utility progress-container {
+  @apply space-y-2;
+
+  & .progress-info {
+    @apply flex items-center justify-between text-sm;
+  }
+
+  & .progress-label {
+    @apply text-foreground font-medium;
+  }
+
+  & .progress-value {
+    @apply text-muted-foreground;
+  }
+}

@@ -1,0 +1,43 @@
+/* ========================================
+   工具类
+   ======================================== */
+
+@utility h-xs {
+  height: theme(height.7);
+}
+
+@utility h-sm {
+  height: theme(height.8);
+}
+
+@utility h-md {
+  height: theme(height.10);
+}
+
+@utility h-lg {
+  height: theme(height.12);
+}
+
+@utility h-xl {
+  height: theme(height.14);
+}
+
+@utility p-xs {
+  padding: theme(spacing.2);
+}
+
+@utility p-sm {
+  padding: theme(spacing.3);
+}
+
+@utility p-md {
+  padding: theme(spacing.4);
+}
+
+@utility p-lg {
+  padding: theme(spacing.5);
+}
+
+@utility p-xl {
+  padding: theme(spacing.7);
+}

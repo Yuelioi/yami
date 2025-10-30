@@ -1,0 +1,16 @@
+/* Search Input 搜索输入框 */
+@utility search-input {
+  @apply flex items-center gap-2 h-12 px-2;
+  @apply border border-input rounded-lg bg-background;
+  @apply focus-within:ring-2 focus-within:ring-ring focus-within:ring-offset-2 focus-within:ring-offset-background;
+  @apply transition-all duration-300;
+}
+
+@utility search-input-primary {
+  @apply border-primary/50 focus-within:border-primary;
+}
+
+/* 搜索框自动伸展 */
+@utility search-input-expand {
+  @apply max-w-[240px] hover:max-w-full focus-within:max-w-full duration-500;
+}

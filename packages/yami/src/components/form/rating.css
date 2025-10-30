@@ -1,0 +1,184 @@
+/* === Rating 组件 === */
+/* 
+Rating 是一组 radio buttons 用于评分
+每个 rating 组件应该有唯一的 name 属性以避免与页面上其他 rating 冲突
+*/
+
+@utility rating {
+  @apply inline-flex items-center gap-1;
+
+  /* 隐藏原始 radio input */
+  & input[type="radio"] {
+    @apply appearance-none cursor-pointer;
+    @apply size-6 transition-all duration-200;
+    @apply bg-transparent;
+    @apply focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2;
+
+    /* 星形图标 - 使用 mask */
+    mask-size: 100%;
+    mask-repeat: no-repeat;
+    mask-position: center;
+    -webkit-mask-size: 100%;
+    -webkit-mask-repeat: no-repeat;
+    -webkit-mask-position: center;
+
+    /* 默认星形 */
+    mask-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='currentColor' viewBox='0 0 24 24'%3e%3cpath d='M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z'/%3e%3c/svg%3e");
+    -webkit-mask-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='currentColor' viewBox='0 0 24 24'%3e%3cpath d='M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z'/%3e%3c/svg%3e");
+
+    /* 未选中状态 */
+    @apply bg-border;
+
+    /* 选中状态 */
+    &:checked {
+      @apply bg-warning;
+    }
+
+    /* 悬停效果 */
+    &:hover {
+      @apply scale-110;
+    }
+
+    /* 已评分的项（当前项之前的所有项） */
+    &:checked ~ input[type="radio"] {
+      @apply bg-border;
+    }
+  }
+
+  /* 反向显示（从右到左填充） */
+  & input[type="radio"]:checked {
+    @apply bg-warning;
+  }
+
+  /* 前面的星星也高亮 */
+  &:has(input:checked) {
+    & input[type="radio"] {
+      @apply bg-warning;
+    }
+
+    & input[type="radio"]:checked ~ input[type="radio"] {
+      @apply bg-border;
+    }
+  }
+}
+
+/* === Rating 尺寸 === */
+@utility rating-xs {
+  & input[type="radio"] {
+    @apply size-4;
+  }
+}
+
+@utility rating-sm {
+  & input[type="radio"] {
+    @apply size-5;
+  }
+}
+
+@utility rating-md {
+  & input[type="radio"] {
+    @apply size-6;
+  }
+}
+
+@utility rating-lg {
+  & input[type="radio"] {
+    @apply size-8;
+  }
+}
+
+@utility rating-xl {
+  & input[type="radio"] {
+    @apply size-10;
+  }
+}
+
+/* === Rating 形状变体 === */
+
+/* 心形 */
+@utility rating-heart {
+  & input[type="radio"] {
+    mask-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='currentColor' viewBox='0 0 24 24'%3e%3cpath d='M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z'/%3e%3c/svg%3e");
+    -webkit-mask-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='currentColor' viewBox='0 0 24 24'%3e%3cpath d='M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z'/%3e%3c/svg%3e");
+  }
+
+  &:has(input:checked) {
+    & input[type="radio"] {
+      @apply bg-destructive;
+    }
+
+    & input[type="radio"]:checked ~ input[type="radio"] {
+      @apply bg-border;
+    }
+  }
+
+  & input[type="radio"]:checked {
+    @apply bg-destructive;
+  }
+}
+
+/* 半星评分 */
+@utility rating-half {
+  @apply gap-0;
+
+  & input[type="radio"] {
+    @apply w-3;
+  }
+
+  /* 奇数位显示左半边 */
+  & input[type="radio"]:nth-child(odd) {
+    mask-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='currentColor' viewBox='0 0 24 24'%3e%3cpath d='M12 2v15.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z'/%3e%3c/svg%3e");
+    -webkit-mask-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='currentColor' viewBox='0 0 24 24'%3e%3cpath d='M12 2v15.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z'/%3e%3c/svg%3e");
+  }
+
+  /* 偶数位显示右半边 */
+  & input[type="radio"]:nth-child(even) {
+    mask-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='currentColor' viewBox='0 0 24 24'%3e%3cpath d='M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77V2z'/%3e%3c/svg%3e");
+    -webkit-mask-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='currentColor' viewBox='0 0 24 24'%3e%3cpath d='M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77V2z'/%3e%3c/svg%3e");
+  }
+}
+
+/* === Rating 只读显示 === */
+@utility rating-readonly {
+  & input[type="radio"] {
+    @apply pointer-events-none cursor-default;
+  }
+}
+
+/* === Rating 隐藏输入框 === */
+@utility rating-hidden {
+  & input[type="radio"] {
+    @apply sr-only;
+  }
+
+  /* 使用伪元素显示星星 */
+  & label {
+    @apply inline-flex size-6 cursor-pointer transition-transform;
+    @apply hover:scale-110;
+
+    mask-size: 100%;
+    mask-repeat: no-repeat;
+    mask-position: center;
+    -webkit-mask-size: 100%;
+    -webkit-mask-repeat: no-repeat;
+    -webkit-mask-position: center;
+
+    mask-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='currentColor' viewBox='0 0 24 24'%3e%3cpath d='M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z'/%3e%3c/svg%3e");
+    -webkit-mask-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='currentColor' viewBox='0 0 24 24'%3e%3cpath d='M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z'/%3e%3c/svg%3e");
+
+    @apply bg-border;
+  }
+
+  & input[type="radio"]:checked ~ label,
+  & input[type="radio"]:checked + label {
+    @apply bg-warning;
+  }
+
+  &:has(input:checked) label {
+    @apply bg-warning;
+  }
+
+  &:has(input:checked) input:checked ~ label {
+    @apply bg-border;
+  }
+}

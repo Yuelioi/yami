@@ -1,0 +1,102 @@
+/* * 统计组件 (Stat Component) 实用程序 
+ * * 遵循 Daisy UI 的网格布局和分割线逻辑，
+ * 使用 CSS 变量进行颜色和主题控制。
+ */
+
+/* === 容器：用于包裹一组统计项 === */
+@utility stats {
+  @apply relative inline-grid overflow-x-auto;
+  @apply rounded-[var(--radius)] shadow-lg;
+  /* 默认水平布局 */
+  @apply grid-flow-col;
+
+  --stats-bg: var(--background);
+  --stats-border: var(--border);
+
+  @apply bg-[var(--stats-bg)] border border-[var(--stats-border)];
+}
+
+/* === 统计项：单个统计数据块 === */
+@utility stat {
+  /* 内部网格布局：1fr (内容) | auto (图标/图形) */
+  @apply inline-grid w-full gap-x-4 px-6 py-4;
+  grid-template-columns: 1fr auto;
+
+  --stat-fg: var(--foreground);
+  --stat-title-color: var(--muted-foreground);
+  /* 分割线颜色，默认使用主容器的边框色 */
+  --stat-divider-color: var(--stats-border);
+
+  @apply text-[var(--stat-fg)];
+
+  /* 默认分割线 (用于水平布局): 右侧虚线边框 */
+  &:not(:last-child) {
+    border-inline-end: 1px dashed var(--stat-divider-color);
+  }
+}
+
+/* === 内容元素 === */
+
+/* 图形/图标 */
+@utility stat-figure {
+  /* 占据网格的第二列，从第一行开始，跨越三行，并居中靠右对齐 */
+  @apply col-start-2 row-span-3 row-start-1 place-self-center justify-self-end;
+  @apply text-3xl opacity-50;
+}
+
+/* 标题 */
+@utility stat-title {
+  @apply col-start-1 whitespace-nowrap;
+  @apply text-xs font-medium uppercase tracking-wider text-[var(--stat-title-color)];
+}
+
+/* 值 */
+@utility stat-value {
+  @apply col-start-1 whitespace-nowrap;
+  @apply text-3xl font-extrabold leading-tight;
+}
+
+/* 描述/趋势 */
+@utility stat-desc {
+  @apply col-start-1 whitespace-nowrap;
+  @apply text-xs opacity-70 mt-1 flex items-center gap-1;
+}
+
+/* 动作 (例如按钮) */
+@utility stat-actions {
+  @apply col-start-1 whitespace-nowrap mt-2;
+}
+
+/* === 布局修饰符 === */
+
+/* 垂直布局：修改容器流向和分割线方向 */
+@utility stats-vertical {
+  @apply grid-flow-row;
+
+  /* 移除水平布局默认的右侧分割线 */
+  & .stat {
+    @apply border-r-0;
+  }
+
+  /* 在非最后一个统计项的底部添加虚线分割线 */
+  & .stat:not(:last-child) {
+    @apply border-b border-dashed border-[var(--stat-divider-color)];
+  }
+}
+
+/* === 趋势颜色修饰符 (应用于 stat-desc) === */
+
+/* 正面趋势 (使用 Primary 代替 Success) */
+@utility stat-desc-positive {
+  @apply text-primary;
+}
+
+/* 负面趋势 */
+@utility stat-desc-error {
+  @apply text-destructive;
+}
+
+/* 强调趋势 */
+@utility stat-desc-accent {
+  @apply text-accent;
+}
