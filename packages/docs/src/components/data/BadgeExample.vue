@@ -1,124 +1,186 @@
 ﻿<script setup lang="ts">
-import { ref } from "vue";
-import DocsHeader from "../zcomp/DocsHeader.vue";
-import ApiReference from "../zcomp/ApiReference.vue";
-import DocsContainer from "../zcomp/DocsContainer.vue";
-import DocsSection from "../zcomp/DocsSection.vue";
+import DocsHeader from '../zcomp/DocsHeader.vue'
+import DocsContainer from '../zcomp/DocsContainer.vue'
+import DocsSection from '../zcomp/DocsSection.vue'
+import ApiReference from '../zcomp/ApiReference.vue'
 
 const apiClasses = [
   {
-    category: "基础",
-    className: "badge",
-    description:
-      "徽章基础样式，内联、圆角、文字加粗，支持 CSS 变量控制颜色和边框。",
+    category: '基础',
+    className: 'badge',
+    description: '徽章基础样式，包含布局、文本、边框、交互。',
     isCategoryStart: true,
   },
   {
-    category: "颜色变体",
-    className: "badge-primary",
-    description: "主色徽章，使用 CSS 变量控制背景、前景和边框。",
+    category: '配色',
+    className: 'badge-primary',
+    description: '主色实心徽章。',
+    isCategoryStart: true,
+  },
+  {
+    category: '配色',
+    className: 'badge-secondary',
+    description: '次色实心徽章。',
     isCategoryStart: false,
   },
   {
-    category: "颜色变体",
-    className: "badge-secondary",
-    description: "次色徽章，使用 CSS 变量控制颜色。",
+    category: '配色',
+    className: 'badge-destructive',
+    description: '危险/错误色实心徽章。',
     isCategoryStart: false,
   },
   {
-    category: "颜色变体",
-    className: "badge-destructive",
-    description: "危险/删除徽章。",
+    category: '配色',
+    className: 'badge-muted',
+    description: '低调灰色实心徽章。',
     isCategoryStart: false,
   },
   {
-    category: "颜色变体",
-    className: "badge-muted",
-    description: "弱色徽章。",
+    category: '配色',
+    className: 'badge-accent',
+    description: '强调色实心徽章。',
     isCategoryStart: false,
   },
   {
-    category: "颜色变体",
-    className: "badge-accent",
-    description: "强调徽章。",
+    category: '描边/幽灵',
+    className: 'badge-outline',
+    description: '描边徽章。',
+    isCategoryStart: true,
+  },
+  {
+    category: '描边/幽灵',
+    className: 'badge-ghost',
+    description: '幽灵徽章（透明背景）。',
     isCategoryStart: false,
   },
   {
-    category: "颜色变体",
-    className: "badge-outline",
-    description: "描边徽章，根据颜色类修改前景色和边框。",
+    category: '尺寸',
+    className: 'badge-xs',
+    description: '超小徽章。',
+    isCategoryStart: true,
+  },
+  {
+    category: '尺寸',
+    className: 'badge-sm',
+    description: '小号徽章。',
     isCategoryStart: false,
   },
   {
-    category: "尺寸变体",
-    className: "badge-sm / badge-md / badge-lg / badge-xl",
-    description: "不同尺寸的徽章。",
+    category: '尺寸',
+    className: 'badge-md',
+    description: '中号徽章（默认）。',
     isCategoryStart: false,
   },
   {
-    category: "形状",
-    className: "badge-square / badge-rounded",
-    description: "控制徽章圆角形状。",
+    category: '尺寸',
+    className: 'badge-lg',
+    description: '大号徽章。',
     isCategoryStart: false,
   },
   {
-    category: "扩展",
-    className: "badge-dot",
-    description: "带点徽章，在前面显示小圆点。",
+    category: '尺寸',
+    className: 'badge-xl',
+    description: '超大徽章。',
     isCategoryStart: false,
   },
   {
-    category: "扩展",
-    className: "badge-closable",
-    description: "可关闭徽章，需要 JS 支持关闭操作。",
+    category: '形状',
+    className: 'badge-pill',
+    description: '圆角徽章（胶囊形）。',
+    isCategoryStart: true,
+  },
+  {
+    category: '形状',
+    className: 'badge-square',
+    description: '方角徽章。',
     isCategoryStart: false,
   },
-];
+  {
+    category: '扩展',
+    className: 'badge-dot',
+    description: '带点徽章。',
+    isCategoryStart: true,
+  },
+  {
+    category: '扩展',
+    className: 'badge-closable',
+    description: '可关闭徽章（需 JS 配合）。',
+    isCategoryStart: false,
+  },
+]
 </script>
 
 <template>
   <DocsContainer>
     <DocsHeader
-      title="Badge 徽章"
-      description="用于标记、标签或状态显示的小徽章组件，支持多种颜色、尺寸、形状和扩展效果。"
+      title="Badge 徽章组件"
+      description="用于标识状态、数量或提醒信息的小型标记，支持多种颜色、尺寸、形状和扩展功能。"
     />
 
     <ApiReference :data="apiClasses" />
 
-    <DocsSection title="基础与颜色示例">
-      <div class="flex flex-wrap gap-2 p-6 bg-card">
-        <span class="badge">默认</span>
+    <!-- 基础徽章 -->
+    <DocsSection title="基础徽章">
+      <div class="flex gap-2">
+        <span class="badge">默认徽章</span>
         <span class="badge badge-primary">Primary</span>
         <span class="badge badge-secondary">Secondary</span>
         <span class="badge badge-destructive">Destructive</span>
         <span class="badge badge-muted">Muted</span>
         <span class="badge badge-accent">Accent</span>
-        <span class="badge badge-outline badge-primary">Outline Primary</span>
       </div>
     </DocsSection>
 
-    <DocsSection title="尺寸示例">
-      <div class="flex flex-wrap gap-2 p-6 border">
-        <span class="badge badge-sm badge-primary">SM</span>
-        <span class="badge badge-md badge-secondary">MD</span>
-        <span class="badge badge-lg badge-accent">LG</span>
-        <span class="badge badge-xl badge-destructive">XL</span>
+    <!-- 描边与幽灵徽章 -->
+    <DocsSection title="描边与幽灵徽章（颜色联动）">
+      <div class="flex flex-col gap-2">
+        <!-- 描边徽章 -->
+        <div class="flex gap-2 items-center">
+          <span class="badge badge-outline badge-primary">Primary</span>
+          <span class="badge badge-outline badge-secondary">Secondary</span>
+          <span class="badge badge-outline badge-destructive">Destructive</span>
+          <span class="badge badge-outline badge-muted">Muted</span>
+          <span class="badge badge-outline badge-accent">Accent</span>
+        </div>
+
+        <!-- 幽灵徽章 -->
+        <div class="flex gap-2 items-center">
+          <span class="badge badge-ghost badge-primary">Primary</span>
+          <span class="badge badge-ghost badge-secondary">Secondary</span>
+          <span class="badge badge-ghost badge-destructive">Destructive</span>
+          <span class="badge badge-ghost badge-muted">Muted</span>
+          <span class="badge badge-ghost badge-accent">Accent</span>
+        </div>
       </div>
     </DocsSection>
 
-    <DocsSection title="形状示例">
-      <div class="flex flex-wrap gap-2 p-6 border">
-        <span class="badge badge-square badge-primary">Square</span>
-        <span class="badge badge-rounded badge-accent">Rounded</span>
+    <!-- 尺寸变体 -->
+    <DocsSection title="尺寸变体">
+      <div class="flex gap-2 items-center">
+        <span class="badge badge-xs">XS</span>
+        <span class="badge badge-sm">SM</span>
+        <span class="badge badge-md">MD</span>
+        <span class="badge badge-lg">LG</span>
+        <span class="badge badge-xl">XL</span>
       </div>
     </DocsSection>
 
-    <DocsSection title="扩展示例">
-      <div class="flex flex-wrap gap-2 p-6 border">
+    <!-- 形状变体 -->
+    <DocsSection title="形状变体">
+      <div class="flex gap-2 items-center">
+        <span class="badge badge-pill">Pill</span>
+        <span class="badge badge-square">Square</span>
+      </div>
+    </DocsSection>
+
+    <!-- 扩展功能 -->
+    <DocsSection title="扩展功能">
+      <div class="flex gap-2 items-center">
         <span class="badge badge-dot badge-primary">Dot</span>
-        <span class="badge badge-closable badge-secondary"
-          >Closable <span class="ml-1 cursor-pointer">✕</span></span
-        >
+        <span class="badge badge-closable badge-secondary">
+          Closable
+          <button class="ml-1 text-xs">×</button>
+        </span>
       </div>
     </DocsSection>
   </DocsContainer>

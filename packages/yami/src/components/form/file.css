@@ -14,8 +14,8 @@
 
   & input[type="file"] {
     @apply w-full  px-3 py-2 text-sm;
-    @apply border border-[var(--input)] rounded-md;
-    @apply bg-[var(--background)] text-[var(--foreground)];
+    @apply border border-input rounded-md;
+    @apply bg-background text-foreground;
     @apply cursor-pointer transition-colors duration-200;
     @apply file:mr-4 file:py-2 file:px-4;
     @apply file:rounded-md file:border-0;
@@ -23,7 +23,7 @@
     @apply file:bg-[var(--primary)] file:text-[var(--primary-foreground)];
     @apply file:cursor-pointer file:transition-colors;
     @apply hover:border-[var(--primary)];
-    @apply focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--ring)] focus-visible:ring-offset-2;
+    @apply focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2;
     @apply disabled:opacity-50 disabled:cursor-not-allowed;
 
     &:hover:not(:disabled)::file-selector-button {
@@ -45,10 +45,10 @@
 
 @utility file-input-secondary {
   & input[type="file"] {
-    @apply file:bg-[var(--secondary)] file:text-[var(--secondary-foreground)];
+    @apply file:bg-secondary file:text-[var(--secondary-foreground)];
 
     &:hover:not(:disabled) {
-      @apply border-[var(--secondary)];
+      @apply border-secondary;
     }
   }
 }
@@ -109,8 +109,8 @@
   & .file-input-label {
     @apply flex items-center justify-center gap-2;
     @apply w-full h-10 px-4 py-2 text-sm font-medium;
-    @apply border-2 border-dashed border-[var(--border)] rounded-md;
-    @apply bg-[var(--background)] text-[var(--foreground)];
+    @apply border-2 border-dashed border-border rounded-md;
+    @apply bg-background text-foreground;
     @apply cursor-pointer transition-all duration-200;
     @apply hover:border-[var(--primary)] hover:bg-[var(--muted)];
 
@@ -128,7 +128,7 @@
   }
 
   & input[type="file"]:focus-visible ~ .file-input-label {
-    @apply outline-none ring-2 ring-[var(--ring)] ring-offset-2;
+    @apply outline-none ring-2 ring-ring ring-offset-2;
   }
 }
 
@@ -141,8 +141,8 @@
   & .file-input-dropzone-area {
     @apply flex flex-col items-center justify-center gap-3;
     @apply w-full min-h-[200px] p-6;
-    @apply border-2 border-dashed border-[var(--border)] rounded-lg;
-    @apply bg-[var(--background)] text-[var(--muted-foreground)];
+    @apply border-2 border-dashed border-border rounded-lg;
+    @apply bg-background text-[var(--muted-foreground)];
     @apply cursor-pointer transition-all duration-200;
 
     &::before {
@@ -171,7 +171,7 @@
   }
 
   & input[type="file"]:focus-visible ~ .file-input-dropzone-area {
-    @apply outline-none ring-2 ring-[var(--ring)] ring-offset-2;
+    @apply outline-none ring-2 ring-ring ring-offset-2;
   }
 
   &.file-input-dragging .file-input-dropzone-area {
@@ -203,8 +203,8 @@
   & .file-input-button-trigger {
     @apply inline-flex items-center justify-center gap-2;
     @apply h-10 px-4 py-2 text-sm font-medium;
-    @apply rounded-md border border-[var(--input)];
-    @apply bg-[var(--background)] text-[var(--foreground)];
+    @apply rounded-md border border-input;
+    @apply bg-background text-foreground;
     @apply cursor-pointer transition-colors duration-200;
     @apply hover:bg-[var(--muted)] hover:border-[var(--primary)];
 
@@ -222,7 +222,7 @@
   }
 
   & input[type="file"]:focus-visible ~ .file-input-button-trigger {
-    @apply outline-none ring-2 ring-[var(--ring)] ring-offset-2;
+    @apply outline-none ring-2 ring-ring ring-offset-2;
   }
 }
 
@@ -236,8 +236,8 @@
 
 @utility file-input-button-secondary {
   & .file-input-button-trigger {
-    @apply bg-[var(--secondary)] text-[var(--secondary-foreground)] border-[var(--secondary)];
-    @apply hover:bg-[var(--secondary)]/90;
+    @apply bg-secondary text-[var(--secondary-foreground)] border-secondary;
+    @apply hover:bg-secondary/90;
   }
 }
 
@@ -251,7 +251,7 @@
 
   & .file-input-item {
     @apply flex items-center justify-between gap-3;
-    @apply p-3 rounded-md border border-[var(--border)];
+    @apply p-3 rounded-md border border-border;
     @apply bg-[var(--card)] text-sm;
 
     &::before {
@@ -264,7 +264,7 @@
   }
 
   & .file-input-item-name {
-    @apply flex-1 truncate text-[var(--foreground)];
+    @apply flex-1 truncate text-foreground;
   }
 
   & .file-input-item-size {

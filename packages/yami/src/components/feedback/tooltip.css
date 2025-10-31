@@ -5,12 +5,14 @@
   @apply relative inline-block;
 
   & .tooltip-content {
-    @apply absolute z-50 px-3 py-2 text-sm font-medium rounded-md;
+    @apply absolute z-50 px-3 py-2 text-sm font-medium;
     @apply bg-[var(--popover)] text-[var(--popover-foreground)];
-    @apply border border-[var(--border)] shadow-lg;
+    @apply border border-border;
     @apply opacity-0 invisible pointer-events-none;
     @apply transition-all duration-200 ease-in-out;
     white-space: nowrap;
+
+    border-radius: var(--radius);
   }
 
   &:hover .tooltip-content,
@@ -176,8 +178,8 @@
 /* Secondary */
 @utility tooltip-secondary {
   & .tooltip-content {
-    @apply bg-[var(--secondary)] text-[var(--secondary-foreground)];
-    @apply border-[var(--secondary)];
+    @apply bg-secondary text-[var(--secondary-foreground)];
+    @apply border-secondary;
   }
 
   &.tooltip-top .tooltip-content {
@@ -384,66 +386,11 @@
 @utility tooltip-scale {
   & .tooltip-content {
     @apply scale-95;
-    transition:
-      opacity 0.2s,
-      visibility 0.2s,
-      transform 0.2s;
+    transition: opacity 0.2s, visibility 0.2s, transform 0.2s;
   }
 
   &:hover .tooltip-content,
   &:focus .tooltip-content {
     @apply scale-100;
-  }
-}
-
-/* === Tooltip 圆角变体 === */
-@utility tooltip-rounded-none {
-  & .tooltip-content {
-    @apply rounded-none;
-  }
-}
-
-@utility tooltip-rounded-sm {
-  & .tooltip-content {
-    @apply rounded-sm;
-  }
-}
-
-@utility tooltip-rounded-lg {
-  & .tooltip-content {
-    @apply rounded-lg;
-  }
-}
-
-@utility tooltip-rounded-xl {
-  & .tooltip-content {
-    @apply rounded-xl;
-  }
-}
-
-/* === Tooltip 阴影变体 === */
-@utility tooltip-shadow-sm {
-  & .tooltip-content {
-    box-shadow: var(--shadow-sm);
-  }
-}
-
-@utility tooltip-shadow-md {
-  & .tooltip-content {
-    box-shadow: var(--shadow-md);
-  }
-}
-
-@utility tooltip-shadow-lg {
-  & .tooltip-content {
-    box-shadow: var(--shadow-lg);
-  }
-}
-
-/* === Tooltip 响应式 === */
-@utility tooltip-responsive {
-  & .tooltip-content {
-    @apply max-w-[calc(100vw-2rem)];
-    white-space: normal;
   }
 }

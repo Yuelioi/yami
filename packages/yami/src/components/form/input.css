@@ -16,7 +16,7 @@
   @apply rounded-md border border-input bg-background;
 
   /* 间距 */
-  @apply h-md px-3 py-2;
+  @apply input-h-md px-3 py-2;
 
   /* 交互 */
   @apply transition-colors;
@@ -37,23 +37,23 @@
    ======================================== */
 
 @utility input-xs {
-  @apply h-xs text-xs px-2 py-1;
+  @apply input-h-xs text-xs px-2 py-1;
 }
 
 @utility input-sm {
-  @apply h-sm text-sm px-2.5 py-1.5;
+  @apply input-h-sm text-sm px-2.5 py-1.5;
 }
 
 @utility input-md {
-  @apply h-md text-sm px-3 py-2;
+  @apply input-h-md text-sm px-3 py-2;
 }
 
 @utility input-lg {
-  @apply h-lg text-base px-4 py-3;
+  @apply input-h-lg text-base px-4 py-3;
 }
 
 @utility input-xl {
-  @apply h-xl text-lg px-5 py-3.5;
+  @apply input-h-xl text-lg px-5 py-3.5;
 }
 
 /* ========================================

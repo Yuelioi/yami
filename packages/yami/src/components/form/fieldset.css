@@ -6,11 +6,11 @@
 
 /* === Fieldset 基础样式 === */
 @utility fieldset {
-  @apply border border-[var(--border)] rounded-lg p-4;
+  @apply border border-border rounded-lg p-4;
   @apply bg-[var(--card)] text-[var(--card-foreground)];
 
   & legend {
-    @apply px-2 text-sm font-semibold text-[var(--foreground)];
+    @apply px-2 text-sm font-semibold text-foreground;
     @apply -ml-2;
   }
 
@@ -34,7 +34,7 @@
 
 /* === Fieldset 卡片样式 === */
 @utility fieldset-card {
-  @apply border-2 border-[var(--border)] rounded-lg p-6 shadow-sm;
+  @apply border-2 border-border rounded-lg p-6 shadow-sm;
   @apply bg-[var(--card)];
 
   & legend {
@@ -52,7 +52,7 @@
 }
 
 @utility fieldset-secondary {
-  @apply border-[var(--secondary)]/30 bg-[var(--secondary)]/5;
+  @apply border-secondary/30 bg-secondary/5;
 
   & legend {
     @apply text-[var(--secondary-foreground)];
@@ -169,7 +169,7 @@
     @apply space-y-4;
 
     & > * + * {
-      @apply pt-4 border-t border-[var(--border)];
+      @apply pt-4 border-t border-border;
     }
   }
 }
@@ -236,7 +236,7 @@
 }
 
 @utility fieldset-border-left-secondary {
-  @apply border-l-4 border-l-[var(--secondary)];
+  @apply border-l-4 border-l-secondary;
 }
 
 @utility fieldset-border-left-accent {

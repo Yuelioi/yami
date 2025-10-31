@@ -37,9 +37,9 @@ const apiClasses = [
     description: '默认描边按钮。',
     isCategoryStart: true,
   },
-  { category: '描边', className: 'btn-outline-primary', description: '主色描边按钮。' },
-  { category: '描边', className: 'btn-outline-secondary', description: '次色描边按钮。' },
-  { category: '描边', className: 'btn-outline-destructive', description: '危险描边按钮。' },
+  { category: '描边', className: 'btn-outline btn-primary', description: '主色描边按钮。' },
+  { category: '描边', className: 'btn-outline btn-secondary', description: '次色描边按钮。' },
+  { category: '描边', className: 'btn-outline btn-destructive', description: '危险描边按钮。' },
 
   // 幽灵
   {
@@ -48,9 +48,9 @@ const apiClasses = [
     description: '默认幽灵按钮。',
     isCategoryStart: true,
   },
-  { category: '幽灵', className: 'btn-ghost-primary', description: '主色幽灵按钮。' },
-  { category: '幽灵', className: 'btn-ghost-secondary', description: '次色幽灵按钮。' },
-  { category: '幽灵', className: 'btn-ghost-destructive', description: '危险幽灵按钮。' },
+  { category: '幽灵', className: 'btn-ghost btn-primary', description: '主色幽灵按钮。' },
+  { category: '幽灵', className: 'btn-ghost btn-secondary', description: '次色幽灵按钮。' },
+  { category: '幽灵', className: 'btn-ghost btn-destructive', description: '危险幽灵按钮。' },
 
   // 特殊
   { category: '特殊', className: 'btn-link', description: '链接样式按钮。', isCategoryStart: true },
@@ -73,7 +73,7 @@ const apiClasses = [
   // 宽度
   {
     category: '宽度',
-    className: 'btn-block',
+    className: 'btn-full',
     description: '占满容器宽度。',
     isCategoryStart: true,
   },
@@ -140,16 +140,16 @@ const apiClasses = [
 
         <div class="flex gap-2 flex-wrap">
           <button class="btn btn-outline">描边</button>
-          <button class="btn btn-outline-primary">主色描边</button>
-          <button class="btn btn-outline-secondary">次色描边</button>
-          <button class="btn btn-outline-destructive">危险描边</button>
+          <button class="btn btn-outline btn-primary">主色描边</button>
+          <button class="btn btn-outline btn-secondary">次色描边</button>
+          <button class="btn btn-outline btn-destructive">危险描边</button>
         </div>
 
         <div class="flex gap-2 flex-wrap">
           <button class="btn btn-ghost">幽灵</button>
-          <button class="btn btn-ghost-primary">主色幽灵</button>
-          <button class="btn btn-ghost-secondary">次色幽灵</button>
-          <button class="btn btn-ghost-destructive">危险幽灵</button>
+          <button class="btn btn-ghost btn-primary">主色幽灵</button>
+          <button class="btn btn-ghost btn-secondary">次色幽灵</button>
+          <button class="btn btn-ghost btn-destructive">危险幽灵</button>
         </div>
       </div>
     </DocsSection>
@@ -174,7 +174,7 @@ const apiClasses = [
       <div class="flex gap-4 flex-wrap">
         <button class="btn btn-primary btn-pill">圆角</button>
         <button class="btn btn-primary btn-square">方形</button>
-        <button class="btn btn-primary btn-block">整行按钮</button>
+        <button class="btn btn-primary btn-full">整行按钮</button>
         <button class="btn btn-primary btn-wide">宽按钮</button>
       </div>
     </DocsSection>

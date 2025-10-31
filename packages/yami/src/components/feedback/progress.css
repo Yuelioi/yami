@@ -294,56 +294,6 @@
   }
 }
 
-/* === Progress 步骤条 === */
-@utility progress-steps {
-  @apply relative flex items-center justify-between;
-  @apply w-full;
-
-  &::before {
-    content: "";
-    @apply absolute top-1/2 left-0 right-0;
-    @apply h-0.5 bg-muted -translate-y-1/2 z-0;
-  }
-
-  & .progress-step {
-    @apply relative z-10 flex flex-col items-center gap-2;
-    @apply text-sm text-muted-foreground;
-
-    &::before {
-      content: "";
-      @apply block size-8 rounded-full border-2;
-      @apply border-muted bg-card;
-      @apply transition-all duration-300;
-    }
-
-    &.active::before {
-      @apply border-primary bg-primary;
-      box-shadow: 0 0 0 4px var(--primary) / 0.2;
-    }
-
-    &.completed::before {
-      @apply border-primary bg-primary;
-      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='white'%3E%3Cpath d='M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z'/%3E%3C/svg%3E");
-      background-size: 60%;
-      background-position: center;
-      background-repeat: no-repeat;
-    }
-
-    &.error::before {
-      @apply border-destructive bg-destructive;
-    }
-  }
-
-  & .progress-connector {
-    @apply flex-1 h-0.5 bg-muted mx-2;
-    @apply transition-colors duration-300;
-  }
-
-  & .progress-connector.completed {
-    @apply bg-primary;
-  }
-}
-
 /* === Progress 圆形进度条 === */
 @utility progress-circle {
   @apply relative inline-flex items-center justify-center;

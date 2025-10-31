@@ -1,330 +1,286 @@
 ﻿<script setup lang="ts">
-import DocsHeader from "../zcomp/DocsHeader.vue";
-import ApiReference from "../zcomp/ApiReference.vue";
-import DocsContainer from "../zcomp/DocsContainer.vue";
-import DocsSection from "../zcomp/DocsSection.vue";
+import DocsHeader from '../zcomp/DocsHeader.vue'
+import ApiReference from '../zcomp/ApiReference.vue'
+import DocsContainer from '../zcomp/DocsContainer.vue'
+import DocsSection from '../zcomp/DocsSection.vue'
 
 const apiClasses = [
   // 基础结构
   {
-    category: "基础结构",
-    className: "progress",
-    description: "进度条容器，圆角和背景。",
+    category: '基础结构',
+    className: 'progress',
+    description: '进度条容器，圆角和背景。',
     isCategoryStart: true,
   },
   {
-    category: "基础结构",
-    className: "progress-bar",
-    description: "进度条填充条，支持宽度变化动画。",
+    category: '基础结构',
+    className: 'progress-bar',
+    description: '进度条填充条，支持宽度变化动画。',
     isCategoryStart: false,
   },
 
   // 配色
   {
-    category: "配色方案",
-    className: "progress-primary",
-    description: "主色进度条。",
+    category: '配色方案',
+    className: 'progress-primary',
+    description: '主色进度条。',
     isCategoryStart: true,
   },
   {
-    category: "配色方案",
-    className: "progress-secondary",
-    description: "辅助色进度条。",
+    category: '配色方案',
+    className: 'progress-secondary',
+    description: '辅助色进度条。',
     isCategoryStart: false,
   },
   {
-    category: "配色方案",
-    className: "progress-success",
-    description: "成功状态（绿色）进度条。",
+    category: '配色方案',
+    className: 'progress-success',
+    description: '成功状态（绿色）进度条。',
     isCategoryStart: false,
   },
   {
-    category: "配色方案",
-    className: "progress-warning",
-    description: "警告状态（黄色/琥珀）进度条。",
+    category: '配色方案',
+    className: 'progress-warning',
+    description: '警告状态（黄色/琥珀）进度条。',
     isCategoryStart: false,
   },
   {
-    category: "配色方案",
-    className: "progress-error",
-    description: "错误状态（红色）进度条。",
+    category: '配色方案',
+    className: 'progress-error',
+    description: '错误状态（红色）进度条。',
     isCategoryStart: false,
   },
   {
-    category: "配色方案",
-    className: "progress-info",
-    description: "信息状态（蓝色/主色）进度条。",
+    category: '配色方案',
+    className: 'progress-info',
+    description: '信息状态（蓝色/主色）进度条。',
     isCategoryStart: false,
   },
   {
-    category: "配色方案",
-    className: "progress-accent",
-    description: "强调色进度条。",
+    category: '配色方案',
+    className: 'progress-accent',
+    description: '强调色进度条。',
     isCategoryStart: false,
   },
 
   // 尺寸
   {
-    category: "尺寸",
-    className: "progress-xs",
-    description: "超小高度。",
+    category: '尺寸',
+    className: 'progress-xs',
+    description: '超小高度。',
     isCategoryStart: true,
   },
   {
-    category: "尺寸",
-    className: "progress-sm",
-    description: "小高度。",
+    category: '尺寸',
+    className: 'progress-sm',
+    description: '小高度。',
     isCategoryStart: true,
   },
   {
-    category: "尺寸",
-    className: "progress-md",
-    description: "中等高度（默认）。",
+    category: '尺寸',
+    className: 'progress-md',
+    description: '中等高度（默认）。',
     isCategoryStart: true,
   },
   {
-    category: "尺寸",
-    className: "progress-lg",
-    description: "大高度。",
+    category: '尺寸',
+    className: 'progress-lg',
+    description: '大高度。',
     isCategoryStart: true,
   },
   {
-    category: "尺寸",
-    className: "progress-xl",
-    description: "超大高度。",
+    category: '尺寸',
+    className: 'progress-xl',
+    description: '超大高度。',
     isCategoryStart: true,
   },
 
   // 动画
   {
-    category: "动画效果",
-    className: "progress-animated",
-    description: "闪光动画效果。",
+    category: '动画效果',
+    className: 'progress-animated',
+    description: '闪光动画效果。',
     isCategoryStart: true,
   },
   {
-    category: "动画效果",
-    className: "progress-striped",
-    description: "条纹背景。",
+    category: '动画效果',
+    className: 'progress-striped',
+    description: '条纹背景。',
     isCategoryStart: true,
   },
   {
-    category: "动画效果",
-    className: "progress-striped-animated",
-    description: "条纹动画。",
+    category: '动画效果',
+    className: 'progress-striped-animated',
+    description: '条纹动画。',
     isCategoryStart: true,
   },
   {
-    category: "动画效果",
-    className: "progress-indeterminate",
-    description: "不确定状态动画。",
+    category: '动画效果',
+    className: 'progress-indeterminate',
+    description: '不确定状态动画。',
     isCategoryStart: true,
   },
 
   // 圆角
   {
-    category: "圆角变体",
-    className: "progress-rounded-none",
-    description: "无圆角。",
+    category: '圆角变体',
+    className: 'progress-rounded-none',
+    description: '无圆角。',
     isCategoryStart: true,
   },
   {
-    category: "圆角变体",
-    className: "progress-rounded-sm",
-    description: "小圆角。",
+    category: '圆角变体',
+    className: 'progress-rounded-sm',
+    description: '小圆角。',
     isCategoryStart: true,
   },
   {
-    category: "圆角变体",
-    className: "progress-rounded-md",
-    description: "中等圆角。",
+    category: '圆角变体',
+    className: 'progress-rounded-md',
+    description: '中等圆角。',
     isCategoryStart: true,
   },
   {
-    category: "圆角变体",
-    className: "progress-rounded-lg",
-    description: "大圆角。",
+    category: '圆角变体',
+    className: 'progress-rounded-lg',
+    description: '大圆角。',
     isCategoryStart: true,
   },
   {
-    category: "圆角变体",
-    className: "progress-rounded-full",
-    description: "全圆角。",
+    category: '圆角变体',
+    className: 'progress-rounded-full',
+    description: '全圆角。',
     isCategoryStart: true,
   },
 
   // 边框
   {
-    category: "边框",
-    className: "progress-bordered",
-    description: "带边框样式。",
+    category: '边框',
+    className: 'progress-bordered',
+    description: '带边框样式。',
     isCategoryStart: true,
   },
 
   // 渐变
   {
-    category: "渐变",
-    className: "progress-gradient",
-    description: "主色到强调色渐变。",
+    category: '渐变',
+    className: 'progress-gradient',
+    description: '主色到强调色渐变。',
     isCategoryStart: true,
   },
   {
-    category: "渐变",
-    className: "progress-gradient-success",
-    description: "绿色渐变。",
+    category: '渐变',
+    className: 'progress-gradient-success',
+    description: '绿色渐变。',
     isCategoryStart: true,
   },
   {
-    category: "渐变",
-    className: "progress-gradient-warning",
-    description: "黄色渐变。",
+    category: '渐变',
+    className: 'progress-gradient-warning',
+    description: '黄色渐变。',
     isCategoryStart: true,
   },
   {
-    category: "渐变",
-    className: "progress-gradient-error",
-    description: "红色渐变。",
+    category: '渐变',
+    className: 'progress-gradient-error',
+    description: '红色渐变。',
     isCategoryStart: true,
   },
 
   // 发光
   {
-    category: "发光效果",
-    className: "progress-glow",
-    description: "发光效果。",
+    category: '发光效果',
+    className: 'progress-glow',
+    description: '发光效果。',
     isCategoryStart: true,
   },
 
   // 纵向
   {
-    category: "纵向",
-    className: "progress-vertical",
-    description: "纵向进度条。",
+    category: '纵向',
+    className: 'progress-vertical',
+    description: '纵向进度条。',
     isCategoryStart: true,
   },
   {
-    category: "纵向",
-    className: "progress-vertical-xs",
-    description: "纵向超小宽度。",
+    category: '纵向',
+    className: 'progress-vertical-xs',
+    description: '纵向超小宽度。',
     isCategoryStart: true,
   },
   {
-    category: "纵向",
-    className: "progress-vertical-sm",
-    description: "纵向小宽度。",
+    category: '纵向',
+    className: 'progress-vertical-sm',
+    description: '纵向小宽度。',
     isCategoryStart: true,
   },
   {
-    category: "纵向",
-    className: "progress-vertical-md",
-    description: "纵向中宽度。",
+    category: '纵向',
+    className: 'progress-vertical-md',
+    description: '纵向中宽度。',
     isCategoryStart: true,
   },
   {
-    category: "纵向",
-    className: "progress-vertical-lg",
-    description: "纵向大宽度。",
+    category: '纵向',
+    className: 'progress-vertical-lg',
+    description: '纵向大宽度。',
     isCategoryStart: true,
   },
   {
-    category: "纵向",
-    className: "progress-vertical-xl",
-    description: "纵向超大宽度。",
+    category: '纵向',
+    className: 'progress-vertical-xl',
+    description: '纵向超大宽度。',
     isCategoryStart: true,
   },
 
   // 带标签
   {
-    category: "标签",
-    className: "progress-labeled",
-    description: "显示中间文本标签。",
+    category: '标签',
+    className: 'progress-labeled',
+    description: '显示中间文本标签。',
     isCategoryStart: true,
   },
 
   // 分段
   {
-    category: "分段",
-    className: "progress-segmented",
-    description: "多段进度条容器。",
+    category: '分段',
+    className: 'progress-segmented',
+    description: '多段进度条容器。',
     isCategoryStart: true,
   },
   {
-    category: "分段",
-    className: "progress-segment",
-    description: "单段进度条。",
+    category: '分段',
+    className: 'progress-segment',
+    description: '单段进度条。',
     isCategoryStart: false,
   },
   {
-    category: "分段",
-    className: "progress-segment active",
-    description: "激活段。",
-    isCategoryStart: false,
-  },
-
-  // 步骤条
-  {
-    category: "步骤条",
-    className: "progress-steps",
-    description: "步骤条容器。",
-    isCategoryStart: true,
-  },
-  {
-    category: "步骤条",
-    className: "progress-step",
-    description: "单个步骤。",
-    isCategoryStart: false,
-  },
-  {
-    category: "步骤条",
-    className: "progress-step active",
-    description: "当前步骤。",
-    isCategoryStart: false,
-  },
-  {
-    category: "步骤条",
-    className: "progress-step completed",
-    description: "已完成步骤。",
-    isCategoryStart: false,
-  },
-  {
-    category: "步骤条",
-    className: "progress-step error",
-    description: "错误步骤。",
-    isCategoryStart: false,
-  },
-  {
-    category: "步骤条",
-    className: "progress-connector",
-    description: "步骤连接线。",
-    isCategoryStart: false,
-  },
-  {
-    category: "步骤条",
-    className: "progress-connector completed",
-    description: "完成连接线。",
+    category: '分段',
+    className: 'progress-segment active',
+    description: '激活段。',
     isCategoryStart: false,
   },
 
   // 圆形
   {
-    category: "圆形",
-    className: "progress-circle",
-    description: "圆形进度条容器。",
+    category: '圆形',
+    className: 'progress-circle',
+    description: '圆形进度条容器。',
     isCategoryStart: true,
   },
   {
-    category: "圆形",
-    className: "progress-circle-sm",
-    description: "圆形小尺寸。",
+    category: '圆形',
+    className: 'progress-circle-sm',
+    description: '圆形小尺寸。',
     isCategoryStart: true,
   },
   {
-    category: "圆形",
-    className: "progress-circle-lg",
-    description: "圆形大尺寸。",
+    category: '圆形',
+    className: 'progress-circle-lg',
+    description: '圆形大尺寸。',
     isCategoryStart: true,
   },
-];
+]
 </script>
 
 <template>
@@ -505,19 +461,6 @@ const apiClasses = [
         <div class="progress-segment active w-1/4"></div>
         <div class="progress-segment w-1/4"></div>
         <div class="progress-segment w-1/4"></div>
-      </div>
-    </DocsSection>
-
-    <!-- 步骤条 -->
-    <DocsSection title="步骤条">
-      <div class="progress-steps w-full">
-        <div class="progress-step completed">步骤 1</div>
-        <div class="progress-connector completed"></div>
-        <div class="progress-step active">步骤 2</div>
-        <div class="progress-connector"></div>
-        <div class="progress-step">步骤 3</div>
-        <div class="progress-connector"></div>
-        <div class="progress-step error">步骤 4</div>
       </div>
     </DocsSection>
   </DocsContainer>

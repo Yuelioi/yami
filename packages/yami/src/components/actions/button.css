@@ -19,7 +19,7 @@
 
   /* 边框 */
   @apply border;
-  border-radius: theme(borderRadius.DEFAULT);
+  border-radius: var(--radius);
 
   /* 焦点状态 */
   @apply focus-visible:outline-none;
@@ -30,10 +30,89 @@
   @apply disabled:opacity-50;
 
   /* 默认尺寸 */
-  @apply h-md px-4 py-2;
+  @apply input-h-md input-p-md py-2;
 
   /* 默认配色(ghost风格) */
   @apply bg-transparent border-transparent text-foreground;
+  /* @apply hover:bg-accent; */
+}
+
+/* ========================================
+   实心按钮 - btn-primary
+   ======================================== */
+
+@utility btn-primary {
+  &:not(:is(.btn-outline)):not(:is(.btn-ghost)) {
+    @apply bg-primary text-primary-foreground border-transparent;
+    @apply hover:bg-primary/90 hover:text-primary-foreground;
+  }
+
+  @apply hover:bg-primary/90 hover:text-primary-foreground;
+}
+/* ========================================
+   实心按钮 - btn-secondary
+   ======================================== */
+@utility btn-secondary {
+  &:not(:is(.btn-outline)):not(:is(.btn-ghost)) {
+    @apply bg-secondary text-secondary-foreground border-transparent;
+    @apply hover:bg-secondary/90 hover:text-secondary-foreground;
+  }
+  @apply hover:bg-secondary/90 hover:text-secondary-foreground;
+}
+
+/* ========================================
+   实心按钮 - btn-destructive
+   ======================================== */
+@utility btn-destructive {
+  &:not(:is(.btn-outline)):not(:is(.btn-ghost)) {
+    @apply bg-destructive text-destructive-foreground border-transparent;
+    @apply hover:bg-destructive/90 hover:text-destructive-foreground;
+  }
+  @apply hover:bg-destructive/90 hover:text-destructive-foreground;
+}
+
+/* ========================================
+   实心按钮 - btn-muted
+   ======================================== */
+@utility btn-muted {
+  &:not(:is(.btn-outline)):not(:is(.btn-ghost)) {
+    @apply bg-muted text-muted-foreground border-transparent;
+    @apply hover:bg-muted/90 hover:text-muted-foreground;
+  }
+  @apply hover:bg-muted/90 hover:text-muted-foreground;
+}
+
+/* ========================================
+   实心按钮 - btn-muted
+   ======================================== */
+
+@utility btn-muted {
+  &:is(.btn-outline),
+  &:is(.btn-ghost) {
+    @apply hover:bg-muted/10;
+  }
+
+  &:not(:is(.btn-outline)):not(:is(.btn-ghost)) {
+    @apply bg-muted text-muted-foreground border-transparent;
+    @apply hover:bg-muted/90;
+  }
+}
+
+/* ========================================
+   描边按钮
+   ======================================== */
+
+@utility btn-outline {
+  @apply bg-transparent border border-input text-foreground;
+  @apply hover:bg-accent hover:text-accent-foreground;
+}
+
+/* ========================================
+   幽灵按钮
+   ======================================== */
+
+@utility btn-ghost {
+  @apply bg-transparent border-transparent text-foreground border-none;
   @apply hover:bg-accent hover:text-accent-foreground;
 }
 
@@ -42,95 +121,23 @@
    ======================================== */
 
 @utility btn-xs {
-  @apply h-xs px-2 text-xs;
+  @apply input-h-xs input-p-xs text-xs;
 }
 
 @utility btn-sm {
-  @apply h-sm px-3 text-sm;
+  @apply input-h-sm input-p-sm text-sm;
 }
 
 @utility btn-md {
-  @apply h-md px-4 text-sm;
+  @apply input-h-md input-p-md text-sm;
 }
 
 @utility btn-lg {
-  @apply h-lg px-5 text-base;
+  @apply input-h-lg input-p-lg text-base;
 }
 
 @utility btn-xl {
-  @apply h-xl px-7 text-base;
-}
-
-/* ========================================
-   配色变体 - 实心按钮
-   ======================================== */
-
-@utility btn-primary {
-  @apply bg-primary text-primary-foreground border-transparent;
-  @apply hover:bg-primary/90;
-}
-
-@utility btn-secondary {
-  @apply bg-secondary text-secondary-foreground border-transparent;
-  @apply hover:bg-secondary/90;
-}
-
-@utility btn-destructive {
-  @apply bg-destructive text-destructive-foreground border-transparent;
-  @apply hover:bg-destructive/90;
-}
-
-@utility btn-muted {
-  @apply bg-muted text-muted-foreground border-transparent;
-  @apply hover:bg-muted/90;
-}
-
-/* ========================================
-   配色变体 - 描边按钮
-   ======================================== */
-
-@utility btn-outline {
-  @apply bg-background text-foreground border-input;
-  @apply hover:bg-accent hover:text-accent-foreground;
-}
-
-@utility btn-outline-primary {
-  @apply bg-transparent text-primary border-primary;
-  @apply hover:bg-primary hover:text-primary-foreground;
-}
-
-@utility btn-outline-secondary {
-  @apply bg-transparent text-secondary border-secondary;
-  @apply hover:bg-secondary hover:text-secondary-foreground;
-}
-
-@utility btn-outline-destructive {
-  @apply bg-transparent text-destructive border-destructive;
-  @apply hover:bg-destructive hover:text-destructive-foreground;
-}
-
-/* ========================================
-   配色变体 - 幽灵按钮
-   ======================================== */
-
-@utility btn-ghost {
-  @apply bg-transparent text-foreground border-transparent;
-  @apply hover:bg-accent hover:text-accent-foreground;
-}
-
-@utility btn-ghost-primary {
-  @apply bg-transparent text-primary border-transparent;
-  @apply hover:bg-primary/10;
-}
-
-@utility btn-ghost-secondary {
-  @apply bg-transparent text-secondary border-transparent;
-  @apply hover:bg-secondary/10;
-}
-
-@utility btn-ghost-destructive {
-  @apply bg-transparent text-destructive border-transparent;
-  @apply hover:bg-destructive/10;
+  @apply input-h-xl input-p-xl text-base;
 }
 
 /* ========================================
@@ -152,23 +159,23 @@
 }
 
 @utility btn-icon-xs {
-  @apply btn-icon h-xs w-7;
+  @apply btn-icon input-h-xs;
 }
 
 @utility btn-icon-sm {
-  @apply btn-icon h-sm w-8;
+  @apply btn-icon input-h-sm;
 }
 
 @utility btn-icon-md {
-  @apply btn-icon h-md w-10;
+  @apply btn-icon input-h-md;
 }
 
 @utility btn-icon-lg {
-  @apply btn-icon h-lg w-12;
+  @apply btn-icon input-h-lg;
 }
 
 @utility btn-icon-xl {
-  @apply btn-icon h-xl w-14;
+  @apply btn-icon input-h-xl;
 }
 
 /* ========================================
@@ -187,7 +194,7 @@
    宽度变体
    ======================================== */
 
-@utility btn-block {
+@utility btn-full {
   @apply w-full max-w-none;
 }
 

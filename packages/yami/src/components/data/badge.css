@@ -1,104 +1,128 @@
-/* Badge 徽章组件 */
+/* ========================================
+   徽章基础 - 所有徽章共享的基础样式
+   ======================================== */
+
 @utility badge {
+  /* 布局 */
   @apply inline-flex items-center justify-center gap-1;
-  @apply px-2.5 h-5 text-xs font-semibold rounded-full;
-  @apply border transition-colors select-none;
+  @apply max-w-max;
 
-  --badge-bg: var(--background);
-  --badge-fg: var(--foreground);
-  --badge-border: var(--input);
+  /* 文本 */
+  @apply text-xs font-semibold;
+  @apply whitespace-nowrap;
 
-  @apply border-[var(--badge-border)] text-[var(--badge-fg)] bg-[var(--badge-bg)];
+  /* 交互 */
+  @apply select-none;
+  @apply transition-colors duration-200;
+
+  /* 边框 */
+  @apply border;
+  border-radius: var(--radius);
+
+  /* 默认尺寸 */
+  @apply px-2.5 h-6 text-xs;
+
+  /* 默认配色(ghost风格) */
+  @apply bg-transparent border-transparent text-foreground;
+  @apply hover:bg-accent;
 }
 
-/* === 徽章配色 === */
+/* ========================================
+   配色变体 - 实心徽章
+   ======================================== */
 
-/* 主色徽章 */
 @utility badge-primary {
-  --badge-bg: theme(colors.primary.DEFAULT);
-  --badge-fg: theme(colors.primary.foreground);
-  --badge-border: theme(colors.primary.DEFAULT);
+  @apply hover:bg-primary/80 hover:text-primary-foreground;
+
+  &:not(:is(.badge-outline)):not(:is(.badge-ghost)) {
+    @apply bg-primary text-primary-foreground border-transparent;
+    @apply hover:bg-primary/80 hover:text-primary-foreground;
+  }
 }
 
-/* 次级徽章 */
 @utility badge-secondary {
-  --badge-bg: theme(colors.secondary.DEFAULT);
-  --badge-fg: theme(colors.secondary.foreground);
-  --badge-border: theme(colors.secondary.DEFAULT);
+  &:not(:is(.badge-outline)):not(:is(.badge-ghost)) {
+    @apply bg-secondary text-secondary-foreground border-transparent;
+    @apply hover:bg-secondary/80 hover:text-secondary-foreground;
+  }
+  @apply hover:bg-secondary/80 hover:text-secondary-foreground;
 }
 
-/* 危险徽章 */
 @utility badge-destructive {
-  --badge-bg: theme(colors.destructive.DEFAULT);
-  --badge-fg: theme(colors.destructive.foreground);
-  --badge-border: theme(colors.destructive.DEFAULT);
+  &:not(:is(.badge-outline)):not(:is(.badge-ghost)) {
+    @apply bg-destructive text-destructive-foreground border-transparent;
+    @apply hover:bg-destructive/80 hover:text-destructive-foreground;
+  }
+  @apply hover:bg-destructive/80 hover:text-destructive-foreground;
 }
 
-/* 弱色徽章 */
 @utility badge-muted {
-  --badge-bg: theme(colors.muted.DEFAULT);
-  --badge-fg: theme(colors.muted.foreground);
-  --badge-border: theme(colors.muted.DEFAULT);
+  &:not(:is(.badge-outline)):not(:is(.badge-ghost)) {
+    @apply bg-muted text-muted-foreground border-transparent;
+    @apply hover:bg-muted/80 hover:text-muted-foreground;
+  }
+  @apply hover:bg-muted/80 hover:text-muted-foreground;
 }
 
-/* 强调徽章 */
 @utility badge-accent {
-  --badge-bg: theme(colors.accent.DEFAULT);
-  --badge-fg: theme(colors.accent.foreground);
-  --badge-border: theme(colors.accent.DEFAULT);
+  &:not(:is(.badge-outline)):not(:is(.badge-ghost)) {
+    @apply bg-accent text-accent-foreground border-transparent;
+    @apply hover:bg-accent/80 hover:text-accent-foreground;
+  }
+  @apply hover:bg-accent/80 hover:text-accent-foreground;
 }
 
-/* 描边徽章 */
+/* ========================================
+   描边徽章
+   ======================================== */
+
 @utility badge-outline {
-  --badge-bg: transparent;
-  --badge-border: currentColor;
-
-  &:is(.badge-primary) {
-    --badge-fg: theme(colors.primary.DEFAULT);
-    --badge-border: theme(colors.primary.DEFAULT);
-  }
-
-  &:is(.badge-secondary) {
-    --badge-fg: theme(colors.secondary.DEFAULT);
-    --badge-border: theme(colors.secondary.DEFAULT);
-  }
-
-  &:is(.badge-destructive) {
-    --badge-fg: theme(colors.destructive.DEFAULT);
-    --badge-border: theme(colors.destructive.DEFAULT);
-  }
-
-  &:is(.badge-muted) {
-    --badge-fg: theme(colors.muted.DEFAULT);
-    --badge-border: theme(colors.muted.DEFAULT);
-  }
-
-  &:is(.badge-accent) {
-    --badge-fg: theme(colors.accent.DEFAULT);
-    --badge-border: theme(colors.accent.DEFAULT);
-  }
+  @apply bg-transparent border border-input text-foreground;
+  @apply hover:bg-accent hover:text-accent-foreground;
 }
 
-/* === 尺寸 === */
+/* ========================================
+   幽灵徽章
+   ======================================== */
+
+@utility badge-ghost {
+  @apply bg-transparent border-transparent text-foreground border-none;
+  @apply hover:bg-accent hover:text-accent-foreground;
+}
+
+/* ========================================
+   尺寸变体
+   ======================================== */
+
+@utility badge-xs {
+  @apply px-1.5 h-4 text-xs;
+}
+
 @utility badge-sm {
-  @apply text-[10px] px-1.5 h-4;
+  @apply px-2 h-5 text-xs;
 }
+
 @utility badge-md {
-  @apply text-xs px-2.5 h-5;
+  @apply px-2.5 h-6 text-xs;
 }
+
 @utility badge-lg {
-  @apply text-sm px-3 h-6;
+  @apply px-3 h-7 text-sm;
 }
 @utility badge-xl {
-  @apply text-sm px-4 h-7;
+  @apply px-3 h-8 text-sm;
 }
 
-/* === 形状 === */
-@utility badge-square {
-  @apply rounded-sm;
+/* ========================================
+   形状变体
+   ======================================== */
+
+@utility badge-pill {
+  @apply rounded-full;
 }
-@utility badge-rounded {
-  @apply rounded-md;
+
+@utility badge-square {
+  @apply rounded-none;
 }
 
 /* === 扩展 === */
