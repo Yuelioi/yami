@@ -17,7 +17,7 @@
 
   /* 边框 */
   @apply border;
-  border-radius: var(--radius);
+  @apply rounded-md;
 
   /* 默认尺寸 */
   @apply px-2.5 h-6 text-xs;
@@ -70,6 +70,38 @@
     @apply hover:bg-accent/80 hover:text-accent-foreground;
   }
   @apply hover:bg-accent/80 hover:text-accent-foreground;
+}
+
+@utility badge-info {
+  &:not(:is(.badge-outline)):not(:is(.badge-ghost)) {
+    @apply bg-info text-info-foreground border-transparent;
+    @apply hover:bg-info/80 hover:text-info-foreground;
+  }
+  @apply hover:bg-info/80 hover:text-info-foreground;
+}
+
+@utility badge-success {
+  &:not(:is(.badge-outline)):not(:is(.badge-ghost)) {
+    @apply bg-success text-success-foreground border-transparent;
+    @apply hover:bg-success/80 hover:text-success-foreground;
+  }
+  @apply hover:bg-success/80 hover:text-success-foreground;
+}
+
+@utility badge-error {
+  &:not(:is(.badge-outline)):not(:is(.badge-ghost)) {
+    @apply bg-error text-error-foreground border-transparent;
+    @apply hover:bg-error/80 hover:text-error-foreground;
+  }
+  @apply hover:bg-error/80 hover:text-error-foreground;
+}
+
+@utility badge-warning {
+  &:not(:is(.badge-outline)):not(:is(.badge-ghost)) {
+    @apply bg-warning text-warning-foreground border-transparent;
+    @apply hover:bg-warning/80 hover:text-warning-foreground;
+  }
+  @apply hover:bg-warning/80 hover:text-warning-foreground;
 }
 
 /* ========================================

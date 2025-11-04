@@ -11,7 +11,7 @@ Pagination 是一组按钮，允许用户在相关内容之间导航
 /* === Pagination 按钮 === */
 @utility pagination-btn {
   @apply inline-flex items-center justify-center;
-  @apply min-w-10 h-10 px-3 rounded-[var(--radius)];
+  @apply min-w-10 h-10 px-3 rounded;
   @apply text-sm font-medium text-foreground;
   @apply border border-border bg-background;
   @apply hover:bg-muted hover:border-muted-foreground/20;

@@ -18,8 +18,7 @@
   @apply transition-colors duration-200;
 
   /* 边框 */
-  @apply border;
-  border-radius: var(--radius);
+  @apply border rounded-md;
 
   /* 焦点状态 */
   @apply focus-visible:outline-none;
@@ -83,19 +82,15 @@
 }
 
 /* ========================================
-   实心按钮 - btn-muted
+   按钮 - btn-accent
    ======================================== */
 
-@utility btn-muted {
-  &:is(.btn-outline),
-  &:is(.btn-ghost) {
-    @apply hover:bg-muted/10;
-  }
-
+@utility btn-accent {
   &:not(:is(.btn-outline)):not(:is(.btn-ghost)) {
-    @apply bg-muted text-muted-foreground border-transparent;
-    @apply hover:bg-muted/90;
+    @apply bg-accent text-accent-foreground border-transparent;
+    @apply hover:bg-accent/90 hover:text-accent-foreground;
   }
+  @apply hover:bg-accent/90 hover:text-accent-foreground;
 }
 
 /* ========================================
@@ -228,5 +223,20 @@
     @apply size-4 rounded-full;
     @apply border-2 border-current border-t-transparent;
     @apply animate-spin;
+  }
+}
+
+@utility btn-group {
+  @apply flex;
+
+  & .btn:first-child {
+    @apply rounded-l-md;
+  }
+  & .btn:last-child {
+    @apply rounded-r-md;
+  }
+
+  & .btn {
+    @apply rounded-none ring ring-muted;
   }
 }

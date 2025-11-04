@@ -13,7 +13,7 @@
   @apply placeholder:text-muted-foreground;
 
   /* 边框和背景 */
-  @apply rounded-md border border-input bg-background;
+  @apply border border-input bg-background;
 
   /* 间距 */
   @apply input-h-md px-3 py-2;
@@ -23,13 +23,15 @@
   @apply outline-none;
 
   /* 焦点状态 */
-  @apply focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2;
+  @apply focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background;
 
   /* 禁用状态 */
   @apply disabled:cursor-not-allowed disabled:opacity-50;
 
   /* 只读状态 */
   @apply read-only:cursor-default read-only:focus-visible:ring-0;
+
+  @apply rounded-md;
 }
 
 /* ========================================

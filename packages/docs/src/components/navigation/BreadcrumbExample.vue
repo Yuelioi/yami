@@ -1,255 +1,139 @@
 ﻿<script setup lang="ts">
-import DocsHeader from "../zcomp/DocsHeader.vue";
-import DocsContainer from "../zcomp/DocsContainer.vue";
-import DocsSection from "../zcomp/DocsSection.vue";
-import ApiReference from "../zcomp/ApiReference.vue";
-import { File, Folder, Home } from "lucide-vue-next";
+import DocsHeader from '../zcomp/DocsHeader.vue'
+import DocsContainer from '../zcomp/DocsContainer.vue'
+import DocsSection from '../zcomp/DocsSection.vue'
+import ApiReference from '../zcomp/ApiReference.vue'
 
 const apiClasses = [
   {
-    category: "基础",
-    className: "breadcrumb",
-    description: "面包屑容器，包含多个 breadcrumb-item。",
+    category: '基础',
+    className: 'breadcrumb',
+    description: '面包屑导航容器，自动处理滚动与分隔符。',
     isCategoryStart: true,
   },
   {
-    category: "分隔符",
-    className: "breadcrumb-arrow",
-    description: "使用箭头 › 作为分隔符。",
+    category: '尺寸',
+    className: 'breadcrumb-sm',
+    description: '小号面包屑。',
     isCategoryStart: true,
   },
   {
-    category: "分隔符",
-    className: "breadcrumb-chevron",
-    description: "使用双箭头 » 作为分隔符。",
+    category: '尺寸',
+    className: 'breadcrumb-lg',
+    description: '大号面包屑。',
     isCategoryStart: false,
   },
   {
-    category: "分隔符",
-    className: "breadcrumb-dot",
-    description: "使用点 • 作为分隔符。",
-    isCategoryStart: false,
-  },
-  {
-    category: "分隔符",
-    className: "breadcrumb-dash",
-    description: "使用短横线 − 作为分隔符。",
-    isCategoryStart: false,
-  },
-  {
-    category: "尺寸",
-    className: "breadcrumb-xs",
-    description: "超小尺寸面包屑。",
+    category: '分隔符',
+    className: 'breadcrumb-slash',
+    description: '使用“/”作为分隔符。',
     isCategoryStart: true,
   },
   {
-    category: "尺寸",
-    className: "breadcrumb-sm",
-    description: "小尺寸面包屑。",
+    category: '分隔符',
+    className: 'breadcrumb-dot',
+    description: '使用“•”作为分隔符。',
     isCategoryStart: false,
   },
   {
-    category: "尺寸",
-    className: "breadcrumb-md",
-    description: "中尺寸面包屑（默认）。",
+    category: '分隔符',
+    className: 'breadcrumb-chevron',
+    description: '使用“»”作为分隔符。',
     isCategoryStart: false,
   },
-  {
-    category: "尺寸",
-    className: "breadcrumb-lg",
-    description: "大尺寸面包屑。",
-    isCategoryStart: false,
-  },
-  {
-    category: "样式",
-    className: "breadcrumb-contained",
-    description: "带背景的面包屑。",
-    isCategoryStart: true,
-  },
-  {
-    category: "样式",
-    className: "breadcrumb-bordered",
-    description: "带边框的面包屑。",
-    isCategoryStart: false,
-  },
-  {
-    category: "样式",
-    className: "breadcrumb-compact",
-    description: "紧凑型面包屑。",
-    isCategoryStart: false,
-  },
-  {
-    category: "图标",
-    className: "breadcrumb-icon",
-    description: "支持图标显示。",
-    isCategoryStart: true,
-  },
-  {
-    category: "折叠",
-    className: "breadcrumb-collapse",
-    description: "响应式折叠中间项。",
-    isCategoryStart: true,
-  },
-  {
-    category: "项样式",
-    className: "breadcrumb-item",
-    description: "面包屑项样式。",
-    isCategoryStart: true,
-  },
-  {
-    category: "项状态",
-    className: "breadcrumb-item-active",
-    description: "当前页高亮样式。",
-    isCategoryStart: true,
-  },
-  {
-    category: "悬停效果",
-    className: "breadcrumb-hover",
-    description: "悬停下划线效果。",
-    isCategoryStart: true,
-  },
-  {
-    category: "主题色",
-    className: "breadcrumb-primary",
-    description: "主色主题面包屑。",
-    isCategoryStart: true,
-  },
-  {
-    category: "主题色",
-    className: "breadcrumb-secondary",
-    description: "次色主题面包屑。",
-    isCategoryStart: false,
-  },
-];
+]
 </script>
 
 <template>
   <DocsContainer>
     <DocsHeader
-      title="Breadcrumb 面包屑组件"
-      description="用于显示页面层级路径，支持多种分隔符、尺寸、样式和响应式折叠。"
+      title="Breadcrumb 面包屑导航"
+      description="用于展示页面层级路径的导航组件，支持不同尺寸与分隔符样式。"
     />
 
     <ApiReference :data="apiClasses" />
 
-    <!-- 基础示例 -->
-    <DocsSection title="基础面包屑">
+    <!-- 基础用法 -->
+    <DocsSection title="基础用法">
       <nav class="breadcrumb">
-        <a href="#">首页</a>
-        <a href="#">分类</a>
-        <a href="#">文章</a>
-        <span>当前页</span>
+        <ul>
+          <li><a href="#">首页</a></li>
+          <li><a href="#">分类</a></li>
+          <li><a href="#">产品</a></li>
+          <li><a href="#" class="text-muted-foreground">详情</a></li>
+        </ul>
       </nav>
     </DocsSection>
 
-    <!-- 分隔符示例 -->
-    <DocsSection title="分隔符变体">
-      <div class="flex flex-col gap-2">
+    <!-- 尺寸变体 -->
+    <DocsSection title="尺寸变体">
+      <div class="flex flex-col gap-3">
+        <nav class="breadcrumb breadcrumb-sm">
+          <ul>
+            <li><a href="#">Home</a></li>
+            <li><a href="#">Library</a></li>
+            <li><a href="#">Data</a></li>
+          </ul>
+        </nav>
+
         <nav class="breadcrumb">
-          <a href="#">首页</a>
-          <a href="#">分类</a>
-          <span>文章</span>
-        </nav>
-        <nav class="breadcrumb breadcrumb-arrow">
-          <a href="#">首页</a>
-          <a href="#">分类</a>
-          <span>文章</span>
+          <ul>
+            <li><a href="#">Home</a></li>
+            <li><a href="#">Library</a></li>
+            <li><a href="#">Data</a></li>
+          </ul>
         </nav>
 
-        <nav class="breadcrumb breadcrumb-dot">
-          <a href="#">首页</a>
-          <a href="#">分类</a>
-          <span>文章</span>
-        </nav>
-
-        <nav class="breadcrumb breadcrumb-dash">
-          <a href="#">首页</a>
-          <a href="#">分类</a>
-          <span>文章</span>
-        </nav>
-
-        <nav class="breadcrumb breadcrumb-custom">
-          <a href="#" data-separator=">">首页</a>
-          <a href="#" data-separator=">">分类</a>
-          <span>文章</span>
+        <nav class="breadcrumb breadcrumb-lg">
+          <ul>
+            <li><a href="#">Home</a></li>
+            <li><a href="#">Library</a></li>
+            <li><a href="#">Data</a></li>
+          </ul>
         </nav>
       </div>
     </DocsSection>
 
-    <!-- 尺寸示例 -->
-    <DocsSection title="尺寸变体">
-      <nav class="breadcrumb breadcrumb-xs">
-        <a href="#">首页</a>
-        <a href="#">分类</a>
-        <span>文章</span>
-      </nav>
-      <nav class="breadcrumb breadcrumb-sm">
-        <a href="#">首页</a>
-        <a href="#">分类</a>
-        <span>文章</span>
-      </nav>
-      <nav class="breadcrumb breadcrumb-md">
-        <a href="#">首页</a>
-        <a href="#">分类</a>
-        <span>文章</span>
-      </nav>
-      <nav class="breadcrumb breadcrumb-lg">
-        <a href="#">首页</a>
-        <a href="#">分类</a>
-        <span>文章</span>
-      </nav>
+    <!-- 分隔符变体 -->
+    <DocsSection title="分隔符变体">
+      <div class="flex flex-col gap-3">
+        <nav class="breadcrumb breadcrumb-slash">
+          <ul>
+            <li><a href="#">主页</a></li>
+            <li><a href="#">设置</a></li>
+            <li><a href="#">个人资料</a></li>
+          </ul>
+        </nav>
+
+        <nav class="breadcrumb breadcrumb-dot">
+          <ul>
+            <li><a href="#">主页</a></li>
+            <li><a href="#">设置</a></li>
+            <li><a href="#">安全</a></li>
+          </ul>
+        </nav>
+
+        <nav class="breadcrumb breadcrumb-chevron">
+          <ul>
+            <li><a href="#">主页</a></li>
+            <li><a href="#">分类</a></li>
+            <li><a href="#">当前页面</a></li>
+          </ul>
+        </nav>
+      </div>
     </DocsSection>
 
-    <!-- 样式变体 -->
-    <DocsSection title="样式变体">
-      <nav class="breadcrumb breadcrumb-contained">
-        <a href="#">首页</a>
-        <a href="#">分类</a>
-        <span>文章</span>
-      </nav>
-      <nav class="breadcrumb breadcrumb-bordered">
-        <a href="#">首页</a>
-        <a href="#">分类</a>
-        <span>文章</span>
-      </nav>
-      <nav class="breadcrumb breadcrumb-compact">
-        <a href="#">首页</a>
-        <a href="#">分类</a>
-        <span>文章</span>
-      </nav>
-    </DocsSection>
-
-    <!-- 图标示例 -->
-    <DocsSection title="图标支持">
-      <nav class="breadcrumb breadcrumb-icon">
-        <a href="#"><Home /> 首页</a>
-        <a href="#"><Folder /> 分类</a>
-        <span><File /> 当前页</span>
-      </nav>
-    </DocsSection>
-
-    <!-- 响应式折叠 -->
-    <DocsSection title="响应式折叠">
-      <nav class="breadcrumb breadcrumb-collapse">
-        <a href="#">首页</a>
-        <span class="breadcrumb-ellipsis"></span>
-        <a href="#">分类</a>
-        <span>文章</span>
-      </nav>
-    </DocsSection>
-
-    <!-- 悬停与主题色 -->
-    <DocsSection title="悬停与主题色">
-      <nav class="breadcrumb breadcrumb-primary">
-        <a href="#">首页</a>
-        <a href="#">分类</a>
-        <span>文章</span>
-      </nav>
-      <nav class="breadcrumb breadcrumb-secondary">
-        <a href="#">首页</a>
-        <a href="#">分类</a>
-        <span>文章</span>
-      </nav>
+    <!-- RTL 示例 -->
+    <DocsSection title="RTL 方向支持">
+      <div dir="rtl">
+        <nav class="breadcrumb">
+          <ul>
+            <li><a href="#">الصفحة الرئيسية</a></li>
+            <li><a href="#">الفئة</a></li>
+            <li><a href="#">المنتج</a></li>
+          </ul>
+        </nav>
+      </div>
     </DocsSection>
   </DocsContainer>
 </template>

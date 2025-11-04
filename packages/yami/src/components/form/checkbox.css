@@ -6,8 +6,10 @@
 
   & input[type="checkbox"] {
     @apply size-5 appearance-none cursor-pointer;
-    @apply rounded border-2 border-input;
+    @apply border-2 border-input;
     @apply bg-background transition-all duration-200;
+
+    @apply rounded-md;
 
     &:checked {
       @apply bg-primary border-primary;
@@ -144,37 +146,6 @@
   }
 }
 
-/* === Checkbox 圆角变体 === */
-@utility checkbox-rounded-none {
-  & input[type="checkbox"] {
-    @apply rounded-none;
-  }
-}
-
-@utility checkbox-rounded-sm {
-  & input[type="checkbox"] {
-    @apply rounded-sm;
-  }
-}
-
-@utility checkbox-rounded-md {
-  & input[type="checkbox"] {
-    @apply rounded-md;
-  }
-}
-
-@utility checkbox-rounded-lg {
-  & input[type="checkbox"] {
-    @apply rounded-lg;
-  }
-}
-
-@utility checkbox-rounded-full {
-  & input[type="checkbox"] {
-    @apply rounded-full;
-  }
-}
-
 /* === Checkbox 带边框加粗 === */
 @utility checkbox-thick {
   & input[type="checkbox"] {
@@ -211,30 +182,29 @@
     @apply hidden;
   }
 
-  & .checkbox-card-content {
-    @apply flex items-center gap-3 p-4 rounded-lg border-2;
-    @apply border-border bg-[var(--card)];
+  & .checkbox-card-body {
+    @apply rounded-md;
+
+    @apply flex items-center gap-3 p-4  border-2;
+    @apply border-border bg-card;
     @apply transition-all duration-200 cursor-pointer;
   }
 
-  & input[type="checkbox"]:checked ~ .checkbox-card-content {
+  & input[type="checkbox"]:checked ~ .checkbox-card-body {
     @apply border-primary bg-primary/5;
   }
 
-  & input[type="checkbox"]:disabled ~ .checkbox-card-content {
+  & input[type="checkbox"]:disabled ~ .checkbox-card-body {
     @apply opacity-50 cursor-not-allowed;
   }
 
   & .checkbox-card-icon {
-    @apply size-5 rounded border-2 border-input;
+    @apply size-5 border-2 border-input;
     @apply bg-background flex items-center justify-center;
     @apply transition-all duration-200;
   }
 
-  &
-    input[type="checkbox"]:checked
-    ~ .checkbox-card-content
-    .checkbox-card-icon {
+  & input[type="checkbox"]:checked ~ .checkbox-card-body .checkbox-card-icon {
     @apply bg-primary border-primary;
 
     &::before {

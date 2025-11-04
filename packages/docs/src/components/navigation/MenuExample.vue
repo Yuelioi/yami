@@ -1,243 +1,182 @@
 ﻿<script setup lang="ts">
-import DocsHeader from "../zcomp/DocsHeader.vue";
-import DocsContainer from "../zcomp/DocsContainer.vue";
-import DocsSection from "../zcomp/DocsSection.vue";
-import ApiReference from "../zcomp/ApiReference.vue";
+import DocsHeader from '../zcomp/DocsHeader.vue'
+import DocsContainer from '../zcomp/DocsContainer.vue'
+import DocsSection from '../zcomp/DocsSection.vue'
+import ApiReference from '../zcomp/ApiReference.vue'
 
 const apiClasses = [
   {
-    category: "基础",
-    className: "menu",
-    description: "菜单容器，支持垂直或水平布局。",
+    category: '基础',
+    className: 'menu',
+    description: '菜单组件的容器，包含菜单项、标题、子菜单等。',
     isCategoryStart: true,
   },
   {
-    category: "菜单项",
-    className: "menu-title",
-    description: "菜单分组标题。",
+    category: '结构',
+    className: 'menu-title',
+    description: '菜单标题，用于分组显示。',
     isCategoryStart: true,
   },
   {
-    category: "状态",
-    className: "menu-active",
-    description: "激活状态菜单项。",
+    category: '布局',
+    className: 'menu-vertical',
+    description: '垂直菜单布局（默认）。',
     isCategoryStart: true,
   },
   {
-    category: "状态",
-    className: "menu-focus",
-    description: "聚焦状态菜单项。",
+    category: '布局',
+    className: 'menu-horizontal',
+    description: '水平菜单布局。',
     isCategoryStart: false,
   },
   {
-    category: "状态",
-    className: "menu-disabled",
-    description: "禁用状态菜单项。",
-    isCategoryStart: false,
-  },
-  {
-    category: "尺寸",
-    className: "menu-xs",
-    description: "超小菜单。",
+    category: '状态',
+    className: 'menu-active',
+    description: '激活菜单项的样式，可单独使用。',
     isCategoryStart: true,
   },
   {
-    category: "尺寸",
-    className: "menu-sm",
-    description: "小号菜单。",
+    category: '状态',
+    className: 'menu-disabled',
+    description: '禁用状态的菜单项，不可交互。',
     isCategoryStart: false,
   },
   {
-    category: "尺寸",
-    className: "menu-md",
-    description: "中号菜单（默认）。",
-    isCategoryStart: false,
-  },
-  {
-    category: "尺寸",
-    className: "menu-lg",
-    description: "大号菜单。",
-    isCategoryStart: false,
-  },
-  {
-    category: "尺寸",
-    className: "menu-xl",
-    description: "超大菜单。",
-    isCategoryStart: false,
-  },
-  {
-    category: "布局",
-    className: "menu-horizontal",
-    description: "水平菜单。",
+    category: '尺寸',
+    className: 'menu-xs',
+    description: '超小尺寸菜单。',
     isCategoryStart: true,
   },
   {
-    category: "布局",
-    className: "menu-vertical",
-    description: "垂直菜单（默认）。",
+    category: '尺寸',
+    className: 'menu-sm',
+    description: '小号菜单。',
     isCategoryStart: false,
   },
   {
-    category: "样式",
-    className: "menu-compact",
-    description: "紧凑型菜单。",
-    isCategoryStart: true,
-  },
-  {
-    category: "样式",
-    className: "menu-bordered",
-    description: "带边框菜单。",
+    category: '尺寸',
+    className: 'menu-md',
+    description: '中等尺寸（默认）。',
     isCategoryStart: false,
   },
   {
-    category: "样式",
-    className: "menu-contained",
-    description: "带背景和边框菜单。",
+    category: '尺寸',
+    className: 'menu-lg',
+    description: '大号菜单。',
     isCategoryStart: false,
   },
   {
-    category: "样式",
-    className: "menu-divided",
-    description: "带分隔线菜单。",
+    category: '尺寸',
+    className: 'menu-xl',
+    description: '超大尺寸菜单。',
     isCategoryStart: false,
   },
-  {
-    category: "图标",
-    className: "menu-icon",
-    description: "支持菜单图标。",
-    isCategoryStart: true,
-  },
-  {
-    category: "分隔符",
-    className: "menu-divider",
-    description: "菜单分隔线。",
-    isCategoryStart: true,
-  },
-];
+]
 </script>
 
 <template>
   <DocsContainer>
     <DocsHeader
       title="Menu 菜单组件"
-      description="提供垂直/水平菜单，支持嵌套、图标、状态、尺寸、紧凑型、边框、背景和分隔线。"
+      description="用于展示多级导航、操作项的菜单组件，支持垂直与水平布局、嵌套、分组与尺寸变体。"
     />
 
     <ApiReference :data="apiClasses" />
 
     <!-- 基础菜单 -->
-    <DocsSection title="基础示例">
-      <ul class="menu menu-md w-56 border border-border rounded-md">
-        <li><span>菜单项 1</span></li>
-        <li><span>菜单项 2</span></li>
-        <li><span>菜单项 3</span></li>
+    <DocsSection title="基础菜单">
+      <ul class="menu bg-card border rounded-lg w-56">
+        <li class="menu-title">主导航</li>
+        <li><a>首页</a></li>
+        <li><a class="menu-active">消息中心</a></li>
+        <li><a>设置</a></li>
+        <li></li>
+        <li class="menu-title">辅助功能</li>
+        <li><a>帮助中心</a></li>
+        <li class="menu-disabled"><a>禁用选项</a></li>
       </ul>
     </DocsSection>
 
-    <!-- 垂直 & 水平 -->
-    <DocsSection title="垂直 & 水平菜单">
-      <div class="flex gap-8">
-        <ul class="menu menu-vertical w-48 border border-border rounded-md">
-          <li><span>垂直 1</span></li>
-          <li><span>垂直 2</span></li>
-        </ul>
-
-        <ul class="menu menu-horizontal border border-border rounded-md">
-          <li><span>水平 1</span></li>
-          <li><span>水平 2</span></li>
-        </ul>
-      </div>
-    </DocsSection>
-
-    <!-- 嵌套菜单 -->
-    <DocsSection title="嵌套菜单">
-      <ul class="menu w-56 border border-border rounded-md">
+    <!-- 子菜单 -->
+    <DocsSection title="带子菜单">
+      <ul class="menu bg-card border rounded-lg w-64">
         <li>
-          <details>
-            <summary>父菜单</summary>
+          <details open>
+            <summary>账户管理</summary>
             <ul>
-              <li><span>子菜单 1</span></li>
-              <li><span>子菜单 2</span></li>
+              <li><a>个人资料</a></li>
+              <li><a>安全设置</a></li>
+              <li><a>隐私</a></li>
             </ul>
           </details>
         </li>
-        <li><span>菜单项 2</span></li>
+        <li>
+          <details>
+            <summary>系统</summary>
+            <ul>
+              <li><a>通知</a></li>
+              <li><a>语言</a></li>
+            </ul>
+          </details>
+        </li>
       </ul>
     </DocsSection>
 
-    <!-- 尺寸 -->
-    <DocsSection title="尺寸示例">
-      <div class="flex gap-4">
-        <ul class="menu menu-xs w-44 border border-border rounded-md">
-          <li><span>XS 菜单</span></li>
+    <!-- 水平菜单 -->
+    <DocsSection title="水平菜单">
+      <ul class="menu menu-horizontal bg-card border rounded-lg">
+        <li><a class="menu-active">首页</a></li>
+        <li><a>产品</a></li>
+        <li>
+          <details>
+            <summary>更多</summary>
+            <ul>
+              <li><a>关于我们</a></li>
+              <li><a>联系我们</a></li>
+            </ul>
+          </details>
+        </li>
+      </ul>
+    </DocsSection>
+
+    <!-- 尺寸变体 -->
+    <DocsSection title="尺寸变体">
+      <div class="flex flex-col gap-4">
+        <ul class="menu menu-xs bg-card border rounded-lg w-44">
+          <li><a>菜单 XS</a></li>
+          <li><a>选项</a></li>
         </ul>
-        <ul class="menu menu-sm w-48 border border-border rounded-md">
-          <li><span>SM 菜单</span></li>
+
+        <ul class="menu menu-sm bg-card border rounded-lg w-48">
+          <li><a>菜单 SM</a></li>
+          <li><a>选项</a></li>
         </ul>
-        <ul class="menu menu-md w-52 border border-border rounded-md">
-          <li><span>MD 菜单</span></li>
+
+        <ul class="menu menu-md bg-card border rounded-lg w-56">
+          <li><a>菜单 MD</a></li>
+          <li><a>选项</a></li>
         </ul>
-        <ul class="menu menu-lg w-56 border border-border rounded-md">
-          <li><span>LG 菜单</span></li>
+
+        <ul class="menu menu-lg bg-card border rounded-lg w-64">
+          <li><a>菜单 LG</a></li>
+          <li><a>选项</a></li>
         </ul>
-        <ul class="menu menu-xl w-60 border border-border rounded-md">
-          <li><span>XL 菜单</span></li>
+
+        <ul class="menu menu-xl bg-card border rounded-lg w-72">
+          <li><a>菜单 XL</a></li>
+          <li><a>选项</a></li>
         </ul>
       </div>
     </DocsSection>
-
-    <!-- 状态示例 -->
-    <DocsSection title="状态示例">
-      <ul class="menu menu-md w-56 border border-border rounded-md">
-        <li><span class="menu-active">激活项</span></li>
-        <li><span class="menu-focus">聚焦项</span></li>
-        <li><span class="menu-disabled">禁用项</span></li>
-      </ul>
-    </DocsSection>
-
-    <!-- 样式变体 -->
-    <DocsSection title="样式变体">
-      <div class="flex gap-4">
-        <ul class="menu menu-compact w-48 border border-border rounded-md">
-          <li><span>紧凑型</span></li>
-          <li><span>紧凑型</span></li>
-        </ul>
-
-        <ul class="menu menu-bordered w-48 border border-border rounded-md">
-          <li><span>带边框</span></li>
-          <li><span>带边框</span></li>
-        </ul>
-
-        <ul
-          class="menu menu-contained w-48 bg-card border border-border rounded-md"
-        >
-          <li><span>带背景</span></li>
-          <li><span>带背景</span></li>
-        </ul>
-
-        <ul class="menu menu-divided w-48 border border-border rounded-md">
-          <li><span>分隔线 1</span></li>
-          <li><span>分隔线 2</span></li>
+    <!-- 尺寸变体 -->
+    <DocsSection title="尺寸变体">
+      <div class="flex flex-col gap-4">
+        <ul class="menu menu-md bg-card border rounded-lg w-56">
+          <li><a>菜单 MD</a></li>
+          <li></li>
+          <li><a>选项</a></li>
         </ul>
       </div>
-    </DocsSection>
-
-    <!-- 图标支持 -->
-    <DocsSection title="图标菜单">
-      <ul class="menu menu-md w-56 border border-border rounded-md">
-        <li>
-          <a href="#"
-            ><svg class="menu-icon"><circle cx="12" cy="12" r="10" /></svg
-            >图标项</a
-          >
-        </li>
-        <li>
-          <a href="#"
-            ><svg class="menu-icon"><rect width="20" height="20" /></svg
-            >图标项</a
-          >
-        </li>
-      </ul>
     </DocsSection>
   </DocsContainer>
 </template>

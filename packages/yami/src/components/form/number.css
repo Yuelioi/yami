@@ -1,0 +1,245 @@
+/* Input Number 数字输入框组件 */
+
+@import "../../utilities/style.css";
+
+/* === Input Number 基础样式 === */
+@utility input-number {
+  @apply items-center justify-between;
+  @apply input px-0;
+
+  &:focus-within {
+    @apply ring-2 ring-ring ring-offset-2 ring-offset-background;
+  }
+
+  /* 内部 input 继承 input 样式但重置部分属性 */
+  & input {
+    @apply flex-1 input;
+    @apply text-center;
+    @apply border-0 bg-transparent;
+    @apply focus-visible:ring-0 focus-visible:ring-offset-0;
+    @apply px-1;
+
+    /* 去除 number 类型的箭头 */
+    &::-webkit-inner-spin-button,
+    &::-webkit-outer-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+
+    &[type="number"] {
+      -moz-appearance: textfield;
+      @apply outline-none;
+    }
+  }
+
+  /* 按钮样式 */
+  & button {
+    @apply flex items-center justify-center;
+    @apply input-h-sm input-w-sm flex-shrink-0;
+    @apply transition-colors duration-200;
+    @apply active:bg-accent;
+    @apply disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:bg-transparent;
+    @apply outline-none m-1;
+
+    &:first-child {
+      @apply rounded-l-md;
+    }
+
+    &:last-child {
+      @apply rounded-r-md;
+    }
+
+    &:focus-visible {
+      @apply bg-accent text-foreground;
+    }
+  }
+}
+
+/* === 配合 input 尺寸变体 === */
+@utility input-number {
+  /* xs 尺寸 */
+  &.input-xs:not(.input-number-separated) {
+    @apply px-0;
+    & button {
+      @apply size-5 text-sm;
+    }
+  }
+
+  /* sm 尺寸 */
+  &.input-sm:not(.input-number-separated) {
+    @apply px-0;
+
+    & button {
+      @apply size-6 text-sm;
+    }
+  }
+
+  /* md 尺寸(默认) */
+  &.input-md:not(.input-number-separated) {
+    @apply px-0;
+
+    & button {
+      @apply size-7;
+    }
+  }
+
+  /* lg 尺寸 */
+  &.input-lg:not(.input-number-separated) {
+    @apply px-0;
+
+    & button {
+      @apply size-8 text-lg;
+    }
+  }
+
+  /* xl 尺寸 */
+  &.input-xl:not(.input-number-separated) {
+    @apply px-0;
+
+    & button {
+      @apply size-9 text-xl;
+    }
+  }
+}
+
+/* === 配合 input 配色变体 === */
+@utility input-number {
+  &.input-primary {
+    @apply border-primary;
+    &:focus-within {
+      @apply ring-primary;
+    }
+
+    & button {
+      @apply active:bg-primary/80;
+    }
+  }
+
+  &.input-secondary {
+    @apply border-secondary;
+    &:focus-within {
+      @apply ring-secondary;
+    }
+
+    & button {
+      @apply active:bg-secondary/80;
+    }
+  }
+
+  &.input-destructive {
+    @apply border-destructive;
+    &:focus-within {
+      @apply ring-destructive;
+    }
+    & button {
+      @apply active:bg-destructive/80;
+    }
+  }
+}
+
+/* 禁用状态 */
+@utility input-number-disabled {
+  @apply opacity-50 cursor-not-allowed;
+
+  &:hover {
+    @apply border-input;
+  }
+
+  &:focus-within {
+    @apply ring-0 ring-offset-0;
+  }
+
+  & input {
+    @apply cursor-not-allowed;
+  }
+
+  & button {
+    @apply cursor-not-allowed;
+    @apply hover:bg-transparent hover:text-muted-foreground;
+  }
+}
+
+/* 分离式按钮 */
+@utility input-number-separated {
+  @apply gap-1 bg-transparent border-0;
+
+  &:focus-within {
+    @apply ring-0 ring-offset-0;
+  }
+
+  & button {
+    @apply border border-input rounded-md size-6 bg-background m-0;
+
+    &:first-child,
+    &:last-child {
+      @apply rounded-md;
+    }
+  }
+
+  & input {
+    @apply input;
+  }
+
+  /* xs 尺寸 */
+  &.input-xs,
+  &:has(.input-xs) {
+    @apply px-0;
+    & input {
+      @apply input-xs;
+    }
+    & button {
+      @apply input-w-xs input-h-xs;
+    }
+  }
+
+  /* sm 尺寸 */
+  &.input-sm,
+  &:has(.input-sm) {
+    @apply px-0;
+    & input {
+      @apply input-sm;
+    }
+    & button {
+      @apply input-w-sm input-h-sm;
+    }
+  }
+
+  /* md 尺寸(默认) */
+  &.input-md,
+  &:has(.input-md) {
+    @apply px-0;
+    & input {
+      @apply input-md;
+    }
+
+    & button {
+      @apply input-w-md input-h-md;
+    }
+  }
+
+  /* lg 尺寸 */
+  &.input-lg,
+  &:has(.input-lg) {
+    @apply px-0;
+    & input {
+      @apply input-lg;
+    }
+
+    & button {
+      @apply input-w-lg input-h-lg text-lg;
+    }
+  }
+
+  /* xl 尺寸 */
+  &.input-xl,
+  &:has(.input-xl) {
+    @apply px-0;
+    & input {
+      @apply input-xl;
+    }
+
+    & button {
+      @apply input-h-xl input-w-xl text-xl;
+    }
+  }
+}

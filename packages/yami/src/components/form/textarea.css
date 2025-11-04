@@ -116,7 +116,7 @@
   }
 
   & > .error-text {
-    @apply text-xs text-danger;
+    @apply text-xs text-error;
   }
 
   & > .counter {
@@ -139,7 +139,7 @@
   }
 
   &.max-reached > .count {
-    @apply text-danger;
+    @apply text-error;
   }
 }
 

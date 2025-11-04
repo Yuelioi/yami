@@ -1,143 +1,138 @@
 ﻿<script setup lang="ts">
-import DocsHeader from "../zcomp/DocsHeader.vue";
-import DocsContainer from "../zcomp/DocsContainer.vue";
-import DocsSection from "../zcomp/DocsSection.vue";
-import ApiReference from "../zcomp/ApiReference.vue";
+import DocsHeader from '../zcomp/DocsHeader.vue'
+import DocsContainer from '../zcomp/DocsContainer.vue'
+import DocsSection from '../zcomp/DocsSection.vue'
+import ApiReference from '../zcomp/ApiReference.vue'
 
 const apiClasses = [
   {
-    category: "基础",
-    className: "fieldset",
-    description: "基础字段集样式，包含边框、背景与标题。",
+    category: '基础',
+    className: 'fieldset',
+    description: '基础字段集样式，包含边框、背景与标题。',
     isCategoryStart: true,
   },
   {
-    category: "基础",
-    className: "fieldset-description",
-    description: "字段集的辅助说明文字。",
+    category: '基础',
+    className: 'fieldset-description',
+    description: '字段集的辅助说明文字。',
     isCategoryStart: false,
   },
   {
-    category: "基础",
-    className: "fieldset-content",
-    description: "字段集内部内容容器。",
+    category: '基础',
+    className: 'fieldset-content',
+    description: '字段集内部内容容器。',
     isCategoryStart: false,
   },
   {
-    category: "样式变体",
-    className: "fieldset-plain",
-    description: "无边框与背景样式。",
+    category: '样式变体',
+    className: 'fieldset-plain',
+    description: '无边框与背景样式。',
     isCategoryStart: true,
   },
   {
-    category: "样式变体",
-    className: "fieldset-card",
-    description: "卡片风格样式，带阴影与圆角。",
+    category: '样式变体',
+    className: 'fieldset-card',
+    description: '卡片风格样式，带阴影与圆角。',
     isCategoryStart: false,
   },
   {
-    category: "样式变体",
-    className: "fieldset-with-icon",
-    description: "标题带图标样式。",
+    category: '样式变体',
+    className: 'fieldset-with-icon',
+    description: '标题带图标样式。',
     isCategoryStart: false,
   },
   {
-    category: "样式变体",
-    className: "fieldset-collapsible",
-    description: "可折叠字段集（需配合 JS 控制展开/收起）。",
+    category: '样式变体',
+    className: 'fieldset-collapsible',
+    description: '可折叠字段集（需配合 JS 控制展开/收起）。',
     isCategoryStart: false,
   },
   {
-    category: "配色方案",
-    className: "fieldset-primary",
-    description: "主色调样式。",
+    category: '配色方案',
+    className: 'fieldset-primary',
+    description: '主色调样式。',
     isCategoryStart: true,
   },
   {
-    category: "配色方案",
-    className: "fieldset-secondary",
-    description: "次级色样式。",
+    category: '配色方案',
+    className: 'fieldset-secondary',
+    description: '次级色样式。',
     isCategoryStart: false,
   },
   {
-    category: "配色方案",
-    className: "fieldset-accent",
-    description: "强调色样式。",
+    category: '配色方案',
+    className: 'fieldset-accent',
+    description: '强调色样式。',
     isCategoryStart: false,
   },
   {
-    category: "配色方案",
-    className: "fieldset-destructive",
-    description: "危险/错误状态样式。",
+    category: '配色方案',
+    className: 'fieldset-destructive',
+    description: '危险/错误状态样式。',
     isCategoryStart: false,
   },
   {
-    category: "尺寸",
-    className: "fieldset-sm",
-    description: "紧凑型小尺寸。",
+    category: '尺寸',
+    className: 'fieldset-sm',
+    description: '紧凑型小尺寸。',
     isCategoryStart: true,
   },
   {
-    category: "尺寸",
-    className: "fieldset-md",
-    description: "中等尺寸（默认）。",
+    category: '尺寸',
+    className: 'fieldset-md',
+    description: '中等尺寸（默认）。',
     isCategoryStart: false,
   },
   {
-    category: "尺寸",
-    className: "fieldset-lg",
-    description: "大尺寸样式。",
+    category: '尺寸',
+    className: 'fieldset-lg',
+    description: '大尺寸样式。',
     isCategoryStart: false,
   },
   {
-    category: "边框与阴影",
-    className: "fieldset-border-dashed",
-    description: "虚线边框样式。",
+    category: '边框与阴影',
+    className: 'fieldset-border-dashed',
+    description: '虚线边框样式。',
     isCategoryStart: true,
   },
   {
-    category: "边框与阴影",
-    className: "fieldset-border-left",
-    description: "左侧强调边框。",
+    category: '边框与阴影',
+    className: 'fieldset-border-left',
+    description: '左侧强调边框。',
     isCategoryStart: false,
   },
+
   {
-    category: "边框与阴影",
-    className: "fieldset-shadow-md",
-    description: "中等阴影样式。",
-    isCategoryStart: false,
-  },
-  {
-    category: "布局",
-    className: "fieldset-grid-2",
-    description: "两列网格布局。",
+    category: '布局',
+    className: 'fieldset-grid-2',
+    description: '两列网格布局。',
     isCategoryStart: true,
   },
   {
-    category: "布局",
-    className: "fieldset-inline",
-    description: "内联布局样式。",
+    category: '布局',
+    className: 'fieldset-inline',
+    description: '内联布局样式。',
     isCategoryStart: false,
   },
   {
-    category: "状态",
-    className: "fieldset-error",
-    description: "错误状态样式。",
+    category: '状态',
+    className: 'fieldset-error',
+    description: '错误状态样式。',
     isCategoryStart: true,
   },
   {
-    category: "状态",
-    className: "fieldset-success",
-    description: "成功状态样式。",
+    category: '状态',
+    className: 'fieldset-success',
+    description: '成功状态样式。',
     isCategoryStart: false,
   },
   {
-    category: "状态",
-    className: "fieldset-warning",
-    description: "警告状态样式。",
+    category: '状态',
+    className: 'fieldset-warning',
+    description: '警告状态样式。',
     isCategoryStart: false,
   },
-];
+]
 </script>
 
 <template>
@@ -260,13 +255,6 @@ const apiClasses = [
           <legend>左侧强调</legend>
           <div class="fieldset-content">
             <input class="input w-full" placeholder="Left Border" />
-          </div>
-        </fieldset>
-
-        <fieldset class="fieldset fieldset-shadow-md">
-          <legend>中等阴影</legend>
-          <div class="fieldset-content">
-            <input class="input w-full" placeholder="Shadow" />
           </div>
         </fieldset>
       </div>

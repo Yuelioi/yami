@@ -1,0 +1,167 @@
+/* FAB 浮动操作按钮组件 */
+@utility fab {
+  @apply pointer-events-none fixed end-4 bottom-4 z-50;
+  @apply flex flex-col-reverse items-end gap-2;
+  @apply text-sm whitespace-nowrap;
+
+  /* FAB 项 */
+  & > * {
+    @apply pointer-events-auto flex items-center gap-2;
+  }
+
+  & > *:hover,
+  & > *:has(:focus-visible) {
+    @apply z-10;
+  }
+
+  /* 主按钮 */
+  & > [tabindex]:first-child {
+    @apply relative grid;
+    @apply transition-[opacity,visibility,rotate] duration-200 ease-out;
+  }
+
+  /* 关闭按钮和主操作按钮 */
+  & .fab-close,
+  & .fab-main-action {
+    @apply absolute end-0 bottom-0;
+  }
+
+  /* 展开时主按钮旋转并隐藏 */
+  &:focus-within:has(.fab-close),
+  &:focus-within:has(.fab-main-action) {
+    & > [tabindex] {
+      @apply rotate-90 opacity-0;
+    }
+  }
+
+  /* 子项默认隐藏 */
+  & > :nth-child(n + 2) {
+    @apply invisible scale-80 opacity-0;
+    @apply transition-[opacity,scale,visibility] duration-200 ease-out;
+  }
+
+  /* 主操作按钮和关闭按钮保持正常尺寸 */
+  & > :nth-child(n + 2).fab-main-action,
+  & > :nth-child(n + 2).fab-close {
+    @apply scale-100;
+  }
+
+  /* 渐进式延迟动画 */
+  & > :nth-child(3) {
+    transition-delay: 30ms;
+  }
+
+  & > :nth-child(4) {
+    transition-delay: 60ms;
+  }
+
+  & > :nth-child(5) {
+    transition-delay: 90ms;
+  }
+
+  & > :nth-child(6) {
+    transition-delay: 120ms;
+  }
+
+  /* 展开状态 */
+  &:focus-within {
+    & > [tabindex]:first-child {
+      @apply pointer-events-none;
+    }
+
+    & > :nth-child(n + 2) {
+      @apply visible scale-100 opacity-100;
+    }
+  }
+}
+
+/* FAB Flower 花瓣布局 */
+@utility fab-flower {
+  @apply grid;
+  @apply [--position:0rem];
+
+  /* 前两个项（主按钮和关闭按钮）位置为 0 */
+  & > :nth-child(-n + 2) {
+    @apply [--position:0rem];
+  }
+
+  /* 所有项在同一网格区域 */
+  & > * {
+    grid-area: 1/1;
+    --degree: 180deg;
+    --flip-degree: calc(180deg - var(--degree));
+    transform: translateX(calc(cos(var(--degree)) * var(--position)))
+      translateY(calc(sin(var(--degree)) * calc(-1 * var(--position))));
+  }
+
+  /* RTL 支持 */
+  [dir="rtl"] & > * {
+    transform: translateX(calc(cos(var(--flip-degree)) * var(--position)))
+      translateY(calc(sin(var(--flip-degree)) * calc(-1 * var(--position))));
+  }
+
+  /* 最多显示 6 个项（包括主按钮） */
+  & > :nth-child(n + 7) {
+    @apply hidden;
+  }
+
+  /* 3 个项的布局 */
+  &:has(:nth-child(3)) {
+    @apply [--position:140%];
+
+    & > :nth-child(3) {
+      --degree: 135deg;
+    }
+  }
+
+  /* 4 个项的布局 */
+  &:has(:nth-child(4)) {
+    @apply [--position:140%];
+
+    & > :nth-child(3) {
+      --degree: 165deg;
+    }
+
+    & > :nth-child(4) {
+      --degree: 105deg;
+    }
+  }
+
+  /* 5 个项的布局 */
+  &:has(:nth-child(5)) {
+    @apply [--position:180%];
+
+    & > :nth-child(3) {
+      --degree: 180deg;
+    }
+
+    & > :nth-child(4) {
+      --degree: 135deg;
+    }
+
+    & > :nth-child(5) {
+      --degree: 90deg;
+    }
+  }
+
+  /* 6 个项的布局 */
+  &:has(:nth-child(6)) {
+    @apply [--position:220%];
+
+    & > :nth-child(3) {
+      --degree: 180deg;
+    }
+
+    & > :nth-child(4) {
+      --degree: 150deg;
+    }
+
+    & > :nth-child(5) {
+      --degree: 120deg;
+    }
+
+    & > :nth-child(6) {
+      --degree: 90deg;
+    }
+  }
+}

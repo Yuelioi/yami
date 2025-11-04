@@ -1,0 +1,126 @@
+/* Chat 聊天气泡组件 */
+@utility chat {
+  @apply grid gap-x-3 py-1;
+  --mask-chat: url("data:image/svg+xml,%3csvg width='13' height='13' xmlns='http://www.w3.org/2000/svg'%3e%3cpath fill='black' d='M0 11.5004C0 13.0004 2 13.0004 2 13.0004H12H13V0.00036329L12.5 0C12.5 0 11.977 2.09572 11.8581 2.50033C11.6075 3.35237 10.9149 4.22374 9 5.50036C6 7.50036 0 10.0004 0 11.5004Z'/%3e%3c/svg%3e");
+  --mask-chat: url("data:image/svg+xml,%3csvg width='13' height='13' xmlns='http://www.w3.org/2000/svg'%3e%3cpath fill='black' d='M0 11.5004C0 13.0004 2 13.0004 2 13.0004H12H13V0.00036329L12.5 0C12.5 0 11.977 2.09572 11.8581 2.50033C11.6075 3.35237 10.9149 4.22374 9 5.50036C6 7.50036 0 10.0004 0 11.5004Z'/%3e%3c/svg%3e");
+}
+
+/* Chat Bubble 气泡 */
+@utility chat-bubble {
+  @apply relative block w-fit px-4 py-2 rounded-lg;
+  @apply bg-muted text-foreground;
+  grid-row-end: 3;
+  min-height: 2rem;
+  min-width: 2.5rem;
+  max-width: 90%;
+
+  /* 气泡尾巴 */
+  &::before {
+    content: "";
+    @apply absolute bottom-0 h-3 w-3;
+    background-color: inherit;
+    mask-repeat: no-repeat;
+    mask-image: var(--mask-chat);
+    mask-position: 0px -1px;
+    mask-size: 0.8125rem;
+  }
+}
+
+/* Chat Image 头像 */
+@utility chat-image {
+  @apply row-span-2 self-end;
+}
+
+/* Chat Header 头部信息 */
+@utility chat-header {
+  @apply row-start-1 flex gap-1 text-xs text-muted-foreground;
+}
+
+/* Chat Footer 底部信息 */
+@utility chat-footer {
+  @apply row-start-3 flex gap-1 text-xs text-muted-foreground;
+}
+
+/* Chat Start 左侧气泡（对方） */
+@utility chat-start {
+  @apply place-items-start;
+  grid-template-columns: auto 1fr;
+
+  & .chat-header {
+    @apply col-start-2;
+  }
+
+  & .chat-footer {
+    @apply col-start-2;
+  }
+
+  & .chat-image {
+    @apply col-start-1;
+  }
+
+  & .chat-bubble {
+    @apply col-start-2 rounded-bl-none;
+
+    &::before {
+      transform: rotateY(0deg);
+      inset-inline-start: -0.75rem;
+    }
+  }
+
+  [dir="rtl"] & .chat-bubble::before {
+    transform: rotateY(180deg);
+  }
+}
+
+/* Chat End 右侧气泡（自己） */
+@utility chat-end {
+  @apply place-items-end;
+  grid-template-columns: 1fr auto;
+
+  & .chat-header {
+    @apply col-start-1;
+  }
+
+  & .chat-footer {
+    @apply col-start-1;
+  }
+
+  & .chat-image {
+    @apply col-start-2;
+  }
+
+  & .chat-bubble {
+    @apply col-start-1 rounded-br-none;
+
+    &::before {
+      transform: rotateY(180deg);
+      inset-inline-start: 100%;
+    }
+  }
+
+  [dir="rtl"] & .chat-bubble::before {
+    transform: rotateY(0deg);
+  }
+}
+
+/* === Chat Bubble 颜色变体 === */
+
+/* Primary */
+@utility chat-bubble-primary {
+  @apply bg-primary text-primary-foreground;
+}
+
+/* Muted */
+@utility chat-bubble-muted {
+  @apply bg-muted text-muted-foreground;
+}
+
+/* Accent */
+@utility chat-bubble-accent {
+  @apply bg-accent text-accent-foreground;
+}
+
+/* Destructive */
+@utility chat-bubble-destructive {
+  @apply bg-destructive text-destructive-foreground;
+}

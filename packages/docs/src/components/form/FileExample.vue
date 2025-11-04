@@ -1,131 +1,131 @@
 ﻿<script setup lang="ts">
-import DocsHeader from "../zcomp/DocsHeader.vue";
-import DocsContainer from "../zcomp/DocsContainer.vue";
-import DocsSection from "../zcomp/DocsSection.vue";
-import ApiReference from "../zcomp/ApiReference.vue";
+import DocsHeader from '../zcomp/DocsHeader.vue'
+import DocsContainer from '../zcomp/DocsContainer.vue'
+import DocsSection from '../zcomp/DocsSection.vue'
+import ApiReference from '../zcomp/ApiReference.vue'
 
 const apiClasses = [
   {
-    category: "基础",
-    className: "file-input",
-    description: "文件上传组件的基础容器，用于包裹 input[type=file]。",
+    category: '基础',
+    className: 'file-input',
+    description: '文件上传组件的基础容器，用于包裹 input[type=file]。',
     isCategoryStart: true,
   },
 
   {
-    category: "配色方案",
-    className: "file-input-primary",
-    description: "主色调文件上传样式。",
+    category: '配色方案',
+    className: 'file-input-primary',
+    description: '主色调文件上传样式。',
     isCategoryStart: true,
   },
   {
-    category: "配色方案",
-    className: "file-input-secondary",
-    description: "次色调文件上传样式。",
+    category: '配色方案',
+    className: 'file-input-secondary',
+    description: '次色调文件上传样式。',
     isCategoryStart: false,
   },
   {
-    category: "配色方案",
-    className: "file-input-accent",
-    description: "强调色文件上传样式。",
+    category: '配色方案',
+    className: 'file-input-accent',
+    description: '强调色文件上传样式。',
     isCategoryStart: false,
   },
   {
-    category: "配色方案",
-    className: "file-input-destructive",
-    description: "危险操作色文件上传样式。",
+    category: '配色方案',
+    className: 'file-input-destructive',
+    description: '危险操作色文件上传样式。',
     isCategoryStart: false,
   },
 
   {
-    category: "尺寸",
-    className: "file-input-sm",
-    description: "小号尺寸，适合紧凑布局。",
+    category: '尺寸',
+    className: 'file-input-sm',
+    description: '小号尺寸，适合紧凑布局。',
     isCategoryStart: true,
   },
   {
-    category: "尺寸",
-    className: "file-input-md",
-    description: "中号尺寸，默认样式。",
+    category: '尺寸',
+    className: 'file-input-md',
+    description: '中号尺寸，默认样式。',
     isCategoryStart: false,
   },
   {
-    category: "尺寸",
-    className: "file-input-lg",
-    description: "大号尺寸，适合显著按钮。",
+    category: '尺寸',
+    className: 'file-input-lg',
+    description: '大号尺寸，适合显著按钮。',
     isCategoryStart: false,
   },
 
   {
-    category: "自定义样式",
-    className: "file-input-custom",
-    description: "隐藏原始输入框，使用自定义 label 显示上传区域。",
+    category: '自定义样式',
+    className: 'file-input-custom',
+    description: '隐藏原始输入框，使用自定义 label 显示上传区域。',
     isCategoryStart: true,
   },
   {
-    category: "自定义样式",
-    className: "file-input-dropzone",
-    description: "拖拽上传区域样式，支持 drag & drop。",
+    category: '自定义样式',
+    className: 'file-input-dropzone',
+    description: '拖拽上传区域样式，支持 drag & drop。',
     isCategoryStart: false,
   },
   {
-    category: "自定义样式",
-    className: "file-input-button",
-    description: "自定义按钮触发上传。",
+    category: '自定义样式',
+    className: 'file-input-button',
+    description: '自定义按钮触发上传。',
     isCategoryStart: false,
   },
   {
-    category: "自定义样式",
-    className: "file-input-with-list",
-    description: "带文件列表展示的上传样式。",
+    category: '自定义样式',
+    className: 'file-input-with-list',
+    description: '带文件列表展示的上传样式。',
     isCategoryStart: false,
   },
 
   {
-    category: "圆角",
-    className: "file-input-rounded-none",
-    description: "无圆角样式。",
+    category: '圆角',
+    className: 'file-input-rounded-none',
+    description: '无圆角样式。',
     isCategoryStart: true,
   },
   {
-    category: "圆角",
-    className: "file-input-rounded-sm",
-    description: "小圆角样式。",
+    category: '圆角',
+    className: 'file-input-rounded-sm',
+    description: '小圆角样式。',
     isCategoryStart: false,
   },
   {
-    category: "圆角",
-    className: "file-input-rounded-lg",
-    description: "大圆角样式。",
+    category: '圆角',
+    className: 'file-input-rounded-lg',
+    description: '大圆角样式。',
     isCategoryStart: false,
   },
   {
-    category: "圆角",
-    className: "file-input-rounded-full",
-    description: "全圆角样式。",
+    category: '圆角',
+    className: 'file-input-rounded-full',
+    description: '全圆角样式。',
     isCategoryStart: false,
   },
 
   {
-    category: "状态",
-    className: "file-input-error",
-    description: "错误状态样式。",
+    category: '状态',
+    className: 'file-input-error',
+    description: '错误状态样式。',
     isCategoryStart: true,
   },
   {
-    category: "状态",
-    className: "file-input-success",
-    description: "成功状态样式。",
+    category: '状态',
+    className: 'file-input-success',
+    description: '成功状态样式。',
     isCategoryStart: false,
   },
 
   {
-    category: "布局",
-    className: "file-input-full",
-    description: "让文件上传组件占据全宽。",
+    category: '布局',
+    className: 'file-input-full',
+    description: '让文件上传组件占据全宽。',
     isCategoryStart: true,
   },
-];
+]
 </script>
 
 <template>
@@ -139,10 +139,11 @@ const apiClasses = [
 
     <!-- 基础示例 -->
     <DocsSection title="基础示例">
-      <div class="flex flex-col gap-4">
+      <div class="flex gap-4">
         <div class="file-input">
           <input type="file" />
         </div>
+        <input type="text " class="input" value="正常input" />
       </div>
     </DocsSection>
 

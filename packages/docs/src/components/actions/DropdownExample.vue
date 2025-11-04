@@ -11,7 +11,7 @@
       <div class="grid gap-4 p-6 bg-card">
         <details class="dropdown w-36">
           <summary class="btn btn-primary">Dropdown 示例</summary>
-          <div class="dropdown-content menu p-2 bg-white border rounded shadow-md">
+          <div class="dropdown-content menu p-2 border rounded shadow-md">
             <li><a href="#" class="">菜单项 1</a></li>
             <li><a href="#" class="">菜单项 2</a></li>
             <li><a href="#" class="">菜单项 3</a></li>
@@ -24,35 +24,35 @@
       <div class="flex flex-wrap gap-4 p-6 border">
         <details class="dropdown dropdown-bottom">
           <summary class="btn btn-sm btn-primary">向下</summary>
-          <div class="dropdown-content p-2 bg-white border rounded shadow-md">
+          <div class="dropdown-content p-2 border rounded shadow-md">
             <span>菜单内容</span>
           </div>
         </details>
 
         <details class="dropdown dropdown-top">
           <summary class="btn btn-sm btn-secondary">向上</summary>
-          <div class="dropdown-content p-2 bg-white border rounded shadow-md">
+          <div class="dropdown-content p-2 border rounded shadow-md">
             <span>菜单内容</span>
           </div>
         </details>
 
         <details class="dropdown dropdown-start">
           <summary class="btn btn-sm btn-accent">向左</summary>
-          <div class="dropdown-content p-2 bg-white border rounded shadow-md">
+          <div class="dropdown-content p-2 border rounded shadow-md">
             <span>菜单内容</span>
           </div>
         </details>
 
         <details class="dropdown dropdown-end">
           <summary class="btn btn-sm btn-destructive">向右</summary>
-          <div class="dropdown-content p-2 bg-white border rounded shadow-md">
+          <div class="dropdown-content p-2 border rounded shadow-md">
             <span>菜单内容</span>
           </div>
         </details>
 
         <details class="dropdown dropdown-center">
           <summary class="btn btn-sm btn-muted">居中</summary>
-          <div class="dropdown-content p-2 bg-white border rounded shadow-md">
+          <div class="dropdown-content p-2 border rounded shadow-md">
             <span>菜单内容</span>
           </div>
         </details>

@@ -1,87 +1,62 @@
 ﻿<script setup lang="ts">
-import DocsHeader from "../zcomp/DocsHeader.vue";
-import ApiReference from "../zcomp/ApiReference.vue";
-import DocsContainer from "../zcomp/DocsContainer.vue";
-import DocsSection from "../zcomp/DocsSection.vue";
-import {
-  TrendingUp,
-  TrendingDown,
-  Users,
-  DollarSign,
-  ShoppingBag,
-} from "lucide-vue-next";
+import DocsHeader from '../zcomp/DocsHeader.vue'
+import ApiReference from '../zcomp/ApiReference.vue'
+import DocsContainer from '../zcomp/DocsContainer.vue'
+import DocsSection from '../zcomp/DocsSection.vue'
+import { TrendingUp, TrendingDown, Users, DollarSign, ShoppingBag } from 'lucide-vue-next'
 
 const apiClasses = [
   {
-    category: "基础结构",
-    className: "stats",
-    description: "统计容器，用于包裹一组统计项，默认水平布局。",
+    category: '基础结构',
+    className: 'stats',
+    description: '统计容器，用于包裹一组统计项，默认水平布局。',
     isCategoryStart: true,
   },
   {
-    category: "基础结构",
-    className: "stat",
-    description: "单个统计项，内部采用网格布局。",
+    category: '基础结构',
+    className: 'stat',
+    description: '单个统计项，内部采用网格布局。',
     isCategoryStart: false,
   },
 
   {
-    category: "内容元素",
-    className: "stat-title",
-    description: "统计标题。",
+    category: '内容元素',
+    className: 'stat-title',
+    description: '统计标题。',
     isCategoryStart: true,
   },
   {
-    category: "内容元素",
-    className: "stat-value",
-    description: "统计值。",
+    category: '内容元素',
+    className: 'stat-value',
+    description: '统计值。',
     isCategoryStart: false,
   },
   {
-    category: "内容元素",
-    className: "stat-desc",
-    description: "统计描述或趋势说明。",
+    category: '内容元素',
+    className: 'stat-desc',
+    description: '统计描述或趋势说明。',
     isCategoryStart: false,
   },
   {
-    category: "内容元素",
-    className: "stat-figure",
-    description: "统计图形或图标。",
+    category: '内容元素',
+    className: 'stat-figure',
+    description: '统计图形或图标。',
     isCategoryStart: false,
   },
   {
-    category: "内容元素",
-    className: "stat-actions",
-    description: "统计项下的操作区域。",
+    category: '内容元素',
+    className: 'stat-actions',
+    description: '统计项下的操作区域。',
     isCategoryStart: false,
   },
 
   {
-    category: "布局修饰符",
-    className: "stats-vertical",
-    description: "切换为垂直布局，并调整分割线方向。",
+    category: '布局修饰符',
+    className: 'stats-vertical',
+    description: '切换为垂直布局，并调整分割线方向。',
     isCategoryStart: true,
   },
-
-  {
-    category: "趋势颜色",
-    className: "stat-desc-positive",
-    description: "表示正面趋势（使用主色）。",
-    isCategoryStart: true,
-  },
-  {
-    category: "趋势颜色",
-    className: "stat-desc-error",
-    description: "表示负面趋势（使用错误色）。",
-    isCategoryStart: false,
-  },
-  {
-    category: "趋势颜色",
-    className: "stat-desc-accent",
-    description: "表示强调趋势（使用辅助色）。",
-    isCategoryStart: false,
-  },
-];
+]
 </script>
 
 <template>
@@ -100,9 +75,7 @@ const apiClasses = [
           <div class="stat-figure text-primary"><Users /></div>
           <div class="stat-title">活跃用户</div>
           <div class="stat-value">2,430</div>
-          <div class="stat-desc stat-desc-positive">
-            <TrendingUp class="w-3 h-3" /> +12% 本月
-          </div>
+          <div class="stat-desc"><TrendingUp class="w-3 h-3" /> +12% 本月</div>
         </div>
 
         <div class="stat">
@@ -116,9 +89,7 @@ const apiClasses = [
           <div class="stat-figure text-destructive"><DollarSign /></div>
           <div class="stat-title">收入</div>
           <div class="stat-value">$4.2k</div>
-          <div class="stat-desc stat-desc-error">
-            <TrendingDown class="w-3 h-3" /> -5% 本周
-          </div>
+          <div class="stat-desc stat-desc-error"><TrendingDown class="w-3 h-3" /> -5% 本周</div>
         </div>
       </div>
       <p class="text-sm text-muted-foreground mt-2">
@@ -137,29 +108,23 @@ const apiClasses = [
         <div class="stat">
           <div class="stat-title">网站访问量</div>
           <div class="stat-value">25.4K</div>
-          <div class="stat-desc stat-desc-positive">
-            <TrendingUp class="w-3 h-3" /> 比上周 +8%
-          </div>
+          <div class="stat-desc"><TrendingUp class="w-3 h-3" /> 比上周 +8%</div>
         </div>
 
         <div class="stat">
           <div class="stat-title">新注册用户</div>
           <div class="stat-value">1,240</div>
-          <div class="stat-desc stat-desc-accent">稳定增长趋势</div>
+          <div class="stat-desc">稳定增长趋势</div>
         </div>
 
         <div class="stat">
           <div class="stat-title">退订用户</div>
           <div class="stat-value">52</div>
-          <div class="stat-desc stat-desc-error">
-            <TrendingDown class="w-3 h-3" /> 较上周 +5%
-          </div>
+          <div class="stat-desc"><TrendingDown class="w-3 h-3" /> 较上周 +5%</div>
         </div>
       </div>
       <p class="text-sm text-muted-foreground mt-2">
-        💡 此示例使用了 <code>stats-vertical</code> 与趋势修饰类
-        <code>stat-desc-positive</code
-        >、<code>stat-desc-error</code>、<code>stat-desc-accent</code>。
+        💡 此示例使用了 <code>stats-vertical</code> 。
       </p>
     </DocsSection>
   </DocsContainer>

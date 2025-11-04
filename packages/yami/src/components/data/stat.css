@@ -1,12 +1,9 @@
-/* * 统计组件 (Stat Component) 实用程序 
- * * 遵循 Daisy UI 的网格布局和分割线逻辑，
- * 使用 CSS 变量进行颜色和主题控制。
- */
+/* * 统计组件 */
 
 /* === 容器：用于包裹一组统计项 === */
 @utility stats {
   @apply relative inline-grid overflow-x-auto;
-  @apply rounded-[var(--radius)] shadow-lg;
+  @apply rounded shadow-lg;
   /* 默认水平布局 */
   @apply grid-flow-col;
 
@@ -82,21 +79,4 @@
   & .stat:not(:last-child) {
     @apply border-b border-dashed border-[var(--stat-divider-color)];
   }
-}
-
-/* === 趋势颜色修饰符 (应用于 stat-desc) === */
-
-/* 正面趋势 (使用 Primary 代替 Success) */
-@utility stat-desc-positive {
-  @apply text-primary;
-}
-
-/* 负面趋势 */
-@utility stat-desc-error {
-  @apply text-destructive;
-}
-
-/* 强调趋势 */
-@utility stat-desc-accent {
-  @apply text-accent;
 }

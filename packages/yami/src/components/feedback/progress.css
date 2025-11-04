@@ -48,7 +48,7 @@
 
 @utility progress-error {
   & .progress-bar {
-    @apply bg-danger;
+    @apply bg-error;
   }
 }
 

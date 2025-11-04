@@ -55,7 +55,7 @@
     @apply block;
   }
 
-  /*
+  /* 推荐
     .tabs
     ├── .tab-header x n             
     │    ├── input[type=radio]  
@@ -128,15 +128,20 @@
 @utility tabs-bordered {
   & input:checked + .tab-title {
     @apply text-muted-foreground border-b-3 border-primary -mb-px;
+    &:hover {
+      border-top-left-radius: var(--radius);
+      border-top-right-radius: var(--radius);
+    }
   }
 }
 
 /* Boxed 变体 */
 @utility tabs-boxed {
-  @apply rounded-lg border-0;
+  @apply border-0;
 
   & .tab-title {
-    @apply bg-background rounded-md border-0 mb-0;
+    @apply bg-background  border-0 mb-0;
+    @apply rounded-md;
   }
 
   & input:checked + .tab-title {
@@ -144,7 +149,12 @@
   }
 
   & .tab-content {
-    @apply mt-2 rounded-lg border border-border;
+    @apply mt-2  border border-border;
+  }
+
+  & .tab-header {
+    @apply p-2 bg-background max-w-fit;
+    @apply rounded-md;
   }
 }
 
@@ -153,15 +163,20 @@
   @apply border-0 gap-1;
 
   & .tab-title {
-    @apply rounded-t bg-transparent mb-0;
+    @apply bg-transparent -mb-1 pt-1;
+    border-top-left-radius: var(--radius);
+    border-top-right-radius: var(--radius);
   }
 
   & input:checked + .tab-title {
-    @apply bg-card -mb-1 border  border-border  border-b-transparent z-10;
+    @apply bg-card -mb-1 border pt-1 border-border  border-b-transparent z-10;
   }
 
   & .tab-content {
-    @apply border  border-border rounded-b -mt-px;
+    @apply border  border-border  -mt-px;
+
+    border-bottom-left-radius: var(--radius);
+    border-bottom-right-radius: var(--radius);
   }
 }
 

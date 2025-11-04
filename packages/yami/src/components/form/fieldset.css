@@ -7,7 +7,7 @@
 /* === Fieldset 基础样式 === */
 @utility fieldset {
   @apply border border-border rounded-lg p-4;
-  @apply bg-[var(--card)] text-[var(--card-foreground)];
+  @apply bg-card text-card-foreground;
 
   & legend {
     @apply px-2 text-sm font-semibold text-foreground;
@@ -15,7 +15,7 @@
   }
 
   & .fieldset-description {
-    @apply text-sm text-[var(--muted-foreground)] mt-1 mb-4;
+    @apply text-sm text-muted-foreground mt-1 mb-4;
   }
 
   &:disabled {
@@ -35,7 +35,7 @@
 /* === Fieldset 卡片样式 === */
 @utility fieldset-card {
   @apply border-2 border-border rounded-lg p-6 shadow-sm;
-  @apply bg-[var(--card)];
+  @apply bg-card;
 
   & legend {
     @apply text-base font-bold;
@@ -44,10 +44,10 @@
 
 /* === Fieldset 配色方案 === */
 @utility fieldset-primary {
-  @apply border-[var(--primary)]/30 bg-[var(--primary)]/5;
+  @apply border-primary/30 bg-primary/5;
 
   & legend {
-    @apply text-[var(--primary)];
+    @apply text-primary;
   }
 }
 
@@ -132,7 +132,7 @@
   & legend {
     @apply cursor-pointer select-none;
     @apply flex items-center justify-between w-full;
-    @apply hover:text-[var(--primary)] transition-colors;
+    @apply hover:text-primary transition-colors;
 
     &::after {
       content: "";
@@ -232,7 +232,7 @@
 
 /* === Fieldset 左侧边框强调 === */
 @utility fieldset-border-left {
-  @apply border-l-4 border-l-[var(--primary)];
+  @apply border-l-4 border-l-primary;
 }
 
 @utility fieldset-border-left-secondary {
@@ -249,37 +249,7 @@
 
 /* === Fieldset 顶部边框强调 === */
 @utility fieldset-border-top {
-  @apply border-t-4 border-t-[var(--primary)];
-}
-
-/* === Fieldset 阴影变体 === */
-@utility fieldset-shadow-sm {
-  box-shadow: var(--shadow-sm);
-}
-
-@utility fieldset-shadow-md {
-  box-shadow: var(--shadow-md);
-}
-
-@utility fieldset-shadow-lg {
-  box-shadow: var(--shadow-lg);
-}
-
-/* === Fieldset 圆角变体 === */
-@utility fieldset-rounded-none {
-  @apply rounded-none;
-}
-
-@utility fieldset-rounded-sm {
-  @apply rounded-sm;
-}
-
-@utility fieldset-rounded-lg {
-  @apply rounded-lg;
-}
-
-@utility fieldset-rounded-xl {
-  @apply rounded-xl;
+  @apply border-t-4 border-t-primary;
 }
 
 /* === Fieldset 错误状态 === */
@@ -343,23 +313,6 @@
   @apply bg-[var(--muted)];
 
   & legend {
-    @apply text-[var(--muted-foreground)];
-  }
-}
-
-/* === Fieldset 响应式 === */
-@utility fieldset-responsive {
-  @apply p-3;
-
-  @media (min-width: 768px) {
-    @apply p-6;
-  }
-
-  & legend {
-    @apply text-sm;
-
-    @media (min-width: 768px) {
-      @apply text-base;
-    }
+    @apply text-muted-foreground;
   }
 }

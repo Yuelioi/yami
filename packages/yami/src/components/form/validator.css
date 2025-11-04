@@ -1,0 +1,59 @@
+/* Validator 表单验证组件 */
+@utility validator {
+  /* 有效状态 */
+  &:user-valid,
+  &:has(:user-valid) {
+    @apply text-success;
+  }
+
+  &:user-valid:focus,
+  &:has(:user-valid):focus,
+  &:user-valid:checked,
+  &:has(:user-valid):checked,
+  &:user-valid[aria-checked="true"],
+  &:has(:user-valid)[aria-checked="true"],
+  &:user-valid:focus-within,
+  &:has(:user-valid):focus-within {
+    @apply text-success;
+  }
+
+  /* 无效状态 */
+  &:user-invalid,
+  &:has(:user-invalid),
+  &[aria-invalid]:not([aria-invalid="false"]),
+  &:has([aria-invalid]:not([aria-invalid="false"])) {
+    @apply text-error;
+  }
+
+  &:user-invalid:focus,
+  &:has(:user-invalid):focus,
+  &:user-invalid:checked,
+  &:has(:user-invalid):checked,
+  &:user-invalid[aria-checked="true"],
+  &:has(:user-invalid)[aria-checked="true"],
+  &:user-invalid:focus-within,
+  &:has(:user-invalid):focus-within,
+  &[aria-invalid]:not([aria-invalid="false"]):focus,
+  &:has([aria-invalid]:not([aria-invalid="false"])):focus,
+  &[aria-invalid]:not([aria-invalid="false"]):checked,
+  &:has([aria-invalid]:not([aria-invalid="false"])):checked,
+  &[aria-invalid]:not([aria-invalid="false"])[aria-checked="true"],
+  &:has([aria-invalid]:not([aria-invalid="false"]))[aria-checked="true"],
+  &[aria-invalid]:not([aria-invalid="false"]):focus-within,
+  &:has([aria-invalid]:not([aria-invalid="false"])):focus-within {
+    @apply [--input-color:var(--color-error)];
+  }
+
+  /* 显示错误提示 */
+  &:user-invalid ~ .validator-hint,
+  &:has(:user-invalid) ~ .validator-hint,
+  &[aria-invalid]:not([aria-invalid="false"]) ~ .validator-hint,
+  &:has([aria-invalid]:not([aria-invalid="false"])) ~ .validator-hint {
+    @apply text-error visible block;
+  }
+}
+
+/* Validator Hint 提示文本组件 */
+@utility validator-hint {
+  @apply invisible mt-2 text-xs;
+}

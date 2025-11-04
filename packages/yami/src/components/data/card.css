@@ -48,7 +48,7 @@
 }
 
 /* 卡片内容 */
-@utility card-content {
+@utility card-body {
   @apply p-6 pt-0;
 }
 
@@ -129,7 +129,7 @@
     @apply p-4;
   }
 
-  & .card-content {
+  & .card-body {
     @apply p-4 pt-0;
   }
 
@@ -148,7 +148,7 @@
     @apply p-8;
   }
 
-  & .card-content {
+  & .card-body {
     @apply p-8 pt-0;
   }
 
@@ -223,22 +223,23 @@
 
 /* === 卡片图片 === */
 @utility card-image {
-  @apply w-full h-48 object-cover rounded-t-lg;
+  @apply w-full  object-cover rounded-t-lg;
+  @apply h-40 min-h-40;
 }
 
 @utility card-image-sm {
   @apply card-image;
-  @apply h-32;
+  @apply h-32 min-h-32;
 }
 
 @utility card-image-md {
   @apply card-image;
-  @apply h-48;
+  @apply h-40 min-h-40;
 }
 
 @utility card-image-lg {
   @apply card-image;
-  @apply h-64;
+  @apply h-48 min-h-48;
 }
 
 /* === 卡片网格 === */

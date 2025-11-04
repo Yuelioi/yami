@@ -1,117 +1,117 @@
 ﻿<script setup lang="ts">
-import DocsHeader from "../zcomp/DocsHeader.vue";
-import DocsContainer from "../zcomp/DocsContainer.vue";
-import DocsSection from "../zcomp/DocsSection.vue";
-import ApiReference from "../zcomp/ApiReference.vue";
+import DocsHeader from '../zcomp/DocsHeader.vue'
+import DocsContainer from '../zcomp/DocsContainer.vue'
+import DocsSection from '../zcomp/DocsSection.vue'
+import ApiReference from '../zcomp/ApiReference.vue'
 
 const apiClasses = [
   {
-    category: "基础",
-    className: "alert",
-    description: "警告容器，带圆角、背景、边框与图标布局。",
+    category: '基础',
+    className: 'alert',
+    description: '警告容器，带圆角、背景、边框与图标布局。',
     isCategoryStart: true,
   },
   {
-    category: "基础",
-    className: "alert-title",
-    description: "警告标题文本。",
+    category: '基础',
+    className: 'alert-title',
+    description: '警告标题文本。',
     isCategoryStart: false,
   },
   {
-    category: "基础",
-    className: "alert-description",
-    description: "警告描述内容。",
+    category: '基础',
+    className: 'alert-description',
+    description: '警告描述内容。',
     isCategoryStart: false,
   },
   {
-    category: "基础",
-    className: "alert-close",
-    description: "关闭按钮，内置关闭图标。",
+    category: '基础',
+    className: 'alert-close',
+    description: '关闭按钮，内置关闭图标。',
     isCategoryStart: false,
   },
 
   {
-    category: "状态",
-    className: "alert-info",
-    description: "信息提示（蓝色，使用 Primary 颜色）。",
+    category: '状态',
+    className: 'alert-info',
+    description: '信息提示（蓝色，使用 Primary 颜色）。',
     isCategoryStart: true,
   },
   {
-    category: "状态",
-    className: "alert-success",
-    description: "成功提示（绿色）。",
+    category: '状态',
+    className: 'alert-success',
+    description: '成功提示（绿色）。',
     isCategoryStart: false,
   },
   {
-    category: "状态",
-    className: "alert-warning",
-    description: "警告提示（琥珀色）。",
+    category: '状态',
+    className: 'alert-warning',
+    description: '警告提示（琥珀色）。',
     isCategoryStart: false,
   },
   {
-    category: "状态",
-    className: "alert-error",
-    description: "错误提示（红色，Destructive）。",
+    category: '状态',
+    className: 'alert-error',
+    description: '错误提示（红色，Destructive）。',
     isCategoryStart: false,
   },
 
   {
-    category: "填充样式",
-    className: "alert-filled",
-    description: "去除边框的填充样式基类。",
+    category: '填充样式',
+    className: 'alert-filled',
+    description: '去除边框的填充样式基类。',
     isCategoryStart: true,
   },
   {
-    category: "填充样式",
-    className: "alert-info-filled",
-    description: "信息提示的填充样式。",
+    category: '填充样式',
+    className: 'alert-info alert-filled',
+    description: '信息提示的填充样式。',
     isCategoryStart: false,
   },
   {
-    category: "填充样式",
-    className: "alert-success-filled",
-    description: "成功提示的填充样式。",
+    category: '填充样式',
+    className: 'alert-success alert-filled',
+    description: '成功提示的填充样式。',
     isCategoryStart: false,
   },
   {
-    category: "填充样式",
-    className: "alert-warning-filled",
-    description: "警告提示的填充样式。",
+    category: '填充样式',
+    className: 'alert-warning alert-filled',
+    description: '警告提示的填充样式。',
     isCategoryStart: false,
   },
   {
-    category: "填充样式",
-    className: "alert-error-filled",
-    description: "错误提示的填充样式。",
+    category: '填充样式',
+    className: 'alert-error alert-filled',
+    description: '错误提示的填充样式。',
     isCategoryStart: false,
   },
 
   {
-    category: "尺寸",
-    className: "alert-sm",
-    description: "小号警告框，紧凑间距与字体。",
+    category: '尺寸',
+    className: 'alert-sm',
+    description: '小号警告框，紧凑间距与字体。',
     isCategoryStart: true,
   },
   {
-    category: "尺寸",
-    className: "alert-lg",
-    description: "大号警告框，增加间距与字体。",
+    category: '尺寸',
+    className: 'alert-lg',
+    description: '大号警告框，增加间距与字体。',
     isCategoryStart: false,
   },
 
   {
-    category: "修饰类",
-    className: "alert-no-icon",
-    description: "隐藏默认图标。",
+    category: '修饰类',
+    className: 'alert-no-icon',
+    description: '隐藏默认图标。',
     isCategoryStart: true,
   },
   {
-    category: "修饰类",
-    className: "alert-borderless",
-    description: "移除边框样式。",
+    category: '修饰类',
+    className: 'alert-borderless',
+    description: '移除边框样式。',
     isCategoryStart: false,
   },
-];
+]
 </script>
 
 <template>
@@ -161,7 +161,7 @@ const apiClasses = [
 
     <DocsSection title="填充样式">
       <div class="flex flex-col gap-4">
-        <div class="alert-info-filled">
+        <div class="alert-info alert-filled">
           <div>
             <div class="alert-title">信息提示</div>
             <div class="alert-description">浅色填充样式，适合卡片背景。</div>
@@ -169,7 +169,7 @@ const apiClasses = [
           <div class="alert-close"></div>
         </div>
 
-        <div class="alert-success-filled">
+        <div class="alert-success alert-filled">
           <div>
             <div class="alert-title">成功提示</div>
             <div class="alert-description">操作已成功完成。</div>
@@ -177,7 +177,7 @@ const apiClasses = [
           <div class="alert-close"></div>
         </div>
 
-        <div class="alert-warning-filled">
+        <div class="alert-warning alert-filled">
           <div>
             <div class="alert-title">警告提示</div>
             <div class="alert-description">请谨慎执行此操作。</div>
@@ -185,7 +185,7 @@ const apiClasses = [
           <div class="alert-close"></div>
         </div>
 
-        <div class="alert-error-filled">
+        <div class="alert-error alert-filled">
           <div>
             <div class="alert-title">错误提示</div>
             <div class="alert-description">操作失败，请稍后重试。</div>

@@ -26,12 +26,14 @@
   &::before {
     content: "";
     @apply block size-4;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='currentColor'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M6 18L18 6M6 6l12 12'/%3E%3C/svg%3E");
+    mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='currentColor'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M6 18L18 6M6 6l12 12'/%3E%3C/svg%3E");
     background-size: contain;
     background-repeat: no-repeat;
+    background-color: currentColor;
   }
 }
 
+/* === Info Alert === */
 @utility alert-info {
   @apply alert border-l-4;
   border-left-color: theme(colors.info.DEFAULT);
@@ -47,6 +49,19 @@
 
   & .alert-close {
     @apply hover:bg-info/10;
+  }
+
+  &:is(.alert-filled) {
+    @apply border-none bg-info/10;
+  }
+
+  &:is(.alert-filled) .alert-title,
+  &:is(.alert-filled) .alert-description {
+    @apply text-info;
+  }
+
+  &:is(.alert-filled) .alert-close {
+    @apply text-info hover:bg-info/20;
   }
 }
 
@@ -66,8 +81,22 @@
   & .alert-close {
     @apply hover:bg-success/10;
   }
+
+  &:is(.alert-filled) {
+    @apply border-none bg-success/10;
+  }
+
+  &:is(.alert-filled) .alert-title,
+  &:is(.alert-filled) .alert-description {
+    @apply text-success;
+  }
+
+  &:is(.alert-filled) .alert-close {
+    @apply text-success hover:bg-success/20;
+  }
 }
 
+/* === Warning Alert === */
 @utility alert-warning {
   @apply alert border-l-4;
   @apply border-l-warning;
@@ -83,11 +112,25 @@
   & .alert-close {
     @apply hover:bg-warning/10;
   }
+
+  &:is(.alert-filled) {
+    @apply border-none bg-warning/10;
+  }
+
+  &:is(.alert-filled) .alert-title,
+  &:is(.alert-filled) .alert-description {
+    @apply text-warning;
+  }
+
+  &:is(.alert-filled) .alert-close {
+    @apply text-warning hover:bg-warning/20;
+  }
 }
 
+/* === Error Alert === */
 @utility alert-error {
   @apply alert border-l-4;
-  @apply border-l-danger;
+  @apply border-l-error;
 
   &::before {
     content: "";
@@ -98,82 +141,29 @@
   }
 
   & .alert-close {
-    @apply hover:bg-danger/10;
+    @apply hover:bg-error/10;
+  }
+
+  &:is(.alert-filled) {
+    @apply border-none bg-error/10;
+  }
+
+  &:is(.alert-filled) .alert-title {
+    @apply text-error;
+  }
+
+  &:is(.alert-filled) .alert-description {
+    @apply text-error/80;
+  }
+
+  &:is(.alert-filled) .alert-close {
+    @apply text-error hover:bg-error/20;
   }
 }
 
 /* === Alert 填充样式 === */
 @utility alert-filled {
   @apply border-none;
-}
-
-/* Info Filled */
-@utility alert-info-filled {
-  @apply alert-info alert-filled;
-  @apply bg-info/10;
-
-  & .alert-title,
-  & .alert-description {
-    @apply text-info;
-  }
-
-  & .alert-close {
-    @apply text-info hover:bg-info/20;
-  }
-}
-
-/* Success Filled */
-@utility alert-success-filled {
-  @apply alert-success alert-filled;
-  @apply bg-success/10;
-
-  & .alert-title {
-    @apply text-success;
-  }
-
-  & .alert-description {
-    @apply text-success;
-  }
-
-  & .alert-close {
-    @apply text-success hover:bg-success/20;
-  }
-}
-
-/* Warning Filled */
-@utility alert-warning-filled {
-  @apply alert-warning alert-filled;
-  @apply bg-warning/10;
-
-  & .alert-title {
-    @apply text-warning;
-  }
-
-  & .alert-description {
-    @apply text-warning;
-  }
-
-  & .alert-close {
-    @apply text-warning hover:bg-warning/20;
-  }
-}
-
-/* Error Filled */
-@utility alert-error-filled {
-  @apply alert-error alert-filled;
-  @apply bg-danger/10;
-
-  & .alert-title {
-    @apply text-danger;
-  }
-
-  & .alert-description {
-    @apply text-danger/80;
-  }
-
-  & .alert-close {
-    @apply text-danger hover:bg-danger/20;
-  }
 }
 
 /* === Alert 尺寸 === */

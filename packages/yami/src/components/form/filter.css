@@ -1,6 +1,6 @@
 /* === Filter 容器 === */
 @utility filter-bar {
-  @apply flex items-center gap-2 p-4 rounded-[var(--radius)];
+  @apply flex items-center gap-2 p-4 rounded;
   @apply bg-card border border-border;
 }
 
@@ -23,7 +23,7 @@
 
 /* === Filter 下拉菜单触发器 === */
 @utility filter-dropdown-trigger {
-  @apply inline-flex items-center gap-2 px-3 py-2 rounded-[var(--radius)];
+  @apply inline-flex items-center gap-2 px-3 py-2 rounded;
   @apply text-sm font-medium transition-colors;
   @apply border border-border bg-background;
   @apply hover:bg-muted cursor-pointer select-none;
@@ -44,7 +44,7 @@
 
 /* === Filter 清除按钮 === */
 @utility filter-clear {
-  @apply inline-flex items-center gap-1 px-2 py-1 rounded-[var(--radius)];
+  @apply inline-flex items-center gap-1 px-2 py-1 rounded;
   @apply text-xs font-medium text-muted-foreground;
   @apply hover:text-foreground hover:bg-muted;
   @apply transition-colors cursor-pointer select-none;
@@ -52,7 +52,7 @@
 
 /* === Filter 搜索框 === */
 @utility filter-search {
-  @apply flex items-center gap-2 px-3 py-2 rounded-[var(--radius)];
+  @apply flex items-center gap-2 px-3 py-2 rounded;
   @apply bg-background border border-border;
   @apply text-sm;
   @apply focus-within:ring-2 focus-within:ring-ring focus-within:ring-offset-0;
@@ -79,7 +79,7 @@
 
 /* === Filter 列表项 === */
 @utility filter-item {
-  @apply flex items-center gap-2 px-3 py-2 rounded-[var(--radius)];
+  @apply flex items-center gap-2 px-3 py-2 rounded;
   @apply text-sm cursor-pointer select-none transition-colors;
   @apply hover:bg-muted;
 

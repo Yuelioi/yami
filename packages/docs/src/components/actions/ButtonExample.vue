@@ -180,6 +180,14 @@ const apiClasses = [
     </DocsSection>
 
     <!-- 增强效果 -->
+    <DocsSection title="分组">
+      <div class="btn-group">
+        <button class="btn btn-primary">按钮1</button>
+        <button class="btn btn-primary">按钮2</button>
+        <button class="btn btn-primary">按钮3</button>
+      </div>
+    </DocsSection>
+    <!-- 增强效果 -->
     <DocsSection title="增强效果">
       <div class="flex gap-3 flex-wrap">
         <button class="btn btn-primary btn-shadow">阴影按钮</button>

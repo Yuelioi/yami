@@ -1,181 +1,80 @@
-/* === Breadcrumb 组件 === */
+/* Breadcrumb 面包屑导航组件 */
 @utility breadcrumb {
-  @apply flex items-center flex-wrap gap-4 text-sm;
+  @apply max-w-full overflow-x-auto py-2;
 
-  /* 面包屑项 */
-  & > * {
-    @apply inline-flex items-center gap-2;
-  }
+  & > ul,
+  & > ol {
+    @apply flex min-h-min items-center whitespace-nowrap;
 
-  /* 链接样式 */
-  & a {
-    @apply text-muted-foreground hover:text-foreground;
-    @apply transition-colors cursor-pointer;
-    @apply hover:underline underline-offset-4;
-    @apply relative;
-  }
+    & > li {
+      @apply flex items-center;
 
-  & a:hover {
-    text-decoration: underline;
-    text-underline-offset: 4px;
-  }
+      & > * {
+        @apply flex cursor-pointer items-center gap-2;
+        @apply hover:underline;
+        @apply transition-colors;
+      }
 
-  /* 当前页（最后一项） */
-  & > :last-child,
-  & > :last-child a {
-    @apply text-foreground font-medium;
-    @apply pointer-events-none;
-  }
+      & > *:focus {
+        @apply outline-none;
+      }
 
-  /* 分隔符 - 使用 :not(:last-child)::after */
-  & > *:not(:last-child)::after {
-    content: "/";
-    @apply text-muted-foreground;
-    @apply absolute left-full ml-1;
-  }
-}
+      & > *:focus-visible {
+        @apply outline outline-2 outline-current outline-offset-2;
+      }
 
-/* === Breadcrumb 分隔符变体 === */
+      /* 分隔符 - 箭头 */
+      & + *::before {
+        content: "";
+        @apply mr-3 ml-2 block h-1.5 w-1.5 opacity-40;
+        @apply border-t border-r border-current;
+        @apply bg-transparent;
+        rotate: 45deg;
+      }
 
-/* 箭头分隔符 */
-@utility breadcrumb-arrow {
-  & > *:not(:last-child)::after {
-    content: "›";
+      /* RTL 支持 */
+      [dir="rtl"] & + *::before {
+        rotate: -135deg;
+      }
+    }
   }
 }
 
-/* 双箭头分隔符 */
-@utility breadcrumb-chevron {
-  & > *:not(:last-child)::after {
-    content: "»";
-  }
-}
-
-/* 点分隔符 */
-@utility breadcrumb-dot {
-  & > *:not(:last-child)::after {
-    content: "•";
-  }
-}
-
-/* 短横线分隔符 */
-@utility breadcrumb-dash {
-  & > *:not(:last-child)::after {
-    content: "−";
-  }
-}
-
-/* 自定义分隔符（通过 data 属性） */
-@utility breadcrumb-custom {
-  & > *:not(:last-child)::after {
-    content: attr(data-separator);
-  }
-}
-
-/* === Breadcrumb 尺寸 === */
-@utility breadcrumb-xs {
-  @apply text-xs gap-2.5;
-}
-
+/* 尺寸变体 */
 @utility breadcrumb-sm {
-  @apply text-sm;
+  @apply text-sm py-1.5;
 }
 
-@utility breadcrumb-md {
-  @apply text-sm;
-}
 @utility breadcrumb-lg {
-  @apply text-base;
+  @apply text-base py-2.5;
 }
 
-/* === Breadcrumb 样式变体 === */
-
-/* 带背景 */
-@utility breadcrumb-contained {
-  @apply px-4 py-2 rounded-[var(--radius)] bg-muted;
-}
-
-/* 带边框 */
-@utility breadcrumb-bordered {
-  @apply px-4 py-2 rounded-[var(--radius)] border border-border;
-}
-
-/* 紧凑型 */
-@utility breadcrumb-compact {
-  @apply gap-3;
-
-  & > *:not(:last-child)::after {
-    @apply gap-2;
-  }
-}
-
-/* === Breadcrumb 图标支持 === */
-@utility breadcrumb-icon {
-  & svg,
-  & [class*="icon"] {
-    @apply size-4 shrink-0;
-  }
-}
-
-/* === Breadcrumb 响应式折叠 === */
-@utility breadcrumb-collapse {
-  @apply relative;
-
-  /* 在小屏幕上隐藏中间项 */
-  @media (max-width: 640px) {
-    & > *:not(:first-child):not(:last-child):not(.breadcrumb-ellipsis) {
-      @apply hidden;
-    }
-
-    /* 显示省略号 */
-    & .breadcrumb-ellipsis {
-      @apply inline-flex;
-    }
-  }
-}
-
-/* 省略号项 */
-@utility breadcrumb-ellipsis {
-  @apply hidden text-muted-foreground;
-
-  &::before {
-    content: "...";
-  }
-
-  &::after {
+/* 分隔符变体 - 斜杠 */
+@utility breadcrumb-slash {
+  & > ul > li + *::before,
+  & > ol > li + *::before {
     content: "/";
-    @apply ml-2;
+    @apply border-0 h-auto w-auto;
+    rotate: 0deg;
   }
 }
 
-/* === Breadcrumb 项样式 === */
-@utility breadcrumb-item {
-  @apply inline-flex items-center gap-2;
-}
-
-@utility breadcrumb-item-active {
-  @apply text-foreground font-medium pointer-events-none;
-}
-
-/* === Breadcrumb 主题色 === */
-@utility breadcrumb-primary {
-  & > :last-child,
-  & > :last-child a {
-    @apply text-primary;
-  }
-
-  & a:hover {
-    @apply text-primary;
+/* 分隔符变体 - 点 */
+@utility breadcrumb-dot {
+  & > ul > li + *::before,
+  & > ol > li + *::before {
+    content: "•";
+    @apply border-0 h-auto w-auto;
+    rotate: 0deg;
   }
 }
 
-@utility breadcrumb-secondary {
-  & > :last-child,
-  & > :last-child a {
-    @apply text-secondary;
-  }
-
-  & a:hover {
-    @apply text-secondary;
+/* 分隔符变体 - 双箭头 */
+@utility breadcrumb-chevron {
+  & > ul > li + *::before,
+  & > ol > li + *::before {
+    content: "»";
+    @apply border-0 h-auto w-auto;
+    rotate: 0deg;
   }
 }

@@ -1,15 +1,13 @@
-/* File Input 文件上传组件
+/* File Input 文件上传组件 */
 
-配色：primary, secondary, accent, destructive
-
-*/
+@import "../../utilities/style.css";
 
 /* === File Input 基础样式 === */
 @utility file-input {
   @apply relative inline-flex items-center w-full;
 
   & {
-    @apply h-10;
+    @apply input-h-md;
   }
 
   & input[type="file"] {
@@ -20,9 +18,9 @@
     @apply file:mr-4 file:py-2 file:px-4;
     @apply file:rounded-md file:border-0;
     @apply file:text-sm file:font-medium;
-    @apply file:bg-[var(--primary)] file:text-[var(--primary-foreground)];
+    @apply file:bg-primary file:text-[var(--primary-foreground)];
     @apply file:cursor-pointer file:transition-colors;
-    @apply hover:border-[var(--primary)];
+    @apply hover:border-primary;
     @apply focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2;
     @apply disabled:opacity-50 disabled:cursor-not-allowed;
 
@@ -35,10 +33,10 @@
 /* === File Input 配色方案 === */
 @utility file-input-primary {
   & input[type="file"] {
-    @apply file:bg-[var(--primary)] file:text-[var(--primary-foreground)];
+    @apply file:bg-primary file:text-[var(--primary-foreground)];
 
     &:hover:not(:disabled) {
-      @apply border-[var(--primary)];
+      @apply border-primary;
     }
   }
 }
@@ -75,7 +73,7 @@
 
 /* === File Input 尺寸 === */
 @utility file-input-sm {
-  @apply h-8;
+  @apply input-h-sm;
   & input[type="file"] {
     @apply px-2 py-1 text-xs;
     @apply file:py-1 file:px-3 file:text-xs;
@@ -83,7 +81,7 @@
 }
 
 @utility file-input-md {
-  @apply h-10;
+  @apply input-h-md;
 
   & input[type="file"] {
     @apply px-3 py-2 text-sm;
@@ -92,7 +90,7 @@
 }
 
 @utility file-input-lg {
-  @apply h-12;
+  @apply input-h-lg;
 
   & input[type="file"] {
     @apply px-4 py-3 text-base;
@@ -112,7 +110,7 @@
     @apply border-2 border-dashed border-border rounded-md;
     @apply bg-background text-foreground;
     @apply cursor-pointer transition-all duration-200;
-    @apply hover:border-[var(--primary)] hover:bg-[var(--muted)];
+    @apply hover:border-primary hover:bg-[var(--muted)];
 
     &::before {
       content: "";
@@ -142,7 +140,7 @@
     @apply flex flex-col items-center justify-center gap-3;
     @apply w-full min-h-[200px] p-6;
     @apply border-2 border-dashed border-border rounded-lg;
-    @apply bg-background text-[var(--muted-foreground)];
+    @apply bg-background text-muted-foreground;
     @apply cursor-pointer transition-all duration-200;
 
     &::before {
@@ -154,7 +152,7 @@
     }
 
     &:hover {
-      @apply border-[var(--primary)] bg-[var(--muted)];
+      @apply border-primary bg-[var(--muted)];
     }
   }
 
@@ -163,7 +161,7 @@
   }
 
   & .file-input-dropzone-hint {
-    @apply text-xs text-[var(--muted-foreground)];
+    @apply text-xs text-muted-foreground;
   }
 
   & input[type="file"]:disabled ~ .file-input-dropzone-area {
@@ -175,7 +173,7 @@
   }
 
   &.file-input-dragging .file-input-dropzone-area {
-    @apply border-[var(--primary)] bg-[var(--primary)]/10;
+    @apply border-primary bg-primary/10;
   }
 }
 
@@ -206,7 +204,7 @@
     @apply rounded-md border border-input;
     @apply bg-background text-foreground;
     @apply cursor-pointer transition-colors duration-200;
-    @apply hover:bg-[var(--muted)] hover:border-[var(--primary)];
+    @apply hover:bg-[var(--muted)] hover:border-primary;
 
     &::before {
       content: "";
@@ -229,8 +227,8 @@
 /* === File Input 按钮配色 === */
 @utility file-input-button-primary {
   & .file-input-button-trigger {
-    @apply bg-[var(--primary)] text-[var(--primary-foreground)] border-[var(--primary)];
-    @apply hover:bg-[var(--primary)]/90;
+    @apply bg-primary text-[var(--primary-foreground)] border-primary;
+    @apply hover:bg-primary/90;
   }
 }
 
@@ -252,7 +250,7 @@
   & .file-input-item {
     @apply flex items-center justify-between gap-3;
     @apply p-3 rounded-md border border-border;
-    @apply bg-[var(--card)] text-sm;
+    @apply bg-card text-sm;
 
     &::before {
       content: "";
@@ -268,12 +266,12 @@
   }
 
   & .file-input-item-size {
-    @apply text-xs text-[var(--muted-foreground)];
+    @apply text-xs text-muted-foreground;
   }
 
   & .file-input-item-remove {
     @apply size-6 flex items-center justify-center;
-    @apply rounded-sm text-[var(--muted-foreground)];
+    @apply rounded-sm text-muted-foreground;
     @apply cursor-pointer transition-colors;
     @apply hover:bg-[var(--destructive)]/10 hover:text-[var(--destructive)];
 

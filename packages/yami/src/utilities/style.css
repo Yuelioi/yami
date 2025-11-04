@@ -22,6 +22,26 @@
   height: theme(height.12);
 }
 
+@utility input-w-xs {
+  width: theme(width.7);
+}
+
+@utility input-w-sm {
+  width: theme(width.8);
+}
+
+@utility input-w-md {
+  width: theme(width.9);
+}
+
+@utility input-w-lg {
+  width: theme(width.10);
+}
+
+@utility input-w-xl {
+  width: theme(width.12);
+}
+
 @utility input-p-xs {
   padding: theme(spacing.1);
 }

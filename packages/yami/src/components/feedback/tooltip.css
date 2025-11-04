@@ -6,13 +6,13 @@
 
   & .tooltip-content {
     @apply absolute z-50 px-3 py-2 text-sm font-medium;
-    @apply bg-[var(--popover)] text-[var(--popover-foreground)];
+    @apply bg-popover text-popover-foreground;
     @apply border border-border;
     @apply opacity-0 invisible pointer-events-none;
     @apply transition-all duration-200 ease-in-out;
     white-space: nowrap;
 
-    border-radius: var(--radius);
+    @apply rounded-md;
   }
 
   &:hover .tooltip-content,
@@ -134,8 +134,8 @@
 /* Primary */
 @utility tooltip-primary {
   & .tooltip-content {
-    @apply bg-[var(--primary)] text-[var(--primary-foreground)];
-    @apply border-[var(--primary)];
+    @apply bg-primary text-[var(--primary-foreground)];
+    @apply border-primary;
   }
 
   &.tooltip-top .tooltip-content {

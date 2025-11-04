@@ -34,7 +34,7 @@
 }
 
 @utility navbar-link {
-  @apply inline-flex items-center gap-2 px-3 py-2 rounded-[var(--radius)];
+  @apply inline-flex items-center gap-2 px-3 py-2 rounded;
   @apply text-sm font-medium text-muted-foreground;
   @apply hover:text-foreground hover:bg-muted;
   @apply transition-colors cursor-pointer;
@@ -165,7 +165,7 @@
 
 /* === Navbar 搜索框 === */
 @utility navbar-search {
-  @apply flex items-center gap-2 px-3 py-1.5 rounded-[var(--radius)];
+  @apply flex items-center gap-2 px-3 py-1.5 rounded;
   @apply bg-muted border border-transparent;
   @apply focus-within:border-border focus-within:bg-background;
   @apply transition-colors;
@@ -183,7 +183,7 @@
 }
 
 @utility navbar-dropdown-toggle {
-  @apply inline-flex items-center gap-1 px-3 py-2 rounded-[var(--radius)];
+  @apply inline-flex items-center gap-1 px-3 py-2 rounded;
   @apply text-sm font-medium text-muted-foreground;
   @apply hover:text-foreground hover:bg-muted;
   @apply transition-colors cursor-pointer;
@@ -204,7 +204,7 @@
 
 @utility navbar-mobile-toggle {
   @apply inline-flex items-center justify-center;
-  @apply size-10 rounded-[var(--radius)];
+  @apply size-10 rounded;
   @apply text-foreground hover:bg-muted;
   @apply transition-colors cursor-pointer;
   @apply md:hidden;

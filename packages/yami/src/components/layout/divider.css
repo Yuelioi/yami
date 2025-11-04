@@ -1,1 +1,98 @@
-@layer components { /* Divider styles */ }
+/* Divider 分割线组件 */
+@utility divider {
+  @apply flex h-4 flex-row items-center self-stretch whitespace-nowrap;
+  @apply my-4;
+  @apply [--divider-color:color-mix(in_oklab,currentColor_10%,transparent)];
+
+  &::before,
+  &::after {
+    content: "";
+    @apply h-0.5 w-full grow;
+    background-color: var(--divider-color);
+  }
+
+  @media print {
+    &::before,
+    &::after {
+      border: 0.5px solid;
+    }
+  }
+
+  &:not(:empty) {
+    @apply gap-4;
+  }
+}
+
+/* 水平分割线（默认已是水平） */
+@utility divider-horizontal {
+  @apply mx-4 my-0;
+  @apply h-auto w-4 flex-col;
+
+  &::before {
+    @apply h-full w-0.5;
+  }
+
+  &::after {
+    @apply h-full w-0.5;
+  }
+}
+
+/* 垂直分割线 */
+@utility divider-vertical {
+  @apply my-4 mx-0;
+  @apply h-4 w-auto flex-row;
+
+  &::before {
+    @apply h-0.5 w-full;
+  }
+
+  &::after {
+    @apply h-0.5 w-full;
+  }
+}
+
+/* 颜色变体 - Primary */
+@utility divider-primary {
+  &::before,
+  &::after {
+    @apply bg-primary;
+  }
+}
+
+/* 颜色变体 - Muted */
+@utility divider-muted {
+  &::before,
+  &::after {
+    @apply bg-muted;
+  }
+}
+
+/* 颜色变体 - Accent */
+@utility divider-accent {
+  &::before,
+  &::after {
+    @apply bg-accent;
+  }
+}
+
+/* 颜色变体 - Destructive */
+@utility divider-destructive {
+  &::before,
+  &::after {
+    @apply bg-destructive;
+  }
+}
+
+/* 位置变体 - 仅显示后半部分 */
+@utility divider-start {
+  &::before {
+    @apply hidden;
+  }
+}
+
+/* 位置变体 - 仅显示前半部分 */
+@utility divider-end {
+  &::after {
+    @apply hidden;
+  }
+}

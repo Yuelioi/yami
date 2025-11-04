@@ -71,38 +71,6 @@ const apiClasses = [
     isCategoryStart: false,
   },
 
-  // === 圆角 ===
-  {
-    category: '圆角',
-    className: 'checkbox-rounded-none',
-    description: '无圆角方形复选框。',
-    isCategoryStart: true,
-  },
-  {
-    category: '圆角',
-    className: 'checkbox-rounded-sm',
-    description: '小圆角复选框。',
-    isCategoryStart: false,
-  },
-  {
-    category: '圆角',
-    className: 'checkbox-rounded-md',
-    description: '中圆角复选框。',
-    isCategoryStart: false,
-  },
-  {
-    category: '圆角',
-    className: 'checkbox-rounded-lg',
-    description: '大圆角复选框。',
-    isCategoryStart: false,
-  },
-  {
-    category: '圆角',
-    className: 'checkbox-rounded-full',
-    description: '完全圆形复选框。',
-    isCategoryStart: false,
-  },
-
   // === 修饰类 ===
   {
     category: '修饰类',
@@ -126,7 +94,7 @@ const apiClasses = [
   },
   {
     category: '卡片样式',
-    className: 'checkbox-card-content',
+    className: 'checkbox-card-body',
     description: '卡片内容区域容器。',
     isCategoryStart: false,
   },
@@ -219,7 +187,7 @@ const apiClasses = [
     </DocsSection>
 
     <!-- 尺寸与圆角 -->
-    <DocsSection title="尺寸与圆角">
+    <DocsSection title="尺寸">
       <div class="flex flex-col gap-3">
         <label class="checkbox checkbox-sm">
           <input type="checkbox" checked />
@@ -239,11 +207,6 @@ const apiClasses = [
         <label class="checkbox checkbox-xl">
           <input type="checkbox" checked />
           <span class="checkbox-label">超大号 (xl)</span>
-        </label>
-
-        <label class="checkbox checkbox-rounded-full">
-          <input type="checkbox" checked />
-          <span class="checkbox-label">圆形复选框</span>
         </label>
       </div>
     </DocsSection>
@@ -268,7 +231,7 @@ const apiClasses = [
       <div class="grid gap-4 md:grid-cols-2">
         <label class="checkbox checkbox-card">
           <input type="checkbox" />
-          <div class="checkbox-card-content">
+          <div class="checkbox-card-body">
             <div class="checkbox-card-icon"></div>
             <div>
               <div class="font-semibold">订阅新闻邮件</div>
@@ -279,7 +242,7 @@ const apiClasses = [
 
         <label class="checkbox checkbox-card">
           <input type="checkbox" checked />
-          <div class="checkbox-card-content">
+          <div class="checkbox-card-body">
             <div class="checkbox-card-icon"></div>
             <div>
               <div class="font-semibold">启用推送通知</div>

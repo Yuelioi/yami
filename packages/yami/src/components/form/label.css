@@ -52,32 +52,6 @@
   @apply text-lg;
 }
 
-/* 禁用状态 */
-@utility label-disabled {
-  @apply opacity-40 cursor-not-allowed;
-}
-
-/* 错误状态 */
-@utility label-error {
-  @apply text-destructive;
-}
-
-/* 成功状态 */
-@utility label-success {
-  @apply text-success;
-}
-
-/* Dot 样式的 label (带圆点指示器) */
-@utility label-dot {
-  @apply inline-flex items-center gap-1.5;
-
-  &::before {
-    content: "";
-    @apply w-2 h-2 rounded-full;
-    @apply bg-current;
-  }
-}
-
 /* Floating Label 浮动标签 */
 @utility label-float {
   @apply relative;
@@ -139,7 +113,7 @@
 @utility label-float-required {
   & > label::after {
     content: " *";
-    @apply text-red-500;
+    @apply text-error;
   }
 }
 
@@ -148,11 +122,11 @@
   & > input,
   & > textarea,
   & > select {
-    @apply border-red-500 focus:ring-red-500;
+    @apply border-error focus:ring-error;
   }
 
   & > label {
-    @apply text-red-600 dark:text-red-500;
+    @apply text-error dark:text-error;
   }
 
   & > input:focus ~ label,
@@ -160,7 +134,7 @@
   & > textarea:focus ~ label,
   & > textarea:not(:placeholder-shown) ~ label,
   & > select:focus ~ label {
-    @apply text-red-600 dark:text-red-500;
+    @apply text-error dark:text-error;
   }
 }
 
@@ -169,11 +143,11 @@
   & > input,
   & > textarea,
   & > select {
-    @apply border-green-500 focus:ring-green-500;
+    @apply border-success focus:ring-success;
   }
 
   & > label {
-    @apply text-green-600 dark:text-green-500;
+    @apply text-success dark:text-success;
   }
 
   & > input:focus ~ label,
@@ -181,7 +155,7 @@
   & > textarea:focus ~ label,
   & > textarea:not(:placeholder-shown) ~ label,
   & > select:focus ~ label {
-    @apply text-green-600 dark:text-green-500;
+    @apply text-success dark:text-success;
   }
 }
 

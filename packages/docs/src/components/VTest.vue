@@ -1,5 +1,3 @@
-<template>
-  <div class="rr">1111</div>
-</template>
+<script setup lang="ts"></script>
 
-<script lang="ts" setup></script>
+<template>1</template>

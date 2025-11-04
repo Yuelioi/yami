@@ -1,0 +1,120 @@
+/* Dock 底部导航栏组件 */
+@utility dock {
+  @apply bg-background fixed right-0 bottom-0 left-0 z-50;
+  @apply flex w-full flex-row items-center justify-around p-2;
+  @apply text-foreground;
+  border-top: 0.5px solid color-mix(in oklab, currentColor 5%, transparent);
+  height: 4rem;
+  height: calc(4rem + env(safe-area-inset-bottom));
+  padding-bottom: env(safe-area-inset-bottom);
+
+  /* Dock 项 */
+  & > * {
+    @apply relative mb-2 flex h-full max-w-32 shrink basis-full;
+    @apply cursor-pointer flex-col items-center justify-center gap-px;
+    @apply bg-transparent rounded-lg;
+    @apply transition-opacity duration-200 ease-out;
+
+    /* Hover 效果 */
+    @media (hover: hover) {
+      &:hover {
+        @apply opacity-80;
+      }
+    }
+
+    /* 禁用状态 */
+    &[aria-disabled="true"],
+    &[disabled] {
+      @apply text-muted-foreground/10 pointer-events-none opacity-100;
+    }
+
+    /* 活跃指示器 */
+    &::after {
+      content: "";
+      @apply absolute h-1 w-6 rounded-full bg-transparent;
+      @apply transition-all duration-100 ease-out;
+      bottom: 0.2rem;
+      border-top: 3px solid transparent;
+    }
+  }
+}
+
+/* Dock Label 标签 */
+@utility dock-label {
+  font-size: 0.6875rem;
+}
+
+/* Dock 活跃状态 */
+@utility dock-active {
+  &::after {
+    @apply w-10 bg-current;
+  }
+}
+
+/* === Dock 尺寸变体 === */
+
+/* 超小尺寸 */
+@utility dock-xs {
+  height: 3rem;
+  height: calc(3rem + env(safe-area-inset-bottom));
+
+  & .dock-label {
+    font-size: 0.625rem;
+  }
+
+  & .dock-active::after {
+    bottom: -0.1rem;
+  }
+}
+
+/* 小尺寸 */
+@utility dock-sm {
+  height: 3.5rem;
+  height: calc(3.5rem + env(safe-area-inset-bottom));
+
+  & .dock-label {
+    font-size: 0.625rem;
+  }
+
+  & .dock-active::after {
+    bottom: -0.1rem;
+  }
+}
+
+/* 中等尺寸（默认） */
+@utility dock-md {
+  height: 4rem;
+  height: calc(4rem + env(safe-area-inset-bottom));
+
+  & .dock-label {
+    font-size: 0.6875rem;
+  }
+}
+
+/* 大尺寸 */
+@utility dock-lg {
+  height: 4.5rem;
+  height: calc(4.5rem + env(safe-area-inset-bottom));
+
+  & .dock-label {
+    font-size: 0.6875rem;
+  }
+
+  & .dock-active::after {
+    bottom: 0.4rem;
+  }
+}
+
+/* 超大尺寸 */
+@utility dock-xl {
+  height: 5rem;
+  height: calc(5rem + env(safe-area-inset-bottom));
+
+  & .dock-label {
+    font-size: 0.75rem;
+  }
+
+  & .dock-active::after {
+    bottom: 0.4rem;
+  }
+}
