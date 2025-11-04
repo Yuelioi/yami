@@ -1,100 +1,100 @@
 ﻿<script setup lang="ts">
-import DocsHeader from "../zcomp/DocsHeader.vue";
-import DocsContainer from "../zcomp/DocsContainer.vue";
-import DocsSection from "../zcomp/DocsSection.vue";
-import ApiReference from "../zcomp/ApiReference.vue";
+import DocsHeader from '../zcomp/DocsHeader.vue'
+import DocsContainer from '../zcomp/DocsContainer.vue'
+import DocsSection from '../zcomp/DocsSection.vue'
+import ApiReference from '../zcomp/ApiReference.vue'
 
-import { SearchIcon } from "lucide-vue-next";
+import { SearchIcon } from 'lucide-vue-next'
 
 const apiClasses = [
   {
-    category: "基础",
-    className: "input",
-    description: "基础输入框样式，包含边框、内边距、焦点环等。",
+    category: '基础',
+    className: 'input',
+    description: '基础输入框样式，包含边框、内边距、焦点环等。',
     isCategoryStart: true,
   },
   {
-    category: "基础",
-    className: "input-group",
-    description: "输入框组容器，支持按钮或图标等组合。",
+    category: '基础',
+    className: 'input-group',
+    description: '输入框组容器，支持按钮或图标等组合。',
     isCategoryStart: false,
   },
 
   {
-    category: "配色变体",
-    className: "input-primary",
-    description: "主色输入框（Primary 边框与焦点环）。",
+    category: '配色变体',
+    className: 'input-primary',
+    description: '主色输入框（Primary 边框与焦点环）。',
     isCategoryStart: true,
   },
   {
-    category: "配色变体",
-    className: "input-secondary",
-    description: "次级输入框样式。",
+    category: '配色变体',
+    className: 'input-secondary',
+    description: '次级输入框样式。',
     isCategoryStart: false,
   },
   {
-    category: "配色变体",
-    className: "input-destructive",
-    description: "错误或警示输入框（红色边框）。",
+    category: '配色变体',
+    className: 'input-destructive',
+    description: '错误或警示输入框（红色边框）。',
     isCategoryStart: false,
   },
   {
-    category: "配色变体",
-    className: "input-ghost",
-    description: "透明背景的幽灵样式。",
+    category: '配色变体',
+    className: 'input-ghost',
+    description: '透明背景的幽灵样式。',
     isCategoryStart: false,
   },
   {
-    category: "配色变体",
-    className: "input-filled",
-    description: "带背景填充样式。",
+    category: '配色变体',
+    className: 'input-filled',
+    description: '带背景填充样式。',
     isCategoryStart: false,
   },
 
   {
-    category: "尺寸",
-    className: "input-xs",
-    description: "超小输入框。",
+    category: '尺寸',
+    className: 'input-xs',
+    description: '超小输入框。',
     isCategoryStart: true,
   },
   {
-    category: "尺寸",
-    className: "input-sm",
-    description: "小号输入框。",
+    category: '尺寸',
+    className: 'input-sm',
+    description: '小号输入框。',
     isCategoryStart: false,
   },
   {
-    category: "尺寸",
-    className: "input-md",
-    description: "中号输入框（默认）。",
+    category: '尺寸',
+    className: 'input-md',
+    description: '中号输入框（默认）。',
     isCategoryStart: false,
   },
   {
-    category: "尺寸",
-    className: "input-lg",
-    description: "大号输入框。",
+    category: '尺寸',
+    className: 'input-lg',
+    description: '大号输入框。',
     isCategoryStart: false,
   },
   {
-    category: "尺寸",
-    className: "input-xl",
-    description: "超大输入框。",
+    category: '尺寸',
+    className: 'input-xl',
+    description: '超大输入框。',
     isCategoryStart: false,
   },
 
   {
-    category: "边框样式",
-    className: "input-bordered",
-    description: "加粗边框样式。",
+    category: '边框样式',
+    className: 'input-bordered',
+    description: '加粗边框样式。',
     isCategoryStart: true,
   },
   {
-    category: "边框样式",
-    className: "input-borderless",
-    description: "无边框样式。",
+    category: '边框样式',
+    className: 'input-borderless',
+    description: '无边框样式。',
     isCategoryStart: false,
   },
-];
+]
 </script>
 
 <template>
@@ -120,10 +120,7 @@ const apiClasses = [
       <div class="flex flex-col gap-4 w-full max-w-md">
         <input class="input input-primary" placeholder="Primary 输入框" />
         <input class="input input-secondary" placeholder="Secondary 输入框" />
-        <input
-          class="input input-destructive"
-          placeholder="Destructive 输入框"
-        />
+        <input class="input input-destructive" placeholder="Destructive 输入框" />
         <input class="input input-ghost" placeholder="Ghost 输入框" />
         <input class="input input-filled" placeholder="Filled 输入框" />
       </div>
@@ -154,11 +151,7 @@ const apiClasses = [
         <!-- 按钮组合 -->
         <div class="input-group">
           <input class="input" placeholder="搜索内容..." />
-          <button
-            class="px-4 bg-primary text-primary-foreground rounded-r-[var(--radius)]"
-          >
-            搜索
-          </button>
+          <button class="px-4 bg-primary text-primary-foreground rounded-r">搜索</button>
         </div>
 
         <!-- 左右组合 -->

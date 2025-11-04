@@ -146,12 +146,12 @@ Pagination 是一组按钮，允许用户在相关内容之间导航
 
   & .pagination-btn:first-child,
   & .pagination-link:first-child {
-    @apply rounded-l-[var(--radius)];
+    @apply rounded-l;
   }
 
   & .pagination-btn:last-child,
   & .pagination-link:last-child {
-    @apply rounded-r-[var(--radius)] border-r;
+    @apply rounded-r border-r;
   }
 }
 

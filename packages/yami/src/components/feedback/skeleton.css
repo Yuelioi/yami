@@ -44,7 +44,7 @@
 
 /* === Skeleton 脉冲动画 === */
 @utility skeleton-pulse {
-  @apply bg-[var(--muted)] rounded;
+  @apply bg-muted rounded;
   animation: skeleton-pulse 1.5s ease-in-out infinite;
 }
 
@@ -203,7 +203,7 @@
 
 /* === Skeleton 无动画 === */
 @utility skeleton-static {
-  @apply bg-[var(--muted)] rounded;
+  @apply bg-muted rounded;
   animation: none;
 }
 

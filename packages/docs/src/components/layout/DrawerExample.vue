@@ -117,7 +117,7 @@ const apiClasses = [
           <!-- Page content here -->
         </div>
 
-        <div class="drawer-side is-drawer-close:overflow-visible bg-card h-32">
+        <div class="drawer-side is-drawer-close:overflow-visible bg-card h-48">
           <label for="my-drawer-4" aria-label="close sidebar" class="drawer-overlay"></label>
           <div class="is-drawer-close:w-14 is-drawer-open:w-64 h-full flex flex-col items-start">
             <!-- Sidebar content here -->

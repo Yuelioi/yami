@@ -74,12 +74,6 @@ const apiClasses = [
     description: '自定义按钮触发上传。',
     isCategoryStart: false,
   },
-  {
-    category: '自定义样式',
-    className: 'file-input-with-list',
-    description: '带文件列表展示的上传样式。',
-    isCategoryStart: false,
-  },
 
   {
     category: '圆角',
@@ -203,31 +197,12 @@ const apiClasses = [
       </div>
     </DocsSection>
 
-    <!-- 带文件列表 -->
-    <DocsSection title="文件列表样式">
-      <div class="file-input file-input-with-list">
-        <input type="file" />
-        <div class="file-input-list">
-          <div class="file-input-item">
-            <div class="file-input-item-name">example.pdf</div>
-            <div class="file-input-item-size">1.2MB</div>
-            <div class="file-input-item-remove"></div>
-          </div>
-          <div class="file-input-item">
-            <div class="file-input-item-name">example.pdf</div>
-            <div class="file-input-item-size">1.2MB</div>
-            <div class="file-input-item-remove"></div>
-          </div>
-        </div>
-      </div>
-    </DocsSection>
-
     <!-- 状态 -->
     <DocsSection title="状态">
       <div class="flex flex-col gap-4">
         <div class="file-input file-input-error">
           <input type="file" />
-          <span class="file-input-error-message">文件格式不正确</span>
+          <div class="file-input-error-message">文件格式不正确</div>
         </div>
 
         <div class="file-input file-input-success">

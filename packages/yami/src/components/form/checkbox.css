@@ -75,11 +75,11 @@
 @utility checkbox-accent {
   & input[type="checkbox"]:checked,
   & input[type="checkbox"]:indeterminate {
-    @apply bg-[var(--accent)] border-[var(--accent)];
+    @apply bg-accent border-accent;
   }
 
   & input[type="checkbox"]:hover:not(:disabled) {
-    @apply border-[var(--accent)];
+    @apply border-accent;
   }
 
   & input[type="checkbox"]:checked {
@@ -94,14 +94,14 @@
 @utility checkbox-destructive {
   & input[type="checkbox"]:checked,
   & input[type="checkbox"]:indeterminate {
-    @apply bg-[var(--destructive)] border-[var(--destructive)];
+    @apply bg-destructive border-destructive;
   }
   & input[type="checkbox"]:not(:checked) {
-    @apply bg-background border-[var(--destructive)];
+    @apply bg-background border-destructive;
   }
 
   & input[type="checkbox"]:hover:not(:disabled) {
-    @apply border-[var(--destructive)];
+    @apply border-destructive;
   }
 }
 

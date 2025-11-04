@@ -37,7 +37,7 @@
   }
 
   & .hover-card-description {
-    @apply text-sm text-[var(--muted-foreground)] mt-1;
+    @apply text-sm text-muted-foreground mt-1;
   }
 
   & .hover-card-body {
@@ -45,7 +45,7 @@
   }
 
   & .hover-card-footer {
-    @apply px-4 pb-4 pt-2 text-xs text-[var(--muted-foreground)];
+    @apply px-4 pb-4 pt-2 text-xs text-muted-foreground;
   }
 }
 

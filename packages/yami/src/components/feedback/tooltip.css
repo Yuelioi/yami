@@ -134,7 +134,7 @@
 /* Primary */
 @utility tooltip-primary {
   & .tooltip-content {
-    @apply bg-primary text-[var(--primary-foreground)];
+    @apply bg-primary text-primary-foreground;
     @apply border-primary;
   }
 
@@ -178,7 +178,7 @@
 /* Secondary */
 @utility tooltip-secondary {
   & .tooltip-content {
-    @apply bg-secondary text-[var(--secondary-foreground)];
+    @apply bg-secondary text-secondary-foreground;
     @apply border-secondary;
   }
 
@@ -222,8 +222,8 @@
 /* Accent */
 @utility tooltip-accent {
   & .tooltip-content {
-    @apply bg-[var(--accent)] text-[var(--accent-foreground)];
-    @apply border-[var(--accent)];
+    @apply bg-accent text-accent-foreground;
+    @apply border-accent;
   }
 
   &.tooltip-top .tooltip-content {
@@ -266,8 +266,8 @@
 /* Destructive */
 @utility tooltip-destructive {
   & .tooltip-content {
-    @apply bg-[var(--destructive)] text-[var(--destructive-foreground)];
-    @apply border-[var(--destructive)];
+    @apply bg-destructive text-destructive-foreground;
+    @apply border-destructive;
   }
 
   &.tooltip-top .tooltip-content {

@@ -6,21 +6,17 @@
 @utility file-input {
   @apply relative inline-flex items-center w-full;
 
-  & {
-    @apply input-h-md;
-  }
+  @apply input-h-md;
 
   & input[type="file"] {
-    @apply w-full  px-3 py-2 text-sm;
+    @apply w-full   text-sm;
     @apply border border-input rounded-md;
     @apply bg-background text-foreground;
     @apply cursor-pointer transition-colors duration-200;
     @apply file:mr-4 file:py-2 file:px-4;
     @apply file:rounded-md file:border-0;
     @apply file:text-sm file:font-medium;
-    @apply file:bg-primary file:text-[var(--primary-foreground)];
     @apply file:cursor-pointer file:transition-colors;
-    @apply hover:border-primary;
     @apply focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2;
     @apply disabled:opacity-50 disabled:cursor-not-allowed;
 
@@ -33,7 +29,7 @@
 /* === File Input 配色方案 === */
 @utility file-input-primary {
   & input[type="file"] {
-    @apply file:bg-primary file:text-[var(--primary-foreground)];
+    @apply file:bg-primary file:text-primary-foreground;
 
     &:hover:not(:disabled) {
       @apply border-primary;
@@ -43,7 +39,7 @@
 
 @utility file-input-secondary {
   & input[type="file"] {
-    @apply file:bg-secondary file:text-[var(--secondary-foreground)];
+    @apply file:bg-secondary file:text-secondary-foreground;
 
     &:hover:not(:disabled) {
       @apply border-secondary;
@@ -53,20 +49,20 @@
 
 @utility file-input-accent {
   & input[type="file"] {
-    @apply file:bg-[var(--accent)] file:text-[var(--accent-foreground)];
+    @apply file:bg-accent file:text-accent-foreground;
 
     &:hover:not(:disabled) {
-      @apply border-[var(--accent)];
+      @apply border-accent;
     }
   }
 }
 
 @utility file-input-destructive {
   & input[type="file"] {
-    @apply file:bg-[var(--destructive)] file:text-[var(--destructive-foreground)];
+    @apply file:bg-destructive file:text-destructive-foreground;
 
     &:hover:not(:disabled) {
-      @apply border-[var(--destructive)];
+      @apply border-destructive;
     }
   }
 }
@@ -75,7 +71,7 @@
 @utility file-input-sm {
   @apply input-h-sm;
   & input[type="file"] {
-    @apply px-2 py-1 text-xs;
+    @apply text-xs;
     @apply file:py-1 file:px-3 file:text-xs;
   }
 }
@@ -84,7 +80,7 @@
   @apply input-h-md;
 
   & input[type="file"] {
-    @apply px-3 py-2 text-sm;
+    @apply text-sm;
     @apply file:py-2 file:px-4 file:text-sm;
   }
 }
@@ -93,7 +89,7 @@
   @apply input-h-lg;
 
   & input[type="file"] {
-    @apply px-4 py-3 text-base;
+    @apply text-base;
     @apply file:py-2 file:px-5 file:text-base;
   }
 }
@@ -110,7 +106,7 @@
     @apply border-2 border-dashed border-border rounded-md;
     @apply bg-background text-foreground;
     @apply cursor-pointer transition-all duration-200;
-    @apply hover:border-primary hover:bg-[var(--muted)];
+    @apply hover:border-primary hover:bg-muted;
 
     &::before {
       content: "";
@@ -152,7 +148,7 @@
     }
 
     &:hover {
-      @apply border-primary bg-[var(--muted)];
+      @apply border-primary bg-muted;
     }
   }
 
@@ -204,7 +200,7 @@
     @apply rounded-md border border-input;
     @apply bg-background text-foreground;
     @apply cursor-pointer transition-colors duration-200;
-    @apply hover:bg-[var(--muted)] hover:border-primary;
+    @apply hover:bg-muted hover:border-primary;
 
     &::before {
       content: "";
@@ -227,61 +223,15 @@
 /* === File Input 按钮配色 === */
 @utility file-input-button-primary {
   & .file-input-button-trigger {
-    @apply bg-primary text-[var(--primary-foreground)] border-primary;
+    @apply bg-primary text-primary-foreground border-primary;
     @apply hover:bg-primary/90;
   }
 }
 
 @utility file-input-button-secondary {
   & .file-input-button-trigger {
-    @apply bg-secondary text-[var(--secondary-foreground)] border-secondary;
+    @apply bg-secondary text-secondary-foreground border-secondary;
     @apply hover:bg-secondary/90;
-  }
-}
-
-/* === File Input 文件列表 === */
-@utility file-input-with-list {
-  @apply space-y-3;
-
-  & .file-input-list {
-    @apply space-y-2;
-  }
-
-  & .file-input-item {
-    @apply flex items-center justify-between gap-3;
-    @apply p-3 rounded-md border border-border;
-    @apply bg-card text-sm;
-
-    &::before {
-      content: "";
-      @apply block size-5 flex-shrink-0;
-      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z'/%3E%3C/svg%3E");
-      background-size: contain;
-      background-repeat: no-repeat;
-    }
-  }
-
-  & .file-input-item-name {
-    @apply flex-1 truncate text-foreground;
-  }
-
-  & .file-input-item-size {
-    @apply text-xs text-muted-foreground;
-  }
-
-  & .file-input-item-remove {
-    @apply size-6 flex items-center justify-center;
-    @apply rounded-sm text-muted-foreground;
-    @apply cursor-pointer transition-colors;
-    @apply hover:bg-[var(--destructive)]/10 hover:text-[var(--destructive)];
-
-    &::before {
-      content: "";
-      @apply block size-4;
-      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M6 18L18 6M6 6l12 12'/%3E%3C/svg%3E");
-      background-size: contain;
-      background-repeat: no-repeat;
-    }
   }
 }
 
@@ -317,15 +267,15 @@
 /* === File Input 错误状态 === */
 @utility file-input-error {
   & input[type="file"] {
-    @apply border-[var(--destructive)];
+    @apply border-destructive;
 
     &:focus-visible {
-      @apply ring-[var(--destructive)];
+      @apply ring-destructive;
     }
   }
 
   & .file-input-error-message {
-    @apply text-xs text-[var(--destructive)] mt-1 block;
+    @apply text-xs text-destructive mt-1 block;
   }
 }
 
