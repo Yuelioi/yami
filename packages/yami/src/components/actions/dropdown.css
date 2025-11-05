@@ -1,3 +1,18 @@
+/*
+name: dropdown
+desc: 下拉菜单组件，用于显示可选项或操作菜单
+usage: 适用于按钮菜单、导航菜单、筛选选项等场景
+syntax:
+ <details class="dropdown w-36">
+  <summary class="btn btn-primary">Dropdown 示例</summary>
+  <div class="dropdown-content menu p-2 border rounded shadow-md">
+    <li><a href="#" class="">菜单项 1</a></li>
+    <li><a href="#" class="">菜单项 2</a></li>
+    <li><a href="#" class="">菜单项 3</a></li>
+  </div>
+</details>
+*/
+
 /* === dropdown 基础 === */
 @utility dropdown {
   @apply relative inline-block;

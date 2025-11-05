@@ -1,4 +1,15 @@
-/* Label 标签组件 */
+/*
+name: label
+desc: 表单标签组件，用于标识输入字段。
+usage: 常用于 input、select、textarea 前的说明文字。
+syntax:
+<div class="label">
+  <input type="text" placeholder=" " id="float1" />
+  <label for="float1">用户名</label>
+</div>
+
+*/
+
 @utility label {
   @apply inline-block;
   @apply text-sm font-medium leading-none;

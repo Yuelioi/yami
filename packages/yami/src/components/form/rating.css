@@ -1,7 +1,15 @@
-/* === Rating 组件 === */
-/* 
-Rating 是一组 radio buttons 用于评分
-每个 rating 组件应该有唯一的 name 属性以避免与页面上其他 rating 冲突
+/*
+name: rating
+desc: 评分组件，用于展示或收集用户评分。
+usage: 常用于商品评价、反馈评分。
+syntax:
+<div class="rating" name="rating-basic">
+  <input type="radio" name="rating-basic" />
+  <input type="radio" name="rating-basic" />
+  <input type="radio" name="rating-basic" />
+  <input type="radio" name="rating-basic" />
+  <input type="radio" name="rating-basic" />
+</div>
 */
 
 @utility rating {

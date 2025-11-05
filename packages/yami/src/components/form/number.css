@@ -1,4 +1,17 @@
-/* Input Number 数字输入框组件 */
+/*
+name: number
+desc: 数字输入组件，用于输入或调整数值。
+usage: 常用于数量、价格、步进值输入等。
+syntax:
+<div class="flex flex-nowrap items-center gap-4">
+  <div class="input-number">
+    <button>-</button>
+    <input type="number" value="1" />
+    <button>+</button>
+  </div>
+  <input type="text" class="input" value="正常的input" />
+</div>
+*/
 
 @import "../../utilities/style.css";
 
@@ -8,7 +21,7 @@
   @apply input px-0;
 
   &:focus-within {
-    @apply ring-2 ring-ring ring-offset-2 ring-offset-background;
+    @apply ring-2 ring-ring  ring-offset-background;
   }
 
   /* 内部 input 继承 input 样式但重置部分属性 */
@@ -27,6 +40,7 @@
     }
 
     &[type="number"] {
+      appearance: textfield;
       -moz-appearance: textfield;
       @apply outline-none;
     }
@@ -39,7 +53,7 @@
     @apply transition-colors duration-200;
     @apply active:bg-accent;
     @apply disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:bg-transparent;
-    @apply outline-none m-1;
+    @apply outline-none m-1 cursor-pointer;
 
     &:first-child {
       @apply rounded-l-md;

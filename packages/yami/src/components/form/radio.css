@@ -1,4 +1,15 @@
-/* Radio 单选框组件 */
+/*
+name: radio
+desc: 单选按钮组件，用于互斥选择。
+usage: 常用于表单单选、性别选择、选项组。
+syntax:
+<div class="radio-group-inline">
+  <input type="radio" id="r1" name="r" class="radio" checked />
+  <input type="radio" id="r2" name="r" class="radio" />
+  <input type="radio" id="r3" name="r" class="radio" disabled />
+</div>
+*/
+
 @utility radio {
   @apply relative inline-flex items-center justify-center;
   @apply appearance-none cursor-pointer;

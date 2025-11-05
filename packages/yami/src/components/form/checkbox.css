@@ -1,4 +1,13 @@
-/* Checkbox 复选框组件 */
+/*
+name: checkbox
+desc: 多选框组件，用于多项选择或状态切换。
+usage: 常用于表单、多选列表、设置项中。
+syntax:
+<label class="checkbox">
+  <input type="checkbox" />
+  <span class="checkbox-label">默认复选框</span>
+</label>
+*/
 
 /* === Checkbox 基础样式 === */
 @utility checkbox {

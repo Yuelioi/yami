@@ -1,4 +1,26 @@
-/* drawer 状态 */
+/*
+name: drawer
+desc: 抽屉组件，用于从页面边缘滑出的内容区域。
+usage: 常用于侧边菜单、设置面板、移动端导航。
+syntax:
+<div class="drawer">
+  <input id="drawer-left" type="checkbox" class="drawer-toggle" />
+  <div class="drawer-content p-4 bg-muted">
+    <label for="drawer-left" class="btn btn-primary mb-4">打开抽屉</label>
+    <p>这里是主内容区，可以滚动显示页面内容。</p>
+  </div>
+  <div class="drawer-side">
+    <label for="drawer-left" aria-label="close sidebar" class="drawer-overlay"></label>
+    <ul class="menu bg-card min-h-full w-80 p-4">
+      <li class="cursor-pointer hover:bg-muted p-2 rounded">菜单项 1</li>
+      <li class="cursor-pointer hover:bg-muted p-2 rounded">菜单项 2</li>
+      <li class="cursor-pointer hover:bg-muted p-2 rounded">菜单项 3</li>
+    </ul>
+  </div>
+</div>
+*/
+
+/* drawer 状态 单独属性 */
 @variant is-drawer-close (&:where(.drawer-toggle:not(:checked) ~ .drawer-side, .drawer-toggle:not(:checked) ~ .drawer-side *));
 @variant is-drawer-open (&:where(.drawer-toggle:checked ~ .drawer-side, .drawer-toggle:checked ~ .drawer-side *));
 

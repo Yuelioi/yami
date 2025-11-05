@@ -1,4 +1,14 @@
-/* Tooltip 提示框组件 */
+/*
+name: tooltip
+desc: 工具提示组件，用于在悬停或聚焦时显示辅助信息。
+usage: 常用于按钮、图标、文本等元素的提示说明。
+syntax:
+<div class="tooltip tooltip-top">
+  <button class="btn">上方提示</button>
+  <div class="tooltip-content">这是顶部提示内容</div>
+</div>
+
+*/
 
 /* === Tooltip 基础样式 === */
 @utility tooltip {

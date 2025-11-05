@@ -1,4 +1,12 @@
-/* File Input 文件上传组件 */
+/*
+name: file
+desc: 文件选择组件，用于上传文件或图片。
+usage: 常用于用户上传、头像选择、附件提交等场景。
+syntax:
+<div class="file-input file-input-primary">
+  <input type="file" />
+</div>
+*/
 
 @import "../../utilities/style.css";
 

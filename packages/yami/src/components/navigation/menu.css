@@ -1,4 +1,20 @@
-/* Menu 菜单组件 */
+/*
+name: menu
+desc: 菜单组件，用于导航链接、操作项或列表展示。
+usage: 常用于侧边栏、下拉菜单、导航栏中的菜单项。
+syntax:
+<ul class="menu bg-card border rounded-lg w-56">
+  <li class="menu-title">主导航</li>
+  <li><a>首页</a></li>
+  <li><a class="menu-active">消息中心</a></li>
+  <li><a>设置</a></li>
+  <li></li>
+  <li class="menu-title">辅助功能</li>
+  <li><a>帮助中心</a></li>
+  <li class="menu-disabled"><a>禁用选项</a></li>
+</ul>
+*/
+
 @utility menu {
   @apply flex w-fit flex-col flex-wrap px-1.5 py-2;
   @apply text-sm;

@@ -1,3 +1,16 @@
+/*
+name: swap
+desc: 动画切换组件，用于图标、文本或元素的可视状态切换
+usage: 适用于收藏、开关、加载等交互场景
+syntax:
+<label class="swap">
+  <input type="checkbox" />
+  <div class="swap-on">ON</div>
+  <div class="swap-off">OFF</div>
+</label>
+- 支持 swap-active, swap-rotate, swap-flip 等变体
+*/
+
 /* === Swap / Toggle  === */
 @utility swap {
   @apply relative inline-grid cursor-pointer place-content-center align-middle select-none;

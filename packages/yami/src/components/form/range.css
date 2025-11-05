@@ -1,6 +1,10 @@
-/* ========================================
-   Range 基础样式
-   ======================================== */
+/*
+name: range
+desc: 滑块组件，用于选择范围或调节数值。
+usage: 常用于音量、亮度、进度控制等场景。
+syntax:
+<input type="range" min="0" max="100" class="range" />
+*/
 
 @utility range {
   appearance: none;

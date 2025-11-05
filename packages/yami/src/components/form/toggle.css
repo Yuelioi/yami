@@ -1,4 +1,11 @@
-/* Toggle 切换开关组件 */
+/*
+name: toggle
+desc: 开关组件，用于开/关状态切换。
+usage: 常用于设置项、权限控制、模式切换。
+syntax:
+<input type="checkbox" class="toggle" />
+*/
+
 @utility toggle {
   @apply relative inline-flex cursor-pointer;
   @apply appearance-none;

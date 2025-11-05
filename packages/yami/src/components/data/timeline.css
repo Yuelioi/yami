@@ -1,4 +1,32 @@
-/* === Timeline 基础组件 === */
+/*
+name: timeline
+desc: 时间线组件，用于展示时间顺序事件。
+usage: 适用于项目进度、活动节点、历史记录。
+syntax:
+ <div
+        class="timeline timeline-horizontal bg-card p-8 rounded-lg shadow-sm"
+      >
+  <div class="timeline-item">
+    <div class="timeline-line bg-gray-300"></div>
+    <div class="timeline-start">
+      <div
+        class="timeline-box bg-card border rounded-lg px-4 py-3 text-sm"
+      >
+        <div class="font-semibold">项目启动</div>
+      </div>
+    </div>
+    <div class="timeline-middle">
+      <div
+        class="w-10 h-10 rounded-full bg-blue-600 flex items-center justify-center shadow-sm"
+      >
+        1
+      </div>
+    </div>
+    <div class="timeline-line bg-gray-300"></div>
+  </div>
+</div>
+*/
+
 @utility timeline {
   @apply relative flex;
 }
@@ -56,9 +84,7 @@
 
 @utility timeline-dot {
   @apply size-3 rounded-full bg-primary;
-  box-shadow:
-    0 0 0 4px var(--background),
-    0 0 0 6px var(--border);
+  box-shadow: 0 0 0 4px var(--background), 0 0 0 6px var(--border);
 }
 
 /* === Timeline 配色变体 === */
@@ -210,9 +236,7 @@
 
   .timeline-dot {
     @apply size-2;
-    box-shadow:
-      0 0 0 3px var(--background),
-      0 0 0 5px var(--border);
+    box-shadow: 0 0 0 3px var(--background), 0 0 0 5px var(--border);
   }
 }
 
@@ -227,9 +251,7 @@
 
   .timeline-dot {
     @apply size-4;
-    box-shadow:
-      0 0 0 5px var(--background),
-      0 0 0 7px var(--border);
+    box-shadow: 0 0 0 5px var(--background), 0 0 0 7px var(--border);
   }
 
   .timeline-line {

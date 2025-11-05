@@ -1,4 +1,19 @@
-/* Hover Card 悬浮卡片组件 */
+/*
+name: hover-card
+desc: 悬浮卡片组件，用于在悬停时展示额外内容。
+usage: 常用于显示用户简介、商品预览、提示信息等。
+syntax:
+<div class="hover-card">
+  <button class="px-3 py-2 border rounded-md bg-background">悬停查看</button>
+  <div class="hover-card-content">
+    <div class="hover-card-header">
+      <div class="hover-card-title">Hover Card 标题</div>
+      <div class="hover-card-description">这是一个简单的悬浮卡片描述。</div>
+    </div>
+    <div class="hover-card-body">内容区域可以放置任意文字、图片或操作按钮。</div>
+  </div>
+</div>
+*/
 
 /* === Hover Card 基础样式 === */
 @utility hover-card {

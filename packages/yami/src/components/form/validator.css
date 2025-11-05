@@ -1,4 +1,15 @@
-/* Validator 表单验证组件 */
+/*
+name: validator
+desc: 表单验证反馈组件，用于显示输入错误或成功提示。
+usage: 常用于输入框下方的验证状态提示。
+syntax:
+<div class="validator">
+  <label for="input-default">默认输入</label>
+  <input id="input-default" class="input" placeholder="请输入内容..." />
+  <div class="validator-hint">这是错误提示</div>
+</div>
+*/
+
 @utility validator {
   /* 有效状态 */
   &:user-valid,

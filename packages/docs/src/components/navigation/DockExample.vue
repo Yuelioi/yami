@@ -68,118 +68,130 @@ const apiClasses = [
 
     <!-- 基础 Dock -->
     <DocsSection title="基础 Dock">
-      <div class="dock">
-        <button>
-          <Home class="size-5" />
-          <span class="dock-label">首页</span>
-        </button>
-        <button>
-          <Search class="size-5" />
-          <span class="dock-label">搜索</span>
-        </button>
-        <button>
-          <Plus class="size-5" />
-          <span class="dock-label">发布</span>
-        </button>
-        <button>
-          <Bell class="size-5" />
-          <span class="dock-label">通知</span>
-        </button>
-        <button>
-          <User class="size-5" />
-          <span class="dock-label">我的</span>
-        </button>
+      <div class="relative pb-18">
+        <div class="dock absolute top-0">
+          <button>
+            <Home class="size-5" />
+            <span class="dock-label">首页</span>
+          </button>
+          <button>
+            <Search class="size-5" />
+            <span class="dock-label">搜索</span>
+          </button>
+          <button>
+            <Plus class="size-5" />
+            <span class="dock-label">发布</span>
+          </button>
+          <button>
+            <Bell class="size-5" />
+            <span class="dock-label">通知</span>
+          </button>
+          <button>
+            <User class="size-5" />
+            <span class="dock-label">我的</span>
+          </button>
+        </div>
       </div>
     </DocsSection>
 
     <!-- 激活状态 -->
     <DocsSection title="激活状态">
-      <div class="dock">
-        <button class="dock-active">
-          <Home class="size-5" />
-          <span class="dock-label">首页</span>
-        </button>
-        <button>
-          <Search class="size-5" />
-          <span class="dock-label">搜索</span>
-        </button>
-        <button>
-          <Plus class="size-5" />
-          <span class="dock-label">发布</span>
-        </button>
-        <button>
-          <Bell class="size-5" />
-          <span class="dock-label">通知</span>
-        </button>
-        <button>
-          <User class="size-5" />
-          <span class="dock-label">我的</span>
-        </button>
+      <div class="relative pb-18">
+        <div class="dock absolute top-0">
+          <button class="dock-active">
+            <Home class="size-5" />
+            <span class="dock-label">首页</span>
+          </button>
+          <button>
+            <Search class="size-5" />
+            <span class="dock-label">搜索</span>
+          </button>
+          <button>
+            <Plus class="size-5" />
+            <span class="dock-label">发布</span>
+          </button>
+          <button>
+            <Bell class="size-5" />
+            <span class="dock-label">通知</span>
+          </button>
+          <button>
+            <User class="size-5" />
+            <span class="dock-label">我的</span>
+          </button>
+        </div>
       </div>
     </DocsSection>
 
     <!-- 禁用状态 -->
     <DocsSection title="禁用状态">
-      <div class="dock">
-        <button class="dock-active">
-          <Home class="size-5" />
-          <span class="dock-label">首页</span>
-        </button>
-        <button aria-disabled="true">
-          <Search class="size-5" />
-          <span class="dock-label">搜索</span>
-        </button>
-        <button disabled>
-          <Plus class="size-5" />
-          <span class="dock-label">发布</span>
-        </button>
-        <button>
-          <Bell class="size-5" />
-          <span class="dock-label">通知</span>
-        </button>
-        <button>
-          <User class="size-5" />
-          <span class="dock-label">我的</span>
-        </button>
+      <div class="relative pb-18">
+        <div class="dock absolute top-0">
+          <button class="dock-active">
+            <Home class="size-5" />
+            <span class="dock-label">首页</span>
+          </button>
+          <button aria-disabled="true">
+            <Search class="size-5" />
+            <span class="dock-label">搜索</span>
+          </button>
+          <button disabled>
+            <Plus class="size-5" />
+            <span class="dock-label">发布</span>
+          </button>
+          <button>
+            <Bell class="size-5" />
+            <span class="dock-label">通知</span>
+          </button>
+          <button>
+            <User class="size-5" />
+            <span class="dock-label">我的</span>
+          </button>
+        </div>
       </div>
     </DocsSection>
 
     <!-- 尺寸变体 -->
     <DocsSection title="尺寸变体">
-      <div class="flex flex-col gap-8">
-        <div class="dock dock-xs">
-          <button class="dock-active">
-            <Home class="size-4" /><span class="dock-label">XS</span>
-          </button>
-          <button><Search class="size-4" /><span class="dock-label">XS</span></button>
+      <div class="flex flex-col gap-8 re">
+        <div class="relative pb-18">
+          <div class="dock dock-xs absolute top-0">
+            <button class="dock-active">
+              <Home class="size-4" /><span class="dock-label">XS</span>
+            </button>
+            <button><Search class="size-4" /><span class="dock-label">XS</span></button>
+          </div>
         </div>
-
-        <div class="dock dock-sm">
-          <button class="dock-active">
-            <Home class="size-5" /><span class="dock-label">SM</span>
-          </button>
-          <button><Search class="size-5" /><span class="dock-label">SM</span></button>
+        <div class="relative pb-18">
+          <div class="dock dock-sm absolute top-0">
+            <button class="dock-active">
+              <Home class="size-5" /><span class="dock-label">SM</span>
+            </button>
+            <button><Search class="size-5" /><span class="dock-label">SM</span></button>
+          </div>
         </div>
-
-        <div class="dock dock-md">
-          <button class="dock-active">
-            <Home class="size-5" /><span class="dock-label">MD</span>
-          </button>
-          <button><Search class="size-5" /><span class="dock-label">MD</span></button>
+        <div class="relative pb-18">
+          <div class="dock dock-md absolute top-0">
+            <button class="dock-active">
+              <Home class="size-5" /><span class="dock-label">MD</span>
+            </button>
+            <button><Search class="size-5" /><span class="dock-label">MD</span></button>
+          </div>
         </div>
-
-        <div class="dock dock-lg">
-          <button class="dock-active">
-            <Home class="size-6" /><span class="dock-label">LG</span>
-          </button>
-          <button><Search class="size-6" /><span class="dock-label">LG</span></button>
+        <div class="relative pb-18">
+          <div class="dock dock-lg absolute top-0">
+            <button class="dock-active">
+              <Home class="size-6" /><span class="dock-label">LG</span>
+            </button>
+            <button><Search class="size-6" /><span class="dock-label">LG</span></button>
+          </div>
         </div>
-
-        <div class="dock dock-xl">
-          <button class="dock-active">
-            <Home class="size-6" /><span class="dock-label">XL</span>
-          </button>
-          <button><Search class="size-6" /><span class="dock-label">XL</span></button>
+        <div class="relative pb-18">
+          <div class="dock dock-xl absolute top-0">
+            <button class="dock-active">
+              <Home class="size-6" /><span class="dock-label">XL</span>
+            </button>
+            <button><Search class="size-6" /><span class="dock-label">XL</span></button>
+          </div>
         </div>
       </div>
     </DocsSection>

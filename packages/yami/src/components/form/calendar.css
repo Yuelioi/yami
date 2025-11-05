@@ -1,4 +1,10 @@
-/* Calendar 日历组件 */
+/*
+name: calendar
+desc: 日历选择组件，用于日期或日期区间选择。
+usage: 常用于选择生日、活动日期、预订时间等。
+syntax:
+*/
+
 @utility calendar {
   @apply w-full max-w-sm p-3 rounded-lg border bg-background;
 }

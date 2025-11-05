@@ -1,4 +1,31 @@
-/* * 统计组件 */
+/*
+name: stat
+desc: 统计数据展示组件，用于显示指标和数值。
+usage: 用于仪表盘、业绩报表、数据总览。
+syntax:
+ <div class="stats w-full">
+<div class="stat">
+  <div class="stat-figure text-primary"><Users /></div>
+  <div class="stat-title">活跃用户</div>
+  <div class="stat-value">2,430</div>
+  <div class="stat-desc"><TrendingUp class="w-3 h-3" /> +12% 本月</div>
+</div>
+
+<div class="stat">
+  <div class="stat-figure text-accent"><ShoppingBag /></div>
+  <div class="stat-title">订单量</div>
+  <div class="stat-value">312</div>
+  <div class="stat-desc text-muted-foreground">昨日完成 289 单</div>
+</div>
+
+<div class="stat">
+  <div class="stat-figure text-destructive"><DollarSign /></div>
+  <div class="stat-title">收入</div>
+  <div class="stat-value">$4.2k</div>
+  <div class="stat-desc stat-desc-error"><TrendingDown class="w-3 h-3" /> -5% 本周</div>
+</div>
+</div>
+*/
 
 /* === 容器：用于包裹一组统计项 === */
 @utility stats {

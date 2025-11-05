@@ -1,4 +1,21 @@
-/* Card 卡片组件 */
+/*
+name: card
+desc: 卡片组件，用于容纳图文、操作等内容块。
+usage: 常用于仪表盘、商品列表、信息展示区。
+syntax:
+ <div class="card">
+  <div class="card-header">
+    <h3 class="card-title">默认卡片</h3>
+    <p class="card-description">最基础的卡片样式。</p>
+  </div>
+  <div class="card-body">这是卡片内容。</div>
+  <div class="card-footer">
+    <button class="btn btn-sm btn-primary">操作</button>
+  </div>
+  <p class="text-xs text-muted-foreground mt-2 px-6">使用类：<code>card</code></p>
+</div>
+*/
+
 @utility card {
   @apply rounded-lg border bg-card text-card-foreground shadow-sm;
   @apply transition-all duration-200;

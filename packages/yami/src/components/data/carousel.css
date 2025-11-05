@@ -1,4 +1,32 @@
-/* Carousel 轮播图组件 */
+/*
+name: carousel
+desc: 轮播组件，用于展示多张图片或内容滑块。
+usage: 适用于图片展示、横幅、广告位、产品展示等。
+syntax:
+ <div class="carousel carousel-md">
+  <div class="carousel-container">
+    <div class="carousel-item" v-for="i in 3" :key="i">
+      <img
+        :src="`https://picsum.photos/seed/${i}/800/400`"
+        :alt="`Slide ${i}`"
+        class="w-full h-full object-cover"
+      />
+    </div>
+  </div>
+
+  <div class="carousel-navigation">
+    <button class="carousel-btn-prev" aria-label="Previous">←</button>
+    <button class="carousel-btn-next" aria-label="Next">→</button>
+  </div>
+
+  <div class="carousel-indicators">
+    <button>1</button>
+    <button>2</button>
+    <button>3</button>
+  </div>
+</div>
+*/
+
 @utility carousel {
   @apply relative w-full overflow-hidden;
 }

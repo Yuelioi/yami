@@ -1,3 +1,27 @@
+/*
+name: fab
+desc: 悬浮操作按钮（Floating Action Button）
+usage: 在界面右下角展示主要操作，如“新建”、“添加”等
+syntax:
+<div class="fab right-48">
+  <!-- 主按钮 -->
+  <button tabindex="0" class="btn btn-primary rounded-full size-14 shadow-lg">
+    <Plus class="w-6 h-6" />
+  </button>
+
+  <!-- 子操作项 -->
+  <button class="btn btn-secondary rounded-full size-12 shadow-md">
+    <Edit class="w-5 h-5" />
+  </button>
+  <button class="btn btn-accent rounded-full size-12 shadow-md">
+    <Share2 class="w-5 h-5" />
+  </button>
+  <button class="btn btn-destructive rounded-full size-12 shadow-md">
+    <Trash2 class="w-5 h-5" />
+  </button>
+</div>
+*/
+
 /* FAB 浮动操作按钮组件 */
 @utility fab {
   @apply pointer-events-none fixed end-4 bottom-4 z-50;

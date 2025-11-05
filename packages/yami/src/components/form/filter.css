@@ -1,4 +1,15 @@
-/* === Filter 容器 === */
+/*
+name: filter
+desc: 筛选器组件，用于多条件筛选或搜索结果过滤。
+usage: 常用于商品筛选、数据表格过滤等。
+syntax:
+<div class="filter-bar">
+  <div class="filter-item" data-active="true">全部</div>
+  <div class="filter-item">未处理</div>
+  <div class="filter-item">已完成</div>
+</div>
+*/
+
 @utility filter-bar {
   @apply flex items-center gap-2 p-4 rounded;
   @apply bg-card border border-border;

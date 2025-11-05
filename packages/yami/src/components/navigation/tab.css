@@ -1,3 +1,39 @@
+/*
+name: tab
+desc: 选项卡组件，用于在同一区域切换不同内容。
+usage: 常用于内容切换、面板切换、表单分步界面。
+<div class="tabs tabs-boxed w-full max-w-xl mx-auto">
+  <!-- Tabs 标题 -->
+  <div class="tab-header flex space-x-2">
+    <input type="radio" id="tab-1" name="tab" checked />
+    <label for="tab-1" class="tab-title cursor-pointer">概述</label>
+
+    <input type="radio" id="tab-2" name="tab" />
+    <label for="tab-2" class="tab-title cursor-pointer">功能</label>
+
+    <input type="radio" id="tab-3" name="tab" />
+    <label for="tab-3" class="tab-title cursor-pointer">价格</label>
+  </div>
+
+  <!-- Tabs 内容 -->
+  <div class="tab-body mt-4">
+    <div class="tab-content">
+      <p>这是产品的总体介绍。</p>
+    </div>
+    <div class="tab-content">
+      <ul class="list-disc list-inside">
+        <li>实时数据同步</li>
+        <li>智能分析报告</li>
+        <li>团队协作工具</li>
+      </ul>
+    </div>
+    <div class="tab-content">
+      <p>基础版免费，专业版 ¥99/月，企业版请联系我们。</p>
+    </div>
+  </div>
+</div>
+*/
+
 @utility tabs {
   @apply relative flex  flex-wrap font-sans;
 

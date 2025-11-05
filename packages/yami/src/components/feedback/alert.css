@@ -1,4 +1,16 @@
-/* Alert 警告组件 */
+/*
+name: alert
+desc: 警告提示组件，用于展示重要信息、警告或状态提示。
+usage: 常用于表单验证、系统提示、操作结果反馈等。
+syntax:
+<div class="alert alert-info">
+  <div>
+    <div class="alert-title">信息提示</div>
+    <div class="alert-description">这是一条信息提示内容。</div>
+  </div>
+  <div class="alert-close"></div>
+</div>
+*/
 
 /* === Alert 基础容器 === */
 @utility alert {

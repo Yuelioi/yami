@@ -1,4 +1,13 @@
-/* Avatar 头像组件 */
+/*
+name: avatar
+desc: 头像组件，用于显示用户头像、图标或缩略图。
+usage: 常用于个人资料、聊天列表、评论区等用户展示场景。
+syntax:
+<div class="avatar">
+  <img src="/images/avatar.png" alt="用户头像" />
+</div>
+*/
+
 @utility avatar {
   @apply relative inline-flex items-center justify-center;
   @apply shrink-0 rounded-full;

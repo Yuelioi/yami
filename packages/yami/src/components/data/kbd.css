@@ -1,4 +1,11 @@
-/* Kbd 键盘按键组件 */
+/*
+name: kbd
+desc: 键盘提示组件，用于展示快捷键或键盘操作说明。
+usage: 在表单提示、文档、快捷说明中使用。
+syntax:
+<kbd class="kbd">A</kbd>
+*/
+
 @utility kbd {
   @apply inline-flex items-center justify-center gap-1;
   @apply px-1.5 h-5 min-w-5 text-xs font-semibold;
@@ -11,9 +18,7 @@
   --kbd-shadow: theme(colors.black / 0.1);
 
   @apply bg-[var(--kbd-bg)] text-[var(--kbd-fg)] border-[var(--kbd-border)];
-  box-shadow:
-    0 1px 0 var(--kbd-shadow),
-    inset 0 1px 0 theme(colors.white / 0.1);
+  box-shadow: 0 1px 0 var(--kbd-shadow), inset 0 1px 0 theme(colors.white / 0.1);
 }
 
 /* === 样式变体 === */

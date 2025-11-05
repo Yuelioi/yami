@@ -108,7 +108,7 @@ const apiClasses = [
     <ApiReference :data="apiClasses" />
 
     <!-- 基础按钮 -->
-    <DocsSection title="基础按钮">
+    <DocsSection title="基础用法">
       <div class="flex gap-2 flex-wrap">
         <button class="btn">默认按钮</button>
         <button class="btn btn-primary">主色按钮</button>

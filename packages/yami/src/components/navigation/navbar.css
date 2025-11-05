@@ -1,4 +1,35 @@
-/* === Navbar 组件 === */
+/*
+name: navbar
+desc: 顶部导航栏组件，用于页面的主导航区域。
+usage: 常用于站点头部、应用顶部菜单。
+syntax:
+<div class="navbar navbar-shadow">
+  <!-- 左侧 -->
+  <div class="navbar-start">
+    <a href="#" class="navbar-brand">TechCorp</a>
+    <span class="navbar-divider"></span>
+    <div class="navbar-nav hidden md:flex">
+      <a href="#" class="navbar-link active">产品</a>
+      <a href="#" class="navbar-link">解决方案</a>
+      <a href="#" class="navbar-link">定价</a>
+    </div>
+  </div>
+
+  <!-- 右侧 -->
+  <div class="navbar-end">
+    <div class="navbar-search hidden lg:flex">
+      <input class="navbar-search-input" placeholder="搜索..." />
+    </div>
+
+    <button class="btn btn-sm btn-primary hidden md:inline-flex">
+      开始使用
+    </button>
+
+    <button class="btn btn-ghost btn-icon md:hidden">菜单</button>
+  </div>
+</div>
+*/
+
 @utility navbar {
   @apply flex items-center justify-between gap-4;
   @apply w-full px-4 py-3;

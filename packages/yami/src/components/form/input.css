@@ -1,3 +1,11 @@
+/*
+name: input
+desc: 输入框组件，用于文本、数字等数据输入。
+usage: 常用于表单、搜索栏、配置项等。
+syntax:
+<input class="input" value="默认值" />
+*/
+
 @import "../../utilities/style.css";
 
 /* ========================================
@@ -13,7 +21,7 @@
   @apply placeholder:text-muted-foreground;
 
   /* 边框和背景 */
-  @apply border border-input bg-background;
+  @apply border-border bg-input;
 
   /* 间距 */
   @apply input-h-md px-3 py-2;
@@ -23,7 +31,7 @@
   @apply outline-none;
 
   /* 焦点状态 */
-  @apply focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background;
+  @apply focus:ring-2 focus:ring-ring focus:border-transparent focus-visible:ring-offset-background;
 
   /* 禁用状态 */
   @apply disabled:cursor-not-allowed disabled:opacity-50;
@@ -51,11 +59,11 @@
 }
 
 @utility input-lg {
-  @apply input-h-lg text-base px-4 py-3;
+  @apply input-h-lg text-base px-3.5 py-3;
 }
 
 @utility input-xl {
-  @apply input-h-xl text-lg px-5 py-3.5;
+  @apply input-h-xl text-lg px-4 py-3.5;
 }
 
 /* ========================================

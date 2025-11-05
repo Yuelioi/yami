@@ -81,11 +81,10 @@ npm install tailwindcss@latest postcss autoprefixer</pre
   </DocsContainer>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import DocsHeader from '../zcomp/DocsHeader.vue'
 import ApiReference from '../zcomp/ApiReference.vue'
 import DocsContainer from '../zcomp/DocsContainer.vue'
-import DocsSection from '../zcomp/DocsSection.vue'
 const apiClasses = [
   // 基础
   {

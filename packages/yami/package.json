@@ -1,6 +1,6 @@
 {
   "name": "@yuelioi/yami",
-  "version": "1.0.9",
+  "version": "1.0.11",
   "description": "💫 A lightweight Tailwind CSS utility library for Yuelioi projects.",
   "main": "src/index.css",
   "type": "module",
@@ -9,6 +9,7 @@
   ],
   "scripts": {
     "merge": "node scripts/merge-css.js",
+    "llm": "node scripts/generate-llm-guide.js",
     "release": "pnpm version patch && npm publish --access public"
   },
   "repository": {

@@ -1,9 +1,20 @@
-@import "../../utilities/style.css"; /* Select 下拉选择框组件 */
+/*
+name: select
+desc: 下拉选择组件，用于从多个选项中选择一个。
+usage: 常用于表单、过滤器、设置项。
+syntax:
+ <select class="select">
+  <option>默认选择</option>
+  <option>选项 A</option>
+  <option>选项 B</option>
+</select>
+*/
+@import "../../utilities/style.css";
 
 @utility select {
   @apply w-full px-4 input-h-md pr-10;
   @apply text-sm text-foreground;
-  @apply bg-background;
+  @apply bg-input;
   @apply border border-input rounded-md;
   @apply transition-colors duration-200;
   @apply cursor-pointer;

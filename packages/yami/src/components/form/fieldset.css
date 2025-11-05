@@ -1,7 +1,16 @@
-/* Fieldset 表单字段集组件
-
-用于组织和分组表单字段
-
+/*
+name: fieldset
+desc: 字段集组件，用于分组相关表单控件。
+usage: 常用于表单逻辑分区、配置组、调查表。
+syntax:
+<fieldset class="fieldset">
+  <legend>个人信息</legend>
+  <div class="fieldset-description">请填写你的基本资料。</div>
+  <div class="fieldset-content space-y-3">
+    <input type="text" class="input w-full" placeholder="姓名" />
+    <input type="email" class="input w-full" placeholder="邮箱" />
+  </div>
+</fieldset>
 */
 
 /* === Fieldset 基础样式 === */

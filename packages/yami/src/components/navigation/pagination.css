@@ -1,7 +1,17 @@
-/* === Pagination 组件 === */
-/* 
-Pagination 是一组按钮，允许用户在相关内容之间导航
-通常与 join 组件配合使用，将多个按钮并排显示
+/*
+name: pagination
+desc: 分页导航组件，用于翻页或数据浏览控制。
+usage: 常用于表格、列表或内容分页。
+syntax:
+<div class="pagination pagination-centered">
+  <button class="pagination-prev">‹</button>
+  <button class="pagination-btn">1</button>
+  <button class="pagination-btn" aria-current="page">2</button>
+  <button class="pagination-btn">3</button>
+  <span class="pagination-ellipsis">…</span>
+  <button class="pagination-btn">10</button>
+  <button class="pagination-next">›</button>
+</div>
 */
 
 @utility pagination {

@@ -1,4 +1,16 @@
-/* Toast 消息组件 */
+/*
+name: toast
+desc: 吐司提示组件，用于全局信息提示或短暂反馈。
+usage: 适用于操作结果反馈，如保存成功、删除失败等。
+syntax:
+<div class="toast toast-info">
+  <div>
+    <div class="toast-title">信息</div>
+    <div class="toast-message">这是一条普通提示消息。</div>
+  </div>
+  <div class="toast-close"></div>
+</div>
+*/
 
 /* === Toast 基础容器 === */
 @utility toast {

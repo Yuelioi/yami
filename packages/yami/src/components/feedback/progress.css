@@ -1,4 +1,13 @@
-/* === Progress 基础容器 === */
+/*
+name: progress
+desc: 进度条组件，用于展示任务或操作的完成进度。
+usage: 常用于加载状态、上传进度、任务执行等场景。
+syntax:
+<div class="progress w-full">
+  <div class="progress-bar"></div>
+</div>
+*/
+
 @utility progress {
   @apply relative w-full overflow-hidden rounded-full;
   @apply bg-muted h-2;

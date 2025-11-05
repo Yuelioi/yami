@@ -1,4 +1,11 @@
-/* Textarea 文本域组件 */
+/*
+name: textarea
+desc: 多行文本输入框组件，用于输入较长的文本。
+usage: 常用于留言、评论、表单输入等场景。
+syntax:
+<textarea class="textarea" placeholder="请输入内容..."></textarea>
+*/
+
 @utility textarea {
   @apply w-full px-3 py-2;
   @apply text-sm text-foreground;

@@ -1,0 +1,1084 @@
+---
+description: Yami UI Component Library
+alwaysApply: true
+applyTo: "**"
+version: 1.0.0
+---
+
+# Yami UI - CSS Component Library
+Yami UI is a CSS component library built with modern design principles on top of Tailwind CSS.
+
+- [Yami UI Docs](https://yami.yuelili.com)
+- [GitHub Repository](https://github.com/yuelioi/yami)
+
+## Yami UI Usage Rules
+
+1. **Component and Modifiers**: Apply component styles by adding the main Yami class name (e.g., `button`) and combining it with modifier classes (e.g., `button-primary`, `button-md`) for variations.
+2. **Tailwind Integration**: Components can be customized using standard **Tailwind CSS utility classes**. For example, use `p-10` to set custom padding to a component.
+3. **Specificity Override**: If Tailwind utility classes do not override Yami's styles due to CSS specificity, use the `!` suffix on the Tailwind class to force the override (e.g., `bg-red-500!`). Use this sparingly.
+4. **Responsive Design**: Utilize Tailwind's breakpoint prefixes (e.g., `sm:`, `md:`, `lg:`) for responsive adjustments to both Yami and Tailwind classes.
+5. **Color System**: Prefer using Yami's semantic color names (like `primary`, `success`) as they automatically adapt to the current theme (light/dark mode).
+6. **Prefer Composition**: Strive to combine existing component and utility classes instead of writing custom CSS.
+7. **Dark Mode**: Components and all semantic color classes automatically support the dark theme via theme variables.
+
+Yami UI class names are categorized for better understanding (these type names are only for reference):
+- `component`: The main, required class for the component (e.g., `button`).
+- `part`: A class for a specific child element of a component (e.g., `card-body`).
+- `color`: Sets a specific semantic color (e.g., `button-primary`).
+- `size`: Sets a predefined size (e.g., `button-lg`).
+- `style`: Applies a specific visual style (e.g., `button-outline`).
+- `behavior`: Changes the state or behavior (e.g., `is-active`).
+- `placement`: Sets a specific position or direction (e.g., `chat-end`).
+- `modifier`: Other classes that modify the component.
+
+## Color Theme
+
+Yami UI uses **CSS variables** for all theming, ensuring all color-related classes automatically adapt to light and dark modes without needing `dark:` prefixes.
+
+### Theme Variables
+
+| Variable | Light Mode | Dark Mode |
+|----------|------------|-----------|
+| `--background` | oklch(98.5% 0.008 280) | oklch(0.1743 0.0227 283.7998) |
+| `--foreground` | oklch(0.25 0.02 280) | oklch(0.9185 0.0257 285.8834) |
+| `--card` | oklch(99.5% 0.002 280) | oklch(0.2284 0.0384 282.9324) |
+| `--card-foreground` | oklch(0.25 0.02 280) | oklch(0.9185 0.0257 285.8834) |
+| `--popover` | oklch(99.8% 0.001 280) | oklch(0.2284 0.0384 282.9324) |
+| `--popover-foreground` | oklch(0.25 0.02 280) | oklch(0.9185 0.0257 285.8834) |
+| `--primary` | oklch(0.55 0.22 285) | oklch(0.7162 0.1597 290.3962) |
+| `--primary-foreground` | oklch(0.99 0 0) | oklch(0.1743 0.0227 283.7998) |
+| `--secondary` | oklch(65.211% 0.19064 286.761) | oklch(0.3139 0.0736 283.4591) |
+| `--secondary-foreground` | oklch(0.99 0 0) | oklch(0.8367 0.0849 285.9111) |
+| `--muted` | oklch(0.96 0.015 285) | oklch(0.271 0.0621 281.4377) |
+| `--muted-foreground` | oklch(0.5 0.04 285) | oklch(0.7166 0.0462 285.1741) |
+| `--accent` | oklch(0.93 0.055 270) | oklch(0.3354 0.0828 280.9705) |
+| `--accent-foreground` | oklch(0.25 0.02 280) | oklch(0.9185 0.0257 285.8834) |
+| `--destructive` | oklch(63.408% 0.23096 22.528) | oklch(0.6861 0.2061 14.9941) |
+| `--destructive-foreground` | oklch(0.99 0 0) | oklch(1 0 0) |
+| `--border` | oklch(0.92 0.018 285) | oklch(0.3261 0.0597 282.5832) |
+| `--input` | oklch(0.92 0.018 285) | oklch(0.3261 0.0597 282.5832) |
+| `--ring` | oklch(0.55 0.22 285) | oklch(0.7162 0.1597 290.3962) |
+| `--chart-1` | oklch(0.55 0.22 285) | oklch(0.7162 0.1597 290.3962) |
+| `--chart-2` | oklch(0.65 0.18 275) | oklch(0.6382 0.1047 274.9117) |
+| `--chart-3` | oklch(0.6 0.25 290) | oklch(0.7482 0.1235 244.7492) |
+| `--chart-4` | oklch(0.7 0.15 265) | oklch(0.7124 0.0977 186.6761) |
+| `--chart-5` | oklch(0.48 0.2 295) | oklch(0.7546 0.1831 346.8124) |
+| `--sidebar` | oklch(0.97 0.012 285) | oklch(0.2284 0.0384 282.9324) |
+| `--sidebar-foreground` | oklch(0.25 0.02 280) | oklch(0.9185 0.0257 285.8834) |
+| `--sidebar-primary` | oklch(0.55 0.22 285) | oklch(0.7162 0.1597 290.3962) |
+| `--sidebar-primary-foreground` | oklch(0.99 0 0) | oklch(0.1743 0.0227 283.7998) |
+| `--sidebar-accent` | oklch(0.93 0.055 270) | oklch(0.3354 0.0828 280.9705) |
+| `--sidebar-accent-foreground` | oklch(0.25 0.02 280) | oklch(0.9185 0.0257 285.8834) |
+| `--sidebar-border` | oklch(0.92 0.018 285) | oklch(0.3261 0.0597 282.5832) |
+| `--sidebar-ring` | oklch(0.55 0.22 285) | oklch(0.7162 0.1597 290.3962) |
+| `--font-sans` | Inter, system-ui, -apple-system, sans-serif | Inter, sans-serif |
+| `--font-serif` | Georgia, Cambria, serif | Georgia, serif |
+| `--font-mono` | 'JetBrains Mono', 'Fira Code', monospace | JetBrains Mono, monospace |
+| `--radius` | 0 | 0.5rem |
+| `--shadow-2xs` | 0px 1px 2px 0px oklch(0.3 0.02 280 / 0.05) | 0px 4px 10px 0px hsl(240 30% 25% / 0.06) |
+| `--shadow-xs` | 0px 2px 4px 0px oklch(0.3 0.02 280 / 0.06) | 0px 4px 10px 0px hsl(240 30% 25% / 0.06) |
+| `--shadow-sm` | 0px 2px 6px -1px oklch(0.3 0.02 280 / 0.08), 0px 4px 8px -2px oklch(0.3 0.02 280 / 0.08) | 0px 4px 10px 0px hsl(240 30% 25% / 0.12), 0px 1px 2px -1px hsl(240 30% 25% / 0.12) |
+| `--shadow` | 0px 4px 12px -2px oklch(0.3 0.02 280 / 0.1), 0px 2px 6px -1px oklch(0.3 0.02 280 / 0.08) | 0px 4px 10px 0px hsl(240 30% 25% / 0.12), 0px 1px 2px -1px hsl(240 30% 25% / 0.12) |
+| `--shadow-md` | 0px 6px 16px -4px oklch(0.3 0.02 280 / 0.12), 0px 4px 8px -2px oklch(0.3 0.02 280 / 0.08) | 0px 4px 10px 0px hsl(240 30% 25% / 0.12), 0px 2px 4px -1px hsl(240 30% 25% / 0.12) |
+| `--shadow-lg` | 0px 10px 24px -6px oklch(0.3 0.02 280 / 0.14), 0px 6px 12px -3px oklch(0.3 0.02 280 / 0.1) | 0px 4px 10px 0px hsl(240 30% 25% / 0.12), 0px 4px 6px -1px hsl(240 30% 25% / 0.12) |
+| `--shadow-xl` | 0px 16px 32px -8px oklch(0.3 0.02 280 / 0.16), 0px 8px 16px -4px oklch(0.3 0.02 280 / 0.12) | 0px 4px 10px 0px hsl(240 30% 25% / 0.12), 0px 8px 10px -1px hsl(240 30% 25% / 0.12) |
+| `--shadow-2xl` | 0px 24px 48px -12px oklch(0.3 0.02 280 / 0.24) | 0px 4px 10px 0px hsl(240 30% 25% / 0.3) |
+| `--success` | oklch(0.75 0.15 150) | oklch(0.65 0.16 150) |
+| `--success-foreground` | oklch(0.2 0.03 150) | oklch(0.9185 0.0257 285.8834) |
+| `--info` | oklch(0.78 0.12 250) | oklch(0.68 0.14 250) |
+| `--info-foreground` | oklch(0.2 0.04 250) | oklch(0.9185 0.0257 285.8834) |
+| `--warning` | oklch(0.86 0.14 80) | oklch(0.76 0.15 80) |
+| `--warning-foreground` | oklch(0.25 0.05 80) | oklch(0.9185 0.0257 285.8834) |
+| `--error` | var(--destructive) | oklch(0.63 0.23 22.528) |
+| `--error-foreground` | var(--destructive-foreground) | oklch(0.98 0 0) |
+
+### Color Usage
+
+1. **Semantic Colors**: Use colors like `primary`, `secondary`, and `accent` for brand-related UI elements.
+2. **State Colors**: Use `info`, `success`, `warning`, and `error` for feedback messages and status indicators.
+3. **Content Colors**: **Always** pair a background color (e.g., `bg-primary`) with its corresponding content color (e.g., `text-primary-content`) to ensure optimal contrast and readability across themes.
+- Example: `<button class="bg-primary text-primary-content">Button</button>`
+
+## Components
+
+### button
+用于触发操作的主按钮组件，支持多种尺寸与颜色变体
+
+[button docs](https://yami.yuelili.com/button)
+
+**Usage:** 在表单提交、弹窗确认、交互操作等场景使用
+
+#### Class names
+- style: `btn-ghost`, `btn-link`, `btn-outline`, `btn-shadow`, `btn-square`
+- color: `btn-accent`, `btn-destructive`, `btn-muted`, `btn-primary`, `btn-secondary`
+- size: `btn-icon-lg`, `btn-icon-md`, `btn-icon-sm`, `btn-icon-xl`, `btn-icon-xs`, `btn-lg`, `btn-md`, `btn-sm`, `btn-xl`, `btn-xs`
+- behavior: `btn-loading`
+- modifier: `btn`, `btn-full`, `btn-group`, `btn-icon`, `btn-lift`, `btn-pill`, `btn-wide`
+
+#### Syntax
+```html
+<button class="btn btn-primary btn-md">确认</button>
+```
+
+---
+
+### dropdown
+下拉菜单组件，用于显示可选项或操作菜单
+
+[dropdown docs](https://yami.yuelili.com/dropdown)
+
+**Usage:** 适用于按钮菜单、导航菜单、筛选选项等场景
+
+#### Class names
+- component: `dropdown`
+- part: `dropdown-content`
+- placement: `dropdown-bottom`, `dropdown-center`, `dropdown-end`, `dropdown-start`, `dropdown-top`
+
+#### Syntax
+```html
+<details class="dropdown w-36">
+```
+
+---
+
+### fab
+悬浮操作按钮（Floating Action Button）
+
+[fab docs](https://yami.yuelili.com/fab)
+
+**Usage:** 在界面右下角展示主要操作，如“新建”、“添加”等
+
+#### Class names
+- component: `fab`
+- modifier: `fab-flower`
+
+#### Syntax
+```html
+<div class="fab right-48">
+```
+
+---
+
+### modal
+模态对话框组件，用于展示重要信息或确认操作
+
+[modal docs](https://yami.yuelili.com/modal)
+
+**Usage:** 在需要用户确认或输入的场景中使用
+
+#### Class names
+- component: `modal`
+- part: `modal-body`, `modal-body-full`, `modal-body-lg`, `modal-body-md`, `modal-body-sm`, `modal-body-xl`, `modal-content`, `modal-footer`, `modal-header`, `modal-title`
+- behavior: `modal-close`
+- modifier: `modal-blur`, `modal-bounce`
+
+#### Syntax
+```html
+<button class="btn modal-control" onclick="my_modal_1.showModal()">
+```
+
+---
+
+### swap
+动画切换组件，用于图标、文本或元素的可视状态切换
+
+[swap docs](https://yami.yuelili.com/swap)
+
+**Usage:** 适用于收藏、开关、加载等交互场景
+
+#### Class names
+- component: `swap`
+- behavior: `swap-active`
+- modifier: `swap-flip`, `swap-rotate`
+
+#### Syntax
+```html
+<label class="swap">
+```
+
+#### Rules
+- 支持 swap-active, swap-rotate, swap-flip 等变体
+
+---
+
+### avatar
+头像组件，用于显示用户头像、图标或缩略图。
+
+[avatar docs](https://yami.yuelili.com/avatar)
+
+**Usage:** 常用于个人资料、聊天列表、评论区等用户展示场景。
+
+#### Class names
+- component: `avatar`
+- style: `avatar-rounded`, `avatar-square`
+- color: `avatar-ring-accent`, `avatar-ring-destructive`, `avatar-ring-primary`
+- size: `avatar-2xl`, `avatar-lg`, `avatar-md`, `avatar-sm`, `avatar-xl`, `avatar-xs`
+- behavior: `avatar-hover`
+- modifier: `avatar-clickable`, `avatar-group`, `avatar-group-compact`, `avatar-ring`, `avatar-status`, `avatar-status-away`, `avatar-status-busy`, `avatar-status-offline`, `avatar-status-online`
+
+#### Syntax
+```html
+<div class="avatar">
+```
+
+---
+
+### badge
+徽章组件，用于显示状态、小计或通知数量。
+
+[badge docs](https://yami.yuelili.com/badge)
+
+**Usage:** 常见于按钮、图标、标签旁显示数量或状态。
+
+#### Class names
+- component: `badge`
+- style: `badge-ghost`, `badge-outline`, `badge-square`
+- color: `badge-accent`, `badge-destructive`, `badge-error`, `badge-info`, `badge-muted`, `badge-primary`, `badge-secondary`, `badge-success`, `badge-warning`
+- size: `badge-lg`, `badge-md`, `badge-sm`, `badge-xl`, `badge-xs`
+- modifier: `badge-closable`, `badge-dot`, `badge-pill`
+
+#### Syntax
+```html
+<div class="badge badge-primary">新</div>
+```
+
+---
+
+### card
+卡片组件，用于容纳图文、操作等内容块。
+
+[card docs](https://yami.yuelili.com/card)
+
+**Usage:** 常用于仪表盘、商品列表、信息展示区。
+
+#### Class names
+- component: `card`
+- part: `card-body`, `card-footer`, `card-footer-between`, `card-footer-bordered`, `card-footer-center`, `card-header`, `card-header-bordered`, `card-header-center`, `card-header-row`, `card-image`, `card-image-lg`, `card-image-md`, `card-image-sm`, `card-title`, `card-title-deco`, `card-title-deco-destructive`
+- style: `card-shadow`
+- color: `card-accent`, `card-destructive`, `card-muted`, `card-primary`, `card-secondary`
+- size: `card-lg`, `card-shadow-lg`
+- behavior: `card-hover`
+- modifier: `card-borderless`, `card-clickable`, `card-compact`, `card-description`, `card-glass`, `card-gradient`, `card-grid`, `card-grid-compact`, `card-grid-relaxed`
+
+#### Syntax
+```html
+<div class="card">
+```
+
+---
+
+### carousel
+轮播组件，用于展示多张图片或内容滑块。
+
+[carousel docs](https://yami.yuelili.com/carousel)
+
+**Usage:** 适用于图片展示、横幅、广告位、产品展示等。
+
+#### Class names
+- component: `carousel`
+- part: `carousel-caption-title`
+- size: `carousel-lg`, `carousel-md`, `carousel-sm`
+- behavior: `carousel-indicator-active`, `carousel-thumbnail-active`
+- placement: `carousel-center`, `carousel-vertical`
+- modifier: `carousel-3d`, `carousel-btn`, `carousel-btn-next`, `carousel-btn-prev`, `carousel-caption`, `carousel-caption-description`, `carousel-cards`, `carousel-cards-responsive`, `carousel-container`, `carousel-fade`, `carousel-fullscreen`, `carousel-indicator`, `carousel-indicator-progress`, `carousel-indicators`, `carousel-item`, `carousel-loop`, `carousel-navigation`, `carousel-thumbnail`, `carousel-thumbnails`
+
+#### Syntax
+```html
+<div class="carousel carousel-md">
+```
+
+---
+
+### chat
+聊天气泡组件，用于展示会话消息。
+
+[chat docs](https://yami.yuelili.com/chat)
+
+**Usage:** 常用于消息中心、客服聊天、社交互动等。
+
+#### Class names
+- component: `chat`
+- part: `chat-footer`, `chat-header`, `chat-image`
+- color: `chat-bubble-accent`, `chat-bubble-destructive`, `chat-bubble-muted`, `chat-bubble-primary`
+- placement: `chat-end`, `chat-start`
+- modifier: `chat-bubble`
+
+#### Syntax
+```html
+<div class="chat chat-start">
+```
+
+---
+
+### collapse
+折叠面板组件，用于隐藏/展开内容区域。
+
+[collapse docs](https://yami.yuelili.com/collapse)
+
+**Usage:** 适用于过滤器、设置项、帮助文档等场景。
+
+#### Class names
+- component: `collapse`
+- part: `collapse-content`, `collapse-title`
+- style: `collapse-bordered`, `collapse-shadow`
+- color: `collapse-accent`, `collapse-destructive`, `collapse-muted`, `collapse-primary`, `collapse-secondary`
+- size: `collapse-lg`, `collapse-sm`
+- behavior: `collapse-close`, `collapse-disabled`, `collapse-hover`, `collapse-open`
+- modifier: `collapse-arrow`, `collapse-group`, `collapse-group-compact`, `collapse-plus`
+
+#### Syntax
+```html
+<div class="bg-card rounded-xl border border-border p-6 shadow-sm">
+```
+
+---
+
+### kbd
+键盘提示组件，用于展示快捷键或键盘操作说明。
+
+[kbd docs](https://yami.yuelili.com/kbd)
+
+**Usage:** 在表单提示、文档、快捷说明中使用。
+
+#### Class names
+- component: `kbd`
+- color: `kbd-destructive`, `kbd-muted`, `kbd-primary`, `kbd-secondary`
+- size: `kbd-lg`, `kbd-md`, `kbd-sm`, `kbd-xs`
+- placement: `kbd-left`, `kbd-right`
+- modifier: `kbd-alt`, `kbd-caps`, `kbd-command`, `kbd-ctrl`, `kbd-delete`, `kbd-down`, `kbd-enter`, `kbd-escape`, `kbd-flat`, `kbd-group`, `kbd-option`, `kbd-shift`, `kbd-tab`, `kbd-up`
+
+#### Syntax
+```html
+<kbd class="kbd">A</kbd>
+```
+
+---
+
+### list
+列表组件，用于展示项目集合或菜单项。
+
+[list docs](https://yami.yuelili.com/list)
+
+**Usage:** 用于导航菜单、侧边栏、选项列表。
+
+#### Class names
+- component: `list`
+- behavior: `list-hoverable`
+- modifier: `list-borderless`, `list-col-grow`, `list-col-wrap`, `list-compact`, `list-relaxed`, `list-row`, `list-zebra`
+
+#### Syntax
+```html
+<div class="list">
+```
+
+#### Rules
+- 支持 list-decimal, list-disc, list-none
+- 支持 list-inside, list-outside
+
+---
+
+### stat
+统计数据展示组件，用于显示指标和数值。
+
+[stat docs](https://yami.yuelili.com/stat)
+
+**Usage:** 用于仪表盘、业绩报表、数据总览。
+
+#### Class names
+- component: `stat`
+- part: `stat-title`
+- placement: `stats-vertical`
+- modifier: `stat-actions`, `stat-desc`, `stat-figure`, `stat-value`, `stats`
+
+#### Syntax
+```html
+<div class="stats w-full">
+```
+
+---
+
+### table
+表格组件，用于展示结构化数据。
+
+[table docs](https://yami.yuelili.com/table)
+
+**Usage:** 用于后台管理、数据分析、信息列表。
+
+#### Class names
+- component: `table`
+- style: `table-bordered`
+- color: `table-accent`, `table-destructive`, `table-primary`, `table-secondary`
+- size: `table-lg`, `table-md`, `table-sm`, `table-xl`, `table-xs`
+- behavior: `table-hover`, `table-loading`
+- placement: `table-center`, `table-horizontal`, `table-right`, `table-vertical`
+- modifier: `table-borderless`, `table-card`, `table-comfortable`, `table-compact`, `table-container`, `table-empty`, `table-highlight`, `table-pin-cols`, `table-pin-rows`, `table-selectable`, `table-sortable`, `table-zebra`
+
+#### Syntax
+```html
+<table class="table">
+```
+
+#### Rules
+- 支持 table-zebra, table-compact, table-fixed
+- 支持 hover、striped、bordered 样式
+
+---
+
+### timeline
+时间线组件，用于展示时间顺序事件。
+
+[timeline docs](https://yami.yuelili.com/timeline)
+
+**Usage:** 适用于项目进度、活动节点、历史记录。
+
+#### Class names
+- component: `timeline`
+- part: `timeline-icon`
+- style: `timeline-rounded`
+- color: `timeline-accent`, `timeline-muted`, `timeline-primary`, `timeline-secondary`
+- size: `timeline-lg`, `timeline-sm`
+- placement: `timeline-end`, `timeline-horizontal`, `timeline-start`, `timeline-vertical`
+- modifier: `timeline-alternate`, `timeline-animated`, `timeline-box`, `timeline-compact`, `timeline-dot`, `timeline-item`, `timeline-line`, `timeline-line-dashed`, `timeline-line-dotted`, `timeline-middle`
+
+#### Syntax
+```html
+<div
+```
+
+---
+
+### alert
+警告提示组件，用于展示重要信息、警告或状态提示。
+
+[alert docs](https://yami.yuelili.com/alert)
+
+**Usage:** 常用于表单验证、系统提示、操作结果反馈等。
+
+#### Class names
+- component: `alert`
+- part: `alert-no-icon`, `alert-title`
+- style: `alert-filled`
+- color: `alert-error`, `alert-info`, `alert-success`, `alert-warning`
+- size: `alert-lg`, `alert-sm`
+- behavior: `alert-close`, `alert-enter-active`, `alert-fade-enter-active`, `alert-fade-leave-active`, `alert-leave-active`
+- modifier: `alert-borderless`, `alert-description`, `alert-enter`, `alert-enter-to`, `alert-fade-enter`, `alert-fade-enter-to`, `alert-fade-leave`, `alert-fade-leave-to`, `alert-leave`, `alert-leave-to`
+
+#### Syntax
+```html
+<div class="alert alert-info">
+```
+
+---
+
+### hover-card
+悬浮卡片组件，用于在悬停时展示额外内容。
+
+[hover-card docs](https://yami.yuelili.com/hover-card)
+
+**Usage:** 常用于显示用户简介、商品预览、提示信息等。
+
+#### Class names
+- component: `hover-card`
+- size: `hover-card-lg`, `hover-card-md`, `hover-card-sm`
+- behavior: `hover-card`, `hover-card-center`, `hover-card-compact`, `hover-card-delay`, `hover-card-open`, `hover-card-right`, `hover-card-simple`
+
+#### Syntax
+```html
+<div class="hover-card">
+```
+
+---
+
+### progress
+进度条组件，用于展示任务或操作的完成进度。
+
+[progress docs](https://yami.yuelili.com/progress)
+
+**Usage:** 常用于加载状态、上传进度、任务执行等场景。
+
+#### Class names
+- component: `progress`
+- style: `progress-bordered`, `progress-circle`, `progress-rounded-full`, `progress-rounded-none`
+- color: `progress-accent`, `progress-error`, `progress-gradient-error`, `progress-gradient-success`, `progress-gradient-warning`, `progress-info`, `progress-primary`, `progress-secondary`, `progress-success`, `progress-warning`
+- size: `progress-circle-lg`, `progress-circle-sm`, `progress-lg`, `progress-md`, `progress-rounded-lg`, `progress-rounded-md`, `progress-rounded-sm`, `progress-sm`, `progress-vertical-lg`, `progress-vertical-md`, `progress-vertical-sm`, `progress-vertical-xl`, `progress-vertical-xs`, `progress-xl`, `progress-xs`
+- placement: `progress-vertical`
+- modifier: `progress-animated`, `progress-bar`, `progress-container`, `progress-glow`, `progress-gradient`, `progress-indeterminate`, `progress-labeled`, `progress-segmented`, `progress-striped`, `progress-striped-animated`
+
+#### Syntax
+```html
+<div class="progress w-full">
+```
+
+---
+
+### skeleton
+骨架屏组件，用于在加载内容时显示占位。
+
+[skeleton docs](https://yami.yuelili.com/skeleton)
+
+**Usage:** 常用于页面或卡片加载等待时，提升用户体验。
+
+#### Class names
+- component: `skeleton`
+- part: `skeleton-image`, `skeleton-title`, `skeleton-title-lg`, `skeleton-title-sm`
+- style: `skeleton-circle`, `skeleton-rounded-full`, `skeleton-rounded-none`, `skeleton-square`
+- color: `skeleton-primary`, `skeleton-secondary`
+- size: `skeleton-avatar-lg`, `skeleton-avatar-sm`, `skeleton-avatar-xl`, `skeleton-button-lg`, `skeleton-button-sm`, `skeleton-input-lg`, `skeleton-input-sm`, `skeleton-rounded-lg`, `skeleton-rounded-md`, `skeleton-rounded-sm`, `skeleton-rounded-xl`, `skeleton-text-lg`, `skeleton-text-sm`, `skeleton-text-xl`
+- modifier: `skeleton-article`, `skeleton-avatar`, `skeleton-badge`, `skeleton-button`, `skeleton-card`, `skeleton-card-layout`, `skeleton-comment`, `skeleton-container`, `skeleton-input`, `skeleton-list-item`, `skeleton-paragraph`, `skeleton-progress`, `skeleton-pulse`, `skeleton-rating`, `skeleton-rect`, `skeleton-responsive`, `skeleton-static`, `skeleton-table-row`, `skeleton-tag`, `skeleton-text`, `skeleton-thumbnail`, `skeleton-user-card`, `skeleton-wave`
+
+#### Syntax
+```html
+<div class="flex flex-col gap-4 bg-card p-6 rounded-lg">
+```
+
+---
+
+### toast
+吐司提示组件，用于全局信息提示或短暂反馈。
+
+[toast docs](https://yami.yuelili.com/toast)
+
+**Usage:** 适用于操作结果反馈，如保存成功、删除失败等。
+
+#### Class names
+- component: `toast`
+- part: `toast-no-icon`, `toast-title`
+- style: `toast-bordered`, `toast-filled`
+- color: `toast-error`, `toast-info`, `toast-success`, `toast-warning`
+- size: `toast-lg`, `toast-sm`
+- behavior: `toast-close`, `toast-enter-active`, `toast-leave-active`
+- modifier: `toast-enter`, `toast-enter-to`, `toast-leave`, `toast-leave-to`, `toast-message`
+
+#### Syntax
+```html
+<div class="toast toast-info">
+```
+
+---
+
+### tooltip
+工具提示组件，用于在悬停或聚焦时显示辅助信息。
+
+[tooltip docs](https://yami.yuelili.com/tooltip)
+
+**Usage:** 常用于按钮、图标、文本等元素的提示说明。
+
+#### Class names
+- component: `tooltip`
+- color: `tooltip-accent`, `tooltip-destructive`, `tooltip-primary`, `tooltip-secondary`
+- size: `tooltip-lg`, `tooltip-sm`, `tooltip-w-lg`, `tooltip-w-md`, `tooltip-w-sm`
+- behavior: `tooltip-open`
+- placement: `tooltip-bottom`, `tooltip-left`, `tooltip-right`, `tooltip-top`
+- modifier: `tooltip-delay`, `tooltip-fade`, `tooltip-no-arrow`, `tooltip-scale`, `tooltip-wrap`
+
+#### Syntax
+```html
+<div class="tooltip tooltip-top">
+```
+
+---
+
+### calendar
+日历选择组件，用于日期或日期区间选择。
+
+[calendar docs](https://yami.yuelili.com/calendar)
+
+**Usage:** 常用于选择生日、活动日期、预订时间等。
+
+#### Class names
+- component: `calendar`
+- part: `calendar-header`, `calendar-title`
+- color: `calendar-day-event-destructive`, `calendar-day-event-primary`
+- size: `calendar-lg`
+- behavior: `calendar-day-disabled`, `calendar-day-selected`
+- placement: `calendar-compact`, `calendar-day`, `calendar-day-event`, `calendar-day-multiple`, `calendar-day-outside`, `calendar-day-range-end`, `calendar-day-range-middle`, `calendar-day-range-start`, `calendar-day-today`, `calendar-day-weekend`, `calendar-days`, `calendar-month`, `calendar-months`, `calendar-nav`, `calendar-weekday`, `calendar-weekdays`, `calendar-year`, `calendar-years`
+
+#### Syntax
+```html
+<div class="calendar">Content</div>
+```
+
+---
+
+### checkbox
+多选框组件，用于多项选择或状态切换。
+
+[checkbox docs](https://yami.yuelili.com/checkbox)
+
+**Usage:** 常用于表单、多选列表、设置项中。
+
+#### Class names
+- component: `checkbox`
+- color: `checkbox-accent`, `checkbox-destructive`, `checkbox-primary`, `checkbox-secondary`
+- size: `checkbox-lg`, `checkbox-md`, `checkbox-sm`, `checkbox-xl`
+- modifier: `checkbox-animated`, `checkbox-card`, `checkbox-group`, `checkbox-thick`
+
+#### Syntax
+```html
+<label class="checkbox">
+```
+
+---
+
+### fieldset
+字段集组件，用于分组相关表单控件。
+
+[fieldset docs](https://yami.yuelili.com/fieldset)
+
+**Usage:** 常用于表单逻辑分区、配置组、调查表。
+
+#### Class names
+- component: `fieldset`
+- part: `fieldset-with-icon`
+- color: `fieldset-accent`, `fieldset-border-left-accent`, `fieldset-border-left-destructive`, `fieldset-border-left-secondary`, `fieldset-destructive`, `fieldset-error`, `fieldset-primary`, `fieldset-secondary`, `fieldset-success`, `fieldset-warning`
+- size: `fieldset-lg`, `fieldset-md`, `fieldset-sm`
+- behavior: `fieldset-disabled`
+- placement: `fieldset-border-left`, `fieldset-border-top`
+- modifier: `fieldset-border-dashed`, `fieldset-border-dotted`, `fieldset-border-thick`, `fieldset-card`, `fieldset-collapsible`, `fieldset-compact`, `fieldset-divided`, `fieldset-grid`, `fieldset-grid-2`, `fieldset-grid-3`, `fieldset-inline`, `fieldset-label-inside`, `fieldset-nested`, `fieldset-plain`, `fieldset-required`
+
+#### Syntax
+```html
+<fieldset class="fieldset">
+```
+
+---
+
+### file
+文件选择组件，用于上传文件或图片。
+
+[file docs](https://yami.yuelili.com/file)
+
+**Usage:** 常用于用户上传、头像选择、附件提交等场景。
+
+#### Class names
+- style: `file-input-rounded-full`, `file-input-rounded-none`
+- color: `file-input-accent`, `file-input-button-primary`, `file-input-button-secondary`, `file-input-destructive`, `file-input-error`, `file-input-primary`, `file-input-secondary`, `file-input-success`
+- size: `file-input-lg`, `file-input-md`, `file-input-rounded-lg`, `file-input-rounded-sm`, `file-input-sm`
+- modifier: `file-input`, `file-input-button`, `file-input-custom`, `file-input-dropzone`, `file-input-dropzone-compact`, `file-input-full`
+
+#### Syntax
+```html
+<div class="file-input file-input-primary">
+```
+
+---
+
+### filter
+筛选器组件，用于多条件筛选或搜索结果过滤。
+
+[filter docs](https://yami.yuelili.com/filter)
+
+**Usage:** 常用于商品筛选、数据表格过滤等。
+
+#### Class names
+- part: `filter-dropdown-icon`, `filter-search-icon`
+- style: `filter-bar-ghost`
+- behavior: `filter-dropdown-trigger-active`
+- placement: `filter-group-vertical`
+- modifier: `filter-bar`, `filter-bar-compact`, `filter-clear`, `filter-count`, `filter-dropdown-trigger`, `filter-group`, `filter-item`, `filter-search`, `filter-search-input`
+
+#### Syntax
+```html
+<div class="filter-bar">
+```
+
+---
+
+### input
+输入框组件，用于文本、数字等数据输入。
+
+[input docs](https://yami.yuelili.com/input)
+
+**Usage:** 常用于表单、搜索栏、配置项等。
+
+#### Class names
+- component: `input`
+- style: `input-bordered`, `input-filled`, `input-ghost`
+- color: `input-destructive`, `input-primary`, `input-secondary`
+- size: `input-lg`, `input-md`, `input-sm`, `input-xl`, `input-xs`
+- modifier: `input-borderless`, `input-group`
+
+#### Syntax
+```html
+<input class="input" value="默认值" />
+```
+
+---
+
+### label
+表单标签组件，用于标识输入字段。
+
+[label docs](https://yami.yuelili.com/label)
+
+**Usage:** 常用于 input、select、textarea 前的说明文字。
+
+#### Class names
+- component: `label`
+- part: `label-float-icon`
+- style: `label-float-outlined`
+- color: `label-float-error`, `label-float-success`
+- size: `label-float-lg`, `label-float-sm`, `label-lg`, `label-md`, `label-sm`, `label-xs`
+- modifier: `label-description`, `label-float`, `label-float-required`, `label-inline`, `label-required`
+
+#### Syntax
+```html
+<div class="label">
+```
+
+---
+
+### number
+数字输入组件，用于输入或调整数值。
+
+[number docs](https://yami.yuelili.com/number)
+
+**Usage:** 常用于数量、价格、步进值输入等。
+
+#### Class names
+- behavior: `input-number-disabled`
+- modifier: `input-number`, `input-number`, `input-number`, `input-number-separated`
+
+#### Syntax
+```html
+<div class="flex flex-nowrap items-center gap-4">
+```
+
+---
+
+### radio
+单选按钮组件，用于互斥选择。
+
+[radio docs](https://yami.yuelili.com/radio)
+
+**Usage:** 常用于表单单选、性别选择、选项组。
+
+#### Class names
+- component: `radio`
+- part: `radio-icon`
+- color: `radio-accent`, `radio-error`, `radio-primary`, `radio-secondary`, `radio-success`, `radio-warning`
+- size: `radio-lg`, `radio-md`, `radio-sm`, `radio-xl`, `radio-xs`
+- modifier: `radio-button`, `radio-button-group`, `radio-card`, `radio-description`, `radio-group`, `radio-group-inline`
+
+#### Syntax
+```html
+<div class="radio-group-inline">
+```
+
+---
+
+### range
+滑块组件，用于选择范围或调节数值。
+
+[range docs](https://yami.yuelili.com/range)
+
+**Usage:** 常用于音量、亮度、进度控制等场景。
+
+#### Class names
+- component: `range`
+- style: `range-square-thumb`, `range-square-track`
+- color: `range-accent`, `range-destructive`, `range-muted`, `range-primary`, `range-secondary`
+- size: `range-lg`, `range-md`, `range-sm`, `range-xl`, `range-xs`
+- modifier: `range-no-fill`, `range-no-thumb`, `range-stepped`
+
+#### Syntax
+```html
+<input type="range" min="0" max="100" class="range" />
+```
+
+---
+
+### rating
+评分组件，用于展示或收集用户评分。
+
+[rating docs](https://yami.yuelili.com/rating)
+
+**Usage:** 常用于商品评价、反馈评分。
+
+#### Class names
+- component: `rating`
+- size: `rating-lg`, `rating-md`, `rating-sm`, `rating-xl`, `rating-xs`
+- modifier: `rating-half`, `rating-heart`, `rating-hidden`, `rating-readonly`
+
+#### Syntax
+```html
+<div class="rating" name="rating-basic">
+```
+
+---
+
+### select
+下拉选择组件，用于从多个选项中选择一个。
+
+[select docs](https://yami.yuelili.com/select)
+
+**Usage:** 常用于表单、过滤器、设置项。
+
+#### Class names
+- component: `select`
+- style: `select-bordered`, `select-ghost`
+- color: `select-accent`, `select-destructive`, `select-primary`, `select-secondary`
+- size: `select-lg`, `select-md`, `select-sm`, `select-xl`, `select-xs`
+- modifier: `select-borderless`, `select-group`, `select-labeled`, `select-multiple`, `select-optgroup`, `select-option`, `select-wide`, `select-wrapper`
+
+#### Syntax
+```html
+<select class="select">
+```
+
+---
+
+### textarea
+多行文本输入框组件，用于输入较长的文本。
+
+[textarea docs](https://yami.yuelili.com/textarea)
+
+**Usage:** 常用于留言、评论、表单输入等场景。
+
+#### Class names
+- component: `textarea`
+- part: `textarea-icon`
+- style: `textarea-bordered`, `textarea-ghost`
+- color: `textarea-accent`, `textarea-primary`, `textarea-secondary`
+- size: `textarea-h-lg`, `textarea-h-md`, `textarea-h-sm`, `textarea-lg`, `textarea-md`, `textarea-sm`, `textarea-xl`, `textarea-xs`
+- modifier: `textarea-auto`, `textarea-borderless`, `textarea-code`, `textarea-counter`, `textarea-h-auto`, `textarea-h-full`, `textarea-resize`, `textarea-resize-none`, `textarea-resize-x`, `textarea-resize-y`, `textarea-wrapper`
+
+#### Syntax
+```html
+<textarea class="textarea" placeholder="请输入内容..."></textarea>
+```
+
+---
+
+### toggle
+开关组件，用于开/关状态切换。
+
+[toggle docs](https://yami.yuelili.com/toggle)
+
+**Usage:** 常用于设置项、权限控制、模式切换。
+
+#### Class names
+- component: `toggle`
+- color: `toggle-accent`, `toggle-destructive`, `toggle-primary`, `toggle-secondary`
+- size: `toggle-lg`, `toggle-md`, `toggle-sm`, `toggle-xs`
+
+#### Syntax
+```html
+<input type="checkbox" class="toggle" />
+```
+
+---
+
+### validator
+表单验证反馈组件，用于显示输入错误或成功提示。
+
+[validator docs](https://yami.yuelili.com/validator)
+
+**Usage:** 常用于输入框下方的验证状态提示。
+
+#### Class names
+- component: `validator`
+- modifier: `validator-hint`
+
+#### Syntax
+```html
+<div class="validator">
+```
+
+---
+
+### divider
+分隔线组件，用于分隔内容区域或元素。
+
+[divider docs](https://yami.yuelili.com/divider)
+
+**Usage:** 常用于区分不同的模块、卡片内容、标题下划线等。
+
+#### Class names
+- component: `divider`
+- color: `divider-accent`, `divider-destructive`, `divider-muted`, `divider-primary`
+- placement: `divider-end`, `divider-horizontal`, `divider-start`, `divider-vertical`
+
+#### Syntax
+```html
+<div class="divider">分割文本</div>
+```
+
+---
+
+### drawer
+抽屉组件，用于从页面边缘滑出的内容区域。
+
+[drawer docs](https://yami.yuelili.com/drawer)
+
+**Usage:** 常用于侧边菜单、设置面板、移动端导航。
+
+#### Class names
+- component: `drawer`
+- part: `drawer-content`
+- behavior: `drawer-open`
+- placement: `drawer-end`
+- modifier: `drawer-side`, `drawer-toggle`
+
+#### Syntax
+```html
+<div class="drawer">
+```
+
+---
+
+### breadcrumb
+面包屑导航组件，用于展示当前页面的层级路径。
+
+[breadcrumb docs](https://yami.yuelili.com/breadcrumb)
+
+**Usage:** 常用于后台管理系统、层级页面导航。
+
+#### Class names
+- component: `breadcrumb`
+- size: `breadcrumb-lg`, `breadcrumb-sm`
+- modifier: `breadcrumb-chevron`, `breadcrumb-dot`, `breadcrumb-slash`
+
+#### Syntax
+```html
+<nav class="breadcrumb">
+```
+
+---
+
+### dock
+停靠栏组件，用于固定在页面边缘的导航或工具栏。
+
+[dock docs](https://yami.yuelili.com/dock)
+
+**Usage:** 常用于底部导航栏、悬浮操作条、快捷工具区。
+
+#### Class names
+- component: `dock`
+- size: `dock-lg`, `dock-md`, `dock-sm`, `dock-xl`, `dock-xs`
+- behavior: `dock-active`
+- modifier: `dock-label`
+
+#### Syntax
+```html
+<div class="dock">
+```
+
+---
+
+### menu
+菜单组件，用于导航链接、操作项或列表展示。
+
+[menu docs](https://yami.yuelili.com/menu)
+
+**Usage:** 常用于侧边栏、下拉菜单、导航栏中的菜单项。
+
+#### Class names
+- component: `menu`
+- part: `menu-title`
+- size: `menu-lg`, `menu-md`, `menu-sm`, `menu-xl`, `menu-xs`
+- behavior: `menu-active`
+- placement: `menu-horizontal`, `menu-vertical`
+
+#### Syntax
+```html
+<ul class="menu bg-card border rounded-lg w-56">
+```
+
+---
+
+### navbar
+顶部导航栏组件，用于页面的主导航区域。
+
+[navbar docs](https://yami.yuelili.com/navbar)
+
+**Usage:** 常用于站点头部、应用顶部菜单。
+
+#### Class names
+- component: `navbar`
+- part: `navbar-dropdown-icon`, `navbar-mobile-menu`
+- style: `navbar-link`, `navbar-shadow`
+- color: `navbar-primary`
+- size: `navbar-lg`, `navbar-sm`
+- placement: `navbar-center`, `navbar-end`, `navbar-fixed-bottom`, `navbar-fixed-top`, `navbar-start`
+- modifier: `navbar-borderless`, `navbar-brand`, `navbar-compact`, `navbar-container`, `navbar-divider`, `navbar-dropdown`, `navbar-dropdown-toggle`, `navbar-glass`, `navbar-mobile`, `navbar-mobile-toggle`, `navbar-nav`, `navbar-responsive`, `navbar-search`, `navbar-search-input`, `navbar-sticky`
+
+#### Syntax
+```html
+<div class="navbar navbar-shadow">
+```
+
+---
+
+### pagination
+分页导航组件，用于翻页或数据浏览控制。
+
+[pagination docs](https://yami.yuelili.com/pagination)
+
+**Usage:** 常用于表格、列表或内容分页。
+
+#### Class names
+- component: `pagination`
+- style: `pagination-ghost`, `pagination-link`, `pagination-rounded`, `pagination-square`
+- color: `pagination-info`
+- size: `pagination-lg`, `pagination-md`, `pagination-sm`, `pagination-xl`, `pagination-xs`
+- behavior: `pagination-active`
+- placement: `pagination-centered`, `pagination-end`, `pagination-start`
+- modifier: `pagination-between`, `pagination-borderless`, `pagination-btn`, `pagination-compact`, `pagination-ellipsis`, `pagination-next`, `pagination-prev`, `pagination-simple`
+
+#### Syntax
+```html
+<div class="pagination pagination-centered">
+```
+
+---
+
+### tab
+选项卡组件，用于在同一区域切换不同内容。
+
+[tab docs](https://yami.yuelili.com/tab)
+
+**Usage:** 常用于内容切换、面板切换、表单分步界面。
+
+#### Class names
+- part: `tab-content`, `tab-title`
+- style: `tabs-bordered`
+- color: `tabs-primary`
+- size: `tabs-lg`, `tabs-md`, `tabs-sm`
+- modifier: `tabs`, `tabs-boxed`, `tabs-lifted`
+
+#### Syntax
+```html
+<div class="tab">Content</div>
+```
+
+---
+
+## Best Practices
+
+1. **Semantic HTML**: Use appropriate HTML elements (button, nav, article, etc.)
+2. **Accessibility**: Include ARIA labels, roles, and keyboard navigation
+3. **Responsive Design**: Test on mobile, tablet, and desktop viewports
+4. **Consistency**: Use the same component patterns throughout your app
+5. **Dark Mode**: Test both light and dark themes
+
+## Common Patterns
+
+### Form Layout
+```html
+<form class="space-y-4">
+  <div class="input-group">
+    <label class="label">Email</label>
+    <input type="email" class="input input-primary" />
+  </div>
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+```
+
+### Card Grid
+```html
+<div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+  <div class="card card-shadow">
+    <div class="card-body">Content</div>
+  </div>
+</div>
+```

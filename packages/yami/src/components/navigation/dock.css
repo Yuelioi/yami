@@ -1,4 +1,24 @@
-/* Dock 底部导航栏组件 */
+/*
+name: dock
+desc: 停靠栏组件，用于固定在页面边缘的导航或工具栏。
+usage: 常用于底部导航栏、悬浮操作条、快捷工具区。
+syntax:
+<div class="dock">
+<button>
+  <Home class="size-5" />
+  <span class="dock-label">首页</span>
+</button>
+<button>
+  <Search class="size-5" />
+  <span class="dock-label">搜索</span>
+</button>
+<button>
+  <User class="size-5" />
+  <span class="dock-label">我的</span>
+</button>
+</div>
+*/
+
 @utility dock {
   @apply bg-background fixed right-0 bottom-0 left-0 z-50;
   @apply flex w-full flex-row items-center justify-around p-2;

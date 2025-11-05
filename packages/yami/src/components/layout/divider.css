@@ -1,4 +1,12 @@
-/* Divider 分割线组件 */
+/*
+name: divider
+desc: 分隔线组件，用于分隔内容区域或元素。
+usage: 常用于区分不同的模块、卡片内容、标题下划线等。
+syntax:
+<div class="divider">分割文本</div>
+<div class="divider"></div>
+*/
+
 @utility divider {
   @apply flex h-4 flex-row items-center self-stretch whitespace-nowrap;
   @apply my-4;

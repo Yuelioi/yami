@@ -49,11 +49,10 @@
 /* ====================== layout ====================== */
 @import "./components/layout/divider.css";
 @import "./components/layout/drawer.css";
-@import "./components/layout/grid.css";
-@import "./components/layout/panel.css";
 
 /* ====================== navigation ====================== */
 @import "./components/navigation/breadcrumb.css";
+@import "./components/navigation/dock.css";
 @import "./components/navigation/menu.css";
 @import "./components/navigation/navbar.css";
 @import "./components/navigation/pagination.css";

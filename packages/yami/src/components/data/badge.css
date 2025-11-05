@@ -1,6 +1,11 @@
-/* ========================================
-   徽章基础 - 所有徽章共享的基础样式
-   ======================================== */
+/*
+name: badge
+desc: 徽章组件，用于显示状态、小计或通知数量。
+usage: 常见于按钮、图标、标签旁显示数量或状态。
+syntax:
+<div class="badge badge-primary">新</div>
+<span class="badge badge-secondary badge-outline">Beta</span>
+*/
 
 @utility badge {
   /* 布局 */

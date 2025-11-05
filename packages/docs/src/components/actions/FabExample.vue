@@ -31,7 +31,7 @@ const apiClasses = [
     <ApiReference :data="apiClasses" />
 
     <!-- 基础 FAB -->
-    <DocsSection title="基础 FAB" description="垂直排列">
+    <DocsSection title="基础用法" description="垂直排列">
       <div class="relative bg-muted/20 rounded-xl overflow-hidden">
         <div class="fab right-48">
           <!-- 主按钮 -->
