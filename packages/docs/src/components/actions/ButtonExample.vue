@@ -172,8 +172,8 @@ const apiClasses = [
     <!-- 形状 -->
     <DocsSection title="形状与宽度">
       <div class="flex gap-4 flex-wrap">
-        <button class="btn btn-primary btn-pill">圆角</button>
-        <button class="btn btn-primary btn-square">方形</button>
+        <button class="btn btn-primary btn-pill size-12">圆角</button>
+        <button class="btn btn-primary btn-square size-12">方形</button>
         <button class="btn btn-primary btn-full">整行按钮</button>
         <button class="btn btn-primary btn-wide">宽按钮</button>
       </div>

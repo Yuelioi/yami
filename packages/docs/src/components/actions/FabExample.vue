@@ -32,21 +32,21 @@ const apiClasses = [
 
     <!-- 基础 FAB -->
     <DocsSection title="基础用法" description="垂直排列">
-      <div class="relative bg-muted/20 rounded-xl overflow-hidden">
-        <div class="fab right-48">
+      <div class="relative bg-muted/20 rounded-xl h-24">
+        <div class="fab absolute">
           <!-- 主按钮 -->
-          <button tabindex="0" class="btn btn-primary rounded-full size-14 shadow-lg">
+          <button tabindex="0" class="btn btn-pill size-12 btn-primary flex shadow-lg">
             <Plus class="w-6 h-6" />
           </button>
 
           <!-- 子操作项 -->
-          <button class="btn btn-secondary rounded-full size-12 shadow-md">
+          <button class="btn btn-secondary btn-pill size-12 shadow-md">
             <Edit class="w-5 h-5" />
           </button>
-          <button class="btn btn-accent rounded-full size-12 shadow-md">
+          <button class="btn btn-accent btn-pill size-12 shadow-md">
             <Share2 class="w-5 h-5" />
           </button>
-          <button class="btn btn-destructive rounded-full size-12 shadow-md">
+          <button class="btn btn-destructive btn-pill size-12 shadow-md">
             <Trash2 class="w-5 h-5" />
           </button>
         </div>
@@ -55,26 +55,26 @@ const apiClasses = [
 
     <!-- 花瓣 FAB -->
     <DocsSection title="Flower 布局 FAB" description="散开布局">
-      <div class="relative bg-muted/20 rounded-xl overflow-hidden">
-        <div class="fab fab-flower">
+      <div class="relative bg-muted/20 rounded-xl h-24">
+        <div class="fab fab-flower absolute">
           <!-- 主按钮 -->
-          <button tabindex="0" class="btn btn-primary rounded-full size-14 shadow-lg">
+          <button tabindex="0" class="btn btn-pill btn-primary size-12 shadow-lg">
             <Plus class="w-6 h-6" />
           </button>
 
           <!-- 关闭按钮 -->
-          <button class="fab-close btn btn-primary rounded-full size-14 shadow-lg">
+          <button class="fab-close btn btn-pill btn-primary size-12 shadow-lg">
             <X class="w-6 h-6" />
           </button>
 
           <!-- 子项 -->
-          <button class="btn btn-secondary rounded-full size-12 shadow-md">
+          <button class="btn btn-secondary size-12 shadow-md">
             <Edit class="w-5 h-5" />
           </button>
-          <button class="btn btn-accent rounded-full size-12 shadow-md">
+          <button class="btn btn-accent size-12 shadow-md">
             <Share2 class="w-5 h-5" />
           </button>
-          <button class="btn btn-destructive rounded-full size-12 shadow-md">
+          <button class="btn btn-destructive size-12 shadow-md">
             <Trash2 class="w-5 h-5" />
           </button>
         </div>

@@ -178,15 +178,15 @@ syntax:
 }
 
 /* ========================================
-   形状变体
+   形状变体 具体大小使用 size-x 进行设置
    ======================================== */
 
 @utility btn-pill {
-  @apply rounded-full;
+  @apply rounded-full aspect-square;
 }
 
 @utility btn-square {
-  @apply rounded-none;
+  @apply rounded-none aspect-square;
 }
 
 /* ========================================

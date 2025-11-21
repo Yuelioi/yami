@@ -25,7 +25,7 @@ syntax:
 
 /* 卡片头部 */
 @utility card-header {
-  @apply flex flex-col gap-1.5 p-6;
+  @apply flex flex-col gap-1.5;
 }
 
 /* 卡片标题 */
@@ -66,12 +66,12 @@ syntax:
 
 /* 卡片内容 */
 @utility card-body {
-  @apply p-6 pt-0;
+  @apply flex flex-1;
 }
 
 /* 卡片底部 */
 @utility card-footer {
-  @apply flex items-center gap-2 p-6 pt-0;
+  @apply flex items-center gap-2;
 }
 
 /* === 卡片变体 === */
