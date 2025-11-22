@@ -87,6 +87,9 @@ version: 1.0.0
 - `btn-md`
 - `btn-lg`
 - `btn-xl`
+- `btn-left`
+- `btn-center`
+- `btn-right`
 - `btn-link`
 - `btn-icon`
 - `btn-icon-xs`
@@ -341,7 +344,8 @@ version: 1.0.0
 - `card-destructive`
 - `card-accent`
 - `card-muted`
-- `card-compact`
+- `card-sm`
+- `card-md`
 - `card-lg`
 - `card-glass`
 - `card-gradient`

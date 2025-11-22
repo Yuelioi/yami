@@ -17,8 +17,15 @@ syntax:
 */
 
 @utility card {
-  @apply rounded-lg border bg-card text-card-foreground shadow-sm;
+  --card-padding: theme(spacing.6);
+  --card-padding-top-body: 0;
+
+  @apply rounded-lg border bg-card text-card-foreground shadow-sm flex flex-col;
   @apply transition-all duration-200;
+
+  &:not(:has(.card-header)) .card-body {
+    padding-top: var(--card-padding);
+  }
 }
 
 /* === 卡片内部结构 === */
@@ -26,6 +33,7 @@ syntax:
 /* 卡片头部 */
 @utility card-header {
   @apply flex flex-col gap-1.5;
+  padding: var(--card-padding);
 }
 
 /* 卡片标题 */
@@ -66,11 +74,15 @@ syntax:
 
 /* 卡片内容 */
 @utility card-body {
-  @apply flex flex-1;
+  padding: var(--card-padding);
+  padding-top: var(--card-padding-top-body);
+  @apply flex flex-col flex-1;
 }
 
 /* 卡片底部 */
 @utility card-footer {
+  padding: var(--card-padding);
+  padding-top: var(--card-padding-top-body);
   @apply flex items-center gap-2;
 }
 
@@ -141,18 +153,18 @@ syntax:
 /* === 卡片尺寸 === */
 
 /* 紧凑卡片 */
-@utility card-compact {
-  & .card-header {
-    @apply p-4;
-  }
+@utility card-sm {
+  --card-padding: theme(spacing.4);
+  --card-padding-top-body: 0;
 
-  & .card-body {
-    @apply p-4 pt-0;
+  & .card-title {
+    @apply text-base;
   }
+}
 
-  & .card-footer {
-    @apply p-4 pt-0;
-  }
+@utility card-md {
+  --card-padding: theme(spacing.6);
+  --card-padding-top-body: 0;
 
   & .card-title {
     @apply text-base;
@@ -161,17 +173,8 @@ syntax:
 
 /* 大卡片 */
 @utility card-lg {
-  & .card-header {
-    @apply p-8;
-  }
-
-  & .card-body {
-    @apply p-8 pt-0;
-  }
-
-  & .card-footer {
-    @apply p-8 pt-0;
-  }
+  --card-padding: theme(spacing.8);
+  --card-padding-top-body: 0;
 
   & .card-title {
     @apply text-2xl;

@@ -140,6 +140,20 @@ syntax:
 }
 
 /* ========================================
+   对齐
+   ======================================== */
+@utility btn-left {
+  @apply justify-start;
+}
+
+@utility btn-center {
+  @apply justify-center;
+}
+
+@utility btn-right {
+  @apply justify-end;
+}
+/* ========================================
    特殊变体
    ======================================== */
 
