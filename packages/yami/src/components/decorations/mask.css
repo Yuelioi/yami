@@ -1,0 +1,9 @@
+@utility mask-bottom {
+  @apply relative;
+  &::after {
+    content: "";
+    @apply absolute inset-x-0 bottom-0 h-2/5;
+    @apply bg-gradient-to-t from-black/60 to-transparent;
+    @apply pointer-events-none;
+  }
+}

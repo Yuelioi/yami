@@ -33,12 +33,21 @@ syntax:
 
 /* 轮播容器 */
 @utility carousel-container {
-  @apply flex transition-transform duration-500 ease-out;
+  @apply flex transition-transform h-full duration-500 ease-out;
 }
 
 /* 轮播项 */
 @utility carousel-item {
-  @apply min-w-full flex-shrink-0;
+  @apply min-w-full flex-shrink-0 relative;
+
+  & img {
+    @apply w-full h-full object-cover;
+  }
+}
+
+/* === 导航标题 === */
+@utility carousel-title {
+  @apply absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-center font-bold text-2xl drop-shadow-lg;
 }
 
 /* === 导航按钮 === */

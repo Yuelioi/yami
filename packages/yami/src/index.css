@@ -21,6 +21,9 @@
 @import "./components/data/table.css";
 @import "./components/data/timeline.css";
 
+/* ====================== decoration ====================== */
+@import "./components/decorations/mask.css";
+
 /* ====================== feedback ====================== */
 @import "./components/feedback/alert.css";
 @import "./components/feedback/hover-card.css";

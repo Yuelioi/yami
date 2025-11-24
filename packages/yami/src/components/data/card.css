@@ -38,7 +38,7 @@ syntax:
 
 /* 卡片标题 */
 @utility card-title {
-  @apply text-xl font-semibold leading-none tracking-tight;
+  @apply text-xl font-semibold tracking-tight;
 }
 
 /* 卡片标题带装饰 */
