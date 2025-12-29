@@ -14,7 +14,7 @@ syntax:
 @utility select {
   @apply w-full px-4 input-h-md pr-10;
   @apply text-sm text-foreground;
-  @apply bg-input;
+  @apply bg-background;
   @apply border border-input rounded-md;
   @apply transition-colors duration-200;
   @apply cursor-pointer;
@@ -146,15 +146,53 @@ syntax:
 
 /* Multiple select */
 @utility select-multiple {
-  @apply py-2;
+  @apply py-2 h-48;
   background-image: none;
 
   & option {
     @apply py-1.5 px-2;
   }
 
-  & option:checked {
-    @apply bg-primary/10;
+  /* primary */
+  & option:checked,
+  & option:focus,
+  & option:active,
+  & option:hover {
+    @apply bg-primary text-primary-foreground;
+  }
+
+  /* ---------------------- 变体选中背景 ---------------------- */
+
+  /* primary */
+  &:has(.select-primary) option:checked,
+  &:has(.select-primary) option:focus,
+  &:has(.select-primary) option:active,
+  &:has(.select-primary) option:hover {
+    @apply bg-primary;
+  }
+
+  /* secondary */
+  &:has(.select-secondary) option:checked,
+  &:has(.select-secondary) option:focus,
+  &:has(.select-secondary) option:active,
+  &:has(.select-secondary) option:hover {
+    @apply bg-secondary;
+  }
+
+  /* accent */
+  &:has(.select-accent) option:checked,
+  &:has(.select-accent) option:focus,
+  &:has(.select-accent) option:active,
+  &:has(.select-accent) option:hover {
+    @apply bg-accent;
+  }
+
+  /* destructive */
+  &:has(.select-destructive) option:checked,
+  &:has(.select-destructive) option:focus,
+  &:has(.select-destructive) option:active,
+  &:has(.select-destructive) option:hover {
+    @apply bg-destructive;
   }
 }
 

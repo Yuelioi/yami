@@ -1,6 +1,6 @@
 {
   "name": "@yuelioi/yami",
-  "version": "1.0.23",
+  "version": "1.0.29",
   "description": "💫 A lightweight Tailwind CSS utility library for Yuelioi projects.",
   "main": "src/index.css",
   "type": "module",

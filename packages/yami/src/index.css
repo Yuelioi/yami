@@ -45,6 +45,7 @@
 @import "./components/form/rating.css";
 @import "./components/form/range.css";
 @import "./components/form/select.css";
+@import "./components/form/select-checkbox.css";
 @import "./components/form/textarea.css";
 @import "./components/form/toggle.css";
 @import "./components/form/validator.css";

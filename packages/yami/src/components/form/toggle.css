@@ -15,7 +15,7 @@ syntax:
 
   /* 默认样式 - 开关轨道 (更小的尺寸) */
   @apply w-9 h-5 rounded-full;
-  @apply bg-input;
+  @apply bg-background;
   @apply flex items-center;
 
   /* 开关按钮 */

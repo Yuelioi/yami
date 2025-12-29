@@ -186,16 +186,16 @@ version: 1.0.0
 
 #### Class Names
 - `modal`
-- `modal-body`
-- `modal-body-sm`
-- `modal-body-md`
-- `modal-body-lg`
-- `modal-body-xl`
-- `modal-body-full`
+- `modal-content`
+- `modal-content-sm`
+- `modal-content-md`
+- `modal-content-lg`
+- `modal-content-xl`
+- `modal-content-full`
 - `modal-header`
 - `modal-title`
 - `modal-close`
-- `modal-content`
+- `modal-body`
 - `modal-footer`
 - `modal-bounce`
 - `modal-blur`
@@ -206,7 +206,7 @@ version: 1.0.0
   open modal
 </button>
 <dialog id="my_modal_1" class="modal" v-click-modal-outside>
-  <div class="modal-body modal-body-md">
+  <div class="modal-content modal-content-md">
     <h3 class="text-lg font-bold">Hello!</h3>
   </div>
 </dialog>
@@ -393,6 +393,7 @@ version: 1.0.0
 - `carousel`
 - `carousel-container`
 - `carousel-item`
+- `carousel-title`
 - `carousel-navigation`
 - `carousel-btn`
 - `carousel-btn-prev`
@@ -799,6 +800,14 @@ version: 1.0.0
   </div>
 </div>
 ```
+
+---
+
+### mask
+[mask docs](https://yami.yuelili.com/mask)
+
+#### Class Names
+- `mask-bottom`
 
 ---
 
@@ -1490,6 +1499,47 @@ version: 1.0.0
 
 ---
 
+### select-checkbox
+多选下拉框组件，用于从多个选项中选择多个。
+
+[select-checkbox docs](https://yami.yuelili.com/select-checkbox)
+
+**Usage:** 常用于表单、过滤器、标签选择。
+
+#### Class Names
+- `select-checkbox`
+- `select-checkbox-item`
+- `select-checkbox-primary`
+- `select-checkbox-secondary`
+- `select-checkbox-accent`
+- `select-checkbox-destructive`
+- `select-checkbox-sm`
+- `select-checkbox-lg`
+- `select-checkbox-ghost`
+- `select-checkbox-bordered`
+- `select-checkbox-borderless`
+- `select-checkbox-group`
+- `select-checkbox-group-title`
+- `select-checkbox-with-all`
+- `select-checkbox-tags`
+- `select-checkbox-empty`
+
+#### Syntax
+```html
+<div class="select-checkbox">
+   <label class="select-checkbox-item">
+     <input type="checkbox" />
+     <span>选项 A</span>
+   </label>
+   <label class="select-checkbox-item">
+     <input type="checkbox" />
+     <span>选项 B</span>
+   </label>
+ </div>
+```
+
+---
+
 ### select
 下拉选择组件，用于从多个选项中选择一个。
 
@@ -1527,6 +1577,9 @@ version: 1.0.0
   <option>选项 B</option>
 </select>
 ```
+
+#### Rules
+- --------------------- 变体选中背景 ----------------------
 
 ---
 

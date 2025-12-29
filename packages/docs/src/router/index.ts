@@ -48,6 +48,7 @@ import RadioExample from '@/components/form/RadioExample.vue'
 import RangeExample from '@/components/form/RangeExample.vue'
 import RatingExample from '@/components/form/RatingExample.vue'
 import SelectExample from '@/components/form/SelectExample.vue'
+import SelectCheckbox from '@/components/form/SelectCheckbox.vue'
 import TextareaExample from '@/components/form/TextareaExample.vue'
 import ToggleExample from '@/components/form/ToggleExample.vue'
 import ValidatorExample from '@/components/form/ValidatorExample.vue'
@@ -112,6 +113,7 @@ const componentMap: Record<string, any> = {
   range: RangeExample,
   rating: RatingExample,
   select: SelectExample,
+  selectCheckbox: SelectCheckbox,
   textarea: TextareaExample,
   toggle: ToggleExample,
   validator: ValidatorExample,
@@ -185,6 +187,7 @@ export const tabs: TabItem[] = [
   { label: 'Range 滑块', value: 'range', group: '表单组件' },
   { label: 'Rating 评分', value: 'rating', group: '表单组件' },
   { label: 'Select 选择框', value: 'select', group: '表单组件' },
+  { label: 'Select Checkbox 多选框', value: 'selectCheckbox', group: '表单组件' },
   { label: 'Textarea 文本域', value: 'textarea', group: '表单组件' },
   { label: 'Toggle 开关', value: 'toggle', group: '表单组件' },
   { label: 'Validator 校验器', value: 'validator', group: '表单组件' },

@@ -7,7 +7,7 @@ syntax:
   open modal
 </button>
 <dialog id="my_modal_1" class="modal" v-click-modal-outside>
-  <div class="modal-body modal-body-md">
+  <div class="modal-content modal-content-md">
     <h3 class="text-lg font-bold">Hello!</h3>
   </div>
 </dialog>
@@ -34,7 +34,7 @@ syntax:
     @apply visible;
     background-color: oklch(0% 0 0 / 0.4);
 
-    .modal-body {
+    .modal-content {
       scale: 1;
       opacity: 1;
     }
@@ -48,8 +48,8 @@ syntax:
 }
 
 /* Body 基础样式 */
-@utility modal-body {
-  @apply relative flex flex-col;
+@utility modal-content {
+  @apply relative flex flex-col gap-4;
   @apply p-6 max-w-[90vw] max-h-[90vh];
   @apply bg-card text-foreground rounded-lg shadow-xl border border-border;
   @apply overflow-y-auto;
@@ -62,29 +62,61 @@ syntax:
 }
 
 /* Body 尺寸变体 */
-@utility modal-body-sm {
-  @apply w-80;
+@utility modal-content-sm {
+  @apply w-80 gap-2 p-4;
+
+  & .modal-title {
+    @apply text-lg;
+  }
+
+  & .modal-close {
+    @apply p-1.5;
+  }
 }
 
-@utility modal-body-md {
-  @apply w-96;
+@utility modal-content-md {
+  @apply w-96 gap-3 p-5;
+
+  & .modal-title {
+    @apply text-xl;
+  }
+
+  & .modal-close {
+    @apply p-2;
+  }
 }
 
-@utility modal-body-lg {
-  @apply w-[32rem];
+@utility modal-content-lg {
+  @apply w-[32rem] gap-4 p-6;
+
+  & .modal-title {
+    @apply text-xl;
+  }
+
+  & .modal-close {
+    @apply p-2.5;
+  }
 }
 
-@utility modal-body-xl {
-  @apply w-[40rem];
+@utility modal-content-xl {
+  @apply w-[40rem] gap-4 p-6;
+
+  & .modal-title {
+    @apply text-xl;
+  }
+
+  & .modal-close {
+    @apply p-3;
+  }
 }
 
-@utility modal-body-full {
-  @apply w-[95vw];
+@utility modal-content-full {
+  @apply w-[95vw] gap-4 p-6;
 }
 
 /* Header */
 @utility modal-header {
-  @apply flex items-center justify-between mb-4 pb-4;
+  @apply flex items-center justify-between;
 }
 
 @utility modal-title {
@@ -98,23 +130,23 @@ syntax:
   @apply cursor-pointer;
 }
 
-/* Content */
-@utility modal-content {
-  @apply flex-1 overflow-y-auto p-2;
+/* body */
+@utility modal-body {
+  @apply flex-1 overflow-y-auto;
 }
 
 /* Footer */
 @utility modal-footer {
-  @apply flex items-center justify-end gap-3 mt-4 pt-4;
+  @apply flex items-center justify-end gap-3;
 }
 
 /* 动画变体 - 缩放弹出 */
 @utility modal-bounce {
-  .modal-body {
+  .modal-content {
     @apply scale-80 opacity-0;
   }
 
-  &[open] .modal-body {
+  &[open] .modal-content {
     @apply scale-100 opacity-100;
     transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
   }

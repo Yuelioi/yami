@@ -21,7 +21,7 @@ syntax:
   @apply placeholder:text-muted-foreground;
 
   /* 边框和背景 */
-  @apply border-border bg-input;
+  @apply bg-background border border-input;
 
   /* 间距 */
   @apply input-h-md px-3 py-2;

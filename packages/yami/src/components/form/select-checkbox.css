@@ -1,0 +1,202 @@
+/*
+name: select-checkbox
+desc: 多选下拉框组件，用于从多个选项中选择多个。
+usage: 常用于表单、过滤器、标签选择。
+syntax:
+ <div class="select-checkbox">
+   <label class="select-checkbox-item">
+     <input type="checkbox" />
+     <span>选项 A</span>
+   </label>
+   <label class="select-checkbox-item">
+     <input type="checkbox" />
+     <span>选项 B</span>
+   </label>
+ </div>
+*/
+@import "../../utilities/style.css";
+
+/* 多选容器 */
+@utility select-checkbox {
+  @apply space-y-2 max-h-60 overflow-y-auto;
+  @apply border border-input rounded-md;
+  @apply bg-background;
+  @apply input-p-md;
+  @apply transition-colors duration-200;
+  @apply focus-within:ring-2 focus-within:ring-ring focus-within:ring-offset-2 focus-within:ring-offset-background focus-within:border-transparent;
+}
+/* 单个选项 */
+@utility select-checkbox-item {
+  @apply flex items-center gap-2 px-3 py-2;
+  @apply cursor-pointer rounded;
+  @apply hover:bg-muted;
+  @apply transition-colors duration-150;
+
+  & input[type="checkbox"] {
+    @apply w-4 h-4 rounded;
+    @apply border border-input;
+    @apply cursor-pointer;
+    @apply appearance-none;
+    @apply transition-all duration-200;
+    @apply bg-background;
+
+    &:checked {
+      @apply bg-primary border-primary;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='white'%3E%3Cpath d='M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z'%3E%3C/path%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: 1rem;
+    }
+
+    &:disabled {
+      @apply opacity-40 cursor-not-allowed;
+    }
+
+    &:focus {
+      @apply outline-none ring-2 ring-ring ring-offset-2 ring-offset-background;
+    }
+  }
+
+  & span {
+    @apply text-sm text-foreground flex-1;
+  }
+
+  &:has(input:disabled) {
+    @apply opacity-40 cursor-not-allowed;
+  }
+}
+
+/* 颜色变体 */
+@utility select-checkbox-primary {
+  @apply focus-within:ring-primary focus-within:border-transparent;
+
+  & .select-checkbox-item input[type="checkbox"]:checked {
+    @apply bg-primary border-primary;
+  }
+}
+
+@utility select-checkbox-secondary {
+  @apply focus-within:ring-secondary focus-within:border-transparent;
+
+  & .select-checkbox-item input[type="checkbox"]:checked {
+    @apply bg-secondary border-secondary;
+  }
+}
+
+@utility select-checkbox-accent {
+  @apply focus-within:ring-accent focus-within:border-transparent;
+
+  & .select-checkbox-item input[type="checkbox"]:checked {
+    @apply bg-accent border-accent;
+  }
+}
+
+@utility select-checkbox-destructive {
+  @apply focus-within:ring-destructive focus-within:border-transparent;
+
+  & .select-checkbox-item input[type="checkbox"]:checked {
+    @apply bg-destructive border-destructive;
+  }
+}
+
+/* 尺寸变体 */
+@utility select-checkbox-sm {
+  @apply max-h-48 input-p-sm;
+
+  & .select-checkbox-item {
+    @apply input-h-sm px-2 py-1.5 text-xs;
+
+    & input[type="checkbox"] {
+      @apply w-3.5 h-3.5;
+    }
+  }
+}
+
+@utility select-checkbox-lg {
+  @apply max-h-80 input-p-lg;
+
+  & .select-checkbox-item {
+    @apply px-4 py-2.5 text-base;
+
+    & input[type="checkbox"] {
+      @apply w-5 h-5;
+    }
+  }
+}
+
+/* Ghost 样式 */
+@utility select-checkbox-ghost {
+  @apply border-transparent bg-transparent;
+  @apply hover:bg-muted;
+}
+
+/* Bordered 样式 */
+@utility select-checkbox-bordered {
+  @apply border-2;
+}
+
+/* 无边框样式 */
+@utility select-checkbox-borderless {
+  @apply border-transparent;
+  @apply focus-within:ring-0;
+}
+
+/* 分组样式 */
+@utility select-checkbox-group {
+  @apply mb-3;
+
+  &:last-child {
+    @apply mb-0;
+  }
+}
+
+@utility select-checkbox-group-title {
+  @apply px-3 py-2 font-semibold text-xs text-muted-foreground uppercase;
+  @apply bg-muted/50 rounded-sm;
+}
+
+/* 全选项容器 */
+@utility select-checkbox-with-all {
+  @apply space-y-3;
+
+  & > .select-checkbox-all {
+    @apply px-3 py-2 border-b border-input pb-3;
+    @apply flex items-center gap-2 cursor-pointer;
+    @apply rounded hover:bg-muted transition-colors;
+
+    & input[type="checkbox"] {
+      @apply w-4 h-4;
+    }
+
+    & span {
+      @apply text-sm font-medium text-foreground;
+    }
+  }
+
+  & > .select-checkbox-items {
+    @apply max-h-60 overflow-y-auto space-y-2 px-2;
+  }
+}
+
+/* 已选择标签展示 */
+@utility select-checkbox-tags {
+  @apply flex flex-wrap gap-1.5 mt-2;
+
+  & .tag {
+    @apply inline-flex items-center gap-1.5;
+    @apply bg-primary text-primary-foreground;
+    @apply px-2.5 py-1 rounded-full;
+    @apply text-xs font-medium;
+    @apply transition-colors duration-200;
+
+    & button {
+      @apply ml-1 font-bold hover:opacity-70;
+      @apply cursor-pointer;
+    }
+  }
+}
+
+/* 空状态 */
+@utility select-checkbox-empty {
+  @apply py-8 text-center text-sm text-muted-foreground;
+}
