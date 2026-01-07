@@ -26,6 +26,14 @@ syntax:
   &:not(:has(.card-header)) .card-body {
     padding-top: var(--card-padding);
   }
+
+  /*  默认：card 自带 padding */
+  padding: var(--card-padding);
+
+  /* 如果存在 card-body，card 变成“外壳” */
+  &:has(.card-body) {
+    padding: 0;
+  }
 }
 
 /* === 卡片内部结构 === */
