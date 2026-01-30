@@ -92,7 +92,7 @@ syntax:
       .menu-focus,
       :focus-visible
     ) {
-    @apply bg-accent/10 text-foreground cursor-pointer outline-none;
+    @apply bg-primary/10 text-foreground cursor-pointer outline-none;
   }
 
   /* Hover 状态 */
@@ -103,7 +103,7 @@ syntax:
     li:not(.menu-title, .disabled)
     > details
     > summary:not(.menu-title):not(.menu-active, :active, .btn):hover {
-    @apply bg-accent/50 cursor-pointer outline-none;
+    @apply bg-primary/50 cursor-pointer outline-none;
   }
 
   /* 分隔线（空 li） */

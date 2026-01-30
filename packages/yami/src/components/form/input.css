@@ -14,7 +14,7 @@ syntax:
 
 @utility input {
   /* 布局 */
-  @apply flex w-full;
+  /* @apply flex w-full; */
 
   /* 文本 */
   @apply text-sm text-foreground;

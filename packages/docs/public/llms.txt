@@ -166,7 +166,7 @@ version: 1.0.0
   <button class="btn btn-secondary rounded-full size-12 shadow-md">
     <Edit class="w-5 h-5" />
   </button>
-  <button class="btn btn-accent rounded-full size-12 shadow-md">
+  <button class="btn btn-primary rounded-full size-12 shadow-md">
     <Share2 class="w-5 h-5" />
   </button>
   <button class="btn btn-destructive rounded-full size-12 shadow-md">
@@ -660,7 +660,7 @@ version: 1.0.0
 </div>
 
 <div class="stat">
-  <div class="stat-figure text-accent"><ShoppingBag /></div>
+  <div class="stat-figure text-primary"><ShoppingBag /></div>
   <div class="stat-title">订单量</div>
   <div class="stat-value">312</div>
   <div class="stat-desc text-muted-foreground">昨日完成 289 单</div>
@@ -1097,10 +1097,18 @@ version: 1.0.0
 
 #### Syntax
 ```html
+1. HTML 结构用法：
 <div class="tooltip tooltip-top">
   <button class="btn">上方提示</button>
   <div class="tooltip-content">这是顶部提示内容</div>
 </div>
+
+2. data-tip 属性用法：
+<button
+  class="tooltip tooltip-top btn"
+  data-tip="这是顶部提示内容">
+  上方提示
+</button>
 ```
 
 ---

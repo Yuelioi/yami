@@ -2,12 +2,20 @@
 name: tooltip
 desc: 工具提示组件，用于在悬停或聚焦时显示辅助信息。
 usage: 常用于按钮、图标、文本等元素的提示说明。
+
 syntax:
+1. HTML 结构用法：
 <div class="tooltip tooltip-top">
   <button class="btn">上方提示</button>
   <div class="tooltip-content">这是顶部提示内容</div>
 </div>
 
+2. data-tip 属性用法：
+<button
+  class="tooltip tooltip-top btn"
+  data-tip="这是顶部提示内容">
+  上方提示
+</button>
 */
 
 /* === Tooltip 基础样式 === */
@@ -21,7 +29,6 @@ syntax:
     @apply opacity-0 invisible pointer-events-none;
     @apply transition-all duration-200 ease-in-out;
     white-space: nowrap;
-
     @apply rounded-md;
   }
 
@@ -31,10 +38,41 @@ syntax:
   }
 }
 
-/* === Tooltip 位置 - 顶部 === */
+/* === data-tip 属性支持 === */
+[data-tip] {
+  @apply relative inline-block;
+
+  &::after {
+    content: attr(data-tip);
+    @apply absolute z-50 px-3 py-2 text-sm font-medium;
+    @apply bg-popover text-popover-foreground;
+    @apply border border-border;
+    @apply opacity-0 invisible pointer-events-none;
+    @apply transition-all duration-200 ease-in-out;
+    white-space: nowrap;
+    @apply rounded-md;
+    width: max-content;
+  }
+
+  &::before {
+    content: "";
+    @apply absolute z-50;
+    @apply opacity-0 invisible pointer-events-none;
+    @apply transition-all duration-200 ease-in-out;
+  }
+
+  &:hover::after,
+  &:focus::after,
+  &:hover::before,
+  &:focus::before {
+    @apply opacity-100 visible;
+  }
+}
+
+/* === 位置 - 顶部 === */
 @utility tooltip-top {
   & .tooltip-content {
-    @apply bottom-full left-1/2 -translate-x-1/2 mb-2;
+    @apply bottom-full left-1/2 -translate-x-1/2 mb-1;
 
     &::after {
       content: "";
@@ -58,10 +96,35 @@ syntax:
   }
 }
 
-/* === Tooltip 位置 - 底部 === */
+[data-tip].tooltip-top {
+  &::after {
+    @apply bottom-full left-1/2 -translate-x-1/2 mb-1;
+  }
+
+  &::before {
+    @apply bottom-full left-1/2 -translate-x-1/2;
+    @apply border-4 border-transparent;
+    border-top-color: var(--border);
+    margin-top: -1px;
+  }
+
+  &:hover::after,
+  &:focus::after {
+    @apply -translate-y-1 -translate-x-1/2;
+  }
+
+  &:hover::before,
+  &:focus::before {
+    @apply border-[5px] border-transparent;
+    border-top-color: var(--popover);
+    margin-top: -5px;
+  }
+}
+
+/* === 位置 - 底部 === */
 @utility tooltip-bottom {
   & .tooltip-content {
-    @apply top-full left-1/2 -translate-x-1/2 mt-2;
+    @apply top-full left-1/2 -translate-x-1/2 mt-1;
 
     &::after {
       content: "";
@@ -85,10 +148,35 @@ syntax:
   }
 }
 
-/* === Tooltip 位置 - 左侧 === */
+[data-tip].tooltip-bottom {
+  &::after {
+    @apply top-full left-1/2 -translate-x-1/2 mt-1;
+  }
+
+  &::before {
+    @apply top-full left-1/2 -translate-x-1/2;
+    @apply border-4 border-transparent;
+    border-bottom-color: var(--border);
+    margin-bottom: -1px;
+  }
+
+  &:hover::after,
+  &:focus::after {
+    @apply translate-y-1 -translate-x-1/2;
+  }
+
+  &:hover::before,
+  &:focus::before {
+    @apply border-[5px] border-transparent;
+    border-bottom-color: var(--popover);
+    margin-bottom: -5px;
+  }
+}
+
+/* === 位置 - 左侧 === */
 @utility tooltip-left {
   & .tooltip-content {
-    @apply right-full top-1/2 -translate-y-1/2 mr-2;
+    @apply right-full top-1/2 -translate-y-1/2 mr-1;
 
     &::after {
       content: "";
@@ -112,10 +200,35 @@ syntax:
   }
 }
 
-/* === Tooltip 位置 - 右侧 === */
+[data-tip].tooltip-left {
+  &::after {
+    @apply right-full top-1/2 -translate-y-1/2 mr-1;
+  }
+
+  &::before {
+    @apply right-full top-1/2 -translate-y-1/2;
+    @apply border-4 border-transparent;
+    border-left-color: var(--border);
+    margin-left: -1px;
+  }
+
+  &:hover::after,
+  &:focus::after {
+    @apply -translate-x-1 -translate-y-1/2;
+  }
+
+  &:hover::before,
+  &:focus::before {
+    @apply border-[5px] border-transparent;
+    border-left-color: var(--popover);
+    margin-left: -5px;
+  }
+}
+
+/* === 位置 - 右侧 === */
 @utility tooltip-right {
   & .tooltip-content {
-    @apply left-full top-1/2 -translate-y-1/2 ml-2;
+    @apply left-full top-1/2 -translate-y-1/2 ml-1;
 
     &::after {
       content: "";
@@ -139,185 +252,228 @@ syntax:
   }
 }
 
-/* === Tooltip 配色方案 === */
+[data-tip].tooltip-right {
+  &::after {
+    @apply left-full top-1/2 -translate-y-1/2 ml-1;
+  }
 
-/* Primary */
+  &::before {
+    @apply left-full top-1/2 -translate-y-1/2;
+    @apply border-4 border-transparent;
+    border-right-color: var(--border);
+    margin-right: -1px;
+  }
+
+  &:hover::after,
+  &:focus::after {
+    @apply translate-x-1 -translate-y-1/2;
+  }
+
+  &:hover::before,
+  &:focus::before {
+    @apply border-[5px] border-transparent;
+    border-right-color: var(--popover);
+    margin-right: -5px;
+  }
+}
+
+/* === 配色方案 - Primary === */
 @utility tooltip-primary {
   & .tooltip-content {
-    @apply bg-primary text-primary-foreground;
-    @apply border-primary;
+    @apply bg-primary text-primary-foreground border-primary;
   }
 
-  &.tooltip-top .tooltip-content {
-    &::after {
-      border-top-color: var(--primary);
-    }
-    &::before {
-      border-top-color: var(--primary);
-    }
+  &.tooltip-top .tooltip-content::after,
+  &.tooltip-top .tooltip-content::before {
+    border-top-color: var(--primary);
   }
 
-  &.tooltip-bottom .tooltip-content {
-    &::after {
-      border-bottom-color: var(--primary);
-    }
-    &::before {
-      border-bottom-color: var(--primary);
-    }
+  &.tooltip-bottom .tooltip-content::after,
+  &.tooltip-bottom .tooltip-content::before {
+    border-bottom-color: var(--primary);
   }
 
-  &.tooltip-left .tooltip-content {
-    &::after {
-      border-left-color: var(--primary);
-    }
-    &::before {
-      border-left-color: var(--primary);
-    }
+  &.tooltip-left .tooltip-content::after,
+  &.tooltip-left .tooltip-content::before {
+    border-left-color: var(--primary);
   }
 
-  &.tooltip-right .tooltip-content {
-    &::after {
-      border-right-color: var(--primary);
-    }
-    &::before {
-      border-right-color: var(--primary);
-    }
+  &.tooltip-right .tooltip-content::after,
+  &.tooltip-right .tooltip-content::before {
+    border-right-color: var(--primary);
   }
 }
 
-/* Secondary */
+[data-tip].tooltip-primary {
+  &::after {
+    @apply bg-primary text-primary-foreground border-primary;
+  }
+
+  &.tooltip-top::before {
+    border-top-color: var(--primary);
+  }
+
+  &.tooltip-bottom::before {
+    border-bottom-color: var(--primary);
+  }
+
+  &.tooltip-left::before {
+    border-left-color: var(--primary);
+  }
+
+  &.tooltip-right::before {
+    border-right-color: var(--primary);
+  }
+}
+
+/* === 配色方案 - Secondary === */
 @utility tooltip-secondary {
   & .tooltip-content {
-    @apply bg-secondary text-secondary-foreground;
-    @apply border-secondary;
+    @apply bg-secondary text-secondary-foreground border-secondary;
   }
 
-  &.tooltip-top .tooltip-content {
-    &::after {
-      border-top-color: var(--secondary);
-    }
-    &::before {
-      border-top-color: var(--secondary);
-    }
+  &.tooltip-top .tooltip-content::after,
+  &.tooltip-top .tooltip-content::before {
+    border-top-color: var(--secondary);
   }
 
-  &.tooltip-bottom .tooltip-content {
-    &::after {
-      border-bottom-color: var(--secondary);
-    }
-    &::before {
-      border-bottom-color: var(--secondary);
-    }
+  &.tooltip-bottom .tooltip-content::after,
+  &.tooltip-bottom .tooltip-content::before {
+    border-bottom-color: var(--secondary);
   }
 
-  &.tooltip-left .tooltip-content {
-    &::after {
-      border-left-color: var(--secondary);
-    }
-    &::before {
-      border-left-color: var(--secondary);
-    }
+  &.tooltip-left .tooltip-content::after,
+  &.tooltip-left .tooltip-content::before {
+    border-left-color: var(--secondary);
   }
 
-  &.tooltip-right .tooltip-content {
-    &::after {
-      border-right-color: var(--secondary);
-    }
-    &::before {
-      border-right-color: var(--secondary);
-    }
+  &.tooltip-right .tooltip-content::after,
+  &.tooltip-right .tooltip-content::before {
+    border-right-color: var(--secondary);
   }
 }
 
-/* Accent */
+[data-tip].tooltip-secondary {
+  &::after {
+    @apply bg-secondary text-secondary-foreground border-secondary;
+  }
+
+  &.tooltip-top::before {
+    border-top-color: var(--secondary);
+  }
+
+  &.tooltip-bottom::before {
+    border-bottom-color: var(--secondary);
+  }
+
+  &.tooltip-left::before {
+    border-left-color: var(--secondary);
+  }
+
+  &.tooltip-right::before {
+    border-right-color: var(--secondary);
+  }
+}
+
+/* === 配色方案 - Accent === */
 @utility tooltip-accent {
   & .tooltip-content {
-    @apply bg-accent text-accent-foreground;
-    @apply border-accent;
+    @apply bg-accent text-accent-foreground border-accent;
   }
 
-  &.tooltip-top .tooltip-content {
-    &::after {
-      border-top-color: var(--accent);
-    }
-    &::before {
-      border-top-color: var(--accent);
-    }
+  &.tooltip-top .tooltip-content::after,
+  &.tooltip-top .tooltip-content::before {
+    border-top-color: var(--accent);
   }
 
-  &.tooltip-bottom .tooltip-content {
-    &::after {
-      border-bottom-color: var(--accent);
-    }
-    &::before {
-      border-bottom-color: var(--accent);
-    }
+  &.tooltip-bottom .tooltip-content::after,
+  &.tooltip-bottom .tooltip-content::before {
+    border-bottom-color: var(--accent);
   }
 
-  &.tooltip-left .tooltip-content {
-    &::after {
-      border-left-color: var(--accent);
-    }
-    &::before {
-      border-left-color: var(--accent);
-    }
+  &.tooltip-left .tooltip-content::after,
+  &.tooltip-left .tooltip-content::before {
+    border-left-color: var(--accent);
   }
 
-  &.tooltip-right .tooltip-content {
-    &::after {
-      border-right-color: var(--accent);
-    }
-    &::before {
-      border-right-color: var(--accent);
-    }
+  &.tooltip-right .tooltip-content::after,
+  &.tooltip-right .tooltip-content::before {
+    border-right-color: var(--accent);
   }
 }
 
-/* Destructive */
+[data-tip].tooltip-accent {
+  &::after {
+    @apply bg-accent text-accent-foreground border-accent;
+  }
+
+  &.tooltip-top::before {
+    border-top-color: var(--accent);
+  }
+
+  &.tooltip-bottom::before {
+    border-bottom-color: var(--accent);
+  }
+
+  &.tooltip-left::before {
+    border-left-color: var(--accent);
+  }
+
+  &.tooltip-right::before {
+    border-right-color: var(--accent);
+  }
+}
+
+/* === 配色方案 - Destructive === */
 @utility tooltip-destructive {
   & .tooltip-content {
-    @apply bg-destructive text-destructive-foreground;
-    @apply border-destructive;
+    @apply bg-destructive text-destructive-foreground border-destructive;
   }
 
-  &.tooltip-top .tooltip-content {
-    &::after {
-      border-top-color: var(--destructive);
-    }
-    &::before {
-      border-top-color: var(--destructive);
-    }
+  &.tooltip-top .tooltip-content::after,
+  &.tooltip-top .tooltip-content::before {
+    border-top-color: var(--destructive);
   }
 
-  &.tooltip-bottom .tooltip-content {
-    &::after {
-      border-bottom-color: var(--destructive);
-    }
-    &::before {
-      border-bottom-color: var(--destructive);
-    }
+  &.tooltip-bottom .tooltip-content::after,
+  &.tooltip-bottom .tooltip-content::before {
+    border-bottom-color: var(--destructive);
   }
 
-  &.tooltip-left .tooltip-content {
-    &::after {
-      border-left-color: var(--destructive);
-    }
-    &::before {
-      border-left-color: var(--destructive);
-    }
+  &.tooltip-left .tooltip-content::after,
+  &.tooltip-left .tooltip-content::before {
+    border-left-color: var(--destructive);
   }
 
-  &.tooltip-right .tooltip-content {
-    &::after {
-      border-right-color: var(--destructive);
-    }
-    &::before {
-      border-right-color: var(--destructive);
-    }
+  &.tooltip-right .tooltip-content::after,
+  &.tooltip-right .tooltip-content::before {
+    border-right-color: var(--destructive);
   }
 }
 
-/* === Tooltip 尺寸 === */
+[data-tip].tooltip-destructive {
+  &::after {
+    @apply bg-destructive text-destructive-foreground border-destructive;
+  }
+
+  &.tooltip-top::before {
+    border-top-color: var(--destructive);
+  }
+
+  &.tooltip-bottom::before {
+    border-bottom-color: var(--destructive);
+  }
+
+  &.tooltip-left::before {
+    border-left-color: var(--destructive);
+  }
+
+  &.tooltip-right::before {
+    border-right-color: var(--destructive);
+  }
+}
+
+/* === 尺寸 === */
 @utility tooltip-sm {
   & .tooltip-content {
     @apply px-2 py-1 text-xs;
@@ -330,7 +486,15 @@ syntax:
   }
 }
 
-/* === Tooltip 无箭头 === */
+[data-tip].tooltip-sm::after {
+  @apply px-2 py-1 text-xs;
+}
+
+[data-tip].tooltip-lg::after {
+  @apply px-4 py-3 text-base;
+}
+
+/* === 无箭头 === */
 @utility tooltip-no-arrow {
   & .tooltip-content::before,
   & .tooltip-content::after {
@@ -338,14 +502,28 @@ syntax:
   }
 }
 
-/* === Tooltip 始终显示 === */
+[data-tip].tooltip-no-arrow {
+  &::before,
+  &::after {
+    @apply hidden;
+  }
+}
+
+/* === 始终显示 === */
 @utility tooltip-open {
   & .tooltip-content {
     @apply opacity-100 visible;
   }
 }
 
-/* === Tooltip 延迟显示 === */
+[data-tip].tooltip-open {
+  &::before,
+  &::after {
+    @apply opacity-100 visible;
+  }
+}
+
+/* === 延迟显示 === */
 @utility tooltip-delay {
   & .tooltip-content {
     transition-delay: 0.3s;
@@ -356,7 +534,17 @@ syntax:
   }
 }
 
-/* === Tooltip 文本换行 === */
+[data-tip].tooltip-delay::before,
+[data-tip].tooltip-delay::after {
+  transition-delay: 0.3s;
+}
+
+[data-tip].tooltip-delay:hover::before,
+[data-tip].tooltip-delay:hover::after {
+  transition-delay: 0s;
+}
+
+/* === 文本换行 === */
 @utility tooltip-wrap {
   & .tooltip-content {
     white-space: normal;
@@ -364,7 +552,12 @@ syntax:
   }
 }
 
-/* === Tooltip 宽度变体 === */
+[data-tip].tooltip-wrap::after {
+  white-space: normal;
+  @apply max-w-xs;
+}
+
+/* === 宽度变体 === */
 @utility tooltip-w-sm {
   & .tooltip-content {
     @apply max-w-[150px];
@@ -386,21 +579,60 @@ syntax:
   }
 }
 
-/* === Tooltip 动画变体 === */
+[data-tip].tooltip-w-sm::after {
+  @apply max-w-[150px];
+  white-space: normal;
+}
+
+[data-tip].tooltip-w-md::after {
+  @apply max-w-[250px];
+  white-space: normal;
+}
+
+[data-tip].tooltip-w-lg::after {
+  @apply max-w-[350px];
+  white-space: normal;
+}
+
+/* === 动画变体 === */
 @utility tooltip-fade {
   & .tooltip-content {
     @apply transition-opacity duration-200;
   }
 }
 
+[data-tip].tooltip-fade::before,
+[data-tip].tooltip-fade::after {
+  @apply transition-opacity duration-200;
+}
+
 @utility tooltip-scale {
   & .tooltip-content {
     @apply scale-95;
-    transition: opacity 0.2s, visibility 0.2s, transform 0.2s;
+    transition:
+      opacity 0.2s,
+      visibility 0.2s,
+      transform 0.2s;
   }
 
   &:hover .tooltip-content,
   &:focus .tooltip-content {
     @apply scale-100;
   }
+}
+
+[data-tip].tooltip-scale::before,
+[data-tip].tooltip-scale::after {
+  @apply scale-95;
+  transition:
+    opacity 0.2s,
+    visibility 0.2s,
+    transform 0.2s;
+}
+
+[data-tip].tooltip-scale:hover::before,
+[data-tip].tooltip-scale:hover::after,
+[data-tip].tooltip-scale:focus::before,
+[data-tip].tooltip-scale:focus::after {
+  @apply scale-100;
 }

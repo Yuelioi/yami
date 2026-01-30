@@ -12,7 +12,7 @@ syntax:
 </div>
 
 <div class="stat">
-  <div class="stat-figure text-accent"><ShoppingBag /></div>
+  <div class="stat-figure text-primary"><ShoppingBag /></div>
   <div class="stat-title">订单量</div>
   <div class="stat-value">312</div>
   <div class="stat-desc text-muted-foreground">昨日完成 289 单</div>

@@ -29,7 +29,6 @@ syntax:
 
   /* 默认配色(ghost风格) */
   @apply bg-transparent border-transparent text-foreground;
-  @apply hover:bg-accent;
 }
 
 /* ========================================
@@ -115,7 +114,6 @@ syntax:
 
 @utility badge-outline {
   @apply bg-transparent border border-input text-foreground;
-  @apply hover:bg-accent hover:text-accent-foreground;
 }
 
 /* ========================================
@@ -124,7 +122,6 @@ syntax:
 
 @utility badge-ghost {
   @apply bg-transparent border-transparent text-foreground border-none;
-  @apply hover:bg-accent hover:text-accent-foreground;
 }
 
 /* ========================================
