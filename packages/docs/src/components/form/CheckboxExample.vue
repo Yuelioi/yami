@@ -1,292 +1,596 @@
 ﻿<script setup lang="ts">
+import { ref } from 'vue'
 import DocsHeader from '../zcomp/DocsHeader.vue'
+import ApiReference from '../zcomp/ApiReference.vue'
 import DocsContainer from '../zcomp/DocsContainer.vue'
 import DocsSection from '../zcomp/DocsSection.vue'
-import ApiReference from '../zcomp/ApiReference.vue'
 
 const apiClasses = [
-  // === 基础 ===
+  // 基础
   {
     category: '基础',
     className: 'checkbox',
-    description: 'Checkbox 基类，定义复选框布局与交互样式。',
+    description: '基础复选框输入框。',
     isCategoryStart: true,
   },
   {
     category: '基础',
     className: 'checkbox-label',
-    description: '复选框文本标签，用于显示选项说明。',
+    description: '复选框标签容器。',
+    isCategoryStart: false,
+  },
+  {
+    category: '基础',
+    className: 'checkbox-text',
+    description: '复选框文本标签。',
+    isCategoryStart: false,
+  },
+  {
+    category: '基础',
+    className: 'checkbox-description',
+    description: '复选框描述文本。',
     isCategoryStart: false,
   },
 
-  // === 配色方案 ===
+  // 尺寸
   {
-    category: '配色方案',
-    className: 'checkbox-primary',
-    description: '主色样式，使用 Primary 主题色。',
-    isCategoryStart: true,
-  },
-  {
-    category: '配色方案',
-    className: 'checkbox-secondary',
-    description: '次要样式，使用 Secondary 主题色。',
-    isCategoryStart: false,
-  },
-  {
-    category: '配色方案',
-    className: 'checkbox-accent',
-    description: '强调样式，使用 Accent 主题色（黑色图标）。',
-    isCategoryStart: false,
-  },
-  {
-    category: '配色方案',
-    className: 'checkbox-destructive',
-    description: '危险样式，使用 Destructive 主题色。',
-    isCategoryStart: false,
-  },
-
-  // === 尺寸 ===
-  {
-    category: '尺寸',
+    category: '尺寸变体',
     className: 'checkbox-sm',
-    description: '小号复选框，尺寸 1rem，文字较小。',
+    description: '小型复选框。',
     isCategoryStart: true,
   },
   {
-    category: '尺寸',
-    className: 'checkbox-md',
-    description: '中号复选框，默认大小（1.25rem）。',
-    isCategoryStart: false,
-  },
-  {
-    category: '尺寸',
+    category: '尺寸变体',
     className: 'checkbox-lg',
-    description: '大号复选框，尺寸 1.5rem。',
-    isCategoryStart: false,
-  },
-  {
-    category: '尺寸',
-    className: 'checkbox-xl',
-    description: '超大号复选框，尺寸 1.75rem。',
+    description: '大型复选框。',
     isCategoryStart: false,
   },
 
-  // === 修饰类 ===
+  // 颜色
   {
-    category: '修饰类',
-    className: 'checkbox-thick',
-    description: '加粗边框样式（3px）。',
+    category: '颜色变体',
+    className: 'checkbox-primary',
+    description: '主色变体。',
     isCategoryStart: true,
   },
   {
-    category: '修饰类',
-    className: 'checkbox-animated',
-    description: '选中时添加缩放动画效果。',
-    isCategoryStart: false,
-  },
-
-  // === 卡片样式 ===
-  {
-    category: '卡片样式',
-    className: 'checkbox-card',
-    description: '卡片式复选框，将整个内容区域作为可选项。',
-    isCategoryStart: true,
-  },
-  {
-    category: '卡片样式',
-    className: 'checkbox-card-body',
-    description: '卡片内容区域容器。',
-    isCategoryStart: false,
-  },
-  {
-    category: '卡片样式',
-    className: 'checkbox-card-icon',
-    description: '卡片内的小图标区域，显示勾选状态。',
-    isCategoryStart: false,
-  },
-
-  // === 分组 ===
-  {
-    category: '分组',
-    className: 'checkbox-group',
-    description: '复选框组容器，默认垂直排列。',
-    isCategoryStart: true,
-  },
-  {
-    category: '分组',
-    className: 'checkbox-group-label',
-    description: '复选框组标题标签。',
-    isCategoryStart: false,
-  },
-  {
-    category: '分组',
-    className: 'checkbox-group-item',
-    description: '复选框组中的单项容器。',
-    isCategoryStart: false,
-  },
-  {
-    category: '分组',
-    className: 'checkbox-group-horizontal',
-    description: '水平排列的复选框组。',
-    isCategoryStart: false,
-  },
-
-  // === 状态类 ===
-  {
-    category: '状态类',
-    className: 'checkbox-error',
-    description: '错误状态样式，显示红色边框与提示文字。',
-    isCategoryStart: true,
-  },
-  {
-    category: '状态类',
+    category: '颜色变体',
     className: 'checkbox-success',
-    description: '成功状态样式，绿色边框与填充。',
+    description: '成功变体。',
+    isCategoryStart: false,
+  },
+  {
+    category: '颜色变体',
+    className: 'checkbox-warning',
+    description: '警告变体。',
+    isCategoryStart: false,
+  },
+  {
+    category: '颜色变体',
+    className: 'checkbox-danger',
+    description: '危险变体。',
+    isCategoryStart: false,
+  },
+
+  // 组
+  {
+    category: '复选框组',
+    className: 'checkbox-group',
+    description: '复选框组容器。',
+    isCategoryStart: true,
+  },
+  {
+    category: '复选框组',
+    className: 'checkbox-group-title',
+    description: '复选框组标题。',
+    isCategoryStart: false,
+  },
+  {
+    category: '复选框组',
+    className: 'checkbox-group-item',
+    description: '复选框组项。',
+    isCategoryStart: false,
+  },
+  {
+    category: '复选框组',
+    className: 'checkbox-group-compact',
+    description: '紧凑布局。',
+    isCategoryStart: false,
+  },
+  {
+    category: '复选框组',
+    className: 'checkbox-group-row',
+    description: '行布局。',
+    isCategoryStart: false,
+  },
+
+  // 特殊
+  {
+    category: '特殊样式',
+    className: 'checkbox-rounded',
+    description: '圆形复选框。',
+    isCategoryStart: true,
+  },
+  {
+    category: '特殊样式',
+    className: 'checkbox-card',
+    description: '卡片复选框。',
+    isCategoryStart: false,
+  },
+  {
+    category: '特殊样式',
+    className: 'checkbox-switch',
+    description: '开关风格复选框。',
+    isCategoryStart: false,
+  },
+  {
+    category: '特殊样式',
+    className: 'checkbox-pulse',
+    description: '脉冲动画。',
     isCategoryStart: false,
   },
 ]
+
+const selected = ref<string[]>([])
+const allChecked = ref(false)
+const indeterminate = ref(false)
 </script>
 
 <template>
   <DocsContainer>
+    <!-- 页面头部 -->
     <DocsHeader
-      title="Checkbox 复选框组件"
-      description="用于选择一个或多个选项的复选框组件，支持多种配色、尺寸、形状与样式变体。"
+      title="Checkbox 复选框"
+      description="灵活的复选框组件。支持多种尺寸、颜色、样式和特殊效果。适用于表单、选项列表、多选筛选等场景。"
     />
 
+    <!-- API 参考 -->
     <ApiReference :data="apiClasses" />
 
-    <!-- 基础示例 -->
-    <DocsSection title="基础示例">
-      <div class="flex flex-col gap-4">
-        <label class="checkbox">
-          <input type="checkbox" />
-          <span class="checkbox-label">默认复选框</span>
+    <!-- 基础用法 -->
+    <DocsSection title="基础用法">
+      <p class="text-sm text-muted-foreground mb-4">最简单的复选框实现。</p>
+
+      <div class="flex items-center gap-4">
+        <label class="checkbox-label">
+          <input type="checkbox" class="checkbox" />
+          <span class="checkbox-text">记住密码</span>
         </label>
 
-        <label class="checkbox checkbox-primary">
-          <input type="checkbox" checked />
-          <span class="checkbox-label">Primary 主题</span>
+        <label class="checkbox-label">
+          <input type="checkbox" class="checkbox" checked />
+          <span class="checkbox-text">已同意条款</span>
         </label>
 
-        <label class="checkbox checkbox-secondary">
-          <input type="checkbox" checked />
-          <span class="checkbox-label">Secondary 主题</span>
-        </label>
-
-        <label class="checkbox checkbox-accent">
-          <input type="checkbox" checked />
-          <span class="checkbox-label">Accent 主题（黑色图标）</span>
-        </label>
-
-        <label class="checkbox checkbox-destructive">
-          <input type="checkbox" checked />
-          <span class="checkbox-label">Destructive 主题</span>
+        <label class="checkbox-label">
+          <input type="checkbox" class="checkbox" disabled />
+          <span class="checkbox-text">已禁用</span>
         </label>
       </div>
     </DocsSection>
 
-    <!-- 尺寸与圆角 -->
-    <DocsSection title="尺寸">
-      <div class="flex flex-col gap-3">
-        <label class="checkbox checkbox-sm">
-          <input type="checkbox" checked />
-          <span class="checkbox-label">小号 (sm)</span>
+    <!-- 带描述的复选框 -->
+    <DocsSection title="带描述的复选框">
+      <p class="text-sm text-muted-foreground mb-4">
+        使用 <code class="bg-muted px-2 py-1 rounded text-xs">checkbox-description</code> 添加描述。
+      </p>
+
+      <div class="space-y-3">
+        <label class="checkbox-label">
+          <input type="checkbox" class="checkbox" />
+          <div class="checkbox-text">
+            <span>接收电子邮件</span>
+            <p class="checkbox-description">我们将发送重要的更新通知</p>
+          </div>
         </label>
 
-        <label class="checkbox checkbox-md">
-          <input type="checkbox" checked />
-          <span class="checkbox-label">中号 (md)</span>
+        <label class="checkbox-label">
+          <input type="checkbox" class="checkbox" checked />
+          <div class="checkbox-text">
+            <span>接收短信提醒</span>
+            <p class="checkbox-description">为您提供实时的订单和活动提醒</p>
+          </div>
         </label>
 
-        <label class="checkbox checkbox-lg">
-          <input type="checkbox" checked />
-          <span class="checkbox-label">大号 (lg)</span>
-        </label>
-
-        <label class="checkbox checkbox-xl">
-          <input type="checkbox" checked />
-          <span class="checkbox-label">超大号 (xl)</span>
-        </label>
-      </div>
-    </DocsSection>
-
-    <!-- 动画与修饰 -->
-    <DocsSection title="动画与修饰">
-      <div class="flex flex-col gap-3">
-        <label class="checkbox checkbox-thick">
-          <input type="checkbox" checked />
-          <span class="checkbox-label">加粗边框</span>
-        </label>
-
-        <label class="checkbox checkbox-animated">
-          <input type="checkbox" checked />
-          <span class="checkbox-label">带动画效果</span>
+        <label class="checkbox-label">
+          <input type="checkbox" class="checkbox" />
+          <div class="checkbox-text">
+            <span>接收推送通知</span>
+            <p class="checkbox-description">在应用上接收及时消息</p>
+          </div>
         </label>
       </div>
     </DocsSection>
 
-    <!-- 卡片样式 -->
-    <DocsSection title="卡片样式">
+    <!-- 尺寸变体 -->
+    <DocsSection title="尺寸变体">
+      <p class="text-sm text-muted-foreground mb-4">支持小型、默认和大型三种尺寸。</p>
+
+      <div class="space-y-4">
+        <!-- 小型 -->
+        <div>
+          <h4 class="font-semibold mb-2">小型 (checkbox-sm)</h4>
+          <label class="checkbox-label">
+            <input type="checkbox" class="checkbox checkbox-sm" />
+            <span class="checkbox-text">小型复选框</span>
+          </label>
+        </div>
+
+        <!-- 默认 -->
+        <div>
+          <h4 class="font-semibold mb-2">默认尺寸</h4>
+          <label class="checkbox-label">
+            <input type="checkbox" class="checkbox" />
+            <span class="checkbox-text">默认复选框</span>
+          </label>
+        </div>
+
+        <!-- 大型 -->
+        <div>
+          <h4 class="font-semibold mb-2">大型 (checkbox-lg)</h4>
+          <label class="checkbox-label">
+            <input type="checkbox" class="checkbox checkbox-lg" />
+            <span class="checkbox-text">大型复选框</span>
+          </label>
+        </div>
+      </div>
+    </DocsSection>
+
+    <!-- 颜色变体 -->
+    <DocsSection title="颜色变体">
+      <p class="text-sm text-muted-foreground mb-4">使用不同的颜色主题。</p>
+
       <div class="grid gap-4 md:grid-cols-2">
-        <label class="checkbox checkbox-card">
-          <input type="checkbox" />
-          <div class="checkbox-card-body">
-            <div class="checkbox-card-icon"></div>
-            <div>
-              <div class="font-semibold">订阅新闻邮件</div>
-              <div class="text-sm text-muted-foreground">接收每周产品更新与优惠资讯。</div>
-            </div>
-          </div>
+        <!-- 主色 -->
+        <label class="checkbox-label">
+          <input type="checkbox" class="checkbox checkbox-primary" checked />
+          <span class="checkbox-text">主色变体</span>
         </label>
 
-        <label class="checkbox checkbox-card">
-          <input type="checkbox" checked />
-          <div class="checkbox-card-body">
-            <div class="checkbox-card-icon"></div>
-            <div>
-              <div class="font-semibold">启用推送通知</div>
-              <div class="text-sm text-muted-foreground">接收即时消息与活动提醒。</div>
-            </div>
-          </div>
+        <!-- 成功 -->
+        <label class="checkbox-label">
+          <input type="checkbox" class="checkbox checkbox-success" checked />
+          <span class="checkbox-text">成功变体</span>
+        </label>
+
+        <!-- 警告 -->
+        <label class="checkbox-label">
+          <input type="checkbox" class="checkbox checkbox-warning" checked />
+          <span class="checkbox-text">警告变体</span>
+        </label>
+
+        <!-- 危险 -->
+        <label class="checkbox-label">
+          <input type="checkbox" class="checkbox checkbox-danger" checked />
+          <span class="checkbox-text">危险变体</span>
         </label>
       </div>
     </DocsSection>
 
-    <!-- 分组与状态 -->
-    <DocsSection title="分组与状态">
+    <!-- 复选框组 -->
+    <DocsSection title="复选框组">
+      <p class="text-sm text-muted-foreground mb-4">
+        使用 <code class="bg-muted px-2 py-1 rounded text-xs">checkbox-group</code> 组织复选框。
+      </p>
+
+      <div class="checkbox-group">
+        <h4 class="checkbox-group-title">选择您感兴趣的主题</h4>
+
+        <label class="checkbox-label">
+          <input type="checkbox" class="checkbox" />
+          <span class="checkbox-text">前端开发</span>
+        </label>
+
+        <label class="checkbox-label">
+          <input type="checkbox" class="checkbox" checked />
+          <span class="checkbox-text">后端开发</span>
+        </label>
+
+        <label class="checkbox-label">
+          <input type="checkbox" class="checkbox" />
+          <span class="checkbox-text">数据分析</span>
+        </label>
+
+        <label class="checkbox-label">
+          <input type="checkbox" class="checkbox" checked />
+          <span class="checkbox-text">机器学习</span>
+        </label>
+      </div>
+    </DocsSection>
+
+    <!-- 行布局 -->
+    <DocsSection title="行布局">
+      <p class="text-sm text-muted-foreground mb-4">
+        使用 <code class="bg-muted px-2 py-1 rounded text-xs">checkbox-group-row</code> 水平排列。
+      </p>
+
+      <div class="checkbox-group checkbox-group-row">
+        <label class="checkbox-label">
+          <input type="checkbox" class="checkbox" />
+          <span class="checkbox-text">选项 1</span>
+        </label>
+
+        <label class="checkbox-label">
+          <input type="checkbox" class="checkbox" checked />
+          <span class="checkbox-text">选项 2</span>
+        </label>
+
+        <label class="checkbox-label">
+          <input type="checkbox" class="checkbox" />
+          <span class="checkbox-text">选项 3</span>
+        </label>
+
+        <label class="checkbox-label">
+          <input type="checkbox" class="checkbox" />
+          <span class="checkbox-text">选项 4</span>
+        </label>
+      </div>
+    </DocsSection>
+
+    <!-- 紧凑布局 -->
+    <DocsSection title="紧凑布局">
+      <p class="text-sm text-muted-foreground mb-4">
+        使用
+        <code class="bg-muted px-2 py-1 rounded text-xs">checkbox-group-compact</code> 减少间距。
+      </p>
+
+      <div class="checkbox-group checkbox-group-compact">
+        <h4 class="checkbox-group-title">权限设置</h4>
+
+        <label class="checkbox-label">
+          <input type="checkbox" class="checkbox" checked />
+          <span class="checkbox-text">读取</span>
+        </label>
+
+        <label class="checkbox-label">
+          <input type="checkbox" class="checkbox" checked />
+          <span class="checkbox-text">写入</span>
+        </label>
+
+        <label class="checkbox-label">
+          <input type="checkbox" class="checkbox" />
+          <span class="checkbox-text">删除</span>
+        </label>
+
+        <label class="checkbox-label">
+          <input type="checkbox" class="checkbox" />
+          <span class="checkbox-text">管理</span>
+        </label>
+      </div>
+    </DocsSection>
+
+    <!-- 不确定状态 -->
+    <DocsSection title="不确定状态">
+      <p class="text-sm text-muted-foreground mb-4">
+        使用
+        <code class="bg-muted px-2 py-1 rounded text-xs">indeterminate</code> 属性表示部分选中。
+      </p>
+
+      <div class="space-y-3">
+        <label class="checkbox-label">
+          <input
+            type="checkbox"
+            class="checkbox"
+            :checked="allChecked"
+            :indeterminate="indeterminate"
+            @change="
+              (e) => {
+                allChecked = e.target.checked
+                if (allChecked) selected = ['1', '2', '3']
+                else selected = []
+                indeterminate = false
+              }
+            "
+          />
+          <span class="checkbox-text">全选</span>
+        </label>
+
+        <div class="ml-4 space-y-2">
+          <label class="checkbox-label">
+            <input
+              type="checkbox"
+              class="checkbox"
+              value="1"
+              @change="
+                (e) => {
+                  if (e.target.checked) selected.push('1')
+                  else selected = selected.filter((s) => s !== '1')
+
+                  indeterminate = selected.length > 0 && selected.length < 3
+                  allChecked = selected.length === 3
+                }
+              "
+            />
+            <span class="checkbox-text">项目 1</span>
+          </label>
+
+          <label class="checkbox-label">
+            <input
+              type="checkbox"
+              class="checkbox"
+              value="2"
+              @change="
+                (e) => {
+                  if (e.target.checked) selected.push('2')
+                  else selected = selected.filter((s) => s !== '2')
+
+                  indeterminate = selected.length > 0 && selected.length < 3
+                  allChecked = selected.length === 3
+                }
+              "
+            />
+            <span class="checkbox-text">项目 2</span>
+          </label>
+
+          <label class="checkbox-label">
+            <input
+              type="checkbox"
+              class="checkbox"
+              value="3"
+              @change="
+                (e) => {
+                  if (e.target.checked) selected.push('3')
+                  else selected = selected.filter((s) => s !== '3')
+
+                  indeterminate = selected.length > 0 && selected.length < 3
+                  allChecked = selected.length === 3
+                }
+              "
+            />
+            <span class="checkbox-text">项目 3</span>
+          </label>
+        </div>
+      </div>
+    </DocsSection>
+
+    <!-- 特殊样式 -->
+    <DocsSection title="特殊样式">
+      <p class="text-sm text-muted-foreground mb-4">不同的复选框样式。</p>
+
       <div class="space-y-6">
-        <div class="checkbox-group">
-          <span class="checkbox-group-label">通知设置</span>
-          <label class="checkbox checkbox-group-item">
-            <input type="checkbox" />
-            <span class="checkbox-label">邮件提醒</span>
-          </label>
-          <label class="checkbox checkbox-group-item">
-            <input type="checkbox" checked />
-            <span class="checkbox-label">短信通知</span>
+        <!-- 圆形 -->
+        <div>
+          <h4 class="font-semibold mb-2">圆形复选框 (checkbox-rounded)</h4>
+          <label class="checkbox-label">
+            <input type="checkbox" class="checkbox checkbox-rounded" checked />
+            <span class="checkbox-text">圆形样式</span>
           </label>
         </div>
 
-        <div class="checkbox-group checkbox-group-horizontal">
-          <span class="checkbox-group-label">兴趣方向</span>
-          <label class="checkbox checkbox-group-item">
-            <input type="checkbox" />
-            <span class="checkbox-label">设计</span>
-          </label>
-          <label class="checkbox checkbox-group-item">
-            <input type="checkbox" />
-            <span class="checkbox-label">前端</span>
-          </label>
-          <label class="checkbox checkbox-group-item">
-            <input type="checkbox" checked />
-            <span class="checkbox-label">后端</span>
+        <!-- 开关风格 -->
+        <div>
+          <h4 class="font-semibold mb-2">开关风格 (checkbox-switch)</h4>
+          <label class="checkbox-label">
+            <input type="checkbox" class="checkbox checkbox-switch" />
+            <span class="checkbox-text">启用功能</span>
           </label>
         </div>
 
-        <div class="checkbox checkbox-destructive">
-          <input type="checkbox" />
-          <span class="checkbox-label">必须同意条款请勾选以继续</span>
+        <!-- 卡片风格 -->
+        <div>
+          <h4 class="font-semibold mb-2">卡片风格 (checkbox-card)</h4>
+          <div class="space-y-2">
+            <label class="block cursor-pointer">
+              <input type="checkbox" class="checkbox-card hidden" id="card1" />
+              <div
+                class="flex items-center justify-between p-4 border rounded"
+                @click="document.getElementById('card1').click()"
+              >
+                <span class="font-medium">选项 1</span>
+                <span class="text-sm text-muted-foreground">描述文本</span>
+              </div>
+            </label>
+
+            <label class="block cursor-pointer">
+              <input type="checkbox" class="checkbox-card hidden" id="card2" checked />
+              <div
+                class="flex items-center justify-between p-4 border rounded bg-primary/10 border-primary"
+                @click="document.getElementById('card2').click()"
+              >
+                <span class="font-medium">选项 2（已选）</span>
+                <span class="text-sm text-muted-foreground">描述文本</span>
+              </div>
+            </label>
+          </div>
+        </div>
+      </div>
+    </DocsSection>
+
+    <!-- 禁用状态 -->
+    <DocsSection title="禁用状态">
+      <p class="text-sm text-muted-foreground mb-4">
+        使用 <code class="bg-muted px-2 py-1 rounded text-xs">disabled</code> 禁用复选框。
+      </p>
+
+      <div class="space-y-2">
+        <label class="checkbox-label">
+          <input type="checkbox" class="checkbox" disabled />
+          <span class="checkbox-text">禁用未选中</span>
+        </label>
+
+        <label class="checkbox-label">
+          <input type="checkbox" class="checkbox" disabled checked />
+          <span class="checkbox-text">禁用已选中</span>
+        </label>
+
+        <label class="checkbox-label checkbox-label-disabled">
+          <input type="checkbox" class="checkbox" disabled />
+          <span class="checkbox-text">完全禁用标签</span>
+        </label>
+      </div>
+    </DocsSection>
+
+    <!-- 变量定制 -->
+    <DocsSection title="变量定制">
+      <p class="text-sm text-muted-foreground mb-4">所有复选框样式都由 CSS 变量驱动。</p>
+
+      <div class="bg-muted p-4 rounded-lg">
+        <h4 class="font-semibold mb-3">常用变量：</h4>
+        <ul class="space-y-2 text-sm">
+          <li>
+            <code class="bg-background px-2 py-1 rounded"> --checkbox-size </code>
+            - 复选框大小
+          </li>
+          <li>
+            <code class="bg-background px-2 py-1 rounded"> --checkbox-border-radius </code>
+            - 圆角
+          </li>
+          <li>
+            <code class="bg-background px-2 py-1 rounded"> --checkbox-gap </code>
+            - 间距
+          </li>
+          <li>
+            <code class="bg-background px-2 py-1 rounded"> --checkbox-checked-bg </code>
+            - 选中背景色
+          </li>
+          <li>
+            <code class="bg-background px-2 py-1 rounded"> --checkbox-label-font-size </code>
+            - 标签字体大小
+          </li>
+        </ul>
+      </div>
+
+      <div class="mt-4 bg-muted p-4 rounded-lg">
+        <h4 class="font-semibold mb-3">定制示例：</h4>
+        <pre class="text-sm overflow-auto"><code>:root {
+  /* 改变大小 */
+  --checkbox-size: 1.5rem;
+  --checkbox-border-radius: 0.25rem;
+  
+  /* 改变颜色 */
+  --checkbox-checked-bg: var(--primary);
+  --checkbox-checked-border: var(--primary);
+  
+  /* 改变间距 */
+  --checkbox-gap: 1rem;
+  --checkbox-label-font-size: 1.125rem;
+}</code></pre>
+      </div>
+    </DocsSection>
+
+    <!-- 最佳实践 -->
+    <DocsSection title="最佳实践">
+      <div class="space-y-4">
+        <div class="border-l-4 border-green-500 pl-4">
+          <p class="font-semibold text-green-700 mb-1">✅ 推荐</p>
+          <ul class="text-sm space-y-1 text-muted-foreground">
+            <li>• 为每个复选框提供清晰的标签</li>
+            <li>• 对相关选项进行分组</li>
+            <li>• 提供描述帮助用户理解选项</li>
+            <li>• 在大型列表中使用"全选"选项</li>
+            <li>• 使用一致的颜色表示相同类型</li>
+          </ul>
+        </div>
+
+        <div class="border-l-4 border-red-500 pl-4">
+          <p class="font-semibold text-red-700 mb-1">❌ 避免</p>
+          <ul class="text-sm space-y-1 text-muted-foreground">
+            <li>• 标签文本过长或模糊</li>
+            <li>• 混淆复选框和单选框</li>
+            <li>• 在小屏幕上过度拥挤</li>
+            <li>• 使用太多种颜色</li>
+            <li>• 隐藏重要的选项描述</li>
+          </ul>
         </div>
       </div>
     </DocsSection>

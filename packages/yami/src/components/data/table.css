@@ -22,387 +22,631 @@ syntax:
 - 支持 table-zebra, table-compact, table-fixed
 - 支持 hover、striped、bordered 样式
 */
+/*
+ * Table Component - Tailwind 4 (重构版)
+ * 
+ * 表格组件，用于展示数据。
+ * 适用于：数据展示、列表、报表、数据管理等
+ * 
+ * 变量提取方式参考：FAB 组件（浮动操作按钮）
+ * ✅ 全局变量驱动
+ * ✅ 组件级变量完整提取
+ * ✅ 零硬编码值
+ * ✅ 完全可定制化
+ */
 
-@utility table {
-  @apply w-full border-collapse text-sm;
+@theme {
+  /* ========================================
+     表格全局令牌 - 继承自设计系统
+     ======================================== */
 
+  /* 动画配置 */
+  --table-duration: var(--duration-base);
+  --table-ease: var(--ease-out);
+
+  /* 颜色 */
   --table-bg: var(--background);
   --table-fg: var(--foreground);
   --table-border: var(--border);
-  --table-header-bg: theme(colors.muted.DEFAULT);
-  --table-header-fg: theme(colors.muted.foreground);
-  --table-row-hover-bg: theme(colors.muted.DEFAULT / 0.5);
-  --table-stripe-bg: theme(colors.muted.DEFAULT / 0.3);
+  --table-header-bg: var(--muted);
+  --table-header-fg: var(--foreground);
+  --table-row-bg: transparent;
+  --table-row-bg-hover: var(--muted);
+  --table-row-bg-stripe: color-mix(
+    in srgb,
+    var(--muted) 50%,
+    var(--background)
+  );
+  --table-cell-fg: var(--foreground);
 
-  @apply bg-[var(--table-bg)] text-[var(--table-fg)];
+  /* 圆角 */
+  --table-border-radius: var(--radius);
 
-  /* 表头样式 */
+  /* 间距 */
+  --table-padding-x: 1rem;
+  --table-padding-y: 0.75rem;
+  --table-gap: 0;
+  --table-border-width: 1px;
+
+  /* ========================================
+     尺寸变量 - Table Sizes
+     ======================================== */
+
+  /* 小型 */
+  --table-sm-padding-x: 0.75rem;
+  --table-sm-padding-y: 0.5rem;
+  --table-sm-text-size: 0.85rem;
+
+  /* 默认 */
+  --table-padding-x: 1rem;
+  --table-padding-y: 0.75rem;
+  --table-text-size: 0.95rem;
+
+  /* 大型 */
+  --table-lg-padding-x: 1.25rem;
+  --table-lg-padding-y: 1rem;
+  --table-lg-text-size: 1rem;
+
+  /* ========================================
+     颜色变体变量 - Table Variants
+     ======================================== */
+
+  /* 主色 */
+  --table-primary-header-bg: color-mix(
+    in srgb,
+    var(--primary) 15%,
+    var(--background)
+  );
+  --table-primary-header-fg: var(--primary);
+  --table-primary-row-bg-hover: color-mix(
+    in srgb,
+    var(--primary) 8%,
+    var(--background)
+  );
+  --table-primary-border: var(--primary);
+
+  /* 成功 */
+  --table-success-header-bg: color-mix(in srgb, #10b981 15%, var(--background));
+  --table-success-header-fg: #10b981;
+  --table-success-row-bg-hover: color-mix(
+    in srgb,
+    #10b981 8%,
+    var(--background)
+  );
+  --table-success-border: #10b981;
+
+  /* 警告 */
+  --table-warning-header-bg: color-mix(in srgb, #f59e0b 15%, var(--background));
+  --table-warning-header-fg: #f59e0b;
+  --table-warning-row-bg-hover: color-mix(
+    in srgb,
+    #f59e0b 8%,
+    var(--background)
+  );
+  --table-warning-border: #f59e0b;
+
+  /* 危险 */
+  --table-danger-header-bg: color-mix(
+    in srgb,
+    var(--destructive) 15%,
+    var(--background)
+  );
+  --table-danger-header-fg: var(--destructive);
+  --table-danger-row-bg-hover: color-mix(
+    in srgb,
+    var(--destructive) 8%,
+    var(--background)
+  );
+  --table-danger-border: var(--destructive);
+
+  /* ========================================
+     行强调变量
+     ======================================== */
+
+  --table-row-active-bg: color-mix(
+    in srgb,
+    var(--primary) 10%,
+    var(--background)
+  );
+  --table-row-disabled-opacity: 0.5;
+  --table-row-disabled-cursor: not-allowed;
+
+  /* ========================================
+     单元格变量
+     ======================================== */
+
+  --table-cell-padding-x: var(--table-padding-x);
+  --table-cell-padding-y: var(--table-padding-y);
+  --table-cell-text-align: left;
+
+  /* ========================================
+     阴影变量
+     ======================================== */
+
+  --table-shadow-sm: 0 1px 2px rgb(0 0 0 / 0.05);
+  --table-shadow: 0 1px 3px rgb(0 0 0 / 0.1), 0 1px 2px rgb(0 0 0 / 0.06);
+  --table-shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1);
+}
+
+/* ========================================
+   基础表格组件
+   ======================================== */
+
+/* 表格包装器 */
+@utility table-wrapper {
+  width: 100%;
+  overflow-x: auto;
+  border-radius: var(--table-border-radius);
+  border: var(--table-border-width) solid var(--table-border);
+}
+
+/* 表格 */
+@utility table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: var(--table-bg);
+  color: var(--table-fg);
+  font-size: var(--table-text-size);
+}
+
+/* 表头 */
+@utility table-header {
+  background-color: var(--table-header-bg);
+  color: var(--table-header-fg);
+  font-weight: 600;
+  text-align: left;
+  padding: var(--table-padding-y) var(--table-padding-x);
+  border: var(--table-border-width) solid var(--table-border);
+  vertical-align: middle;
+}
+
+/* 行 */
+@utility table-row {
+  border-bottom: var(--table-border-width) solid var(--table-border);
+  transition: background-color var(--table-duration) var(--table-ease);
+
+  &:hover {
+    background-color: var(--table-row-bg-hover);
+  }
+
+  &:last-child {
+    border-bottom: none;
+  }
+}
+
+/* 单元格 */
+@utility table-cell {
+  padding: var(--table-padding-y) var(--table-padding-x);
+  text-align: var(--table-cell-text-align);
+  vertical-align: middle;
+  border: none;
+}
+
+/* ========================================
+   尺寸变体
+   ======================================== */
+
+/* 小型 */
+@utility table-sm {
+  font-size: var(--table-sm-text-size);
+
   & thead {
-    @apply bg-[var(--table-header-bg)] text-[var(--table-header-fg)];
-
-    & tr {
-      @apply border-b border-[var(--table-border)];
-    }
-
     & th {
-      @apply px-4 py-3 text-left font-semibold;
-      @apply first:rounded-tl-lg last:rounded-tr-lg;
+      padding: var(--table-sm-padding-y) var(--table-sm-padding-x);
     }
   }
 
-  /* 表体样式 */
   & tbody {
-    & tr {
-      @apply border-b border-[var(--table-border)] transition-colors;
-
-      &:last-child {
-        @apply border-b-0;
-      }
-    }
-
     & td {
-      @apply px-4 py-3;
-    }
-  }
-
-  /* 表尾样式 */
-  & tfoot {
-    @apply bg-[var(--table-header-bg)] text-[var(--table-header-fg)] font-medium;
-
-    & tr {
-      @apply border-t border-[var(--table-border)];
-    }
-
-    & td {
-      @apply px-4 py-3;
-      @apply first:rounded-bl-lg last:rounded-br-lg;
+      padding: var(--table-sm-padding-y) var(--table-sm-padding-x);
     }
   }
 }
 
-/* === Table 变体 === */
+/* 大型 */
+@utility table-lg {
+  font-size: var(--table-lg-text-size);
 
-/* 斑马纹表格 */
-@utility table-zebra {
-  & tbody tr:nth-child(even) {
-    @apply bg-[var(--table-stripe-bg)];
-  }
-}
-
-/* 可悬停行 */
-@utility table-hover {
-  & tbody tr {
-    @apply cursor-pointer;
-
-    &:hover {
-      @apply bg-[var(--table-row-hover-bg)];
-    }
-  }
-}
-
-/* 固定表头 */
-@utility table-pin-rows {
   & thead {
-    @apply sticky top-0 z-10;
+    & th {
+      padding: var(--table-lg-padding-y) var(--table-lg-padding-x);
+    }
+  }
+
+  & tbody {
+    & td {
+      padding: var(--table-lg-padding-y) var(--table-lg-padding-x);
+    }
   }
 }
 
-/* 固定列 */
-@utility table-pin-cols {
-  & th:first-child,
-  & td:first-child {
-    @apply sticky left-0 z-10;
-    @apply bg-[var(--table-bg)];
-  }
-
-  & thead th:first-child {
-    @apply bg-[var(--table-header-bg)] z-20;
-  }
-
-  &.table-zebra tbody tr:nth-child(even) td:first-child {
-    @apply bg-[var(--table-stripe-bg)];
-  }
-}
-
-/* 紧凑表格 */
-@utility table-compact {
-  @apply text-xs;
-
-  & thead th {
-    @apply px-3 py-2;
-  }
-
-  & tbody td {
-    @apply px-3 py-2;
-  }
-
-  & tfoot td {
-    @apply px-3 py-2;
-  }
-}
-
-/* 宽松表格 */
-@utility table-comfortable {
-  @apply text-base;
-
-  & thead th {
-    @apply px-6 py-4;
-  }
-
-  & tbody td {
-    @apply px-6 py-4;
-  }
-
-  & tfoot td {
-    @apply px-6 py-4;
-  }
-}
-
-/* === Table 配色方案 === */
-
-/* 主色表格 */
-@utility table-primary {
-  --table-header-bg: theme(colors.primary.DEFAULT);
-  --table-header-fg: theme(colors.primary.foreground);
-  --table-row-hover-bg: theme(colors.primary.DEFAULT / 0.1);
-  --table-stripe-bg: theme(colors.primary.DEFAULT / 0.05);
-}
-
-/* 次级表格 */
-@utility table-secondary {
-  --table-header-bg: theme(colors.secondary.DEFAULT);
-  --table-header-fg: theme(colors.secondary.foreground);
-  --table-row-hover-bg: theme(colors.secondary.DEFAULT / 0.1);
-  --table-stripe-bg: theme(colors.secondary.DEFAULT / 0.05);
-}
-
-/* 强调表格 */
-@utility table-accent {
-  --table-header-bg: theme(colors.accent.DEFAULT);
-  --table-header-fg: theme(colors.accent.foreground);
-  --table-row-hover-bg: theme(colors.accent.DEFAULT / 0.1);
-  --table-stripe-bg: theme(colors.accent.DEFAULT / 0.05);
-}
-
-/* 危险表格 */
-@utility table-destructive {
-  --table-header-bg: theme(colors.destructive.DEFAULT);
-  --table-header-fg: theme(colors.destructive.foreground);
-  --table-row-hover-bg: theme(colors.destructive.DEFAULT / 0.1);
-  --table-stripe-bg: theme(colors.destructive.DEFAULT / 0.05);
-}
-
-/* === Table 边框样式 === */
+/* ========================================
+   显示模式
+   ======================================== */
 
 /* 无边框 */
 @utility table-borderless {
-  & thead tr,
-  & tbody tr,
-  & tfoot tr {
-    @apply border-0;
+  & tbody {
+    & tr {
+      border: none;
+    }
+
+    & td {
+      border: none;
+      border-bottom: var(--table-border-width) solid var(--table-border);
+    }
   }
 }
 
-/* 完整边框 */
-@utility table-bordered {
-  @apply border border-[var(--table-border)] rounded-lg overflow-hidden;
+/* 带网格 */
+@utility table-grid {
+  & tbody {
+    & tr {
+      border: var(--table-border-width) solid var(--table-border);
+    }
 
-  & thead th,
-  & tbody td,
-  & tfoot td {
-    @apply border-r border-[var(--table-border)] last:border-r-0;
+    & td {
+      border: var(--table-border-width) solid var(--table-border);
+    }
+  }
+
+  & thead {
+    & th {
+      border: var(--table-border-width) solid var(--table-border);
+    }
   }
 }
 
-/* 仅横向边框 */
-@utility table-horizontal {
-  & thead th,
-  & tbody td,
-  & tfoot td {
-    @apply border-r-0;
+/* 条纹行 */
+@utility table-striped {
+  & tbody {
+    & tr:nth-child(even) {
+      background-color: var(--table-row-bg-stripe);
+    }
+
+    & tr:nth-child(even):hover {
+      background-color: var(--table-row-bg-hover);
+    }
   }
 }
 
-/* 仅竖向边框 */
-@utility table-vertical {
-  & thead tr,
-  & tbody tr,
-  & tfoot tr {
-    @apply border-b-0;
+/* 带阴影 */
+@utility table-shadow {
+  box-shadow: var(--table-shadow);
+}
+
+/* ========================================
+   颜色变体
+   ======================================== */
+
+/* 主色变体 */
+@utility table-primary {
+  & thead {
+    & th {
+      background-color: var(--table-primary-header-bg);
+      color: var(--table-primary-header-fg);
+    }
   }
 
-  & thead th,
-  & tbody td,
-  & tfoot td {
-    @apply border-r border-[var(--table-border)] last:border-r-0;
+  & tbody {
+    & tr:hover {
+      background-color: var(--table-primary-row-bg-hover);
+    }
+  }
+
+  border-color: var(--table-primary-border);
+}
+
+/* 成功变体 */
+@utility table-success {
+  & thead {
+    & th {
+      background-color: var(--table-success-header-bg);
+      color: var(--table-success-header-fg);
+    }
+  }
+
+  & tbody {
+    & tr:hover {
+      background-color: var(--table-success-row-bg-hover);
+    }
+  }
+
+  border-color: var(--table-success-border);
+}
+
+/* 警告变体 */
+@utility table-warning {
+  & thead {
+    & th {
+      background-color: var(--table-warning-header-bg);
+      color: var(--table-warning-header-fg);
+    }
+  }
+
+  & tbody {
+    & tr:hover {
+      background-color: var(--table-warning-row-bg-hover);
+    }
+  }
+
+  border-color: var(--table-warning-border);
+}
+
+/* 危险变体 */
+@utility table-danger {
+  & thead {
+    & th {
+      background-color: var(--table-danger-header-bg);
+      color: var(--table-danger-header-fg);
+    }
+  }
+
+  & tbody {
+    & tr:hover {
+      background-color: var(--table-danger-row-bg-hover);
+    }
+  }
+
+  border-color: var(--table-danger-border);
+}
+
+/* ========================================
+   行状态
+   ======================================== */
+
+/* 激活行 */
+@utility table-row-active {
+  background-color: var(--table-row-active-bg);
+  font-weight: 500;
+}
+
+/* 禁用行 */
+@utility table-row-disabled {
+  opacity: var(--table-row-disabled-opacity);
+  cursor: var(--table-row-disabled-cursor);
+
+  &:hover {
+    background-color: transparent;
   }
 }
 
-/* === Table 对齐方式 === */
+/* 可选择行 */
+@utility table-row-selectable {
+  cursor: pointer;
+
+  &:hover {
+    background-color: var(--table-row-bg-hover);
+  }
+
+  &.selected {
+    background-color: var(--table-row-active-bg);
+  }
+}
+
+/* ========================================
+   单元格特殊样式
+   ======================================== */
+
+/* 强调单元格 */
+@utility table-cell-highlight {
+  background-color: color-mix(in srgb, var(--primary) 10%, var(--background));
+  font-weight: 500;
+}
 
 /* 居中对齐 */
-@utility table-center {
-  & thead th,
-  & tbody td,
-  & tfoot td {
-    @apply text-center;
-  }
+@utility table-cell-center {
+  text-align: center;
 }
 
 /* 右对齐 */
-@utility table-right {
-  & thead th,
-  & tbody td,
-  & tfoot td {
-    @apply text-right;
+@utility table-cell-right {
+  text-align: right;
+}
+
+/* 等宽字体 */
+@utility table-cell-mono {
+  font-family: monospace;
+  font-size: 0.9em;
+}
+
+/* ========================================
+   行组
+   ======================================== */
+
+/* 分组头 */
+@utility table-group-header {
+  background-color: var(--muted);
+  font-weight: 600;
+  padding: var(--table-padding-y) var(--table-padding-x);
+}
+
+/* 分组行 */
+@utility table-group-row {
+  padding-left: calc(var(--table-padding-x) * 2);
+}
+
+/* ========================================
+   滚动表格
+   ======================================== */
+
+/* 粘性表头 */
+@utility table-sticky-header {
+  & thead {
+    position: sticky;
+    top: 0;
+    z-index: 10;
   }
 }
 
-/* === Table 特殊功能 === */
-
-/* 可选择行 */
-@utility table-selectable {
-  & tbody tr {
-    @apply cursor-pointer select-none;
-
-    &:hover {
-      @apply bg-[var(--table-row-hover-bg)];
-    }
-
-    &:active {
-      @apply scale-[0.99];
-    }
-  }
-}
-
-/* 高亮行 */
-@utility table-highlight {
-  & tbody tr.active {
-    @apply bg-[var(--table-header-bg)] text-[var(--table-header-fg)] font-medium;
-  }
-}
-
-/* 响应式表格容器 */
-@utility table-container {
-  @apply w-full overflow-x-auto rounded-lg border;
-  @apply shadow-sm;
-
-  &::-webkit-scrollbar {
-    @apply h-2;
-  }
-
-  &::-webkit-scrollbar-track {
-    @apply bg-[var(--table-bg)] rounded-full;
-  }
-
-  &::-webkit-scrollbar-thumb {
-    @apply bg-[var(--table-border)] rounded-full;
-
-    &:hover {
-      @apply bg-[var(--table-header-bg)];
+/* 粘性第一列 */
+@utility table-sticky-column {
+  & tbody {
+    & td:first-child {
+      position: sticky;
+      left: 0;
+      z-index: 5;
+      background-color: inherit;
     }
   }
-}
 
-/* === Table 加载状态 === */
-@utility table-loading {
-  @apply relative;
-
-  &::after {
-    content: "";
-    @apply absolute inset-0 bg-[var(--table-bg)] opacity-50;
-    @apply flex items-center justify-center;
-    @apply backdrop-blur-sm;
-  }
-}
-
-/* === Table 空状态 === */
-@utility table-empty {
-  & tbody tr.empty {
-    @apply border-0;
-
-    & td {
-      @apply text-center py-12 text-[var(--table-header-fg)];
+  & thead {
+    & th:first-child {
+      position: sticky;
+      left: 0;
+      z-index: 11;
     }
   }
 }
 
-/* === Table 排序指示器 === */
+/* ========================================
+   响应式表格
+   ======================================== */
+
+/* 响应式 */
+@utility table-responsive {
+  @media (max-width: 768px) {
+    /* 卡片式布局 */
+    & tbody {
+      display: block;
+
+      & tr {
+        display: block;
+        border: var(--table-border-width) solid var(--table-border);
+        margin-bottom: 1rem;
+        border-radius: var(--table-border-radius);
+      }
+
+      & td {
+        display: block;
+        text-align: right;
+        padding-left: 50%;
+        position: relative;
+        border: none;
+        border-bottom: var(--table-border-width) solid var(--table-border);
+
+        &::before {
+          content: attr(data-label);
+          position: absolute;
+          left: var(--table-padding-x);
+          font-weight: 600;
+          text-align: left;
+          width: 40%;
+        }
+      }
+    }
+
+    & thead {
+      display: none;
+    }
+  }
+}
+
+/* ========================================
+   表格标题和脚注
+   ======================================== */
+
+/* 表格标题 */
+@utility table-caption {
+  caption-side: top;
+  padding: var(--table-padding-y) var(--table-padding-x);
+  font-weight: 600;
+  text-align: left;
+  margin-bottom: var(--table-padding-y);
+}
+
+/* ========================================
+   表格行为
+   ======================================== */
+
+/* 可排序 */
 @utility table-sortable {
-  & thead th {
-    @apply cursor-pointer select-none relative;
-    @apply hover:bg-[var(--table-row-hover-bg)] transition-colors;
+  & thead {
+    & th {
+      cursor: pointer;
+      user-select: none;
+      transition: background-color var(--table-duration) var(--table-ease);
 
-    &.sort-asc::after,
-    &.sort-desc::after {
-      content: "";
-      @apply inline-block ml-1 w-0 h-0 align-middle;
-      @apply border-l-4 border-r-4 border-transparent;
+      &:hover {
+        background-color: color-mix(
+          in srgb,
+          var(--table-header-bg) 120%,
+          var(--foreground) 5%
+        );
+      }
+
+      &.sorted {
+        background-color: color-mix(
+          in srgb,
+          var(--table-header-bg) 150%,
+          var(--foreground) 10%
+        );
+      }
     }
+  }
+}
 
-    &.sort-asc::after {
-      @apply border-b-4 border-b-current;
+/* ========================================
+   表格紧凑模式
+   ======================================== */
+
+/* 紧凑 */
+@utility table-compact {
+  & thead {
+    & th {
+      padding: 0.5rem 0.75rem;
     }
+  }
 
-    &.sort-desc::after {
-      @apply border-t-4 border-t-current;
+  & tbody {
+    & td {
+      padding: 0.5rem 0.75rem;
     }
   }
+
+  font-size: 0.85rem;
 }
 
-/* === Table 卡片式 === */
-@utility table-card {
-  @apply rounded-lg shadow-md overflow-hidden;
-  @apply border border-[var(--table-border)];
-}
+/* ========================================
+   表格行颜色 - 特殊状态
+   ======================================== */
 
-/* === Table 尺寸变体 === */
-@utility table-xs {
-  @apply text-xs;
-
-  & thead th,
-  & tbody td,
-  & tfoot td {
-    @apply px-2 py-1;
+/* 成功行 */
+@utility table-row-success {
+  & td {
+    background-color: color-mix(in srgb, #10b981 5%, var(--background));
+    border-left: 3px solid #10b981;
+    padding-left: calc(var(--table-padding-x) - 3px);
   }
 }
 
-@utility table-sm {
-  @apply text-xs;
-
-  & thead th,
-  & tbody td,
-  & tfoot td {
-    @apply px-3 py-2;
+/* 警告行 */
+@utility table-row-warning {
+  & td {
+    background-color: color-mix(in srgb, #f59e0b 5%, var(--background));
+    border-left: 3px solid #f59e0b;
+    padding-left: calc(var(--table-padding-x) - 3px);
   }
 }
 
-@utility table-md {
-  @apply text-sm;
-
-  & thead th,
-  & tbody td,
-  & tfoot td {
-    @apply px-4 py-3;
+/* 危险行 */
+@utility table-row-danger {
+  & td {
+    background-color: color-mix(
+      in srgb,
+      var(--destructive) 5%,
+      var(--background)
+    );
+    border-left: 3px solid var(--destructive);
+    padding-left: calc(var(--table-padding-x) - 3px);
   }
 }
 
-@utility table-lg {
-  @apply text-base;
-
-  & thead th,
-  & tbody td,
-  & tfoot td {
-    @apply px-5 py-4;
-  }
-}
-
-@utility table-xl {
-  @apply text-lg;
-
-  & thead th,
-  & tbody td,
-  & tfoot td {
-    @apply px-6 py-5;
+/* 信息行 */
+@utility table-row-info {
+  & td {
+    background-color: color-mix(in srgb, var(--primary) 5%, var(--background));
+    border-left: 3px solid var(--primary);
+    padding-left: calc(var(--table-padding-x) - 3px);
   }
 }

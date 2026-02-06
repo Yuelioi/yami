@@ -4,7 +4,7 @@
       {{ title }}
     </h2>
     <p class="mb-4 text-gray-600 text-sm">{{ description }}</p>
-    <div class="flex flex-wrap flex-col gap-4">
+    <div class="flex flex-col gap-4">
       <slot />
     </div>
   </section>

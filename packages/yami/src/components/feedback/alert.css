@@ -1,7 +1,7 @@
 /*
 name: alert
 desc: 警告提示组件，用于展示重要信息、警告或状态提示。
-usage: 常用于表单验证、系统提示、操作结果反馈等。
+usage: 用于表单验证、系统提示、操作结果反馈等。
 syntax:
 <div class="alert alert-info">
   <div>
@@ -11,6 +11,37 @@ syntax:
   <div class="alert-close"></div>
 </div>
 */
+
+@theme {
+  /* animation */
+  --feedback-transition: var(--duration-medium);
+  --feedback-transition-fast: var(--duration-fast);
+  --feedback-ease: var(--ease-out);
+  --feedback-ease-in: var(--ease-in);
+  --feedback-ease-bounce: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+
+  /* spacing */
+  --feedback-padding: 1rem;
+  --feedback-padding-sm: 0.75rem;
+  --feedback-padding-close: 1rem;
+  --feedback-gap: 0.75rem;
+  --feedback-gap-close: 2rem;
+
+  /* icon */
+  --feedback-icon-size: 1.5rem;
+  --feedback-icon-size-sm: 1rem;
+  --feedback-icon-size-xs: 0.75rem;
+
+  /* border */
+  --feedback-border-width: 3px;
+
+  /* backdrop */
+  --feedback-backdrop-blur: var(--blur-sm);
+
+  /* transform */
+  --feedback-translate: 100%;
+  --feedback-translate-exit: 100%;
+}
 
 /* === Alert 基础容器 === */
 @utility alert {
@@ -31,9 +62,23 @@ syntax:
 
 /* 关闭按钮 */
 @utility alert-close {
-  @apply rounded-sm p-1 transition-colors duration-200 size-6 cursor-pointer;
-  @apply flex items-center justify-center ml-auto;
-  @apply text-muted-foreground;
+  padding: var(--feedback-padding-close);
+  border-radius: var(--radius-sm);
+  transition: var(--feedback-transition);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-inline-start: auto;
+  color: var(--muted-foreground);
+  min-width: var(--touch-target-md);
+  min-height: var(--touch-target-md);
+
+  &:focus-visible {
+    outline: var(--focus-ring-width) solid
+      color-mix(in oklab, var(--primary) 50%, transparent);
+    outline-offset: var(--focus-ring-offset);
+  }
 
   &::before {
     content: "";
@@ -207,7 +252,7 @@ syntax:
   @apply p-5 gap-4;
 
   &::before {
-    @apply size-6;
+    @apply size-5;
   }
 
   & .alert-title {
@@ -217,10 +262,7 @@ syntax:
   & .alert-description {
     @apply text-sm;
   }
-
   & .alert-close {
-    @apply size-7;
-
     &::before {
       @apply size-5;
     }
@@ -241,7 +283,31 @@ syntax:
 
 /* === Alert 动画 === */
 @utility alert-enter {
-  @apply -translate-y-2 opacity-0;
+  transform: translateY(calc(var(--feedback-translate) * -1));
+  opacity: 0;
+}
+
+@utility alert-enter-active {
+  transition: all var(--feedback-transition) var(--feedback-ease-out);
+}
+
+@utility alert-enter-to {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+@utility alert-leave {
+  transform: translateY(calc(var(--feedback-translate) * -1));
+  opacity: 1;
+}
+
+@utility alert-leave-active {
+  transition: all var(--feedback-transition) var(--feedback-ease-in);
+}
+
+@utility alert-leave-to {
+  transform: translateY(calc(var(--feedback-translate) * -1));
+  opacity: 0;
 }
 
 @utility alert-enter-active {

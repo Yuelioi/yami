@@ -6,110 +6,194 @@ syntax:
 <button class="btn btn-primary btn-md">确认</button>
 */
 
-@import "../../utilities/style.css";
+/* ========================================
+   基础按钮
+   ======================================== */
+@theme {
+  /* radius */
+  --btn-radius: var(--radius);
+
+  /* font */
+  --btn-font-xs: 0.75rem;
+  --btn-font-sm: 0.8125rem;
+  --btn-font-md: 0.875rem;
+  --btn-font-lg: 0.9375rem;
+  --btn-font-xl: 1rem;
+  --btn-font-weight: 600;
+
+  /* height */
+  --btn-h-xs: 2rem;
+  --btn-h-sm: 2.5rem;
+  --btn-h-md: 3rem;
+  --btn-h-lg: 3.5rem;
+  --btn-h-xl: 4rem;
+
+  /* padding */
+  --btn-px-xs: 0.5rem;
+  --btn-px-sm: 0.75rem;
+  --btn-px-md: 1rem;
+  --btn-px-lg: 1.25rem;
+  --btn-px-xl: 1.5rem;
+
+  /* gap */
+  --btn-gap-base: 0.375rem;
+  --btn-gap-tight: 0.25rem;
+  --btn-gap-loose: 0.625rem;
+
+  /* border */
+  --btn-border-width: 1px;
+  --btn-border-width-solid: 2px;
+
+  /* transform */
+  --btn-scale-active: 0.98;
+  --btn-translate-y-hover: -2px;
+  --btn-translate-y-active: 3px;
+
+  /* shadow */
+  --btn-shadow-3d-base: color-mix(in srgb, var(--btn-bg) 40%, black);
+  --btn-shadow-3d-amount: 4px;
+  --btn-shadow-inset: inset 0 1px 2px color-mix(in srgb, black 5%, transparent);
+
+  /* ripple */
+  --btn-ripple-bg: color-mix(in srgb, currentColor 30%, transparent);
+  --btn-ripple-size: 300%;
+
+  /* loading */
+  --btn-loading-opacity: 0.7;
+  --btn-loading-spinner-size: 1em;
+  --btn-loading-spinner-border: 2px;
+  --btn-loading-spinner-margin: 0.5em;
+
+  /* gradient */
+  --btn-gradient-angle: 135deg;
+  --btn-gradient-horizontal: 90deg;
+
+  /* spacing */
+  --btn-group-spacing: -1px;
+
+  /* icon */
+  --btn-icon-padding-base: 0.75rem;
+  --btn-icon-padding-sm: 0.625rem;
+  --btn-icon-padding-lg: 0.875rem;
+
+  /* pulse */
+  --btn-pulse-size: 8px;
+  --btn-pulse-opacity: color-mix(in srgb, var(--btn-bg) 30%, transparent);
+  --btn-pulse-duration: 2s;
+
+  /* 3d effect */
+  --btn-3d-shadow-hover: 5px;
+  --btn-3d-shadow-active: 1px;
+
+  /* shadow 3d base amount */
+  --btn-3d-shadow-base-blur: 10px;
+  --btn-3d-shadow-hover-blur: 15px;
+  --btn-3d-shadow-active-blur: 5px;
+
+  /* opacity for rgba shadows */
+  --btn-3d-shadow-opacity-base: 0.2;
+  --btn-3d-shadow-opacity-hover: 0.25;
+
+  /* link */
+  --btn-link-padding: 0.25rem;
+  --btn-link-underline-offset: 4px;
+
+  /* wide */
+  --btn-wide-max-width: 22rem;
+
+  /* instant */
+  --btn-transition-instant: 0s;
+
+  /* opacity mixins for color-mix */
+  --btn-opacity-hover: 12%;
+  --btn-opacity-hover-high: 20%;
+  --btn-opacity-tint: 15%;
+  --btn-opacity-tint-hover: 25%;
+  --btn-opacity-tint-light: 10%;
+  --btn-opacity-tint-active: 20%;
+  --btn-opacity-text-hover: 85%;
+  --btn-opacity-text-active: 75%;
+
+  /* motion */
+  --btn-transition: var(--duration-medium) var(--ease-in-out);
+
+  --duration-btn-loading: 1s;
+}
 
 @utility btn {
-  /* 布局 */
-  @apply inline-flex items-center justify-center gap-2;
-  @apply max-w-max;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--btn-gap-base);
 
-  /* 文本 */
-  @apply text-sm font-medium;
-  @apply whitespace-nowrap;
+  --btn-h: var(--btn-h-md);
+  --btn-px: var(--btn-px-md);
+  --btn-font: var(--btn-font-md);
 
-  /* 交互 */
-  @apply select-none cursor-pointer;
-  @apply transition-colors duration-200;
+  height: var(--btn-h);
+  padding-inline: var(--btn-px);
+  font-size: var(--btn-font);
+  font-weight: var(--btn-font-weight);
 
-  /* 边框 */
-  @apply border rounded-md;
+  border-radius: var(--btn-radius);
+  border-width: var(--btn-border-width);
+  border-style: solid;
 
-  /* 焦点状态 */
-  @apply focus-visible:outline-none;
-  @apply focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2;
+  background-color: var(--btn-bg);
+  color: var(--btn-text);
+  border-color: var(--btn-border);
 
-  /* 禁用状态 */
-  @apply disabled:pointer-events-none;
-  @apply disabled:opacity-50;
+  cursor: pointer;
+  user-select: none;
+  white-space: nowrap;
 
-  /* 默认尺寸 */
-  @apply input-h-md input-p-md py-2;
+  transition:
+    background-color var(--btn-transition),
+    color var(--btn-transition),
+    border-color var(--btn-transition),
+    box-shadow var(--btn-transition);
 
-  /* 默认配色(ghost风格) */
-  @apply bg-transparent border-transparent text-foreground;
-}
-
-/* ========================================
-   实心按钮 - btn-primary
-   ======================================== */
-
-@utility btn-primary {
-  &:not(:is(.btn-outline)):not(:is(.btn-ghost)) {
-    @apply bg-primary text-primary-foreground border-transparent;
-    @apply hover:bg-primary/90 hover:text-primary-foreground;
+  &:hover:not(:disabled, [disabled], .btn-disabled) {
+    background-color: var(--btn-bg-hover, var(--btn-bg));
+    color: var(--btn-text-hover, var(--btn-text));
   }
 
-  @apply hover:bg-primary/90 hover:text-primary-foreground;
-}
-/* ========================================
-   实心按钮 - btn-secondary
-   ======================================== */
-@utility btn-secondary {
-  &:not(:is(.btn-outline)):not(:is(.btn-ghost)) {
-    @apply bg-secondary text-secondary-foreground border-transparent;
-    @apply hover:bg-secondary/90 hover:text-secondary-foreground;
+  &:active:not(:disabled, [disabled], .btn-disabled) {
+    background-color: var(--btn-bg-active, var(--btn-bg-hover, var(--btn-bg)));
+    transform: scale(var(--btn-scale-active));
+    transition-duration: var(--duration-fast);
   }
-  @apply hover:bg-secondary/90 hover:text-secondary-foreground;
-}
 
-/* ========================================
-   实心按钮 - btn-destructive
-   ======================================== */
-@utility btn-destructive {
-  &:not(:is(.btn-outline)):not(:is(.btn-ghost)) {
-    @apply bg-destructive text-destructive-foreground border-transparent;
-    @apply hover:bg-destructive/90 hover:text-destructive-foreground;
+  &:focus-visible {
+    outline: var(--focus-ring-width) solid var(--ring);
+    outline-offset: var(--focus-ring-offset);
   }
-  @apply hover:bg-destructive/90 hover:text-destructive-foreground;
-}
 
-/* ========================================
-   实心按钮 - btn-muted
-   ======================================== */
-@utility btn-muted {
-  &:not(:is(.btn-outline)):not(:is(.btn-ghost)) {
-    @apply bg-muted text-muted-foreground border-transparent;
-    @apply hover:bg-muted/90 hover:text-muted-foreground;
+  &:disabled,
+  &[disabled],
+  &.btn-disabled {
+    pointer-events: none;
+    opacity: var(--opacity-disabled);
+    cursor: not-allowed;
   }
-  @apply hover:bg-muted/90 hover:text-muted-foreground;
 }
 
-/* ========================================
-   按钮 - btn-accent
-   ======================================== */
-
-@utility btn-accent {
-  &:not(:is(.btn-outline)):not(:is(.btn-ghost)) {
-    @apply bg-accent text-accent-foreground border-transparent;
-    @apply hover:bg-accent/90 hover:text-accent-foreground;
+@utility btn-icon-tight {
+  &.btn {
+    gap: var(--btn-gap-tight);
   }
-  @apply hover:bg-accent/90 hover:text-accent-foreground;
 }
 
-/* ========================================
-   描边按钮
-   ======================================== */
-
-@utility btn-outline {
-  @apply bg-transparent border border-input text-foreground;
+@utility btn-icon-loose {
+  &.btn {
+    gap: var(--btn-gap-loose);
+  }
 }
 
-/* ========================================
-   幽灵按钮
-   ======================================== */
-
-@utility btn-ghost {
-  @apply bg-transparent border-transparent text-foreground border-none;
+@utility btn-icon-none {
+  &.btn {
+    gap: 0;
+  }
 }
 
 /* ========================================
@@ -117,141 +201,620 @@ syntax:
    ======================================== */
 
 @utility btn-xs {
-  @apply input-h-xs input-p-xs text-xs;
+  &.btn {
+    --btn-h: var(--btn-h-xs);
+    --btn-px: var(--btn-px-xs);
+    --btn-font: var(--btn-font-xs);
+  }
 }
 
 @utility btn-sm {
-  @apply input-h-sm input-p-sm text-sm;
+  &.btn {
+    --btn-h: var(--btn-h-sm);
+    --btn-px: var(--btn-px-sm);
+    --btn-font: var(--btn-font-sm);
+  }
 }
 
 @utility btn-md {
-  @apply input-h-md input-p-md text-sm;
+  &.btn {
+    --btn-h: var(--btn-h-md);
+    --btn-px: var(--btn-px-md);
+    --btn-font: var(--btn-font-md);
+  }
 }
 
 @utility btn-lg {
-  @apply input-h-lg input-p-lg text-base;
+  &.btn {
+    --btn-h: var(--btn-h-lg);
+    --btn-px: var(--btn-px-lg);
+    --btn-font: var(--btn-font-lg);
+  }
 }
 
 @utility btn-xl {
-  @apply input-h-xl input-p-xl text-base;
+  &.btn {
+    --btn-h: var(--btn-h-xl);
+    --btn-px: var(--btn-px-xl);
+    --btn-font: var(--btn-font-xl);
+  }
 }
 
 /* ========================================
-   对齐
+   颜色类 - Primary
    ======================================== */
-@utility btn-left {
-  @apply justify-start;
+@utility btn-primary {
+  &.btn {
+    --btn-bg: var(--primary);
+    --btn-bg-hover: color-mix(in srgb, var(--primary) 90%, black);
+    --btn-bg-active: color-mix(in srgb, var(--primary) 85%, black);
+    --btn-text: var(--primary-foreground);
+    --btn-border: var(--primary);
+  }
 }
 
-@utility btn-center {
-  @apply justify-center;
+@utility btn-secondary {
+  &.btn {
+    --btn-bg: var(--secondary);
+    --btn-bg-hover: color-mix(in srgb, var(--secondary) 90%, black);
+    --btn-bg-active: color-mix(in srgb, var(--secondary) 85%, black);
+    --btn-text: var(--secondary-foreground);
+    --btn-border: var(--secondary);
+  }
 }
 
-@utility btn-right {
-  @apply justify-end;
+@utility btn-success {
+  &.btn {
+    --btn-bg: var(--success);
+    --btn-bg-hover: color-mix(in srgb, var(--success) 90%, black);
+    --btn-bg-active: color-mix(in srgb, var(--success) 85%, black);
+    --btn-text: var(--success-foreground);
+    --btn-border: var(--success);
+  }
 }
-/* ========================================
-   特殊变体
-   ======================================== */
+
+@utility btn-info {
+  &.btn {
+    --btn-bg: var(--info);
+    --btn-bg-hover: color-mix(in srgb, var(--info) 90%, black);
+    --btn-bg-active: color-mix(in srgb, var(--info) 85%, black);
+    --btn-text: var(--info-foreground);
+    --btn-border: var(--info);
+  }
+}
+
+@utility btn-warning {
+  &.btn {
+    --btn-bg: var(--warning);
+    --btn-bg-hover: color-mix(in srgb, var(--warning) 92%, black);
+    --btn-bg-active: color-mix(in srgb, var(--warning) 85%, black);
+    --btn-text: var(--warning-foreground);
+    --btn-border: var(--warning);
+  }
+}
+
+@utility btn-destructive {
+  &.btn {
+    --btn-bg: var(--destructive);
+    --btn-bg-hover: color-mix(in srgb, var(--destructive) 90%, black);
+    --btn-bg-active: color-mix(in srgb, var(--destructive) 85%, black);
+    --btn-text: var(--destructive-foreground);
+    --btn-border: var(--destructive);
+  }
+}
+
+@utility btn-accent {
+  &.btn {
+    --btn-bg: var(--accent);
+    --btn-bg-hover: color-mix(in srgb, var(--accent) 90%, black);
+    --btn-bg-active: color-mix(in srgb, var(--accent) 85%, black);
+    --btn-text: var(--accent-foreground);
+    --btn-border: var(--accent);
+  }
+}
+@utility btn-outline {
+  &.btn {
+    background: transparent;
+    color: var(--btn-bg);
+    border-color: var(--btn-bg);
+    --btn-bg-hover: var(--btn-bg);
+    --btn-text-hover: var(--btn-text);
+  }
+}
+
+@utility btn-ghost {
+  &.btn {
+    background: transparent;
+    border-color: transparent;
+    color: var(--btn-bg);
+    --btn-bg-hover: color-mix(
+      in srgb,
+      var(--btn-bg) var(--btn-opacity-hover),
+      transparent
+    );
+  }
+}
+
+@utility btn-soft {
+  &.btn {
+    background: color-mix(
+      in srgb,
+      var(--btn-bg) var(--btn-opacity-hover),
+      transparent
+    );
+    border-color: transparent;
+    color: var(--btn-bg);
+    --btn-bg-hover: color-mix(
+      in srgb,
+      var(--btn-bg) var(--btn-opacity-hover-high),
+      transparent
+    );
+  }
+}
 
 @utility btn-link {
-  @apply bg-transparent text-primary border-transparent;
-  @apply underline-offset-4 px-1 h-auto;
-  @apply hover:underline;
+  &.btn {
+    background: none;
+    border: none;
+    height: auto;
+    padding-inline: var(--btn-link-padding);
+
+    color: var(--btn-bg);
+    text-decoration: underline;
+    text-underline-offset: var(--btn-link-underline-offset);
+
+    &:hover,
+    &:active {
+      background-color: transparent !important;
+      box-shadow: none;
+    }
+
+    &:hover {
+      color: color-mix(
+        in srgb,
+        var(--btn-bg) var(--btn-opacity-text-hover),
+        black
+      );
+    }
+
+    &:active {
+      color: color-mix(
+        in srgb,
+        var(--btn-bg) var(--btn-opacity-text-active),
+        black
+      );
+    }
+  }
 }
 
-/* ========================================
-   图标按钮
-   ======================================== */
+@utility btn-dash {
+  &.btn {
+    background: transparent;
+    border-style: dashed;
+    color: var(--btn-bg);
+    border-color: var(--btn-bg);
+    --btn-bg-hover: var(--btn-bg);
+    --btn-text-hover: var(--btn-text);
+  }
+}
 
 @utility btn-icon {
-  @apply p-0 aspect-square;
-}
+  &.btn {
+    padding-inline: var(--btn-icon-padding-base);
+    aspect-ratio: 1;
+    justify-content: center;
 
-@utility btn-icon-xs {
-  @apply btn-icon input-h-xs;
+    @media (max-width: 640px) {
+      min-width: var(--btn-h-sm);
+      min-height: var(--btn-h-sm);
+    }
+  }
 }
 
 @utility btn-icon-sm {
-  @apply btn-icon input-h-sm;
-}
-
-@utility btn-icon-md {
-  @apply btn-icon input-h-md;
+  &.btn {
+    padding-inline: var(--btn-icon-padding-sm);
+  }
 }
 
 @utility btn-icon-lg {
-  @apply btn-icon input-h-lg;
-}
-
-@utility btn-icon-xl {
-  @apply btn-icon input-h-xl;
+  &.btn {
+    padding-inline: var(--btn-icon-padding-lg);
+  }
 }
 
 /* ========================================
-   形状变体 具体大小使用 size-x 进行设置
+   形状 - Square
    ======================================== */
 
-@utility btn-pill {
-  @apply rounded-full aspect-square;
+@utility btn-square {
+  &.btn {
+    padding: 0;
+    width: var(--btn-h);
+  }
 }
 
-@utility btn-square {
-  @apply rounded-none aspect-square;
+@utility btn-circle {
+  &.btn {
+    padding: 0;
+    width: var(--btn-h);
+    border-radius: 999px;
+  }
 }
 
 /* ========================================
    宽度变体
    ======================================== */
 
-@utility btn-full {
-  @apply w-full max-w-none;
+@utility btn-block {
+  &.btn {
+    width: 100%;
+  }
 }
 
 @utility btn-wide {
-  @apply w-full max-w-64;
+  &.btn {
+    width: 100%;
+    max-width: var(--btn-wide-max-width);
+  }
+}
+
+@media (max-width: 640px) {
+  .btn-xs {
+    --btn-h: var(--btn-h-sm);
+    --btn-px: var(--btn-px-sm);
+    --btn-font: var(--btn-font-sm);
+  }
+}
+
+@media (hover: none) and (pointer: coarse) {
+  .btn:hover {
+    background-color: var(--btn-bg);
+    color: var(--btn-text);
+    box-shadow: none;
+  }
+}
+
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  .btn {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
 }
 
 /* ========================================
-   增强效果
+   状态 - Active
    ======================================== */
 
+/* ========================================
+   增强效果 - Shadow
+   ======================================== */
+
+@utility btn-active {
+  &.btn {
+    background-color: var(--btn-bg-active);
+  }
+}
+
+@utility btn-pressed {
+  &.btn {
+    background-color: var(--btn-bg-active);
+    transform: scale(var(--btn-scale-active));
+    box-shadow: var(--btn-shadow-inset);
+  }
+}
+
 @utility btn-shadow {
-  @apply shadow-sm hover:shadow-md;
+  &.btn {
+    box-shadow: var(--shadow-md);
+  }
 }
 
 @utility btn-lift {
-  @apply transition-all duration-200;
-  @apply hover:scale-105 hover:-translate-y-0.5;
+  &.btn:hover {
+    transform: translateY(var(--btn-translate-y-hover));
+    box-shadow: var(--shadow-lg);
+    transition:
+      background-color var(--btn-transition),
+      color var(--btn-transition),
+      border-color var(--btn-transition),
+      box-shadow var(--btn-transition),
+      transform var(--duration-base) var(--ease-in-out);
+  }
+}
+
+@utility btn-loading {
+  &.btn {
+    pointer-events: none;
+    position: relative;
+    opacity: var(--btn-loading-opacity);
+
+    &::after {
+      content: "";
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: var(--btn-loading-spinner-size);
+      height: var(--btn-loading-spinner-size);
+      border: var(--btn-loading-spinner-border) solid currentColor;
+      border-right-color: transparent;
+      border-radius: 50%;
+      animation: spin var(--duration-btn-loading) linear infinite;
+    }
+
+    & > * {
+      visibility: hidden;
+    }
+  }
+}
+
+@utility btn-loading-with-text {
+  &.btn {
+    pointer-events: none;
+    opacity: var(--btn-loading-opacity);
+
+    &::after {
+      content: "";
+      display: inline-block;
+      width: var(--btn-loading-spinner-size);
+      height: var(--btn-loading-spinner-size);
+      margin-left: var(--btn-loading-spinner-margin);
+      border: var(--btn-loading-spinner-border) solid currentColor;
+      border-right-color: transparent;
+      border-radius: 50%;
+      animation: spin var(--duration-btn-loading) linear infinite;
+    }
+  }
+}
+
+@utility btn-loading-center {
+  &.btn::after {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    margin: 0;
+  }
 }
 
 /* ========================================
-   加载状态
+   按钮组
    ======================================== */
+@utility btn-group {
+  display: inline-flex;
 
-@utility btn-loading {
-  @apply relative text-transparent pointer-events-none;
+  & > .btn {
+    border-radius: 0;
+  }
 
-  &::after {
-    content: "";
-    @apply absolute inset-0 m-auto;
-    @apply size-4 rounded-full;
-    @apply border-2 border-current border-t-transparent;
-    @apply animate-spin;
+  & > .btn + .btn {
+    margin-left: var(--btn-group-spacing);
+  }
+
+  & > .btn:first-child {
+    border-top-left-radius: var(--btn-radius);
+    border-bottom-left-radius: var(--btn-radius);
+  }
+
+  & > .btn:last-child {
+    border-top-right-radius: var(--btn-radius);
+    border-bottom-right-radius: var(--btn-radius);
   }
 }
 
-@utility btn-group {
-  @apply flex;
+@utility btn-group-vertical {
+  display: inline-flex;
+  flex-direction: column;
 
-  & .btn:first-child {
-    @apply rounded-l-md;
-  }
-  & .btn:last-child {
-    @apply rounded-r-md;
+  & > .btn {
+    margin-top: var(--btn-group-spacing);
+    border-radius: 0;
   }
 
-  & .btn {
-    @apply rounded-none ring ring-muted;
+  & > .btn:first-child {
+    border-top-left-radius: var(--btn-radius);
+    border-top-right-radius: var(--btn-radius);
+  }
+
+  & > .btn:last-child {
+    border-bottom-left-radius: var(--btn-radius);
+    border-bottom-right-radius: var(--btn-radius);
+  }
+}
+
+@utility btn-gradient {
+  &.btn {
+    background: linear-gradient(
+      var(--btn-gradient-angle),
+      var(--btn-bg),
+      color-mix(in srgb, var(--btn-bg) 85%, black)
+    );
+    border-color: transparent;
+
+    &:hover {
+      background: linear-gradient(
+        var(--btn-gradient-angle),
+        color-mix(in srgb, var(--btn-bg) 95%, black),
+        color-mix(in srgb, var(--btn-bg) 75%, black)
+      );
+    }
+
+    &:active {
+      background: linear-gradient(
+        var(--btn-gradient-angle),
+        color-mix(in srgb, var(--btn-bg) 90%, black),
+        color-mix(in srgb, var(--btn-bg) 70%, black)
+      );
+    }
+  }
+}
+
+@utility btn-gradient-horizontal {
+  &.btn {
+    background: linear-gradient(
+      var(--btn-gradient-horizontal),
+      var(--btn-bg),
+      color-mix(in srgb, var(--btn-bg) 85%, black)
+    );
+    border-color: transparent;
+  }
+}
+
+@utility btn-pulse {
+  &.btn {
+    animation: btn-pulse var(--btn-pulse-duration) cubic-bezier(0.4, 0, 0.6, 1)
+      infinite;
+  }
+}
+
+@keyframes btn-pulse {
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 transparent;
+  }
+  50% {
+    box-shadow: 0 0 0 var(--btn-pulse-size) transparent;
+  }
+}
+
+@utility btn-pulse-primary {
+  &.btn {
+    animation: btn-pulse-color var(--btn-pulse-duration)
+      cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+}
+
+@keyframes btn-pulse-color {
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 var(--btn-bg);
+  }
+  50% {
+    box-shadow: 0 0 0 var(--btn-pulse-size) var(--btn-pulse-opacity);
+  }
+}
+
+@utility btn-ripple {
+  &.btn {
+    position: relative;
+    overflow: hidden;
+
+    &::before {
+      content: "";
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 0;
+      height: 0;
+      border-radius: 50%;
+      background: var(--btn-ripple-bg);
+      transform: translate(-50%, -50%);
+      transition:
+        width var(--duration-btn-loading) ease-out,
+        height var(--duration-btn-loading) ease-out,
+        opacity var(--duration-btn-loading) ease-out;
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    &:active::before {
+      width: var(--btn-ripple-size);
+      height: var(--btn-ripple-size);
+      opacity: 1;
+      transition: var(--btn-transition-instant);
+    }
+  }
+}
+
+@utility btn-3d {
+  &.btn {
+    box-shadow:
+      0 var(--btn-3d-shadow-amount) 0 var(--btn-shadow-3d-base),
+      0 calc(var(--btn-3d-shadow-amount) + 1px) var(--btn-3d-shadow-base-blur)
+        rgba(0, 0, 0, var(--btn-3d-shadow-opacity-base));
+    transform: translateY(0);
+
+    &:hover {
+      transform: translateY(calc(var(--btn-translate-y-active) * -0.33));
+      box-shadow:
+        0 var(--btn-3d-shadow-hover) 0 var(--btn-shadow-3d-base),
+        0 calc(var(--btn-3d-shadow-hover) + 1px) var(--btn-3d-shadow-hover-blur)
+          rgba(0, 0, 0, var(--btn-3d-shadow-opacity-hover));
+    }
+
+    &:active {
+      transform: translateY(var(--btn-translate-y-active));
+      box-shadow:
+        0 var(--btn-3d-shadow-active) 0 var(--btn-shadow-3d-base),
+        0 calc(var(--btn-3d-shadow-active) + 1px)
+          var(--btn-3d-shadow-active-blur)
+          rgba(0, 0, 0, var(--btn-3d-shadow-opacity-base));
+    }
+  }
+}
+
+@utility btn-tint {
+  &.btn {
+    background: color-mix(
+      in srgb,
+      var(--btn-bg) var(--btn-opacity-tint),
+      transparent
+    );
+    border-color: var(--btn-bg);
+    color: var(--btn-bg);
+
+    &:hover {
+      background: color-mix(
+        in srgb,
+        var(--btn-bg) var(--btn-opacity-tint-hover),
+        transparent
+      );
+    }
+  }
+}
+
+@utility btn-text {
+  &.btn {
+    background: transparent;
+    border: none;
+    color: var(--btn-bg);
+    box-shadow: none;
+
+    &:hover {
+      background: color-mix(
+        in srgb,
+        var(--btn-bg) var(--btn-opacity-tint-light),
+        transparent
+      );
+    }
+
+    &:active {
+      background: color-mix(
+        in srgb,
+        var(--btn-bg) var(--btn-opacity-tint-active),
+        transparent
+      );
+    }
+  }
+}
+
+@utility btn-solid-border {
+  &.btn {
+    border-width: var(--btn-border-width-solid);
+  }
+}
+
+/* ========================================
+   响应式 - 减少动画
+   ======================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  .btn {
+    transition: none;
+  }
+}
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
   }
 }

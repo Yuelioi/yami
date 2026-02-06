@@ -1,191 +1,272 @@
 /*
 name: fab
 desc: 悬浮操作按钮（Floating Action Button）
-usage: 在界面右下角展示主要操作，如“新建”、“添加”等
+usage: 在界面右下角展示主要操作，如"新建"、"添加"等
 syntax:
-<div class="fab right-48">
-  <!-- 主按钮 -->
-  <button tabindex="0" class="btn btn-primary rounded-full size-14 shadow-lg">
-    <Plus class="w-6 h-6" />
-  </button>
-
-  <!-- 子操作项 -->
-  <button class="btn btn-secondary rounded-full size-12 shadow-md">
-    <Edit class="w-5 h-5" />
-  </button>
-  <button class="btn btn-primary rounded-full size-12 shadow-md">
-    <Share2 class="w-5 h-5" />
-  </button>
-  <button class="btn btn-destructive rounded-full size-12 shadow-md">
-    <Trash2 class="w-5 h-5" />
-  </button>
+<div class="fab">
+  <div tabindex="0" role="button" class="btn btn-primary btn-circle size-14">F</div>
+  <button class="btn btn-secondary btn-circle size-12">A</button>
+  <button class="btn btn-accent btn-circle size-12">B</button>
+  <button class="btn btn-destructive btn-circle size-12">C</button>
 </div>
 */
 
+@theme {
+  /* z-index */
+  --fab-z-index: var(--z-fixed);
+
+  /* spacing */
+  --fab-position: 1rem;
+  --fab-gap: 0.5rem;
+
+  /* font */
+  --fab-font-size: 0.875rem;
+
+  /* animation */
+  --fab-transition: var(--duration-medium) var(--ease-in-out);
+  --fab-delay-step: 30ms;
+  --fab-delay-initial: 30ms;
+
+  /* scale */
+  --fab-scale-hidden: 0.8;
+  --fab-scale-visible: 1;
+  --fab-rotation: 90deg;
+
+  /* flower layout */
+  --fab-position-base: 0rem;
+  --fab-degree-base: 180deg;
+
+  /* flower positions */
+  --fab-flower-position-sm: 140%;
+  --fab-flower-position-md: 180%;
+  --fab-flower-position-lg: 220%;
+
+  /* max items */
+  --fab-flower-max-items: 6;
+}
+
 /* FAB 浮动操作按钮组件 */
 @utility fab {
-  @apply pointer-events-none fixed end-4 bottom-4 z-50;
-  @apply flex flex-col-reverse items-end gap-2;
-  @apply text-sm whitespace-nowrap;
+  pointer-events: none;
+  position: fixed;
+  inset-inline-end: var(--fab-position);
+  bottom: var(--fab-position);
+  z-index: var(--fab-z-index);
+  display: flex;
+  flex-direction: column-reverse;
+  align-items: flex-end;
+  gap: var(--fab-gap);
+  font-size: var(--fab-font-size);
+  white-space: nowrap;
 
   /* FAB 项 */
   & > * {
-    @apply pointer-events-auto flex items-center gap-2;
+    pointer-events: auto;
+    display: flex;
+    align-items: center;
+    gap: var(--fab-gap);
   }
 
   & > *:hover,
   & > *:has(:focus-visible) {
-    @apply z-10;
+    z-index: 10;
   }
 
-  /* 主按钮 */
+  /* 主按钮 - 第一个带有 tabindex 的元素 */
   & > [tabindex]:first-child {
-    @apply relative grid;
-    @apply transition-[opacity,visibility,rotate] duration-200 ease-out;
+    position: relative;
+    display: grid;
+    transition-property: opacity, visibility, rotate;
+    transition-duration: var(--duration-medium);
+    transition-timing-function: var(--ease-in-out);
   }
 
   /* 关闭按钮和主操作按钮 */
   & .fab-close,
   & .fab-main-action {
-    @apply absolute end-0 bottom-0;
+    position: absolute;
+    inset-inline-end: 0;
+    bottom: 0;
   }
 
-  /* 展开时主按钮旋转并隐藏 */
+  /* 展开时主按钮旋转并隐藏 - 当有 fab-close 或 fab-main-action 时 */
   &:focus-within:has(.fab-close),
   &:focus-within:has(.fab-main-action) {
-    & > [tabindex] {
-      @apply rotate-90 opacity-0;
+    & > [tabindex]:first-child {
+      rotate: var(--fab-rotation);
+      opacity: 0;
     }
   }
 
   /* 子项默认隐藏 */
   & > :nth-child(n + 2) {
-    @apply invisible scale-80 opacity-0;
-    @apply transition-[opacity,scale,visibility] duration-200 ease-out;
+    visibility: hidden;
+    scale: var(--fab-scale-hidden);
+    opacity: 0;
+    transition-property: opacity, scale, visibility;
+    transition-duration: var(--duration-medium);
+    transition-timing-function: var(--ease-in-out);
+
+    /* 主操作按钮和关闭按钮保持正常尺寸 */
+    &.fab-main-action,
+    &.fab-close {
+      scale: var(--fab-scale-visible);
+    }
   }
 
-  /* 主操作按钮和关闭按钮保持正常尺寸 */
-  & > :nth-child(n + 2).fab-main-action,
-  & > :nth-child(n + 2).fab-close {
-    @apply scale-100;
-  }
-
-  /* 渐进式延迟动画 */
+  /* 渐进式延迟动画 - 使用变量计算 */
   & > :nth-child(3) {
-    transition-delay: 30ms;
+    transition-delay: var(--fab-delay-initial);
   }
 
   & > :nth-child(4) {
-    transition-delay: 60ms;
+    transition-delay: calc(var(--fab-delay-initial) * 2);
   }
 
   & > :nth-child(5) {
-    transition-delay: 90ms;
+    transition-delay: calc(var(--fab-delay-initial) * 3);
   }
 
   & > :nth-child(6) {
-    transition-delay: 120ms;
+    transition-delay: calc(var(--fab-delay-initial) * 4);
   }
 
-  /* 展开状态 */
+  /* 展开状态 - focus-within 触发 */
   &:focus-within {
+    /* 主按钮不可点击 */
     & > [tabindex]:first-child {
-      @apply pointer-events-none;
+      pointer-events: none;
     }
 
+    /* 子项显示 */
     & > :nth-child(n + 2) {
-      @apply visible scale-100 opacity-100;
+      visibility: visible;
+      scale: var(--fab-scale-visible);
+      opacity: 1;
     }
   }
 }
 
 /* FAB Flower 花瓣布局 */
 @utility fab-flower {
-  @apply grid;
-  @apply [--position:0rem];
+  display: grid;
+  --fab-flower-position: var(--fab-position-base);
 
   /* 前两个项（主按钮和关闭按钮）位置为 0 */
-  & > :nth-child(-n + 2) {
-    @apply [--position:0rem];
+  & > *:nth-child(-n + 2) {
+    --fab-flower-position: var(--fab-position-base);
   }
 
   /* 所有项在同一网格区域 */
   & > * {
     grid-area: 1/1;
-    --degree: 180deg;
-    --flip-degree: calc(180deg - var(--degree));
-    transform: translateX(calc(cos(var(--degree)) * var(--position)))
-      translateY(calc(sin(var(--degree)) * calc(-1 * var(--position))));
+    --fab-degree: var(--fab-degree-base);
+    --fab-flip-degree: calc(var(--fab-degree-base) - var(--fab-degree));
+    transform: translateX(
+        calc(cos(var(--fab-degree)) * var(--fab-flower-position))
+      )
+      translateY(
+        calc(sin(var(--fab-degree)) * calc(-1 * var(--fab-flower-position)))
+      );
+
+    /* RTL 支持 */
+    [dir="rtl"] & {
+      transform: translateX(
+          calc(cos(var(--fab-flip-degree)) * var(--fab-flower-position))
+        )
+        translateY(
+          calc(
+            sin(var(--fab-flip-degree)) * calc(-1 * var(--fab-flower-position))
+          )
+        );
+    }
   }
 
-  /* RTL 支持 */
-  [dir="rtl"] & > * {
-    transform: translateX(calc(cos(var(--flip-degree)) * var(--position)))
-      translateY(calc(sin(var(--flip-degree)) * calc(-1 * var(--position))));
+  /* 为 FAB 中的所有按钮禁用 active 状态的 scale，保持 flower 布局位置 */
+  & > * > .btn:active,
+  & > .btn:active {
+    transform: translateX(
+        calc(cos(var(--fab-degree)) * var(--fab-flower-position))
+      )
+      translateY(
+        calc(sin(var(--fab-degree)) * calc(-1 * var(--fab-flower-position)))
+      ) !important;
+  }
+
+  [dir="rtl"] & > * > .btn:active,
+  [dir="rtl"] & > .btn:active {
+    transform: translateX(
+        calc(cos(var(--fab-flip-degree)) * var(--fab-flower-position))
+      )
+      translateY(
+        calc(
+          sin(var(--fab-flip-degree)) * calc(-1 * var(--fab-flower-position))
+        )
+      ) !important;
   }
 
   /* 最多显示 6 个项（包括主按钮） */
-  & > :nth-child(n + 7) {
-    @apply hidden;
+  & > :nth-child(n + calc(var(--fab-flower-max-items) + 1)) {
+    display: none;
   }
 
   /* 3 个项的布局 */
   &:has(:nth-child(3)) {
-    @apply [--position:140%];
+    --fab-flower-position: var(--fab-flower-position-sm);
 
     & > :nth-child(3) {
-      --degree: 135deg;
+      --fab-degree: 135deg;
     }
   }
 
   /* 4 个项的布局 */
   &:has(:nth-child(4)) {
-    @apply [--position:140%];
+    --fab-flower-position: var(--fab-flower-position-sm);
 
     & > :nth-child(3) {
-      --degree: 165deg;
+      --fab-degree: 165deg;
     }
 
     & > :nth-child(4) {
-      --degree: 105deg;
+      --fab-degree: 105deg;
     }
   }
 
   /* 5 个项的布局 */
   &:has(:nth-child(5)) {
-    @apply [--position:180%];
+    --fab-flower-position: var(--fab-flower-position-md);
 
     & > :nth-child(3) {
-      --degree: 180deg;
+      --fab-degree: 180deg;
     }
 
     & > :nth-child(4) {
-      --degree: 135deg;
+      --fab-degree: 135deg;
     }
 
     & > :nth-child(5) {
-      --degree: 90deg;
+      --fab-degree: 90deg;
     }
   }
 
   /* 6 个项的布局 */
   &:has(:nth-child(6)) {
-    @apply [--position:220%];
+    --fab-flower-position: var(--fab-flower-position-lg);
 
     & > :nth-child(3) {
-      --degree: 180deg;
+      --fab-degree: 180deg;
     }
 
     & > :nth-child(4) {
-      --degree: 150deg;
+      --fab-degree: 150deg;
     }
 
     & > :nth-child(5) {
-      --degree: 120deg;
+      --fab-degree: 120deg;
     }
 
     & > :nth-child(6) {
-      --degree: 90deg;
+      --fab-degree: 90deg;
     }
   }
 }

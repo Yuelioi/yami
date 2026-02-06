@@ -22,7 +22,7 @@
 
       <div class="bg-card rounded-xl border border-border shadow-sm overflow-hidden">
         <div class="collapse-group collapse-group-compact">
-          <div class="collapse collapse-plus collapse-secondary">
+          <div class="collapse collapse-plus collapse-primary">
             <input type="radio" name="accordion" id="acc1" />
             <label for="acc1" class="collapse-title font-semibold"> 第一步：安装依赖 </label>
             <div class="collapse-content">
@@ -36,7 +36,7 @@ npm install tailwindcss@latest postcss autoprefixer</pre
             </div>
           </div>
 
-          <div class="collapse collapse-plus collapse-secondary border-t border-border">
+          <div class="collapse collapse-plus collapse-primary border-t border-border">
             <input type="radio" name="accordion" id="acc2" />
             <label for="acc2" class="collapse-title font-semibold"> 第二步：配置主题色 </label>
             <div class="collapse-content">
@@ -51,7 +51,7 @@ npm install tailwindcss@latest postcss autoprefixer</pre
             </div>
           </div>
 
-          <div class="collapse collapse-plus collapse-secondary border-t border-border">
+          <div class="collapse collapse-plus collapse-primary border-t border-border">
             <input type="radio" name="accordion" id="acc3" />
             <label for="acc3" class="collapse-title font-semibold"> 第三步：开始使用 </label>
             <div class="collapse-content">
@@ -143,7 +143,7 @@ const apiClasses = [
   },
   {
     category: '配色方案',
-    className: 'collapse-secondary',
+    className: 'collapse-primary',
     description: '次色折叠组件。',
     isCategoryStart: false,
   },

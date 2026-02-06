@@ -1,95 +1,95 @@
 ﻿<script setup lang="ts">
-import DocsHeader from "../zcomp/DocsHeader.vue";
-import DocsContainer from "../zcomp/DocsContainer.vue";
-import DocsSection from "../zcomp/DocsSection.vue";
-import ApiReference from "../zcomp/ApiReference.vue";
+import DocsHeader from '../zcomp/DocsHeader.vue'
+import DocsContainer from '../zcomp/DocsContainer.vue'
+import DocsSection from '../zcomp/DocsSection.vue'
+import ApiReference from '../zcomp/ApiReference.vue'
 
 const apiClasses = [
   {
-    category: "容器",
-    className: "filter-bar",
-    description: "Filter 容器，带背景、边框与内边距。",
+    category: '容器',
+    className: 'filter-bar',
+    description: 'Filter 容器，带背景、边框与内边距。',
     isCategoryStart: true,
   },
   {
-    category: "容器",
-    className: "filter-bar-compact",
-    description: "紧凑型 Filter 容器。",
+    category: '容器',
+    className: 'filter-bar-compact',
+    description: '紧凑型 Filter 容器。',
     isCategoryStart: false,
   },
   {
-    category: "容器",
-    className: "filter-bar-ghost",
-    description: "幽灵风格容器，无边框背景。",
+    category: '容器',
+    className: 'filter-bar-ghost',
+    description: '幽灵风格容器，无边框背景。',
     isCategoryStart: false,
   },
   {
-    category: "组",
-    className: "filter-group",
-    description: "Filter 项组合容器。",
+    category: '组',
+    className: 'filter-group',
+    description: 'Filter 项组合容器。',
     isCategoryStart: true,
   },
   {
-    category: "组",
-    className: "filter-group-vertical",
-    description: "垂直排列的 Filter 组。",
+    category: '组',
+    className: 'filter-group-vertical',
+    description: '垂直排列的 Filter 组。',
     isCategoryStart: false,
   },
   {
-    category: "下拉触发器",
-    className: "filter-dropdown-trigger",
-    description: "下拉菜单触发按钮。",
+    category: '下拉触发器',
+    className: 'filter-dropdown-trigger',
+    description: '下拉菜单触发按钮。',
     isCategoryStart: true,
   },
   {
-    category: "下拉触发器",
-    className: "filter-dropdown-trigger-active",
-    description: "激活状态的下拉按钮。",
+    category: '下拉触发器',
+    className: 'filter-dropdown-trigger-active',
+    description: '激活状态的下拉按钮。',
     isCategoryStart: false,
   },
   {
-    category: "下拉箭头",
-    className: "filter-dropdown-icon",
-    description: "下拉箭头，根据打开状态旋转。",
+    category: '下拉箭头',
+    className: 'filter-dropdown-icon',
+    description: '下拉箭头，根据打开状态旋转。',
     isCategoryStart: true,
   },
   {
-    category: "清除按钮",
-    className: "filter-clear",
-    description: "清除选中筛选项的按钮。",
+    category: '清除按钮',
+    className: 'filter-clear',
+    description: '清除选中筛选项的按钮。',
     isCategoryStart: true,
   },
   {
-    category: "搜索框",
-    className: "filter-search",
-    description: "搜索框容器样式。",
+    category: '搜索框',
+    className: 'filter-search',
+    description: '搜索框容器样式。',
     isCategoryStart: true,
   },
   {
-    category: "搜索框",
-    className: "filter-search-input",
-    description: "搜索框输入框样式。",
+    category: '搜索框',
+    className: 'filter-search-input',
+    description: '搜索框输入框样式。',
     isCategoryStart: false,
   },
   {
-    category: "搜索框",
-    className: "filter-search-icon",
-    description: "搜索框图标样式。",
+    category: '搜索框',
+    className: 'filter-search-icon',
+    description: '搜索框图标样式。',
     isCategoryStart: false,
   },
   {
-    category: "徽章",
-    className: "filter-count",
-    description: "显示筛选项数量的徽章。",
+    category: '徽章',
+    className: 'filter-count',
+    description: '显示筛选项数量的徽章。',
     isCategoryStart: true,
   },
   {
-    category: "列表项",
-    className: "filter-item",
-    description: "可点击的筛选项，选中状态高亮。",
+    category: '列表项',
+    className: 'filter-item',
+    description: '可点击的筛选项，选中状态高亮。',
     isCategoryStart: true,
   },
-];
+]
 </script>
 
 <template>

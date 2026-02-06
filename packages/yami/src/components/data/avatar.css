@@ -8,185 +8,398 @@ syntax:
 </div>
 */
 
+@theme {
+  /* ========================================
+     全局令牌 - 继承自设计系统
+     ======================================== */
+
+  /* 动画配置 */
+  --avatar-duration: var(--duration-fast);
+  --avatar-ease: var(--ease-out);
+
+  /* ========================================
+     基础样式变量 - Avatar Base
+     ======================================== */
+
+  /* 默认尺寸 */
+  --avatar-size: 2.5rem;
+  --avatar-border-radius: var(--radius);
+  --avatar-border-width: 1px;
+  --avatar-border-color: var(--border);
+
+  /* 背景和文字 */
+  --avatar-bg: var(--muted);
+  --avatar-fg: var(--muted-foreground);
+
+  /* 字体 */
+  --avatar-font-size: 0.875rem;
+  --avatar-font-weight: 600;
+  --avatar-line-height: 1;
+
+  /* ========================================
+     尺寸变体变量 - Avatar Sizes
+     ======================================== */
+
+  /* 极小 */
+  --avatar-xs-size: 1.5rem;
+  --avatar-xs-font-size: 0.625rem;
+
+  /* 小 */
+  --avatar-sm-size: 2rem;
+  --avatar-sm-font-size: 0.75rem;
+
+  /* 大 */
+  --avatar-lg-size: 3.5rem;
+  --avatar-lg-font-size: 1rem;
+
+  /* 特大 */
+  --avatar-xl-size: 4.5rem;
+  --avatar-xl-font-size: 1.25rem;
+
+  /* 超大 */
+  --avatar-2xl-size: 5.5rem;
+  --avatar-2xl-font-size: 1.5rem;
+
+  /* ========================================
+     圆形变体变量 - Avatar Shapes
+     ======================================== */
+
+  --avatar-rounded-full: 9999px;
+  --avatar-rounded-lg: var(--radius-lg);
+  --avatar-rounded-md: var(--radius-md);
+
+  /* ========================================
+     在线状态变量 - Avatar Status
+     ======================================== */
+
+  --avatar-status-size: calc(var(--avatar-size) * 0.35);
+  --avatar-status-border-width: 2px;
+  --avatar-status-border-color: white;
+  --avatar-status-online-bg: var(--success);
+  --avatar-status-away-bg: var(--warning);
+  --avatar-status-offline-bg: var(--avatar-accent-fg);
+  --avatar-status-busy-bg: var(--destructive);
+
+  /* ========================================
+     颜色变体变量 - Avatar Colors
+     ======================================== */
+
+  /* Primary */
+  --avatar-primary-bg: var(--primary);
+  --avatar-primary-fg: var(--primary-foreground);
+
+  /* Secondary */
+  --avatar-secondary-bg: var(--secondary);
+  --avatar-secondary-fg: var(--secondary-foreground);
+
+  /* Accent */
+  --avatar-accent-bg: var(--accent);
+  --avatar-accent-fg: var(--accent-foreground);
+
+  /* Success */
+  --avatar-success-bg: var(--success);
+  --avatar-success-fg: var(--success-foreground);
+
+  /* Warning */
+  --avatar-warning-bg: var(--warning);
+  --avatar-warning-fg: var(--warning-foreground);
+
+  /* Destructive */
+  --avatar-destructive-bg: var(--destructive);
+  --avatar-destructive-fg: var(--destructive-foreground);
+
+  /* Info */
+  --avatar-info-bg: var(--info);
+  --avatar-info-fg: var(--info-foreground);
+
+  /* ========================================
+     环形变体变量 - Avatar Ring
+     ======================================== */
+
+  --avatar-ring-width: 2px;
+  --avatar-ring-color: var(--border);
+  --avatar-ring-offset: 2px;
+  --avatar-ring-offset-color: white;
+}
+
+/* ========================================
+   基础工具类 - Avatar Base
+   ======================================== */
+
 @utility avatar {
-  @apply relative inline-flex items-center justify-center;
-  @apply shrink-0 rounded-full;
-  @apply size-10 bg-muted text-muted-foreground;
-  @apply font-medium select-none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--avatar-size);
+  height: var(--avatar-size);
+  border-radius: var(--avatar-border-radius);
+  border: var(--avatar-border-width) solid var(--avatar-border-color);
+  background-color: var(--avatar-bg);
+  color: var(--avatar-fg);
+  font-size: var(--avatar-font-size);
+  font-weight: var(--avatar-font-weight);
+  line-height: var(--avatar-line-height);
+  text-transform: uppercase;
+  user-select: none;
+  flex-shrink: 0;
+  position: relative;
 
-  /* 头像图片样式 */
   & img {
-    @apply size-full object-cover rounded-full;
-  }
-
-  /* 头像文字样式 */
-  & span {
-    @apply text-sm leading-none;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
   }
 }
 
-/* === 尺寸 === */
+/* ========================================
+   尺寸变体 - Avatar Sizes
+   ======================================== */
+
 @utility avatar-xs {
-  @apply size-6 text-xs;
+  width: var(--avatar-xs-size);
+  height: var(--avatar-xs-size);
+  font-size: var(--avatar-xs-font-size);
 
-  &.avatar-status::after {
-    @apply size-2 border;
+  & .avatar-status {
+    width: calc(var(--avatar-xs-size) * 0.35);
+    height: calc(var(--avatar-xs-size) * 0.35);
   }
 }
+
 @utility avatar-sm {
-  @apply size-8 text-xs;
+  width: var(--avatar-sm-size);
+  height: var(--avatar-sm-size);
+  font-size: var(--avatar-sm-font-size);
 
-  &.avatar-status::after {
-    @apply size-2.5 border;
+  & .avatar-status {
+    width: calc(var(--avatar-sm-size) * 0.35);
+    height: calc(var(--avatar-sm-size) * 0.35);
   }
 }
-@utility avatar-md {
-  @apply size-10 text-sm;
-}
+
 @utility avatar-lg {
-  @apply size-12 text-base;
+  width: var(--avatar-lg-size);
+  height: var(--avatar-lg-size);
+  font-size: var(--avatar-lg-font-size);
 
-  &.avatar-status::after {
-    @apply size-3.5 border-[3px];
+  & .avatar-status {
+    width: calc(var(--avatar-lg-size) * 0.35);
+    height: calc(var(--avatar-lg-size) * 0.35);
   }
 }
+
 @utility avatar-xl {
-  @apply size-16 text-lg;
+  width: var(--avatar-xl-size);
+  height: var(--avatar-xl-size);
+  font-size: var(--avatar-xl-font-size);
 
-  &.avatar-status::after {
-    @apply size-4 border-[3px];
+  & .avatar-status {
+    width: calc(var(--avatar-xl-size) * 0.35);
+    height: calc(var(--avatar-xl-size) * 0.35);
   }
 }
+
 @utility avatar-2xl {
-  @apply size-20 text-xl;
+  width: var(--avatar-2xl-size);
+  height: var(--avatar-2xl-size);
+  font-size: var(--avatar-2xl-font-size);
 
-  &.avatar-status::after {
-    @apply size-5 border-4;
+  & .avatar-status {
+    width: calc(var(--avatar-2xl-size) * 0.35);
+    height: calc(var(--avatar-2xl-size) * 0.35);
   }
 }
 
-/* === 形状 === */
-@utility avatar-square {
-  @apply rounded-none;
+/* ========================================
+   圆形变体 - Avatar Shapes
+   ======================================== */
 
-  & img {
-    @apply rounded-none;
-  }
-}
 @utility avatar-rounded {
-  @apply rounded-lg;
-
-  & img {
-    @apply rounded-lg;
-  }
+  border-radius: var(--avatar-rounded-full);
 }
 
-/* === 边框 === */
-@utility avatar-ring {
-  @apply ring-2 ring-background ring-offset-2 ring-offset-background;
+@utility avatar-square {
+  border-radius: 0;
 }
 
-@utility avatar-ring-primary {
-  @apply ring-2 ring-primary ring-offset-2 ring-offset-background;
+@utility avatar-lg-rounded {
+  border-radius: var(--avatar-rounded-lg);
 }
 
-@utility avatar-ring-destructive {
-  @apply ring-2 ring-destructive ring-offset-2 ring-offset-background;
+@utility avatar-md-rounded {
+  border-radius: var(--avatar-rounded-md);
 }
 
-@utility avatar-ring-accent {
-  @apply ring-2 ring-accent ring-offset-2 ring-offset-background;
+/* ========================================
+   颜色变体 - Avatar Colors
+   ======================================== */
+
+@utility avatar-primary {
+  background-color: var(--avatar-primary-bg);
+  color: var(--avatar-primary-fg);
+  border-color: var(--avatar-primary-bg);
 }
 
-/* === 状态指示器 === */
+@utility avatar-secondary {
+  background-color: var(--avatar-secondary-bg);
+  color: var(--avatar-secondary-fg);
+  border-color: var(--avatar-secondary-bg);
+}
+
+@utility avatar-accent {
+  background-color: var(--avatar-accent-bg);
+  color: var(--avatar-accent-fg);
+  border-color: var(--avatar-accent-bg);
+}
+
+@utility avatar-success {
+  background-color: var(--avatar-success-bg);
+  color: var(--avatar-success-fg);
+  border-color: var(--avatar-success-bg);
+}
+
+@utility avatar-warning {
+  background-color: var(--avatar-warning-bg);
+  color: var(--avatar-warning-fg);
+  border-color: var(--avatar-warning-bg);
+}
+
+@utility avatar-destructive {
+  background-color: var(--avatar-destructive-bg);
+  color: var(--avatar-destructive-fg);
+  border-color: var(--avatar-destructive-bg);
+}
+
+@utility avatar-info {
+  background-color: var(--avatar-info-bg);
+  color: var(--avatar-info-fg);
+  border-color: var(--avatar-info-bg);
+}
+
+/* ========================================
+   在线状态 - Avatar Status
+   ======================================== */
+
 @utility avatar-status {
-  &::after {
-    content: "";
-    @apply absolute bottom-0 right-0;
-    @apply size-3 rounded-full border-2 border-background;
-    @apply bg-muted;
-  }
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: var(--avatar-status-size);
+  height: var(--avatar-status-size);
+  border-radius: 9999px;
+  border: var(--avatar-status-border-width) solid
+    var(--avatar-status-border-color);
+  background-color: var(--avatar-status-online-bg);
 }
 
 @utility avatar-status-online {
-  @apply avatar-status;
-  &::after {
-    @apply bg-green-500;
-  }
-}
-
-@utility avatar-status-offline {
-  @apply avatar-status;
-
-  &::after {
-    @apply bg-gray-400;
-  }
-}
-
-@utility avatar-status-busy {
-  @apply avatar-status;
-
-  &::after {
-    @apply bg-red-500;
+  & .avatar-status {
+    background-color: var(--avatar-status-online-bg);
   }
 }
 
 @utility avatar-status-away {
-  @apply avatar-status;
-
-  &::after {
-    @apply bg-yellow-500;
+  & .avatar-status {
+    background-color: var(--avatar-status-away-bg);
   }
 }
 
-/* === 头像组 === */
+@utility avatar-status-offline {
+  & .avatar-status {
+    background-color: var(--avatar-status-offline-bg);
+  }
+}
+
+@utility avatar-status-busy {
+  & .avatar-status {
+    background-color: var(--avatar-status-busy-bg);
+  }
+}
+
+/* ========================================
+   环形变体 - Avatar Ring
+   ======================================== */
+
+@utility avatar-ring {
+  border-width: var(--avatar-ring-width);
+  border-color: var(--avatar-ring-color);
+  outline: var(--avatar-ring-offset) solid var(--avatar-ring-offset-color);
+  outline-offset: calc(var(--avatar-ring-offset) * -1);
+}
+
+@utility avatar-ring-primary {
+  border-color: var(--avatar-primary-bg);
+  outline-color: var(--avatar-ring-offset-color);
+}
+
+/* ========================================
+   特殊变体 - Avatar Special
+   ======================================== */
+
+/* 可点击头像 */
+@utility avatar-interactive {
+  cursor: pointer;
+  transition:
+    transform var(--avatar-duration) var(--avatar-ease),
+    filter var(--avatar-duration) var(--avatar-ease);
+
+  &:hover {
+    transform: scale(1.05);
+    filter: brightness(0.9);
+  }
+
+  &:active {
+    transform: scale(0.98);
+  }
+}
+
+/* 可删除头像 */
+@utility avatar-dismissible {
+  position: relative;
+
+  & .avatar-dismiss {
+    position: absolute;
+    top: -0.375rem;
+    right: -0.375rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 1.25rem;
+    height: 1.25rem;
+    background-color: white;
+    border: 1px solid var(--border);
+    border-radius: 9999px;
+    cursor: pointer;
+    opacity: 0;
+    transform: scale(0);
+    transition:
+      opacity var(--avatar-duration) var(--avatar-ease),
+      transform var(--avatar-duration) var(--avatar-ease);
+  }
+
+  &:hover .avatar-dismiss {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* 头像组 */
 @utility avatar-group {
-  @apply inline-flex items-center;
+  display: flex;
+  align-items: center;
+  gap: -0.5rem;
 
   & .avatar {
-    @apply transition-all duration-200;
-    @apply -ml-3 ring-2 ring-background;
+    border-color: white;
+    position: relative;
+    z-index: 1;
 
-    &:first-child {
-      @apply ml-0;
+    &:not(:first-child) {
+      margin-left: -0.75rem;
+    }
+
+    &:hover {
+      z-index: 2;
     }
   }
-
-  &:hover .avatar {
-    @apply -ml-2 transition-all duration-200;
-
-    &:first-child {
-      @apply ml-0;
-    }
-  }
-}
-
-/* 紧凑头像组 */
-@utility avatar-group-compact {
-  & .avatar {
-    @apply transition-all duration-200;
-
-    @apply -ml-4;
-
-    &:first-child {
-      @apply ml-0;
-    }
-  }
-
-  &:hover .avatar {
-    @apply -ml-2;
-
-    &:first-child {
-      @apply ml-0;
-    }
-  }
-}
-
-/* === 扩展 === */
-@utility avatar-hover {
-  @apply hover:scale-110 transition-transform duration-200 cursor-pointer;
-}
-
-@utility avatar-clickable {
-  @apply hover:opacity-80 transition-opacity duration-200 cursor-pointer;
 }

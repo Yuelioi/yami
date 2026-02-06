@@ -12,248 +12,145 @@ syntax:
   <input type="text" class="input" value="正常的input" />
 </div>
 */
+@theme {
+  /* ========================================
+     Number 全局令牌
+     ======================================== */
 
-@import "../../utilities/style.css";
+  /* 动画 */
+  --number-duration: var(--duration-base);
+  --number-ease: var(--ease-out);
 
-/* === Input Number 基础样式 === */
-@utility input-number {
-  @apply items-center justify-between;
-  @apply input px-0;
+  /* 颜色 */
+  --number-bg: var(--background);
+  --number-fg: var(--foreground);
+  --number-border: var(--input);
+  --number-border-hover: var(--ring);
+  --number-border-focus: var(--ring);
+
+  --number-placeholder: var(--muted-foreground);
+
+  /* 错误 */
+  --number-error-border: var(--error);
+  --number-error-fg: var(--error);
+
+  /* 圆角 */
+  --number-radius: var(--radius-md);
+
+  /* 尺寸 */
+  --number-height: 2.5rem;
+  --number-padding-x: 0.75rem;
+  --number-font-size: 0.875rem;
+
+  /* 控制按钮 */
+  --number-control-width: 2rem;
+  --number-control-bg-hover: var(--muted);
+  --number-control-fg: var(--muted-foreground);
+  --number-control-fg-hover: var(--foreground);
+
+  /* 禁用 */
+  --number-disabled-opacity: var(--opacity-disabled);
+}
+
+/* ========================================
+   Number 容器
+   ======================================== */
+
+@utility number {
+  display: inline-flex;
+  align-items: stretch;
+  width: 100%;
+  height: var(--number-height);
+  border-radius: var(--number-radius);
+  background-color: var(--number-bg);
+  color: var(--number-fg);
+  border: 1px solid var(--number-border);
+  overflow: hidden;
+
+  transition:
+    border-color var(--number-duration) var(--number-ease),
+    box-shadow var(--number-duration) var(--number-ease);
+
+  &:hover {
+    border-color: var(--number-border-hover);
+  }
 
   &:focus-within {
-    @apply ring-2 ring-ring  ring-offset-background;
-  }
-
-  /* 内部 input 继承 input 样式但重置部分属性 */
-  & input {
-    @apply flex-1 input;
-    @apply text-center;
-    @apply border-0 bg-transparent;
-    @apply focus-visible:ring-0 focus-visible:ring-offset-0;
-    @apply px-1;
-
-    /* 去除 number 类型的箭头 */
-    &::-webkit-inner-spin-button,
-    &::-webkit-outer-spin-button {
-      -webkit-appearance: none;
-      margin: 0;
-    }
-
-    &[type="number"] {
-      appearance: textfield;
-      -moz-appearance: textfield;
-      @apply outline-none;
-    }
-  }
-
-  /* 按钮样式 */
-  & button {
-    @apply flex items-center justify-center;
-    @apply input-h-sm input-w-sm flex-shrink-0;
-    @apply transition-colors duration-200;
-    @apply active:bg-accent;
-    @apply disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:bg-transparent;
-    @apply outline-none m-1 cursor-pointer;
-
-    &:first-child {
-      @apply rounded-l-md;
-    }
-
-    &:last-child {
-      @apply rounded-r-md;
-    }
-
-    &:focus-visible {
-      @apply bg-accent text-foreground;
-    }
+    border-color: var(--number-border-focus);
+    box-shadow: 0 0 0 1px var(--number-border-focus);
   }
 }
 
-/* === 配合 input 尺寸变体 === */
-@utility input-number {
-  /* xs 尺寸 */
-  &.input-xs:not(.input-number-separated) {
-    @apply px-0;
-    & button {
-      @apply size-5 text-sm;
-    }
-  }
+/* 错误状态 */
+@utility number-error {
+  border-color: var(--number-error-border);
 
-  /* sm 尺寸 */
-  &.input-sm:not(.input-number-separated) {
-    @apply px-0;
-
-    & button {
-      @apply size-6 text-sm;
-    }
-  }
-
-  /* md 尺寸(默认) */
-  &.input-md:not(.input-number-separated) {
-    @apply px-0;
-
-    & button {
-      @apply size-7;
-    }
-  }
-
-  /* lg 尺寸 */
-  &.input-lg:not(.input-number-separated) {
-    @apply px-0;
-
-    & button {
-      @apply size-8 text-lg;
-    }
-  }
-
-  /* xl 尺寸 */
-  &.input-xl:not(.input-number-separated) {
-    @apply px-0;
-
-    & button {
-      @apply size-9 text-xl;
-    }
-  }
-}
-
-/* === 配合 input 配色变体 === */
-@utility input-number {
-  &.input-primary {
-    @apply border-primary;
-    &:focus-within {
-      @apply ring-primary;
-    }
-
-    & button {
-      @apply active:bg-primary/80;
-    }
-  }
-
-  &.input-secondary {
-    @apply border-secondary;
-    &:focus-within {
-      @apply ring-secondary;
-    }
-
-    & button {
-      @apply active:bg-secondary/80;
-    }
-  }
-
-  &.input-destructive {
-    @apply border-destructive;
-    &:focus-within {
-      @apply ring-destructive;
-    }
-    & button {
-      @apply active:bg-destructive/80;
-    }
+  &:focus-within {
+    box-shadow: 0 0 0 1px var(--number-error-border);
   }
 }
 
 /* 禁用状态 */
-@utility input-number-disabled {
-  @apply opacity-50 cursor-not-allowed;
+@utility number-disabled {
+  opacity: var(--number-disabled-opacity);
+  pointer-events: none;
+}
 
-  &:hover {
-    @apply border-input;
+/* ========================================
+   Input 本体
+   ======================================== */
+
+@utility number-input {
+  flex: 1;
+  width: 100%;
+  border: none;
+  background: transparent;
+  padding: 0 var(--number-padding-x);
+  font-size: var(--number-font-size);
+  color: inherit;
+  outline: none;
+
+  &::placeholder {
+    color: var(--number-placeholder);
   }
 
-  &:focus-within {
-    @apply ring-0 ring-offset-0;
+  /* 移除原生箭头 */
+  &::-webkit-outer-spin-button,
+  &::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
   }
 
-  & input {
-    @apply cursor-not-allowed;
-  }
-
-  & button {
-    @apply cursor-not-allowed;
-    @apply hover:bg-transparent hover:text-muted-foreground;
+  &[type="number"] {
+    -moz-appearance: textfield;
   }
 }
 
-/* 分离式按钮 */
-@utility input-number-separated {
-  @apply gap-1 bg-transparent border-0;
+/* ========================================
+   控制区（加 / 减）
+   ======================================== */
 
-  &:focus-within {
-    @apply ring-0 ring-offset-0;
-  }
+@utility number-controls {
+  display: flex;
+  flex-direction: column;
+  border-left: 1px solid var(--number-border);
+}
 
-  & button {
-    @apply border border-input rounded-md size-6 bg-background m-0;
+@utility number-control {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--number-control-width);
+  flex: 1;
+  cursor: pointer;
+  color: var(--number-control-fg);
 
-    &:first-child,
-    &:last-child {
-      @apply rounded-md;
-    }
-  }
+  transition:
+    background-color var(--number-duration) var(--number-ease),
+    color var(--number-duration) var(--number-ease);
 
-  & input {
-    @apply input;
-  }
-
-  /* xs 尺寸 */
-  &.input-xs,
-  &:has(.input-xs) {
-    @apply px-0;
-    & input {
-      @apply input-xs;
-    }
-    & button {
-      @apply input-w-xs input-h-xs;
-    }
-  }
-
-  /* sm 尺寸 */
-  &.input-sm,
-  &:has(.input-sm) {
-    @apply px-0;
-    & input {
-      @apply input-sm;
-    }
-    & button {
-      @apply input-w-sm input-h-sm;
-    }
-  }
-
-  /* md 尺寸(默认) */
-  &.input-md,
-  &:has(.input-md) {
-    @apply px-0;
-    & input {
-      @apply input-md;
-    }
-
-    & button {
-      @apply input-w-md input-h-md;
-    }
-  }
-
-  /* lg 尺寸 */
-  &.input-lg,
-  &:has(.input-lg) {
-    @apply px-0;
-    & input {
-      @apply input-lg;
-    }
-
-    & button {
-      @apply input-w-lg input-h-lg text-lg;
-    }
-  }
-
-  /* xl 尺寸 */
-  &.input-xl,
-  &:has(.input-xl) {
-    @apply px-0;
-    & input {
-      @apply input-xl;
-    }
-
-    & button {
-      @apply input-h-xl input-w-xl text-xl;
-    }
+  &:hover {
+    background-color: var(--number-control-bg-hover);
+    color: var(--number-control-fg-hover);
   }
 }

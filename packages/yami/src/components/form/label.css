@@ -10,6 +10,12 @@ syntax:
 
 */
 
+@theme {
+  --h-sm: 2.25rem;
+  --h: 2.5rem;
+  --h-lg: 3rem;
+}
+
 @utility label {
   @apply inline-block;
   @apply text-sm font-medium leading-none;
@@ -81,7 +87,8 @@ syntax:
   & > input,
   & > textarea,
   & > select {
-    @apply w-full px-3 input;
+    @apply w-full px-3;
+    height: var(--h);
     @apply border border-input rounded-md;
     @apply bg-background;
     @apply text-foreground;
@@ -179,7 +186,8 @@ syntax:
   & > input,
   & > textarea,
   & > select {
-    @apply text-sm input-sm;
+    @apply text-sm;
+    height: var(--h-sm);
   }
 
   & > input:focus ~ label,
@@ -200,7 +208,8 @@ syntax:
   & > input,
   & > textarea,
   & > select {
-    @apply input-lg text-base;
+    @apply text-base;
+    height: var(--h-lg);
   }
 
   & > textarea {

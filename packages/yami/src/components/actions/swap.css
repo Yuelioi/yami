@@ -7,24 +7,85 @@ syntax:
   <input type="checkbox" />
   <div class="swap-on">ON</div>
   <div class="swap-off">OFF</div>
-</label>
-- 支持 swap-active, swap-rotate, swap-flip 等变体
+ </label>
+ - 支持 swap-active, swap-rotate, swap-flip 等变体
 */
+
+@theme {
+  /* touch target */
+  --swap-touch-target: var(--touch-target-md);
+
+  /* perspective */
+  --swap-perspective: 20rem;
+
+  /* rotation */
+  --swap-rotate-active: 45deg;
+  --swap-rotate-inactive: -45deg;
+  --swap-flip-active: 180deg;
+  --swap-flip-inactive: 0deg;
+
+  /* animation */
+  --swap-transition-reduced: var(--duration-fast);
+  --swap-transition-base: var(--duration-base);
+  --swap-ease-flip: cubic-bezier(0, 0, 0.2, 1);
+}
 
 /* === Swap / Toggle  === */
 @utility swap {
-  @apply relative inline-grid cursor-pointer place-content-center align-middle select-none;
+  position: relative;
+  display: inline-grid;
+  cursor: pointer;
+  place-content: center;
+  align-items: center;
+  justify-content: center;
+
+  /* Ensure minimum touch target size */
+  min-width: var(--swap-touch-target);
+  min-height: var(--swap-touch-target);
+  min-inline-size: var(--swap-touch-target);
+  min-block-size: var(--swap-touch-target);
 
   input {
-    @apply appearance-none border-none;
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    cursor: pointer;
+    z-index: 10;
+    appearance: none;
+    border: none;
+    outline: none;
+
+    /* ARIA attributes */
+    &[aria-label] {
+      aria-live: "polite";
+    }
+
+    /* Focus states */
+    &:focus-visible ~ * {
+      outline: var(--focus-ring-width) solid color-mix(in oklab, var(--primary) 50%, transparent);
+      outline-offset: var(--focus-ring-offset);
+    }
   }
 
   > * {
-    @apply col-start-1 row-start-1;
+    grid-column: 1;
+    grid-row: 1;
+    width: 100%;
+    height: 100%;
+
+    /* Animation with reduced motion support */
+    @media (prefers-reduced-motion: reduce) {
+      transition-property: opacity;
+      transition-duration: var(--swap-transition-reduced);
+    }
+
     @media (prefers-reduced-motion: no-preference) {
       transition-property: transform, rotate, opacity;
-      transition-duration: 0.2s;
-      transition-timing-function: cubic-bezier(0, 0, 0.2, 1);
+      transition-duration: var(--swap-transition-base);
+      transition-timing-function: var(--swap-ease-flip);
+      will-change: transform, opacity;
     }
   }
 
@@ -50,10 +111,18 @@ syntax:
 /* === Swap Active Modifier === */
 @utility swap-active {
   .swap-off {
-    @apply opacity-0;
+    opacity: 0;
   }
   .swap-on {
-    @apply opacity-100;
+    opacity: 1;
+  }
+
+  /* Reduced motion support */
+  @media (prefers-reduced-motion: reduce) {
+    .swap-off,
+    .swap-on {
+      transition: opacity var(--swap-transition-reduced) ease-out;
+    }
   }
 }
 
@@ -61,41 +130,73 @@ syntax:
 @utility swap-rotate {
   .swap-on,
   input:indeterminate ~ .swap-on {
-    @apply rotate-45;
+    rotate: var(--swap-rotate-active);
   }
 
   input:is(:checked, :indeterminate) ~ .swap-on,
   &.swap-active .swap-on {
-    @apply rotate-0;
+    rotate: 0deg;
   }
 
   input:is(:checked, :indeterminate) ~ .swap-off,
   &.swap-active .swap-off {
-    @apply -rotate-45;
+    rotate: var(--swap-rotate-inactive);
+  }
+
+  /* Reduced motion support */
+  @media (prefers-reduced-motion: reduce) {
+    .swap-on,
+    .swap-off,
+    input:is(:checked, :indeterminate) ~ .swap-on,
+    input:is(:checked, :indeterminate) ~ .swap-off,
+    &.swap-active .swap-on,
+    &.swap-active .swap-off {
+      transform: none;
+      transition: opacity var(--swap-transition-reduced) ease-out;
+    }
   }
 }
 
 /* === Swap Flip Modifier === */
 @utility swap-flip {
   transform-style: preserve-3d;
-  perspective: 20rem;
+  perspective: var(--swap-perspective);
 
   .swap-on,
   .swap-indeterminate,
   input:indeterminate ~ .swap-on {
-    transform: rotateY(180deg);
+    transform: rotateY(var(--swap-flip-active));
     backface-visibility: hidden;
   }
 
   input:is(:checked, :indeterminate) ~ .swap-on,
   &.swap-active .swap-on {
-    transform: rotateY(0deg);
+    transform: rotateY(var(--swap-flip-inactive));
   }
 
   input:is(:checked, :indeterminate) ~ .swap-off,
   &.swap-active .swap-off {
-    transform: rotateY(-180deg);
+    transform: rotateY(calc(var(--swap-flip-inactive) * -1));
     backface-visibility: hidden;
-    @apply opacity-100;
+    opacity: 1;
+  }
+
+  /* Reduced motion support */
+  @media (prefers-reduced-motion: reduce) {
+    transform-style: flat;
+    perspective: none;
+
+    .swap-on,
+    .swap-indeterminate,
+    .swap-off,
+    input:indeterminate ~ .swap-on,
+    input:is(:checked, :indeterminate) ~ .swap-on,
+    input:is(:checked, :indeterminate) ~ .swap-off,
+    &.swap-active .swap-on,
+    &.swap-active .swap-off {
+      transform: none;
+      backface-visibility: visible;
+      transition: opacity var(--swap-transition-reduced) ease-out;
+    }
   }
 }

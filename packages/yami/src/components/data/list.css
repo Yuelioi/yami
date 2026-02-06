@@ -14,115 +14,514 @@ syntax:
 - 支持 list-inside, list-outside
 */
 
+@theme {
+  /* ========================================
+     列表全局令牌 - 继承自设计系统
+     ======================================== */
+
+  /* 动画配置 */
+  --list-duration: var(--duration-base);
+  --list-ease: var(--ease-out);
+
+  /* 颜色 */
+  --list-bg: var(--background);
+  --list-fg: var(--foreground);
+  --list-border: var(--border);
+  --list-item-bg: transparent;
+  --list-item-bg-hover: var(--muted);
+  --list-item-bg-active: color-mix(
+    in srgb,
+    var(--primary) 10%,
+    var(--background)
+  );
+  --list-item-fg: var(--foreground);
+
+  /* 圆角 */
+  --list-border-radius: var(--radius);
+  --list-item-border-radius: var(--radius-md);
+
+  /* 间距 */
+  --list-padding: 0;
+  --list-gap: 0;
+  --list-item-padding-x: 1rem;
+  --list-item-padding-y: 0.75rem;
+  --list-item-gap: 0.75rem;
+
+  /* ========================================
+     尺寸变量 - List Sizes
+     ======================================== */
+
+  /* 小型 */
+  --list-sm-item-padding-x: 0.75rem;
+  --list-sm-item-padding-y: 0.5rem;
+  --list-sm-item-gap: 0.5rem;
+  --list-sm-text-size: 0.875rem;
+
+  /* 默认 */
+  --list-item-padding-x: 1rem;
+  --list-item-padding-y: 0.75rem;
+  --list-item-gap: 0.75rem;
+  --list-text-size: 1rem;
+
+  /* 大型 */
+  --list-lg-item-padding-x: 1.25rem;
+  --list-lg-item-padding-y: 1rem;
+  --list-lg-item-gap: 1rem;
+  --list-lg-text-size: 1.125rem;
+
+  /* ========================================
+     颜色变体变量 - List Variants
+     ======================================== */
+
+  /* 主色 */
+  --list-primary-item-bg-hover: color-mix(
+    in srgb,
+    var(--primary) 10%,
+    var(--background)
+  );
+  --list-primary-item-bg-active: color-mix(
+    in srgb,
+    var(--primary) 15%,
+    var(--background)
+  );
+  --list-primary-item-fg: var(--primary);
+  --list-primary-border: var(--primary);
+
+  /* 成功 */
+  --list-success-item-bg-hover: color-mix(
+    in srgb,
+    #10b981 10%,
+    var(--background)
+  );
+  --list-success-item-bg-active: color-mix(
+    in srgb,
+    #10b981 15%,
+    var(--background)
+  );
+  --list-success-item-fg: #10b981;
+  --list-success-border: #10b981;
+
+  /* 警告 */
+  --list-warning-item-bg-hover: color-mix(
+    in srgb,
+    #f59e0b 10%,
+    var(--background)
+  );
+  --list-warning-item-bg-active: color-mix(
+    in srgb,
+    #f59e0b 15%,
+    var(--background)
+  );
+  --list-warning-item-fg: #f59e0b;
+  --list-warning-border: #f59e0b;
+
+  /* 危险 */
+  --list-destructive-item-bg-hover: color-mix(
+    in srgb,
+    var(--destructive) 10%,
+    var(--background)
+  );
+  --list-destructive-item-bg-active: color-mix(
+    in srgb,
+    var(--destructive) 15%,
+    var(--background)
+  );
+  --list-destructive-item-fg: var(--destructive);
+  --list-destructive-border: var(--destructive);
+
+  /* ========================================
+     分割线变量 - List Divider
+     ======================================== */
+
+  --list-divider-color: var(--border);
+  --list-divider-width: 1px;
+
+  /* ========================================
+     禁用状态变量
+     ======================================== */
+
+  --list-disabled-opacity: 0.5;
+  --list-disabled-cursor: not-allowed;
+}
+
+/* ========================================
+   基础列表组件
+   ======================================== */
+
 @utility list {
-  @apply flex flex-col;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  background-color: var(--list-bg);
+  color: var(--list-fg);
+  border-radius: var(--list-border-radius);
+  overflow: hidden;
+  padding: var(--list-padding);
+  gap: var(--list-gap);
+}
+
+/* 列表项 */
+@utility list-item {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  padding: var(--list-item-padding-y) var(--list-item-padding-x);
+  gap: var(--list-item-gap);
+  background-color: var(--list-item-bg);
+  color: var(--list-item-fg);
+  cursor: pointer;
+  transition:
+    background-color var(--list-duration) var(--list-ease),
+    color var(--list-duration) var(--list-ease);
+  border: none;
+  text-align: left;
+  min-height: 2.75rem;
+
+  &:hover:not(:disabled):not(.list-disabled) {
+    background-color: var(--list-item-bg-hover);
+  }
+
+  &:active:not(:disabled):not(.list-disabled) {
+    background-color: var(--list-item-bg-active);
+  }
+
+  &:disabled,
+  &.list-disabled,
+  &[aria-disabled="true"] {
+    opacity: var(--list-disabled-opacity);
+    cursor: var(--list-disabled-cursor);
+
+    &:hover {
+      background-color: var(--list-item-bg);
+    }
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--ring);
+    outline-offset: -2px;
+  }
+
+  /* 禁用悬停 */
+  &.list-disabled:hover {
+    background-color: var(--list-item-bg);
+  }
+}
+
+/* 列表项激活状态 */
+@utility list-item-active {
+  background-color: var(--list-item-bg-active);
+  font-weight: 500;
+}
+
+/* ========================================
+   列表项内容组织
+   ======================================== */
+
+/* 列表项起始内容 */
+@utility list-item-start {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-shrink: 0;
+}
+
+/* 列表项中间内容 */
+@utility list-item-content {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-width: 0;
+}
+
+/* 列表项标题 */
+@utility list-item-title {
+  font-weight: 500;
+  line-height: 1.4;
+  margin: 0;
+}
+
+/* 列表项描述 */
+@utility list-item-description {
   font-size: 0.875rem;
+  color: var(--muted-foreground);
+  line-height: 1.4;
+  margin: 0;
 }
 
-/* 列表行 */
-@utility list-row {
-  --list-grid-cols: minmax(0, auto) 1fr;
-  @apply relative grid grid-flow-col gap-4 p-4 rounded-lg;
-  word-break: break-word;
-  grid-template-columns: var(--list-grid-cols);
+/* 列表项末尾内容 */
+@utility list-item-end {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-shrink: 0;
+  margin-left: auto;
 }
 
-/* 列表行之间的分隔线 */
-.list > :not(:last-child) {
-  &.list-row,
-  .list-row {
-    &::after {
-      content: "";
-      @apply absolute bottom-0 border-b border-border/50;
-      inset-inline: theme(borderRadius.lg);
+/* ========================================
+   尺寸变体
+   ======================================== */
+
+/* 小型 */
+@utility list-sm {
+  & > .list-item {
+    padding: var(--list-sm-item-padding-y) var(--list-sm-item-padding-x);
+    gap: var(--list-sm-item-gap);
+    min-height: 2.25rem;
+    font-size: var(--list-sm-text-size);
+  }
+
+  & .list-item-description {
+    font-size: 0.75rem;
+  }
+}
+
+/* 大型 */
+@utility list-lg {
+  & > .list-item {
+    padding: var(--list-lg-item-padding-y) var(--list-lg-item-padding-x);
+    gap: var(--list-lg-item-gap);
+    min-height: 3.5rem;
+    font-size: var(--list-lg-text-size);
+  }
+
+  & .list-item-description {
+    font-size: 0.95rem;
+  }
+}
+
+/* ========================================
+   颜色变体
+   ======================================== */
+
+/* 主色变体 */
+@utility list-primary {
+  & > .list-item {
+    &:hover:not(:disabled):not(.list-disabled) {
+      background-color: var(--list-primary-item-bg-hover);
+    }
+
+    &:active:not(:disabled):not(.list-disabled),
+    &.list-item-active {
+      background-color: var(--list-primary-item-bg-active);
+      color: var(--list-primary-item-fg);
     }
   }
 }
 
-/* === 列表列（根据 list-col-grow 位置动态调整网格） === */
+/* 成功变体 */
+@utility list-success {
+  & > .list-item {
+    &:hover:not(:disabled):not(.list-disabled) {
+      background-color: var(--list-success-item-bg-hover);
+    }
 
-/* 第1列增长 */
-.list-row:has(.list-col-grow:nth-child(1)) {
-  --list-grid-cols: 1fr;
-}
-
-/* 第2列增长 */
-.list-row:has(.list-col-grow:nth-child(2)) {
-  --list-grid-cols: minmax(0, auto) 1fr;
-}
-
-/* 第3列增长 */
-.list-row:has(.list-col-grow:nth-child(3)) {
-  --list-grid-cols: minmax(0, auto) minmax(0, auto) 1fr;
-}
-
-/* 第4列增长 */
-.list-row:has(.list-col-grow:nth-child(4)) {
-  --list-grid-cols: minmax(0, auto) minmax(0, auto) minmax(0, auto) 1fr;
-}
-
-/* 第5列增长 */
-.list-row:has(.list-col-grow:nth-child(5)) {
-  --list-grid-cols: minmax(0, auto) minmax(0, auto) minmax(0, auto)
-    minmax(0, auto) 1fr;
-}
-
-/* 第6列增长 */
-.list-row:has(.list-col-grow:nth-child(6)) {
-  --list-grid-cols: minmax(0, auto) minmax(0, auto) minmax(0, auto)
-    minmax(0, auto) minmax(0, auto) 1fr;
-}
-
-/* 非换行列都在第一行 */
-.list-row :not(.list-col-wrap) {
-  @apply row-start-1;
-}
-
-/* === 列修饰符 === */
-
-/* 增长列 - 占据剩余空间 */
-@utility list-col-grow {
-  @apply min-w-0;
-}
-
-/* 换行列 - 独占第二行 */
-@utility list-col-wrap {
-  @apply row-start-2 col-span-full;
-}
-
-/* === 列表变体 === */
-
-/* 无边框列表 */
-@utility list-borderless {
-  & .list-row::after {
-    @apply hidden;
+    &:active:not(:disabled):not(.list-disabled),
+    &.list-item-active {
+      background-color: var(--list-success-item-bg-active);
+      color: var(--list-success-item-fg);
+    }
   }
 }
 
-/* 悬浮效果 */
-@utility list-hoverable {
-  & .list-row {
-    @apply hover:bg-accent/50 cursor-pointer transition-colors;
+/* 警告变体 */
+@utility list-warning {
+  & > .list-item {
+    &:hover:not(:disabled):not(.list-disabled) {
+      background-color: var(--list-warning-item-bg-hover);
+    }
+
+    &:active:not(:disabled):not(.list-disabled),
+    &.list-item-active {
+      background-color: var(--list-warning-item-bg-active);
+      color: var(--list-warning-item-fg);
+    }
   }
 }
 
-/* 紧凑列表 */
+/* 危险变体 */
+@utility list-destructive {
+  & > .list-item {
+    &:hover:not(:disabled):not(.list-disabled) {
+      background-color: var(--list-destructive-item-bg-hover);
+    }
+
+    &:active:not(:disabled):not(.list-disabled),
+    &.list-item-active {
+      background-color: var(--list-destructive-item-bg-active);
+      color: var(--list-destructive-item-fg);
+    }
+  }
+}
+
+/* ========================================
+   显示模式
+   ======================================== */
+
+/* 带边框 */
+@utility list-bordered {
+  border: 1px solid var(--list-border);
+
+  & > .list-item:not(:last-child) {
+    border-bottom: 1px solid var(--list-divider-color);
+  }
+}
+
+/* 紧凑模式（移除项间分割线） */
 @utility list-compact {
-  & .list-row {
-    @apply p-2 gap-2;
+  & > .list-item:not(:last-child) {
+    border-bottom: none;
   }
 }
 
-/* 宽松列表 */
-@utility list-relaxed {
-  & .list-row {
-    @apply p-6 gap-6;
+/* 分离模式（项之间有间距） */
+@utility list-separated {
+  gap: 0.5rem;
+
+  & > .list-item {
+    border-radius: var(--list-item-border-radius);
+    border: 1px solid var(--list-border);
   }
 }
 
-/* 斑马纹列表 */
-@utility list-zebra {
-  & .list-row:nth-child(even) {
-    @apply bg-muted/30;
+/* 无背景 */
+@utility list-ghost {
+  background-color: transparent;
+
+  & > .list-item {
+    border-radius: var(--list-item-border-radius);
   }
 }
+
+/* 纯展示（不可交互） */
+@utility list-plain {
+  & > .list-item {
+    cursor: default;
+
+    &:hover {
+      background-color: var(--list-item-bg);
+    }
+
+    &:active {
+      background-color: var(--list-item-bg);
+    }
+  }
+}
+
+/* ========================================
+   特殊项目样式
+   ======================================== */
+
+/* 头部/分组标签 */
+@utility list-header {
+  padding: 0.75rem var(--list-item-padding-x);
+  font-size: 0.875rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--muted-foreground);
+  background-color: transparent;
+  cursor: default;
+
+  &:hover {
+    background-color: transparent;
+  }
+}
+
+/* 分割线 */
+@utility list-divider {
+  height: var(--list-divider-width);
+  background-color: var(--list-divider-color);
+  padding: 0;
+  cursor: default;
+  min-height: auto;
+
+  &:hover {
+    background-color: var(--list-divider-color);
+  }
+}
+
+/* ========================================
+   列表容器类型
+   ======================================== */
+
+/* 无序列表 */
+@utility list-ul {
+  & > .list-item::before {
+    content: "•";
+    margin-right: 0.5rem;
+    color: inherit;
+  }
+}
+
+/* 有序列表 */
+@utility list-ol {
+  counter-reset: list-counter;
+
+  & > .list-item {
+    counter-increment: list-counter;
+
+    &::before {
+      content: counter(list-counter) ".";
+      margin-right: 0.5rem;
+      color: inherit;
+      font-weight: 500;
+    }
+  }
+}
+
+/* ========================================
+   交互模式
+   ======================================== */
+
+/* 可选择 */
+@utility list-selectable {
+  & > .list-item {
+    position: relative;
+    cursor: pointer;
+
+    &.list-selected::before {
+      content: "✓";
+      position: absolute;
+      left: var(--list-item-padding-x);
+      color: var(--primary);
+      font-weight: bold;
+    }
+  }
+}
+
+/* 可拖拽 */
+@utility list-draggable {
+  & > .list-item {
+    cursor: grab;
+
+    &:active {
+      cursor: grabbing;
+    }
+  }
+}
+
+/* ========================================
+   嵌套列表
+   ======================================== */
+
+@utility list-nested {
+  & > .list {
+    margin: 0;
+    border: none;
+    background-color: transparent;
+    border-radius: 0;
+
+    & > .list-item {
+      padding-left: calc(var(--list-item-padding-x) * 2);
+      font-size: 0.95rem;
+
+      &:hover {
+        background-color: var(--list-item-bg-hover);
+      }
+    }
+  }
+}
+
+/* ========================================
+   减少运动支持
+   ======================================== */

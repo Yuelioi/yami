@@ -3,83 +3,505 @@ name: dropdown
 desc: 下拉菜单组件，用于显示可选项或操作菜单
 usage: 适用于按钮菜单、导航菜单、筛选选项等场景
 syntax:
- <details class="dropdown w-36">
-  <summary class="btn btn-primary">Dropdown 示例</summary>
-  <div class="dropdown-content menu p-2 border rounded shadow-md">
-    <li><a href="#" class="">菜单项 1</a></li>
-    <li><a href="#" class="">菜单项 2</a></li>
-    <li><a href="#" class="">菜单项 3</a></li>
-  </div>
-</details>
-*/
+  <details class="dropdown dropdown-bottom w-36">
+   <summary class="btn btn-primary w-full">Dropdown 示例</summary>
+   <div class="dropdown-content">
+     <ul class="menu">
+       <li><a href="#">菜单项 1</a></li>
+       <li><a href="#">菜单项 2</a></li>
+       <li class="menu-disabled"><a href="#">禁用项</a></li>
+     </ul>
+   </div>
+ </details>
+ */
 
-/* === dropdown 基础 === */
+@theme {
+  /* motion */
+  --dropdown-transition: var(--duration-medium) var(--ease-in-out);
+  --dropdown-z-index: var(--z-popover);
+
+  /* border */
+  --dropdown-border-width: 1px;
+  --dropdown-border-width-high-contrast: 2px;
+
+  /* spacing */
+  --dropdown-offset: 0.25rem;
+  --dropdown-max-width-desktop: 22rem;
+  --dropdown-max-width-mobile: calc(100vw - 1rem);
+  --dropdown-max-height-mobile: calc(100vh - 8rem);
+  --dropdown-inset-offset: -1px;
+  --dropdown-inset-radius-addition: 1px;
+
+  /* transform */
+  --dropdown-translate-y: -4px;
+  --dropdown-translate-x: 4px;
+  --dropdown-translate-x-center: -50%;
+  --dropdown-scale: 0.95;
+  --dropdown-scale-scale-variant: 0.9;
+  --dropdown-slide-offset: 8px;
+
+  /* width */
+  --dropdown-width-fixed: 12rem;
+  --dropdown-width-wide: 20rem;
+
+  /* arrow */
+  --dropdown-arrow-size: 0.5em;
+  --dropdown-arrow-margin: 0.5em;
+  --dropdown-arrow-border: 2px;
+  --dropdown-arrow-rotate-down: 45deg;
+  --dropdown-arrow-rotate-up: -135deg;
+  --dropdown-arrow-rotate-down-open: 225deg;
+
+  /* font sizes */
+  --dropdown-font-xs: 0.75rem;
+  --dropdown-font-sm: 0.8125rem;
+  --dropdown-font-md: 0.875rem;
+  --dropdown-font-lg: 0.9375rem;
+  --dropdown-font-xl: 1rem;
+
+  /* content padding */
+  --dropdown-content-padding-xs: 0.25rem;
+  --dropdown-content-padding-sm: 0.25rem;
+  --dropdown-content-padding-md: 0.5rem;
+  --dropdown-content-padding-lg: 0.5rem;
+  --dropdown-content-padding-xl: 0.625rem;
+
+  /* item padding */
+  --dropdown-item-padding-xs: 0.25rem 0.5rem;
+  --dropdown-item-padding-sm: 0.25rem 0.625rem;
+  --dropdown-item-padding-md: 0.375rem 0.75rem;
+  --dropdown-item-padding-lg: 0.5rem 0.875rem;
+  --dropdown-item-padding-xl: 0.5rem 1rem;
+}
+
+/* ========================================
+   基础 Dropdown
+   ======================================== */
 @utility dropdown {
-  @apply relative inline-block;
+  position: relative;
+  display: inline-block;
 
-  & summary {
+  & > summary {
     list-style: none;
     cursor: pointer;
+    user-select: none;
 
     &::-webkit-details-marker {
       display: none;
     }
+
+    &:focus-visible {
+      outline: var(--focus-ring-width) solid var(--ring);
+      outline-offset: var(--focus-ring-offset);
+    }
   }
 
-  /* & .menu {
-    @apply flex flex-col gap-1 p-2;
-  } */
-
-  /* 适配按钮 下拉菜单按钮文字应该居左 */
-  & .btn {
-    @apply text-left w-full justify-start content-start select-none [text-wrap:balance];
+  & > .btn {
+    text-align: left;
+    width: 100%;
+    justify-content: flex-start;
+    align-content: flex-start;
+    user-select: none;
+    text-wrap: balance;
   }
 }
 
-/* === dropdown 内容层 === */
+/* ========================================
+   Dropdown 内容
+   ======================================== */
 @utility dropdown-content {
-  @apply absolute opacity-0  pointer-events-none;
-  @apply bg-popover border border-border rounded shadow-md z-50;
-  @apply w-auto min-w-max;
+  position: absolute;
+  z-index: var(--dropdown-z-index);
+  min-width: max-content;
+  max-width: min(calc(100vw - calc(var(--dropdown-offset) * 8)), var(--dropdown-max-width-desktop));
 
-  details[open] & {
-    @apply opacity-100 pointer-events-auto;
+  opacity: 0;
+  pointer-events: none;
+  visibility: hidden;
+
+  background-color: var(--popover);
+  border: var(--dropdown-border-width) solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-lg);
+
+  transform:
+    translateY(var(--dropdown-translate-y))
+    scale(var(--dropdown-scale));
+  transform-origin: var(--dropdown-origin, top);
+
+  transition:
+    opacity var(--dropdown-transition),
+    transform var(--dropdown-transition),
+    visibility var(--dropdown-transition);
+
+  details[open] > & {
+    opacity: 1;
+    pointer-events: auto;
+    visibility: visible;
+
+    transform:
+      translateY(0)
+      scale(1);
+  }
+
+  &::before {
+    content: "";
+    position: absolute;
+    inset: var(--dropdown-inset-offset);
+    border-radius: calc(var(--radius) + var(--dropdown-inset-radius-addition));
+    pointer-events: none;
   }
 }
 
-/* === 方向修饰 === */
+/* ========================================
+   方向修饰
+   ======================================== */
 
-/* 默认向下 */
+/* 向下（默认） */
 @utility dropdown-bottom {
-  .dropdown-content {
-    @apply top-full bottom-auto  origin-top;
+  & .dropdown-content {
+    top: calc(100% + var(--dropdown-offset));
+    right: auto;
+    bottom: auto;
+    left: 0;
+    --dropdown-origin: top;
   }
 }
 
 /* 向上 */
 @utility dropdown-top {
-  .dropdown-content {
-    @apply bottom-full top-auto  origin-bottom;
+  & .dropdown-content {
+    top: auto;
+    right: auto;
+    bottom: calc(100% + var(--dropdown-offset));
+    left: 0;
+    --dropdown-origin: bottom;
+    transform:
+      translateY(calc(var(--dropdown-translate-y) * -1))
+      scale(var(--dropdown-scale));
+
+    details[open] > & {
+      transform:
+        translateY(0)
+        scale(1);
+    }
   }
 }
 
 /* 向左 */
 @utility dropdown-start {
-  .dropdown-content {
-    @apply right-full top-0 bottom-auto  origin-right;
+  & .dropdown-content {
+    top: 0;
+    right: calc(100% + var(--dropdown-offset));
+    bottom: auto;
+    left: auto;
+    --dropdown-origin: right;
+    transform:
+      translateX(var(--dropdown-translate-x))
+      scale(var(--dropdown-scale));
+
+    details[open] > & {
+      transform:
+        translateX(0)
+        scale(1);
+    }
   }
 }
 
 /* 向右 */
 @utility dropdown-end {
-  .dropdown-content {
-    @apply left-full top-0 bottom-auto origin-left;
+  & .dropdown-content {
+    top: 0;
+    right: auto;
+    bottom: auto;
+    left: calc(100% + var(--dropdown-offset));
+    --dropdown-origin: left;
+    transform:
+      translateX(calc(var(--dropdown-translate-x) * -1))
+      scale(var(--dropdown-scale));
+
+    details[open] > & {
+      transform:
+        translateX(0)
+        scale(1);
+    }
   }
 }
 
-/* 居中 */
+/* 居中（向下） */
 @utility dropdown-center {
+  & .dropdown-content {
+    top: calc(100% + var(--dropdown-offset));
+    right: auto;
+    bottom: auto;
+    left: 50%;
+    transform:
+      translateX(var(--dropdown-translate-x-center))
+      translateY(var(--dropdown-translate-y))
+      scale(var(--dropdown-scale));
+    --dropdown-origin: top center;
+
+    details[open] > & {
+      transform:
+        translateX(var(--dropdown-translate-x-center))
+        translateY(0)
+        scale(1);
+    }
+  }
+}
+
+/* ========================================
+   尺寸变体
+   ======================================== */
+
+@utility dropdown-xs {
+  & .dropdown-content {
+    padding: var(--dropdown-content-padding-xs);
+  }
+
+  & .menu {
+    font-size: var(--dropdown-font-xs);
+
+    & li:not(.menu-title) > *:not(ul, details, .menu-title) {
+      padding: var(--dropdown-item-padding-xs);
+    }
+  }
+}
+
+@utility dropdown-sm {
+  & .dropdown-content {
+    padding: var(--dropdown-content-padding-sm);
+  }
+
+  & .menu {
+    font-size: var(--dropdown-font-sm);
+
+    & li:not(.menu-title) > *:not(ul, details, .menu-title) {
+      padding: var(--dropdown-item-padding-sm);
+    }
+  }
+}
+
+@utility dropdown-md {
+  & .dropdown-content {
+    padding: var(--dropdown-content-padding-md);
+  }
+
+  & .menu {
+    font-size: var(--dropdown-font-md);
+
+    & li:not(.menu-title) > *:not(ul, details, .menu-title) {
+      padding: var(--dropdown-item-padding-md);
+    }
+  }
+}
+
+@utility dropdown-lg {
+  & .dropdown-content {
+    padding: var(--dropdown-content-padding-lg);
+  }
+
+  & .menu {
+    font-size: var(--dropdown-font-lg);
+
+    & li:not(.menu-title) > *:not(ul, details, .menu-title) {
+      padding: var(--dropdown-item-padding-lg);
+    }
+  }
+}
+
+@utility dropdown-xl {
+  & .dropdown-content {
+    padding: var(--dropdown-content-padding-xl);
+  }
+
+  & .menu {
+    font-size: var(--dropdown-font-xl);
+
+    & li:not(.menu-title) > *:not(ul, details, .menu-title) {
+      padding: var(--dropdown-item-padding-xl);
+    }
+  }
+}
+
+/* ========================================
+   箭头指示器
+   ======================================== */
+
+@utility dropdown-arrow {
+  & > summary::after {
+    content: "";
+    display: inline-block;
+    width: var(--dropdown-arrow-size);
+    height: var(--dropdown-arrow-size);
+    margin-left: var(--dropdown-arrow-margin);
+    border-right: var(--dropdown-arrow-border) solid currentColor;
+    border-bottom: var(--dropdown-arrow-border) solid currentColor;
+    transform: rotate(var(--dropdown-arrow-rotate-down));
+    transition: transform var(--dropdown-transition);
+  }
+}
+
+@utility dropdown-arrow-up {
+  & > summary::after {
+    transform: rotate(var(--dropdown-arrow-rotate-up));
+  }
+}
+
+@utility dropdown-arrow-down {
+  & > summary::after {
+    transform: rotate(var(--dropdown-arrow-rotate-down));
+  }
+}
+
+/* 展开时旋转箭头 */
+@utility.dropdown-arrow > details[open] > summary::after {
+  transform: rotate(var(--dropdown-arrow-rotate-up));
+}
+
+@utility.dropdown-arrow-down > details[open] > summary::after {
+  transform: rotate(var(--dropdown-arrow-rotate-down-open));
+}
+
+/* ========================================
+   悬停触发
+   ======================================== */
+
+@utility dropdown-hover {
+  & > .dropdown-content {
+    opacity: 0;
+    pointer-events: none;
+    visibility: hidden;
+  }
+
+  &:hover > .dropdown-content,
+  & > .dropdown-content:hover {
+    opacity: 1;
+    pointer-events: auto;
+    visibility: visible;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* ========================================
+   响应式优化
+   ======================================== */
+
+@media (max-width: 640px) {
+  .dropdown {
+    &.dropdown-center {
+      & .dropdown-content {
+        left: 0;
+        right: 0;
+        transform:
+          translateY(var(--dropdown-translate-y))
+          scale(var(--dropdown-scale));
+        --dropdown-origin: top;
+
+        details[open] > & {
+          transform:
+            translateY(0)
+            scale(1);
+        }
+      }
+    }
+  }
+
   .dropdown-content {
-    @apply top-full left-1/2 -translate-x-1/2  origin-top;
+    max-width: var(--dropdown-max-width-mobile);
+    max-height: var(--dropdown-max-height-mobile);
+    overflow-y: auto;
+  }
+}
+
+/* ========================================
+   性能优化
+   ======================================== */
+
+@utility dropdown-content {
+  & {
+    will-change: opacity, transform;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    transition: none;
+    will-change: auto;
+  }
+}
+
+/* ========================================
+   无障碍增强
+   ======================================== */
+
+/* 高对比度模式支持 */
+@media (prefers-contrast: high) {
+  .dropdown-content {
+    border-width: var(--dropdown-border-width-high-contrast);
+    box-shadow: none;
+  }
+}
+
+/* ========================================
+   动画变体
+   ======================================== */
+
+@utility dropdown-fade {
+  & .dropdown-content {
+    transform: scale(1);
+  }
+}
+
+@utility dropdown-slide-up {
+  & .dropdown-content {
+    transform: translateY(calc(var(--dropdown-slide-offset) * -1)) scale(1);
+
+    details[open] > & {
+      transform: translateY(0) scale(1);
+    }
+  }
+}
+
+@utility dropdown-slide-down {
+  & .dropdown-content {
+    transform: translateY(var(--dropdown-slide-offset)) scale(1);
+
+    details[open] > & {
+      transform: translateY(0) scale(1);
+    }
+  }
+}
+
+@utility dropdown-scale {
+  & .dropdown-content {
+    transform: translateY(var(--dropdown-translate-y)) scale(var(--dropdown-scale-scale-variant));
+
+    details[open] > & {
+      transform: translateY(0) scale(1);
+    }
+  }
+}
+
+/* ========================================
+   固定宽度
+   ======================================== */
+
+@utility dropdown-fixed {
+  & .dropdown-content {
+    width: var(--dropdown-width, var(--dropdown-width-fixed));
+    min-width: 0;
+  }
+}
+
+@utility dropdown-fit {
+  & .dropdown-content {
+    width: 100%;
+    min-width: 0;
+  }
+}
+
+@utility dropdown-wide {
+  & .dropdown-content {
+    width: var(--dropdown-width, var(--dropdown-width-wide));
+    min-width: 0;
   }
 }

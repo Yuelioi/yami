@@ -34,12 +34,14 @@ const apiClasses = [
     <DocsSection title="基础用法" description="垂直排列">
       <div class="relative bg-muted/20 rounded-xl h-24">
         <div class="fab absolute">
-          <!-- 主按钮 -->
-          <button tabindex="0" class="btn btn-pill size-12 btn-primary flex shadow-lg">
+          <div
+            tabindex="0"
+            role="button"
+            class="btn btn-pill btn-primary size-12 shadow-lg"
+          >
             <Plus class="w-6 h-6" />
-          </button>
+          </div>
 
-          <!-- 子操作项 -->
           <button class="btn btn-secondary btn-pill size-12 shadow-md">
             <Edit class="w-5 h-5" />
           </button>
@@ -57,17 +59,20 @@ const apiClasses = [
     <DocsSection title="Flower 布局 FAB" description="散开布局">
       <div class="relative bg-muted/20 rounded-xl h-24">
         <div class="fab fab-flower absolute">
-          <!-- 主按钮 -->
-          <button tabindex="0" class="btn btn-pill btn-primary size-12 shadow-lg">
+          <div
+            tabindex="0"
+            role="button"
+            class="btn btn-pill btn-primary size-12 shadow-lg"
+          >
             <Plus class="w-6 h-6" />
-          </button>
+          </div>
 
-          <!-- 关闭按钮 -->
-          <button class="fab-close btn btn-pill btn-primary size-12 shadow-lg">
-            <X class="w-6 h-6" />
-          </button>
+          <div class="fab-close">
+            <div class="btn btn-pill btn-primary size-12 shadow-lg">
+              <X class="w-6 h-6" />
+            </div>
+          </div>
 
-          <!-- 子项 -->
           <button class="btn btn-secondary size-12 shadow-md">
             <Edit class="w-5 h-5" />
           </button>
@@ -84,11 +89,12 @@ const apiClasses = [
     <!-- 用法说明 -->
     <DocsSection title="用法提示">
       <ul class="list-disc pl-6 space-y-2 text-muted-foreground text-sm">
-        <li>主按钮通常放在右下角，使用 <code>.fab</code> 类。</li>
-        <li>当主按钮聚焦时（如点击或键盘导航），子操作项自动展开。</li>
+        <li>主按钮使用 <code>&lt;div tabindex="0" role="button"&gt;</code> 而不是 <code>&lt;button&gt;</code>，以兼容 Safari。</li>
+        <li>当主按钮获得焦点时（点击或键盘导航），子操作项自动展开。</li>
+        <li>点击其他地方会失去焦点，子操作项自动收起。</li>
         <li>可使用 <code>.fab-flower</code> 类让子项环绕主按钮展开。</li>
-        <li><code>.fab-close</code> 或 <code>.fab-main-action</code> 可作为关闭 / 切换按钮。</li>
-        <li>通过设置 <code>z-index</code>、<code>transition-delay</code> 控制展开动画层次。</li>
+        <li><code>.fab-close</code> 或 <code>.fab-main-action</code> 可作为关闭按钮。</li>
+        <li>纯 CSS 实现，无需 JavaScript，支持键盘无障碍访问。</li>
       </ul>
     </DocsSection>
   </DocsContainer>

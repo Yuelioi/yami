@@ -54,7 +54,9 @@
                     />
                     <input
                       v-model="currentThemeVars[variable.name]"
-                      @input="updateCSSVar(variable.name, currentThemeVars[variable.name])"
+                      @input="
+                        updateCSSVar(variable.name, currentThemeVars[variable.name] as string)
+                      "
                       class="input flex-1"
                       :placeholder="isDark ? variable.dark : variable.light"
                     />
@@ -127,7 +129,6 @@ const categories = [
   { id: 'colors', label: '颜色' },
   { id: 'semantic', label: '语义色' },
   { id: 'status', label: '状态色' },
-  { id: 'chart', label: '图表色' },
   { id: 'other', label: '其他' },
 ]
 
@@ -300,43 +301,7 @@ const variables = {
       dark: 'oklch(1 0 0)',
     },
   ],
-  chart: [
-    {
-      name: '--chart-1',
-      label: '图表色 1',
-      type: 'color',
-      light: 'oklch(0.55 0.22 285)',
-      dark: 'oklch(0.7162 0.1597 290.3962)',
-    },
-    {
-      name: '--chart-2',
-      label: '图表色 2',
-      type: 'color',
-      light: 'oklch(0.65 0.18 275)',
-      dark: 'oklch(0.6382 0.1047 274.9117)',
-    },
-    {
-      name: '--chart-3',
-      label: '图表色 3',
-      type: 'color',
-      light: 'oklch(0.6 0.25 290)',
-      dark: 'oklch(0.7482 0.1235 244.7492)',
-    },
-    {
-      name: '--chart-4',
-      label: '图表色 4',
-      type: 'color',
-      light: 'oklch(0.7 0.15 265)',
-      dark: 'oklch(0.7124 0.0977 186.6761)',
-    },
-    {
-      name: '--chart-5',
-      label: '图表色 5',
-      type: 'color',
-      light: 'oklch(0.48 0.2 295)',
-      dark: 'oklch(0.7546 0.1831 346.8124)',
-    },
-  ],
+
   other: [
     {
       name: '--radius',

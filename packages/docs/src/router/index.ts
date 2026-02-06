@@ -25,7 +25,6 @@ import KbdExample from '@/components/data/KbdExample.vue'
 import ListExample from '@/components/data/ListExample.vue'
 import StatExample from '@/components/data/StatExample.vue'
 import TableExample from '@/components/data/TableExample.vue'
-import TimelineExample from '@/components/data/TimelineExample.vue'
 
 // feedback
 import AlertExample from '@/components/feedback/AlertExample.vue'
@@ -41,7 +40,6 @@ import CheckboxExample from '@/components/form/CheckboxExample.vue'
 import FieldsetExample from '@/components/form/FieldsetExample.vue'
 import FileExample from '@/components/form/FileExample.vue'
 import FilterExample from '@/components/form/FilterExample.vue'
-import InputExample from '@/components/form/InputExample.vue'
 import LabelExample from '@/components/form/LabelExample.vue'
 import NumberExample from '@/components/form/NumberExample.vue'
 import RadioExample from '@/components/form/RadioExample.vue'
@@ -90,7 +88,6 @@ const componentMap: Record<string, any> = {
   list: ListExample,
   stat: StatExample,
   table: TableExample,
-  timeline: TimelineExample,
 
   // feedback
   alert: AlertExample,
@@ -106,7 +103,6 @@ const componentMap: Record<string, any> = {
   fieldset: FieldsetExample,
   file: FileExample,
   filter: FilterExample,
-  input: InputExample,
   label: LabelExample,
   number: NumberExample,
   radio: RadioExample,
@@ -172,7 +168,6 @@ export const tabs: TabItem[] = [
   { label: 'List 列表', value: 'list', group: '数据展示' },
   { label: 'Stat', value: 'stat', group: '数据展示' },
   { label: 'Table 表格', value: 'table', group: '数据展示' },
-  { label: 'Timeline 时间轴', value: 'timeline', group: '数据展示' },
 
   // form
   { label: 'Calendar 日历', value: 'calendar', group: '表单组件' },
@@ -180,7 +175,6 @@ export const tabs: TabItem[] = [
   { label: 'Fieldset 字段集', value: 'fieldset', group: '表单组件' },
   { label: 'File 文件上传', value: 'file', group: '表单组件' },
   { label: 'Filter 筛选器', value: 'filter', group: '表单组件' },
-  { label: 'Input 输入框', value: 'input', group: '表单组件' },
   { label: 'Label 标签', value: 'label', group: '表单组件' },
   { label: 'Number 数字输入框', value: 'number', group: '表单组件' },
   { label: 'Radio 单选框', value: 'radio', group: '表单组件' },

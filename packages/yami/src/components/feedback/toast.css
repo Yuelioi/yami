@@ -12,6 +12,38 @@ syntax:
 </div>
 */
 
+@theme {
+  /* animation */
+  --feedback-transition: var(--duration-medium);
+  --feedback-transition-fast: var(--duration-fast);
+  --feedback-ease: var(--ease-out);
+  --feedback-ease-in: var(--ease-in);
+
+  /* spacing */
+  --feedback-padding: 1rem;
+  --feedback-padding-sm: 0.75rem;
+  --feedback-padding-close: 1rem;
+  --feedback-gap: 0.75rem;
+  --feedback-gap-close: 2rem;
+
+  /* icon */
+  --feedback-icon-size: 1.5rem;
+  --feedback-icon-size-sm: 1rem;
+  --feedback-icon-size-xs: 0.75rem;
+
+  /* border */
+  --feedback-border-width: 3px;
+
+  /* backdrop */
+  --feedback-backdrop-blur: var(--blur-sm);
+
+  /* transform */
+  --feedback-translate: 100%;
+  --feedback-translate-exit: 100%;
+  --feedback-translate-x: 100%;
+  --feedback-translate-y: 100%;
+}
+
 /* === Toast 基础容器 === */
 @utility toast {
   @apply rounded-md p-3 backdrop-blur-sm;
@@ -246,25 +278,52 @@ syntax:
 
 /* === Toast 动画效果 === */
 @utility toast-enter {
-  @apply translate-x-full opacity-0;
+  transform: translateX(var(--feedback-translate-x-exit));
+  opacity: 0;
 }
 
 @utility toast-enter-active {
-  @apply transition-all duration-300 ease-out;
+  transition: all var(--feedback-transition);
 }
 
 @utility toast-enter-to {
-  @apply translate-x-0 opacity-100;
+  transform: translateX(var(--feedback-translate-exit));
+  opacity: 1;
 }
 
 @utility toast-leave {
-  @apply translate-x-0 opacity-100;
+  transform: translateX(var(--feedback-translate-x-exit));
+  opacity: 1;
 }
 
 @utility toast-leave-active {
-  @apply transition-all duration-300 ease-in;
+  transition: all var(--feedback-transition);
 }
 
 @utility toast-leave-to {
-  @apply translate-x-full opacity-0;
+  transform: translateX(var(--feedback-translate-x-enter));
+  opacity: 0;
+}
+
+@utility toast-enter-active {
+  transition: all var(--duration-medium) ease-out;
+}
+
+@utility toast-enter-to {
+  transform: translateX(0);
+  opacity: 1;
+}
+
+@utility toast-leave {
+  transform: translateX(0);
+  opacity: 1;
+}
+
+@utility toast-leave-active {
+  transition: all var(--duration-medium) ease-in;
+}
+
+@utility toast-leave-to {
+  transform: translateX(100%);
+  opacity: 0;
 }

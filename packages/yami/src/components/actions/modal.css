@@ -13,9 +13,55 @@ syntax:
 </dialog>
 */
 
+@theme {
+  /* z-index */
+  --modal-z-index: var(--z-modal-backdrop);
+
+  /* backdrop */
+  --modal-backdrop-opacity: 0.4;
+  --modal-backdrop-blur: 4px;
+
+  /* scale */
+  --modal-scale-closed: 0.95;
+  --modal-scale-bounce-closed: 0.8;
+  --modal-scale-open: 1;
+
+  /* animation */
+  --modal-transition: var(--duration-medium) var(--ease-out);
+  --modal-transition-fast: var(--duration-fast) var(--ease-out);
+  --modal-transition-bounce: var(--duration-base) var(--ease-in-out);
+  --modal-transition-delay: var(--duration-fast);
+
+  /* size */
+  --modal-max-width: 90vw;
+  --modal-max-height: 90vh;
+
+  /* width variants */
+  --modal-width-sm: 20rem;
+  --modal-width-md: 24rem;
+  --modal-width-lg: 32rem;
+  --modal-width-xl: 40rem;
+  --modal-width-full: 95vw;
+
+  /* spacing */
+  --modal-gap-sm: 0.5rem;
+  --modal-gap-md: 0.75rem;
+  --modal-gap-lg: 1rem;
+  --modal-padding-sm: 1rem;
+  --modal-padding-md: 1.25rem;
+  --modal-padding-lg: 1.5rem;
+  --modal-padding-xl: 1.5rem;
+  --modal-padding-close-sm: 0.25rem;
+  --modal-padding-close-md: 0.5rem;
+  --modal-padding-close-lg: 0.75rem;
+
+  /* border */
+  --modal-border-width: 2px;
+}
+
 /* 基础 容器 */
 @utility modal {
-  @apply fixed inset-0 z-[99];
+  @apply fixed inset-0 z-50;
   @apply grid h-full w-full items-center justify-items-center;
   @apply m-0 p-0;
   @apply max-w-none max-h-none;
@@ -23,8 +69,20 @@ syntax:
   @apply overflow-hidden invisible;
   overscroll-behavior: contain;
 
-  @apply transition-colors duration-300;
-  transition: visibility 0.3s allow-discrete, background-color 0.3s ease-out;
+  @apply transition-colors duration-200;
+  transition:
+    visibility 0.2s allow-discrete,
+    background-color 0.2s ease-out;
+
+  /* Reduced motion support */
+  @media (prefers-reduced-motion: reduce) {
+    transition:
+      visibility 0.2s allow-discrete,
+      background-color 0.2s ease-out;
+    .modal-content {
+      transition: opacity 0.2s ease-out;
+    }
+  }
 
   &::backdrop {
     @apply hidden;
@@ -49,69 +107,94 @@ syntax:
 
 /* Body 基础样式 */
 @utility modal-content {
-  @apply relative flex flex-col gap-4;
-  @apply p-6 max-w-[90vw] max-h-[90vh];
-  @apply bg-card text-foreground rounded-lg shadow-xl border border-border;
-  @apply overflow-y-auto;
-
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: var(--modal-gap-md);
+  padding: var(--modal-padding-md);
+  max-width: var(--modal-max-width);
+  max-height: var(--modal-max-height);
+  background-color: var(--card);
+  color: var(--foreground);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-xl);
+  border: var(--border-width) solid var(--border);
+  overflow-y: auto;
   transition-behavior: allow-discrete;
 
-  scale: 0.95;
+  scale: var(--modal-scale-closed);
   opacity: 0;
-  transition: scale 0.3s ease-out, opacity 0.2s ease-out 0.05s;
+  transition:
+    scale var(--modal-transition) ease-out,
+    opacity var(--modal-transition) ease-out var(--modal-transition-delay);
+
+  /* Reduced motion support */
+  @media (prefers-reduced-motion: reduce) {
+    transition: opacity var(--modal-transition) ease-out;
+  }
 }
 
 /* Body 尺寸变体 */
 @utility modal-content-sm {
-  @apply w-80 gap-2 p-4;
+  width: var(--modal-width-sm);
+  gap: var(--modal-gap-sm);
+  padding: var(--modal-padding-sm);
 
   & .modal-title {
-    @apply text-lg;
+    font-size: var(--btn-font-lg);
   }
 
   & .modal-close {
-    @apply p-1.5;
+    padding: var(--modal-padding-close-sm);
   }
 }
 
 @utility modal-content-md {
-  @apply w-96 gap-3 p-5;
+  width: var(--modal-width-md);
+  gap: var(--modal-gap-md);
+  padding: var(--modal-padding-md);
 
   & .modal-title {
-    @apply text-xl;
+    font-size: var(--btn-font-xl);
   }
 
   & .modal-close {
-    @apply p-2;
+    padding: var(--modal-padding-close-md);
   }
 }
 
 @utility modal-content-lg {
-  @apply w-[32rem] gap-4 p-6;
+  width: var(--modal-width-lg);
+  gap: var(--modal-gap-lg);
+  padding: var(--modal-padding-lg);
 
   & .modal-title {
-    @apply text-xl;
+    font-size: var(--btn-font-xl);
   }
 
   & .modal-close {
-    @apply p-2.5;
+    padding: var(--modal-padding-close-lg);
   }
 }
 
 @utility modal-content-xl {
-  @apply w-[40rem] gap-4 p-6;
+  width: var(--modal-width-xl);
+  gap: var(--modal-gap-lg);
+  padding: var(--modal-padding-xl);
 
   & .modal-title {
-    @apply text-xl;
+    font-size: var(--btn-font-xl);
   }
 
   & .modal-close {
-    @apply p-3;
+    padding: var(--modal-padding-close-lg);
   }
 }
 
 @utility modal-content-full {
-  @apply w-[95vw] gap-4 p-6;
+  width: var(--modal-width-full);
+  gap: var(--modal-gap-lg);
+  padding: var(--modal-padding-xl);
 }
 
 /* Header */
@@ -125,9 +208,29 @@ syntax:
 
 /* 对话框关闭按钮 */
 @utility modal-close {
-  @apply p-2 rounded-lg hover:bg-muted transition-colors;
-  @apply text-muted-foreground hover:text-foreground;
-  @apply cursor-pointer;
+  @apply flex items-center justify-center;
+  padding: var(--modal-padding-close-md);
+  border-radius: var(--radius-lg);
+  cursor: pointer;
+  transition: var(--btn-transition);
+  color: var(--muted-foreground);
+  min-width: var(--touch-target-md);
+  min-height: var(--touch-target-md);
+
+  &:hover {
+    background-color: var(--muted);
+    color: var(--foreground);
+  }
+
+  &:focus-visible {
+    outline: var(--focus-ring-width) solid
+      color-mix(in oklab, var(--primary) 50%, transparent);
+    outline-offset: var(--focus-ring-offset);
+  }
+
+  &:focus {
+    outline: none;
+  }
 }
 
 /* body */
@@ -143,18 +246,27 @@ syntax:
 /* 动画变体 - 缩放弹出 */
 @utility modal-bounce {
   .modal-content {
-    @apply scale-80 opacity-0;
+    scale: var(--modal-scale-bounce-closed);
+    opacity: 0;
   }
 
   &[open] .modal-content {
-    @apply scale-100 opacity-100;
-    transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    scale: var(--modal-scale-open);
+    opacity: 1;
+    transition: all var(--modal-transition-bounce);
+  }
+
+  /* Reduced motion support */
+  @media (prefers-reduced-motion: reduce) {
+    .modal-content {
+      transition: opacity var(--modal-transition) ease-out;
+    }
   }
 }
 
 /* 背景模糊效果 */
 @utility modal-blur {
   &[open] {
-    backdrop-filter: blur(4px);
+    backdrop-filter: blur(var(--modal-backdrop-blur));
   }
 }

@@ -9,92 +9,158 @@ syntax:
   <div class="filter-item">已完成</div>
 </div>
 */
+@theme {
+  /* ========================================
+     Filter 全局令牌
+     ======================================== */
 
-@utility filter-bar {
-  @apply flex items-center gap-2 p-4 rounded;
-  @apply bg-card border border-border;
+  /* 动画 */
+  --filter-duration: var(--duration-base);
+  --filter-ease: var(--ease-out);
+
+  /* 颜色 */
+  --filter-bg: transparent;
+  --filter-fg: var(--foreground);
+  --filter-border: var(--border);
+
+  --filter-item-bg: var(--muted);
+  --filter-item-bg-hover: color-mix(
+    in srgb,
+    var(--primary) var(--opacity-hover),
+    var(--muted)
+  );
+  --filter-item-bg-active: color-mix(
+    in srgb,
+    var(--primary) 18%,
+    var(--background)
+  );
+
+  --filter-item-fg: var(--foreground);
+  --filter-item-fg-active: var(--primary);
+
+  /* 圆角 */
+  --filter-radius: var(--radius);
+  --filter-item-radius: var(--radius-md);
+
+  /* 间距 */
+  --filter-gap: 0.5rem;
+  --filter-padding: 0;
+  --filter-item-padding-x: 0.75rem;
+  --filter-item-padding-y: 0.375rem;
+
+  /* 文本 */
+  --filter-text-size: 0.875rem;
+
+  /* 禁用 */
+  --filter-disabled-opacity: var(--opacity-disabled);
 }
 
-@utility filter-bar-compact {
-  @apply p-2 gap-1.5;
+/* ========================================
+   Filter 容器
+   ======================================== */
+
+@utility filter {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--filter-gap);
+  padding: var(--filter-padding);
+  background-color: var(--filter-bg);
+  color: var(--filter-fg);
 }
 
-@utility filter-bar-ghost {
-  @apply bg-transparent border-0 p-0;
+/* 垂直布局 */
+@utility filter-vertical {
+  flex-direction: column;
+  align-items: stretch;
 }
 
-/* === Filter 组 === */
-@utility filter-group {
-  @apply flex items-center gap-2 flex-wrap;
-}
+/* ========================================
+   Filter Item
+   ======================================== */
 
-@utility filter-group-vertical {
-  @apply flex-col items-stretch;
-}
+@utility filter-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  padding: var(--filter-item-padding-y) var(--filter-item-padding-x);
+  font-size: var(--filter-text-size);
+  line-height: 1.25;
+  background-color: var(--filter-item-bg);
+  color: var(--filter-item-fg);
+  border-radius: var(--filter-item-radius);
+  cursor: pointer;
+  user-select: none;
+  white-space: nowrap;
 
-/* === Filter 下拉菜单触发器 === */
-@utility filter-dropdown-trigger {
-  @apply inline-flex items-center gap-2 px-3 py-2 rounded;
-  @apply text-sm font-medium transition-colors;
-  @apply border border-border bg-background;
-  @apply hover:bg-muted cursor-pointer select-none;
-}
+  transition:
+    background-color var(--filter-duration) var(--filter-ease),
+    color var(--filter-duration) var(--filter-ease),
+    box-shadow var(--filter-duration) var(--filter-ease);
 
-@utility filter-dropdown-trigger-active {
-  @apply bg-primary/10 border-primary text-primary;
-}
-
-/* 下拉箭头 */
-@utility filter-dropdown-icon {
-  @apply inline-block transition-transform;
-
-  .filter-dropdown-trigger[data-open="true"] & {
-    @apply rotate-180;
+  &:hover:not(.filter-item-disabled) {
+    background-color: var(--filter-item-bg-hover);
   }
 }
 
-/* === Filter 清除按钮 === */
+/* 激活状态 */
+@utility filter-item-active {
+  background-color: var(--filter-item-bg-active);
+  color: var(--filter-item-fg-active);
+}
+
+/* 禁用状态 */
+@utility filter-item-disabled {
+  opacity: var(--filter-disabled-opacity);
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+/* ========================================
+   Filter Item 内容区
+   ======================================== */
+
+@utility filter-item-start {
+  display: inline-flex;
+  align-items: center;
+}
+
+@utility filter-item-label {
+  display: inline-flex;
+  align-items: center;
+}
+
+@utility filter-item-end {
+  display: inline-flex;
+  align-items: center;
+}
+
+/* ========================================
+   分组 / 条件块
+   ======================================== */
+
+@utility filter-group {
+  display: flex;
+  align-items: center;
+  gap: var(--filter-gap);
+}
+
+@utility filter-group-label {
+  font-size: 0.75rem;
+  color: var(--muted-foreground);
+}
+
+/* ========================================
+   清空 / 操作
+   ======================================== */
+
 @utility filter-clear {
-  @apply inline-flex items-center gap-1 px-2 py-1 rounded;
-  @apply text-xs font-medium text-muted-foreground;
-  @apply hover:text-foreground hover:bg-muted;
-  @apply transition-colors cursor-pointer select-none;
-}
+  font-size: 0.75rem;
+  color: var(--muted-foreground);
+  cursor: pointer;
 
-/* === Filter 搜索框 === */
-@utility filter-search {
-  @apply flex items-center gap-2 px-3 py-2 rounded;
-  @apply bg-background border border-border;
-  @apply text-sm;
-  @apply focus-within:ring-2 focus-within:ring-ring focus-within:ring-offset-0;
-  @apply transition-colors;
-}
-
-@utility filter-search-input {
-  @apply flex-1 bg-transparent border-0 outline-none;
-  @apply placeholder:text-muted-foreground;
-}
-
-@utility filter-search-icon {
-  @apply text-muted-foreground shrink-0;
-}
-
-/* === Filter 数字徽章 === */
-@utility filter-count {
-  @apply inline-flex items-center justify-center;
-  @apply min-w-5 h-5 px-1 rounded;
-  @apply text-xs font-medium;
-  @apply bg-primary/10 text-primary;
-  @apply ml-auto;
-}
-
-/* === Filter 列表项 === */
-@utility filter-item {
-  @apply flex items-center gap-2 px-3 py-2 rounded;
-  @apply text-sm cursor-pointer select-none transition-colors;
-  @apply hover:bg-muted;
-
-  &[data-active="true"] {
-    @apply bg-primary/10 text-primary font-medium;
+  &:hover {
+    color: var(--foreground);
+    text-decoration: underline;
   }
 }

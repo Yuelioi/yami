@@ -15,271 +15,121 @@ syntax:
   <p class="text-xs text-muted-foreground mt-2 px-6">使用类：<code>card</code></p>
 </div>
 */
+/*
+ * Card Component
+ * 内容卡片组件
+ */
+
+@theme {
+  /* ========================================
+     Card 全局令牌
+     ======================================== */
+
+  /* 动画 */
+  --card-duration: var(--duration-base);
+  --card-ease: var(--ease-out);
+
+  /* 颜色 */
+  --card-bg: var(--card);
+  --card-fg: var(--card-foreground);
+  --card-border: var(--border);
+
+  /* 阴影 */
+  --card-shadow: var(--shadow-sm);
+  --card-shadow-hover: var(--shadow);
+
+  /* 圆角 */
+  --card-radius: var(--radius-lg);
+
+  /* 间距 */
+  --card-padding: 1rem;
+  --card-gap: 0.75rem;
+
+  /* 标题 */
+  --card-title-size: 1rem;
+  --card-title-weight: 500;
+
+  /* 描述 */
+  --card-description-size: 0.875rem;
+  --card-description-color: var(--muted-foreground);
+}
+
+/* ========================================
+   Card 容器
+   ======================================== */
 
 @utility card {
-  --card-padding: theme(spacing.6);
-  --card-padding-top-body: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--card-gap);
+  background-color: var(--card-bg);
+  color: var(--card-fg);
+  border-radius: var(--card-radius);
+  box-shadow: var(--card-shadow);
+  padding: var(--card-padding);
+  transition:
+    box-shadow var(--card-duration) var(--card-ease),
+    transform var(--card-duration) var(--card-ease);
+}
 
-  @apply rounded-lg border bg-card text-card-foreground shadow-sm flex flex-col;
-  @apply transition-all duration-200;
+/* 可交互卡片 */
+@utility card-interactive {
+  cursor: pointer;
 
-  &:not(:has(.card-header)) .card-body {
-    padding-top: var(--card-padding);
+  &:hover {
+    box-shadow: var(--card-shadow-hover);
   }
 
-  /*  默认：card 自带 padding */
-  padding: var(--card-padding);
-
-  /* 如果存在 card-body，card 变成“外壳” */
-  &:has(.card-body) {
-    padding: 0;
+  &:active {
+    transform: translateY(1px);
   }
 }
 
-/* === 卡片内部结构 === */
+/* ========================================
+   Card 区块
+   ======================================== */
 
-/* 卡片头部 */
 @utility card-header {
-  @apply flex flex-col gap-1.5;
-  padding: var(--card-padding);
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
 }
 
-/* 卡片标题 */
-@utility card-title {
-  @apply text-xl font-semibold tracking-tight;
-}
-
-/* 卡片标题带装饰 */
-@utility card-title-deco {
-  @apply space-x-3 mb-6 pl-4;
-  @apply flex items-center justify-center  relative;
-
-  /* 左侧装饰条 */
-  &::before {
-    content: "";
-    @apply absolute top-0 left-0 w-1 h-8  bg-gradient-to-b from-primary/50 via-primary to-primary/50 rounded-full;
-  }
-
-  /* 右侧延伸线 */
-  &::after {
-    content: "";
-    @apply flex-1 h-px bg-gradient-to-r from-border to-transparent ml-4;
-  }
-}
-
-/* 卡片标题带 destructive 装饰 */
-@utility card-title-deco-destructive {
-  @apply card-title-deco;
-  &::before {
-    @apply from-destructive/70 via-destructive to-destructive/70;
-  }
-}
-
-/* 卡片描述 */
-@utility card-description {
-  @apply text-sm text-muted-foreground;
-}
-
-/* 卡片内容 */
 @utility card-body {
-  padding: var(--card-padding);
-  padding-top: var(--card-padding-top-body);
-  @apply flex flex-col flex-1;
+  display: block;
 }
 
-/* 卡片底部 */
 @utility card-footer {
-  padding: var(--card-padding);
-  padding-top: var(--card-padding-top-body);
-  @apply flex items-center gap-2;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
 }
 
-/* === 卡片变体 === */
+/* ========================================
+   文本结构
+   ======================================== */
 
-/* 悬浮效果 */
-@utility card-hover {
-  @apply hover:shadow-md cursor-pointer;
-  @apply hover:-translate-y-0.5 transition-all duration-200;
+@utility card-title {
+  font-size: var(--card-title-size);
+  font-weight: var(--card-title-weight);
+  line-height: 1.4;
 }
 
-/* 可点击卡片 */
-@utility card-clickable {
-  @apply cursor-pointer hover:bg-accent/50;
-  @apply active:scale-[0.98] transition-all duration-150;
+@utility card-description {
+  font-size: var(--card-description-size);
+  color: var(--card-description-color);
+  line-height: 1.5;
 }
 
-/* 无边框卡片 */
-@utility card-borderless {
-  @apply border-0 shadow-none;
+/* ========================================
+   修饰 / 变体
+   ======================================== */
+
+@utility card-flat {
+  box-shadow: none;
+  border: 1px solid var(--card-border);
 }
 
-/* 主色卡片 */
-@utility card-primary {
-  @apply border-primary/20 bg-primary/5;
-
-  & .card-title {
-    @apply text-primary;
-  }
-}
-
-/* 次级卡片 */
-@utility card-secondary {
-  @apply border-secondary/20 bg-secondary;
-
-  & .card-title {
-    @apply text-secondary-foreground;
-  }
-}
-
-/* 危险卡片 */
-@utility card-destructive {
-  @apply border-destructive/20 bg-destructive/5;
-
-  & .card-title {
-    @apply text-destructive;
-  }
-}
-
-/* 强调卡片 */
-@utility card-accent {
-  @apply border-accent/20 bg-accent;
-
-  & .card-title {
-    @apply text-accent-foreground;
-  }
-}
-
-/* 弱色卡片 */
 @utility card-muted {
-  @apply border-muted bg-muted;
-
-  & .card-title {
-    @apply text-muted-foreground;
-  }
-}
-
-/* === 卡片尺寸 === */
-
-/* 紧凑卡片 */
-@utility card-sm {
-  --card-padding: theme(spacing.4);
-  --card-padding-top-body: 0;
-
-  & .card-title {
-    @apply text-base;
-  }
-}
-
-@utility card-md {
-  --card-padding: theme(spacing.6);
-  --card-padding-top-body: 0;
-
-  & .card-title {
-    @apply text-base;
-  }
-}
-
-/* 大卡片 */
-@utility card-lg {
-  --card-padding: theme(spacing.8);
-  --card-padding-top-body: 0;
-
-  & .card-title {
-    @apply text-2xl;
-  }
-}
-
-/* === 特殊样式 === */
-
-/* 玻璃态卡片 */
-@utility card-glass {
-  @apply bg-background/80 backdrop-blur-sm;
-  @apply border-border/50;
-}
-
-/* 渐变边框卡片 */
-@utility card-gradient {
-  @apply relative;
-  @apply before:absolute before:inset-0 before:-z-10;
-  @apply before:rounded-lg before:p-[1px];
-  @apply before:bg-gradient-to-br before:from-primary before:to-accent;
-  @apply bg-background;
-}
-
-/* 带阴影卡片 */
-@utility card-shadow {
-  @apply shadow-md;
-}
-
-@utility card-shadow-lg {
-  @apply shadow-lg;
-}
-
-/* === 卡片头部变体 === */
-
-/* 头部带边框 */
-@utility card-header-bordered {
-  @apply border-b;
-}
-
-/* 头部居中 */
-@utility card-header-center {
-  @apply items-center text-center;
-}
-
-/* 头部水平布局 */
-@utility card-header-row {
-  @apply flex-row items-center justify-between;
-}
-
-/* === 卡片底部变体 === */
-
-/* 底部带边框 */
-@utility card-footer-bordered {
-  @apply border-t;
-}
-
-/* 底部居中 */
-@utility card-footer-center {
-  @apply justify-center;
-}
-
-/* 底部两端对齐 */
-@utility card-footer-between {
-  @apply justify-between;
-}
-
-/* === 卡片图片 === */
-@utility card-image {
-  @apply w-full  object-cover rounded-t-lg;
-  @apply h-40 min-h-40;
-}
-
-@utility card-image-sm {
-  @apply card-image;
-  @apply h-32 min-h-32;
-}
-
-@utility card-image-md {
-  @apply card-image;
-  @apply h-40 min-h-40;
-}
-
-@utility card-image-lg {
-  @apply card-image;
-  @apply h-48 min-h-48;
-}
-
-/* === 卡片网格 === */
-@utility card-grid {
-  @apply grid gap-4;
-  @apply grid-cols-1 sm:grid-cols-2 lg:grid-cols-3;
-}
-
-@utility card-grid-compact {
-  @apply gap-2;
-}
-
-@utility card-grid-relaxed {
-  @apply gap-6;
+  background-color: var(--muted);
 }
