@@ -1,0 +1,234 @@
+/*
+name: card
+desc: 卡片组件，用于容纳图文、操作等内容块。
+usage: 常用于仪表盘、商品列表、信息展示区。
+syntax:
+ <div class="card">
+  <div class="card-header">
+    <h3 class="card-title">默认卡片</h3>
+    <p class="card-description">最基础的卡片样式。</p>
+  </div>
+  <div class="card-body">这是卡片内容。</div>
+  <div class="card-footer">
+    <button class="btn btn-sm btn-primary">操作</button>
+  </div>
+  <p class="text-xs  mt-2 px-6">使用类：<code>card</code></p>
+</div>
+*/
+/*
+ * Card Component
+ * 内容卡片组件
+ */
+@utility card {
+  @apply relative flex flex-col rounded-box bg-base-200 text-base font-normal text-base-content outline-none border-solid;
+  @apply border-base-content/20;
+
+  box-shadow: var(
+    --card-shadow,
+    0 1px 3px 0 color-mix(in oklab, var(--color-base-300) 20%, #0000),
+    0 1px 2px -1px color-mix(in oklab, var(--color-base-300) 20%, #0000)
+  );
+  border-width: var(--card-border, 0px);
+
+  &:focus {
+    @apply outline-hidden;
+  }
+
+  :where(figure:first-child) {
+    @apply overflow-hidden;
+    border-start-start-radius: inherit;
+    border-start-end-radius: inherit;
+    border-end-start-radius: unset;
+    border-end-end-radius: unset;
+  }
+
+  :where(figure:last-child) {
+    @apply overflow-hidden;
+    border-start-start-radius: unset;
+    border-start-end-radius: unset;
+    border-end-start-radius: inherit;
+    border-end-end-radius: inherit;
+  }
+
+  &:where(.card-border) {
+    border: var(--border) solid
+      color-mix(in oklab, var(--color-base-content) 20%, transparent);
+  }
+
+  &.image-full {
+    @apply grid;
+
+    &:before {
+      content: "";
+      @apply relative col-start-1 row-start-1 rounded-box bg-neutral opacity-75;
+    }
+
+    > * {
+      @apply col-start-1 row-start-1;
+    }
+
+    > .card-body {
+      @apply relative text-neutral-content;
+    }
+
+    :where(figure) {
+      @apply overflow-hidden;
+      border-radius: inherit;
+    }
+
+    > figure img {
+      @apply h-full object-cover;
+    }
+  }
+
+  figure {
+    @apply flex items-center justify-center;
+  }
+
+  &:has(> input:is(input[type="checkbox"], input[type="radio"])) {
+    @apply cursor-pointer select-none;
+  }
+
+  &:has(> :checked) {
+    outline: 2px solid currentColor;
+  }
+}
+
+@utility card-title {
+  @apply text-2xl font-semibold text-base-content;
+}
+
+@utility card-header {
+  @apply rounded-t-box;
+  padding: var(--card-p, 1.5rem);
+}
+
+@utility card-body {
+  @apply flex flex-auto flex-col gap-2;
+  padding: var(--card-p, 1.5rem);
+
+  :where(p) {
+    @apply grow;
+  }
+}
+
+@utility card-actions {
+  @apply flex flex-wrap items-start gap-3;
+}
+
+@utility card-footer {
+  @apply rounded-b-box;
+  padding: var(--card-p, 1.5rem);
+}
+
+:where(.card-header) + .card-body {
+  padding-top: 0;
+}
+
+:where(.card-body) + .card-footer {
+  padding-top: 0;
+}
+
+@utility card-xs {
+  --card-p: 0.5rem;
+  @apply text-xs;
+
+  .card-title {
+    @apply text-base;
+  }
+}
+
+@utility card-sm {
+  --card-p: 1rem;
+  @apply text-sm;
+
+  .card-title {
+    @apply text-lg;
+  }
+}
+
+@utility card-md {
+  --card-p: 1.5rem;
+  @apply text-base;
+
+  .card-title {
+    @apply text-2xl;
+  }
+}
+
+@utility card-lg {
+  --card-p: 2rem;
+  @apply text-lg;
+
+  .card-title {
+    @apply text-2xl;
+  }
+}
+
+@utility card-xl {
+  --card-p: 2.5rem;
+  @apply text-lg;
+
+  .card-title {
+    @apply text-3xl;
+  }
+}
+
+@utility card-alert {
+  @apply rounded-none;
+
+  &:first-child {
+    @apply rounded-t-box;
+  }
+
+  &:last-child {
+    @apply rounded-b-box;
+  }
+}
+
+@utility card-side {
+  @apply flex-row items-stretch;
+
+  :where(figure:first-child) {
+    @apply overflow-hidden;
+    border-start-start-radius: inherit;
+    border-start-end-radius: unset;
+    border-end-start-radius: inherit;
+    border-end-end-radius: unset;
+  }
+
+  :where(figure:last-child) {
+    @apply overflow-hidden;
+    border-start-start-radius: unset;
+    border-start-end-radius: inherit;
+    border-end-start-radius: unset;
+    border-end-end-radius: inherit;
+  }
+
+  figure > * {
+    max-width: unset;
+  }
+
+  :where(figure > *) {
+    @apply h-full w-full object-cover;
+  }
+}
+
+@utility card-group {
+  @apply overflow-hidden rounded-box;
+
+  box-shadow: var(
+    --card-shadow,
+    0 1px 3px 0 color-mix(in oklab, var(--color-base-300) 20%, #0000),
+    0 1px 2px -1px color-mix(in oklab, var(--color-base-300) 20%, #0000)
+  );
+
+  border-color: color-mix(in oklab, var(--color-base-content) 30%, transparent);
+  border-width: var(--card-border, 0px);
+
+  & > .card {
+    @apply flex-[1_0_0%] rounded-none;
+    --card-shadow: none;
+    --card-border: 0;
+  }
+}

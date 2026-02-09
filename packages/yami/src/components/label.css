@@ -1,0 +1,17 @@
+/* ===================== Label ===================== */
+
+@utility label-text {
+  @apply text-base-content block cursor-pointer p-1 text-sm;
+}
+
+@utility helper-text {
+  @apply text-base-content/80 block p-1 text-xs select-none;
+}
+
+@utility success-message {
+  @apply text-success hidden p-1 text-sm select-none;
+}
+
+@utility error-message {
+  @apply text-error hidden p-1 text-sm select-none;
+}

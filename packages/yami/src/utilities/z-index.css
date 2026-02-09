@@ -1,0 +1,48 @@
+@theme {
+  /* ========================================
+     全局基础令牌 - 所有组件共享
+     ======================================== */
+
+  /* Z-Index 层级管理 */
+  --z-dropdown: 100;
+  --z-sticky: 200;
+  --z-fixed: 300;
+  --z-drawer: 400;
+  --z-modal-backdrop: 1000;
+  --z-modal: 1001;
+  --z-popover: 1100;
+  --z-tooltip: 1200;
+  --z-notification: 1300;
+}
+
+@utility z-sticky {
+  z-index: var(--z-sticky);
+}
+
+@utility z-fixed {
+  z-index: var(--z-fixed);
+}
+
+@utility z-drawer {
+  z-index: var(--z-drawer);
+}
+
+@utility z-modal-backdrop {
+  z-index: var(--z-modal-backdrop);
+}
+
+@utility z-modal {
+  z-index: var(--z-modal);
+}
+
+@utility z-popover {
+  z-index: var(--z-popover);
+}
+
+@utility z-tooltip {
+  z-index: var(--z-tooltip);
+}
+
+@utility z-notification {
+  z-index: var(--z-notification);
+}

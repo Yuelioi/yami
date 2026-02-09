@@ -1,0 +1,137 @@
+/* ===================== Pagination ===================== */
+
+@utility pagination {
+  @apply inline-flex items-center gap-1;
+}
+
+/* Pagination Button */
+
+@utility pagination-btn {
+  @apply inline-flex items-center justify-center;
+  @apply min-w-10 h-10 px-3;
+  @apply text-sm font-medium text-base-content;
+  @apply border border-base-300 bg-base-100;
+  @apply hover:bg-base-200 hover:border-base-300;
+  @apply transition-colors cursor-pointer select-none;
+  @apply focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2;
+  @apply disabled:pointer-events-none disabled:opacity-50 disabled:cursor-not-allowed;
+
+  border-radius: var(--radius-field);
+
+  &[aria-current="page"] {
+    @apply bg-primary text-primary-content border-primary;
+    @apply hover:bg-primary/90;
+  }
+}
+
+/* Pagination Link */
+
+@utility pagination-link {
+  @apply pagination-btn;
+}
+
+/* Pagination Active State */
+
+@utility pagination-active {
+  @apply bg-primary text-primary-content border-primary;
+  @apply hover:bg-primary/90;
+}
+
+/* Size Variants */
+
+@utility pagination-xs {
+  @apply gap-0.5;
+
+  & .pagination-btn,
+  & .pagination-link {
+    @apply min-w-7 h-7 px-2 text-xs;
+  }
+}
+
+@utility pagination-sm {
+  @apply gap-1;
+
+  & .pagination-btn,
+  & .pagination-link {
+    @apply min-w-8 h-8 px-2 text-sm;
+  }
+}
+
+@utility pagination-md {
+  @apply gap-1;
+}
+
+@utility pagination-lg {
+  @apply gap-2;
+
+  & .pagination-btn,
+  & .pagination-link {
+    @apply min-w-12 h-12 px-4 text-base;
+  }
+}
+
+@utility pagination-xl {
+  @apply gap-2;
+
+  & .pagination-btn,
+  & .pagination-link {
+    @apply min-w-14 h-14 px-5 text-lg;
+  }
+}
+
+/* Pagination Ellipsis */
+
+@utility pagination-ellipsis {
+  @apply inline-flex items-center justify-center;
+  @apply min-w-10 h-10 px-3;
+  @apply text-sm text-base-content/60;
+  @apply pointer-events-none select-none;
+}
+
+/* Pagination Navigation Buttons */
+
+@utility pagination-prev {
+  @apply pagination-btn;
+}
+
+@utility pagination-next {
+  @apply pagination-btn;
+}
+
+/* Compact Style */
+
+@utility pagination-compact {
+  @apply gap-0;
+
+  & .pagination-btn,
+  & .pagination-link {
+    @apply rounded-none border-r-0;
+  }
+
+  & .pagination-btn:first-child,
+  & .pagination-link:first-child {
+    @apply rounded-l;
+  }
+
+  & .pagination-btn:last-child,
+  & .pagination-link:last-child {
+    @apply rounded-r border-r;
+  }
+}
+
+/* Simple Style (Prev/Next Only) */
+
+@utility pagination-simple {
+  @apply flex items-center justify-between gap-4;
+
+  & .pagination-btn,
+  & .pagination-link {
+    @apply min-w-0 px-4;
+  }
+}
+
+/* Pagination Info Text */
+
+@utility pagination-info {
+  @apply inline-flex items-center px-3 text-sm text-base-content/60;
+}

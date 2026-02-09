@@ -1,0 +1,339 @@
+/* ===================== Table ===================== */
+
+/* 基础表格样式 */
+@utility table {
+  @apply rounded-box relative w-full overflow-x-hidden overflow-y-auto text-left text-sm rtl:text-right;
+
+  /* 悬停行 */
+  tr.row-hover {
+    &,
+    &:nth-child(even) {
+      @apply hover:bg-base-200/80 transition-colors duration-150;
+    }
+  }
+
+  /* 激活行 */
+  tr.row-active {
+    &,
+    &:nth-child(even) {
+      @apply bg-base-200;
+    }
+  }
+
+  /* 单元格基础样式 */
+  :where(th, td) {
+    @apply px-5 py-3 align-middle text-nowrap;
+  }
+
+  /* 表头和表尾 */
+  :where(thead, tfoot) {
+    @apply text-base-content text-sm whitespace-nowrap uppercase;
+    letter-spacing: 1px;
+  }
+
+  /* 表头单元格 */
+  :where(th) {
+    @apply font-medium;
+  }
+
+  /* 固定行 - 表头 */
+  &.table-pin-rows thead tr {
+    @apply bg-base-100 sticky top-0 z-10;
+  }
+
+  /* 固定行 - 表尾 */
+  &.table-pin-rows tfoot tr {
+    @apply bg-base-100 sticky bottom-0 z-10;
+  }
+
+  /* 固定列 */
+  &.table-pin-cols tr th {
+    @apply bg-base-100 sticky;
+    right: 0;
+    left: 0;
+  }
+
+  /* 边框样式 */
+  :where(thead tr) {
+    border-bottom: var(--border) solid
+      color-mix(in oklch, var(--color-base-content) 25%, #0000);
+  }
+
+  :where(tbody tr:not(:last-child)) {
+    border-bottom: var(--border) solid
+      color-mix(in oklch, var(--color-base-content) 10%, #0000);
+  }
+
+  :where(tfoot) {
+    border-top: var(--border) solid
+      color-mix(in oklch, var(--color-base-content) 25%, #0000);
+  }
+
+  /* 条纹样式 */
+  &.table-striped tbody tr {
+    &:nth-child(even) {
+      @apply bg-base-200;
+    }
+
+    &:nth-child(even) :where(th) {
+      @apply bg-base-200;
+    }
+
+    &.row-hover {
+      &,
+      &:nth-child(even) {
+        @apply hover:bg-base-200/80;
+      }
+    }
+
+    &.row-active {
+      &,
+      &:nth-child(even) {
+        @apply bg-base-200;
+      }
+    }
+  }
+
+  /* 列条纹 */
+  &.table-striped-columns {
+    td:nth-child(even),
+    th:nth-child(even) {
+      @apply bg-base-200;
+    }
+  }
+
+  /* 无边框 */
+  &.table-borderless {
+    @apply border-none;
+
+    :where(thead, tbody) {
+      :where(tr:not(:last-child)),
+      :where(tr:first-child:last-child) {
+        @apply border-none;
+      }
+    }
+  }
+
+  /* 尺寸变体 - xs */
+  &.table-xs {
+    :where(thead, tfoot) {
+      @apply text-xs;
+    }
+
+    :not(thead, tfoot) tr {
+      @apply text-xs;
+    }
+
+    :where(th, td) {
+      @apply px-2 py-1;
+    }
+  }
+
+  /* 尺寸变体 - sm */
+  &.table-sm {
+    :where(thead, tfoot) {
+      @apply text-xs;
+    }
+
+    :not(thead, tfoot) tr {
+      @apply text-sm;
+    }
+
+    :where(th, td) {
+      @apply px-3 py-2;
+    }
+  }
+
+  /* 尺寸变体 - md */
+  &.table-md {
+    :where(thead, tfoot) {
+      @apply text-sm;
+    }
+
+    :not(thead, tfoot) tr {
+      @apply text-sm;
+    }
+
+    :where(th, td) {
+      @apply px-5 py-3;
+    }
+  }
+
+  /* 尺寸变体 - lg */
+  &.table-lg {
+    :where(thead, tfoot) {
+      @apply text-sm;
+    }
+
+    :not(thead, tfoot) tr {
+      @apply text-base;
+    }
+
+    :where(th, td) {
+      @apply px-6 py-4;
+    }
+  }
+
+  /* 尺寸变体 - xl */
+  &.table-xl {
+    :where(thead, tfoot) {
+      @apply text-sm;
+    }
+
+    :not(thead, tfoot) tr {
+      @apply text-base;
+    }
+
+    :where(th, td) {
+      @apply px-6 py-5;
+    }
+  }
+}
+
+/* 单独定义以支持自动补全 */
+@utility table-striped {
+  tbody tr {
+    &:nth-child(even) {
+      @apply bg-base-200;
+    }
+
+    &:nth-child(even) :where(th) {
+      @apply bg-base-200;
+    }
+
+    &.row-hover {
+      &,
+      &:nth-child(even) {
+        @apply hover:bg-base-200/80;
+      }
+    }
+
+    &.row-active {
+      &,
+      &:nth-child(even) {
+        @apply bg-base-200;
+      }
+    }
+  }
+}
+
+@utility table-striped-columns {
+  td:nth-child(even),
+  th:nth-child(even) {
+    @apply bg-base-200;
+  }
+}
+
+@utility table-borderless {
+  @apply border-none;
+
+  :where(thead, tbody) {
+    :where(tr:not(:last-child)),
+    :where(tr:first-child:last-child) {
+      @apply border-none;
+    }
+  }
+}
+
+@utility table-pin-rows {
+  thead tr {
+    @apply bg-base-100 sticky top-0 z-10;
+  }
+
+  tfoot tr {
+    @apply bg-base-100 sticky bottom-0 z-10;
+  }
+}
+
+@utility table-pin-cols {
+  tr th {
+    @apply bg-base-100 sticky;
+    right: 0;
+    left: 0;
+  }
+}
+
+@utility table-xs {
+  :where(thead, tfoot) {
+    @apply text-xs;
+  }
+
+  :not(thead, tfoot) tr {
+    @apply text-xs;
+  }
+
+  :where(th, td) {
+    @apply px-2 py-1;
+  }
+}
+
+@utility table-sm {
+  :where(thead, tfoot) {
+    @apply text-xs;
+  }
+
+  :not(thead, tfoot) tr {
+    @apply text-sm;
+  }
+
+  :where(th, td) {
+    @apply px-3 py-2;
+  }
+}
+
+@utility table-md {
+  :where(thead, tfoot) {
+    @apply text-sm;
+  }
+
+  :not(thead, tfoot) tr {
+    @apply text-sm;
+  }
+
+  :where(th, td) {
+    @apply px-5 py-3;
+  }
+}
+
+@utility table-lg {
+  :where(thead, tfoot) {
+    @apply text-sm;
+  }
+
+  :not(thead, tfoot) tr {
+    @apply text-base;
+  }
+
+  :where(th, td) {
+    @apply px-6 py-4;
+  }
+}
+
+@utility table-xl {
+  :where(thead, tfoot) {
+    @apply text-sm;
+  }
+
+  :not(thead, tfoot) tr {
+    @apply text-base;
+  }
+
+  :where(th, td) {
+    @apply px-6 py-5;
+  }
+}
+
+/* 行状态样式类 */
+@utility row-hover {
+  &,
+  &:nth-child(even) {
+    @apply hover:bg-base-200/80 transition-colors duration-150 cursor-pointer;
+  }
+}
+
+@utility row-active {
+  &,
+  &:nth-child(even) {
+    @apply bg-base-200;
+  }
+}

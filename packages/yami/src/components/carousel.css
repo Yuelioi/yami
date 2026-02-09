@@ -1,0 +1,809 @@
+/*
+name: carousel
+desc: 轮播组件，用于展示多张图片或内容滑块。
+usage: 适用于图片展示、横幅、广告位、产品展示等。
+syntax:
+ <div class="carousel carousel-md">
+  <div class="carousel-container">
+    <div class="carousel-item" v-for="i in 3" :key="i">
+      <img
+        :src="`https://picsum.photos/seed/${i}/800/400`"
+        :alt="`Slide ${i}`"
+        class="w-full h-full object-cover"
+      />
+    </div>
+  </div>
+
+  <div class="carousel-navigation">
+    <button class="carousel-btn-prev" aria-label="Previous">←</button>
+    <button class="carousel-btn-next" aria-label="Next">→</button>
+  </div>
+
+  <div class="carousel-indicators">
+    <button>1</button>
+    <button>2</button>
+    <button>3</button>
+  </div>
+</div>
+*/
+@theme {
+  /* ========================================
+     轮播全局令牌 - 继承自设计系统
+     ======================================== */
+
+  /* 动画配置 */
+  --carousel-duration-slide: var(--duration-medium);
+  --carousel-duration-button: var(--duration-base);
+  --carousel-duration-indicator: var(--duration-base);
+  --carousel-duration-fade: var(--duration-medium);
+  --carousel-duration-3d: var(--duration-medium);
+  --carousel-duration-autoplay: 3000ms;
+  --carousel-ease: var(--ease-out);
+
+  /* 颜色 */
+  --carousel-bg: var(--background);
+  --carousel-bg-overlay: var(--background);
+  --carousel-button-text: var(--base-content);
+  --carousel-indicator-bg: var(--background);
+  --carousel-indicator-active-bg: var(--base-content);
+  --carousel-caption-bg: rgba(0, 0, 0, 0.6);
+  --carousel-button-hover-bg: var(--background);
+  --carousel-button-disabled-opacity: 0.4;
+
+  /* 圆角 */
+  --carousel-border-radius: var(--radius);
+  --carousel-button-border-radius: 9999px;
+  --carousel-thumbnail-border-radius: var(--radius-md);
+  --carousel-indicator-border-radius: 9999px;
+
+  /* 间距和大小 */
+  --carousel-padding-horizontal: 1rem;
+  --carousel-padding-vertical: 1rem;
+  --carousel-button-gap: 0.5rem;
+
+  /* ========================================
+     轮播容器变量 - Carousel Container
+     ======================================== */
+
+  --carousel-container-bg: var(--carousel-bg);
+  --carousel-container-border-width: 0;
+  --carousel-container-border-color: var(--border);
+  --carousel-container-box-shadow: none;
+
+  /* ========================================
+     轮播尺寸变量 - Carousel Sizes
+     ======================================== */
+
+  /* 小型轮播 */
+  --carousel-sm-height: 12rem;
+  --carousel-sm-height-md: 12rem;
+  --carousel-sm-button-size: 2rem;
+  --carousel-sm-button-icon-size: 0.875rem;
+  --carousel-sm-indicator-size: 0.375rem;
+  --carousel-sm-indicator-active-width: 1.5rem;
+  --carousel-sm-bottom: 0.5rem;
+  --carousel-sm-padding: 0.25rem;
+
+  /* 中型轮播（默认） */
+  --carousel-md-height: 16rem;
+  --carousel-md-height-sm: 20rem;
+  --carousel-md-button-size: 2.5rem;
+  --carousel-md-button-icon-size: 1rem;
+  --carousel-md-indicator-size: 0.5rem;
+  --carousel-md-indicator-active-width: 2rem;
+  --carousel-md-bottom: 1rem;
+  --carousel-md-padding: 0.5rem;
+
+  /* 大型轮播 */
+  --carousel-lg-height: 24rem;
+  --carousel-lg-height-sm: 32rem;
+  --carousel-lg-button-size: 3rem;
+  --carousel-lg-button-icon-size: 1.25rem;
+  --carousel-lg-indicator-size: 0.75rem;
+  --carousel-lg-indicator-active-width: 3rem;
+  --carousel-lg-bottom: 1.5rem;
+  --carousel-lg-padding: 1rem;
+
+  /* 全屏轮播 */
+  --carousel-fullscreen-height: 100vh;
+
+  /* ========================================
+     导航按钮变量 - Navigation Button
+     ======================================== */
+
+  --carousel-button-height-sm: var(--carousel-sm-button-size);
+  --carousel-button-width-sm: var(--carousel-sm-button-size);
+  --carousel-button-height-md: var(--carousel-md-button-size);
+  --carousel-button-width-md: var(--carousel-md-button-size);
+  --carousel-button-height-lg: var(--carousel-lg-button-size);
+  --carousel-button-width-lg: var(--carousel-lg-button-size);
+
+  --carousel-button-backdrop-blur: 0.5rem;
+  --carousel-button-bg-opacity: 0.8;
+  --carousel-button-hover-opacity: 1;
+  --carousel-button-disabled-opacity: var(--carousel-button-disabled-opacity);
+
+  --carousel-button-transition: all var(--carousel-duration-button)
+    var(--carousel-ease);
+
+  /* ========================================
+     指示器变量 - Indicators
+     ======================================== */
+
+  --carousel-indicator-height-sm: var(--carousel-sm-indicator-size);
+  --carousel-indicator-width-sm: var(--carousel-sm-indicator-size);
+  --carousel-indicator-height-md: var(--carousel-md-indicator-size);
+  --carousel-indicator-width-md: var(--carousel-md-indicator-size);
+  --carousel-indicator-height-lg: var(--carousel-lg-indicator-size);
+  --carousel-indicator-width-lg: var(--carousel-lg-indicator-size);
+
+  --carousel-indicator-active-width-sm: var(
+    --carousel-sm-indicator-active-width
+  );
+  --carousel-indicator-active-width-md: var(
+    --carousel-md-indicator-active-width
+  );
+  --carousel-indicator-active-width-lg: var(
+    --carousel-lg-indicator-active-width
+  );
+
+  --carousel-indicator-bg-opacity: 0.6;
+  --carousel-indicator-hover-opacity: 0.8;
+  --carousel-indicator-active-opacity: 1;
+
+  --carousel-indicator-gap: 0.5rem;
+  --carousel-indicator-container-bottom-sm: var(--carousel-sm-bottom);
+  --carousel-indicator-container-bottom-md: var(--carousel-md-bottom);
+  --carousel-indicator-container-bottom-lg: var(--carousel-lg-bottom);
+
+  --carousel-indicator-transition: all var(--carousel-duration-indicator)
+    var(--carousel-ease);
+
+  /* ========================================
+     标题/标签变量 - Caption
+     ======================================== */
+
+  --carousel-caption-padding: 1.5rem;
+  --carousel-caption-bg: var(--carousel-caption-bg);
+  --carousel-caption-text-color: white;
+  --carousel-caption-title-font-size: 1.5rem;
+  --carousel-caption-title-font-weight: bold;
+  --carousel-caption-title-margin-bottom: 0.5rem;
+  --carousel-caption-description-font-size: 0.875rem;
+  --carousel-caption-description-opacity: 0.9;
+
+  --carousel-caption-transition: opacity var(--carousel-duration-fade)
+    var(--carousel-ease);
+
+  /* ========================================
+     缩略图变量 - Thumbnails
+     ======================================== */
+
+  --carousel-thumbnail-size: 4rem;
+  --carousel-thumbnail-border-width: 2px;
+  --carousel-thumbnail-border-color: transparent;
+  --carousel-thumbnail-border-color-active: var(--primary);
+  --carousel-thumbnail-gap: 0.5rem;
+  --carousel-thumbnail-margin-top: 1rem;
+  --carousel-thumbnail-transition: all var(--carousel-duration-button)
+    var(--carousel-ease);
+
+  /* ========================================
+     卡片模式变量 - Cards Mode
+     ======================================== */
+
+  --carousel-cards-item-width-sm: 100%;
+  --carousel-cards-item-width-md: 50%;
+  --carousel-cards-item-width-lg: 33.333%;
+  --carousel-cards-padding-horizontal: 3rem;
+  --carousel-cards-item-padding: 0.5rem;
+
+  /* ========================================
+     3D 效果变量 - 3D Mode
+     ======================================== */
+
+  --carousel-3d-scale-inactive: 0.9;
+  --carousel-3d-opacity-inactive: 0.5;
+  --carousel-3d-transition:
+    transform var(--carousel-duration-3d) var(--carousel-ease),
+    opacity var(--carousel-duration-3d) var(--carousel-ease);
+
+  /* ========================================
+     垂直轮播变量 - Vertical Mode
+     ======================================== */
+
+  --carousel-vertical-indicator-active-height: 2rem;
+  --carousel-vertical-indicator-active-width: 0.5rem;
+}
+
+/* ========================================
+   动画定义
+   ======================================== */
+
+@keyframes carousel-slide {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+@keyframes carousel-fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes carousel-fade-out {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+/* ========================================
+   基础轮播组件
+   ======================================== */
+
+/* 轮播容器 */
+@utility carousel {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  background-color: var(--carousel-container-bg);
+  border-width: var(--carousel-container-border-width);
+  border-color: var(--carousel-container-border-color);
+  box-shadow: var(--carousel-container-box-shadow);
+  border-radius: var(--carousel-border-radius);
+}
+
+/* 轮播内容容器 */
+@utility carousel-container {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  transition: transform var(--carousel-duration-slide) var(--carousel-ease);
+}
+
+/* 轮播项 */
+@utility carousel-item {
+  flex: 0 0 100%;
+  width: 100%;
+  height: 100%;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  & img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+}
+
+/* 轮播项激活态 */
+@utility carousel-item-active {
+  z-index: 1;
+  opacity: 1;
+}
+
+/* ========================================
+   导航按钮样式
+   ======================================== */
+
+/* 导航容器 */
+@utility carousel-navigation {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  pointer-events: none;
+  padding-left: var(--carousel-padding-horizontal);
+  padding-right: var(--carousel-padding-horizontal);
+}
+
+/* 基础按钮 */
+@utility carousel-btn {
+  pointer-events: auto;
+  height: var(--carousel-button-height-md);
+  width: var(--carousel-button-width-md);
+  border-radius: var(--carousel-button-border-radius);
+  background-color: color-mix(
+    in srgb,
+    var(--carousel-indicator-bg) calc(100% * var(--carousel-button-bg-opacity)),
+    transparent
+  );
+  backdrop-filter: blur(var(--carousel-button-backdrop-blur));
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--carousel-button-text);
+  cursor: pointer;
+  transition: var(--carousel-button-transition);
+  font-size: var(--carousel-md-button-icon-size);
+  line-height: 1;
+
+  &:hover:not(:disabled) {
+    background-color: color-mix(
+      in srgb,
+      var(--carousel-button-hover-bg)
+        calc(100% * var(--carousel-button-hover-opacity)),
+      transparent
+    );
+  }
+
+  &:disabled,
+  &[aria-disabled="true"] {
+    opacity: var(--carousel-button-disabled-opacity);
+    cursor: not-allowed;
+  }
+
+  &:focus-visible {
+    outline: none;
+    ring: 2px var(--ring);
+    ring-offset: 2px;
+  }
+}
+
+/* 上一个按钮 */
+@utility carousel-btn-prev {
+  @apply carousel-btn;
+}
+
+/* 下一个按钮 */
+@utility carousel-btn-next {
+  @apply carousel-btn;
+}
+
+/* ========================================
+   指示器样式
+   ======================================== */
+
+/* 指示器容器 */
+@utility carousel-indicators {
+  position: absolute;
+  bottom: var(--carousel-indicator-container-bottom-md);
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: var(--carousel-indicator-gap);
+  z-index: 10;
+}
+
+/* 基础指示器 */
+@utility carousel-indicator {
+  height: var(--carousel-indicator-height-md);
+  width: var(--carousel-indicator-width-md);
+  border-radius: var(--carousel-indicator-border-radius);
+  background-color: color-mix(
+    in srgb,
+    var(--carousel-indicator-bg)
+      calc(100% * var(--carousel-indicator-bg-opacity)),
+    transparent
+  );
+  backdrop-filter: blur(var(--carousel-button-backdrop-blur));
+  cursor: pointer;
+  transition: var(--carousel-indicator-transition);
+  border: none;
+  padding: 0;
+
+  &:hover:not(.carousel-indicator-active) {
+    background-color: color-mix(
+      in srgb,
+      var(--carousel-indicator-bg)
+        calc(100% * var(--carousel-indicator-hover-opacity)),
+      transparent
+    );
+  }
+
+  &:focus-visible {
+    outline: none;
+    ring: 2px var(--ring);
+    ring-offset: 2px;
+  }
+}
+
+/* 激活的指示器 */
+@utility carousel-indicator-active {
+  width: var(--carousel-indicator-active-width-md);
+  background-color: var(--carousel-indicator-active-bg);
+  opacity: var(--carousel-indicator-active-opacity);
+}
+
+/* ========================================
+   轮播尺寸变体
+   ======================================== */
+
+/* 小型轮播 */
+@utility carousel-sm {
+  height: var(--carousel-sm-height);
+
+  @media (min-width: 640px) {
+    height: var(--carousel-sm-height-md);
+  }
+
+  & .carousel-btn {
+    height: var(--carousel-button-height-sm);
+    width: var(--carousel-button-width-sm);
+    font-size: var(--carousel-sm-button-icon-size);
+  }
+
+  & .carousel-indicator {
+    height: var(--carousel-indicator-height-sm);
+    width: var(--carousel-indicator-width-sm);
+  }
+
+  & .carousel-indicator-active {
+    width: var(--carousel-indicator-active-width-sm);
+  }
+
+  & .carousel-indicators {
+    bottom: var(--carousel-indicator-container-bottom-sm);
+    gap: 0.25rem;
+  }
+}
+
+/* 中型轮播（默认） */
+@utility carousel-md {
+  height: var(--carousel-md-height);
+
+  @media (min-width: 640px) {
+    height: var(--carousel-md-height-sm);
+  }
+
+  & .carousel-btn {
+    height: var(--carousel-button-height-md);
+    width: var(--carousel-button-width-md);
+    font-size: var(--carousel-md-button-icon-size);
+  }
+
+  & .carousel-indicator {
+    height: var(--carousel-indicator-height-md);
+    width: var(--carousel-indicator-width-md);
+  }
+
+  & .carousel-indicator-active {
+    width: var(--carousel-indicator-active-width-md);
+  }
+
+  & .carousel-indicators {
+    bottom: var(--carousel-indicator-container-bottom-md);
+  }
+}
+
+/* 大型轮播 */
+@utility carousel-lg {
+  height: var(--carousel-lg-height);
+
+  @media (min-width: 640px) {
+    height: var(--carousel-lg-height-sm);
+  }
+
+  & .carousel-btn {
+    height: var(--carousel-button-height-lg);
+    width: var(--carousel-button-width-lg);
+    font-size: var(--carousel-lg-button-icon-size);
+  }
+
+  & .carousel-indicator {
+    height: var(--carousel-indicator-height-lg);
+    width: var(--carousel-indicator-width-lg);
+  }
+
+  & .carousel-indicator-active {
+    width: var(--carousel-indicator-active-width-lg);
+  }
+
+  & .carousel-indicators {
+    bottom: var(--carousel-indicator-container-bottom-lg);
+  }
+}
+
+/* 全屏轮播 */
+@utility carousel-fullscreen {
+  height: var(--carousel-fullscreen-height);
+}
+
+/* ========================================
+   显示模式 - Display Modes
+   ======================================== */
+
+/* 淡入淡出效果 */
+@utility carousel-fade {
+  & .carousel-container {
+    transition: opacity var(--carousel-duration-fade) var(--carousel-ease);
+  }
+
+  & .carousel-item {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    transition: opacity var(--carousel-duration-fade) var(--carousel-ease);
+  }
+
+  & .carousel-item-active {
+    opacity: 1;
+    position: relative;
+  }
+}
+
+/* 卡片式轮播 */
+@utility carousel-cards {
+  & .carousel-container {
+    padding-left: var(--carousel-cards-padding-horizontal);
+    padding-right: var(--carousel-cards-padding-horizontal);
+  }
+
+  & .carousel-item {
+    flex: 0 0 var(--carousel-cards-item-width-md);
+    min-width: 0;
+    padding-left: var(--carousel-cards-item-padding);
+    padding-right: var(--carousel-cards-item-padding);
+  }
+
+  @media (max-width: 640px) {
+    & .carousel-item {
+      flex: 0 0 var(--carousel-cards-item-width-sm);
+    }
+  }
+
+  @media (min-width: 1024px) {
+    & .carousel-item {
+      flex: 0 0 var(--carousel-cards-item-width-lg);
+    }
+  }
+}
+
+/* 居中对齐 */
+@utility carousel-center {
+  & .carousel-item {
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+/* ========================================
+   内容覆盖 - Content Overlay
+   ======================================== */
+
+/* 标题容器 */
+@utility carousel-caption {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(to top, var(--carousel-caption-bg), transparent);
+  padding: var(--carousel-caption-padding);
+  color: var(--carousel-caption-text-color);
+  animation: carousel-fade-in var(--carousel-duration-fade) var(--carousel-ease);
+}
+
+/* 标题 */
+@utility carousel-caption-title {
+  font-size: var(--carousel-caption-title-font-size);
+  font-weight: var(--carousel-caption-title-font-weight);
+  margin-bottom: var(--carousel-caption-title-margin-bottom);
+  line-height: 1.2;
+}
+
+/* 描述 */
+@utility carousel-caption-description {
+  font-size: var(--carousel-caption-description-font-size);
+  opacity: var(--carousel-caption-description-opacity);
+  line-height: 1.5;
+}
+
+/* ========================================
+   缩略图导航 - Thumbnail Navigation
+   ======================================== */
+
+/* 缩略图容器 */
+@utility carousel-thumbnails {
+  display: flex;
+  gap: var(--carousel-thumbnail-gap);
+  margin-top: var(--carousel-thumbnail-margin-top);
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  padding-bottom: 0.5rem;
+
+  &::-webkit-scrollbar {
+    height: 0.25rem;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: var(--carousel-indicator-bg);
+    border-radius: 9999px;
+  }
+}
+
+/* 单个缩略图 */
+@utility carousel-thumbnail {
+  flex: 0 0 var(--carousel-thumbnail-size);
+  height: var(--carousel-thumbnail-size);
+  border-radius: var(--carousel-thumbnail-border-radius);
+  border-width: var(--carousel-thumbnail-border-width);
+  border-color: var(--carousel-thumbnail-border-color);
+  cursor: pointer;
+  transition: var(--carousel-thumbnail-transition);
+  overflow: hidden;
+
+  & img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  &:hover {
+    border-color: var(--carousel-thumbnail-border-color-active);
+  }
+
+  &:focus-visible {
+    outline: none;
+    ring: 2px var(--ring);
+    ring-offset: 2px;
+  }
+}
+
+/* 激活的缩略图 */
+@utility carousel-thumbnail-active {
+  border-color: var(--carousel-thumbnail-border-color-active);
+  ring: 2px var(--primary);
+  ring-offset: 0;
+}
+
+/* ========================================
+   垂直轮播 - Vertical Carousel
+   ======================================== */
+
+@utility carousel-vertical {
+  & .carousel-container {
+    flex-direction: column;
+  }
+
+  & .carousel-item {
+    flex: 0 0 100%;
+    min-height: 100%;
+  }
+
+  & .carousel-navigation {
+    flex-direction: column;
+    padding-left: 0;
+    padding-right: 0;
+    padding-top: var(--carousel-padding-vertical);
+    padding-bottom: var(--carousel-padding-vertical);
+  }
+
+  & .carousel-indicator-active {
+    width: var(--carousel-vertical-indicator-active-width);
+    height: var(--carousel-vertical-indicator-active-height);
+  }
+
+  & .carousel-indicators {
+    position: static;
+    transform: none;
+    flex-direction: column;
+    bottom: auto;
+    left: auto;
+    right: auto;
+  }
+}
+
+/* ========================================
+   3D 效果轮播 - 3D Carousel
+   ======================================== */
+
+@utility carousel-3d {
+  perspective: 1000px;
+
+  & .carousel-container {
+    transform-style: preserve-3d;
+  }
+
+  & .carousel-item {
+    transition: var(--carousel-3d-transition);
+    transform-style: preserve-3d;
+  }
+
+  & .carousel-item:not(.carousel-item-active) {
+    transform: scale(var(--carousel-3d-scale-inactive));
+    opacity: var(--carousel-3d-opacity-inactive);
+  }
+
+  & .carousel-item-active {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/* ========================================
+   无缝循环 - Loop/Infinite
+   ======================================== */
+
+@utility carousel-loop {
+  & .carousel-container {
+    transition: none;
+  }
+
+  &.carousel-looping .carousel-container {
+    transition: transform var(--carousel-duration-slide) var(--carousel-ease);
+  }
+}
+
+/* ========================================
+   自动播放进度指示 - Progress Indicator
+   ======================================== */
+
+@utility carousel-indicator-progress {
+  position: relative;
+  overflow: hidden;
+
+  &::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-color: var(--carousel-indicator-active-bg);
+    transform-origin: left;
+    transform: scaleX(0);
+    transition: transform var(--carousel-duration-autoplay) linear;
+    border-radius: var(--carousel-indicator-border-radius);
+  }
+
+  &.carousel-indicator-active::after {
+    transform: scaleX(1);
+  }
+}
+
+/* ========================================
+   辅助类和状态
+   ======================================== */
+
+/* 禁用自动播放 */
+@utility carousel-no-autoplay {
+  & .carousel-indicator-progress::after {
+    animation: none;
+  }
+}
+
+/* 暂停自动播放 */
+@utility carousel-paused {
+  & .carousel-container {
+    animation-play-state: paused;
+  }
+}
+
+/* ========================================
+   无障碍支持 - Accessibility
+   ======================================== */
+
+/* 跳过链接 */
+@utility carousel-skip-link {
+  position: absolute;
+  top: -40px;
+  left: 0;
+  background: var(--primary);
+  color: white;
+  padding: 8px 16px;
+  text-decoration: none;
+  z-index: 100;
+  border-radius: var(--carousel-border-radius);
+
+  &:focus {
+    top: 0;
+  }
+}

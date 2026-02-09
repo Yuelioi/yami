@@ -1,0 +1,49 @@
+/* ===================== Skeleton ===================== */
+
+@utility skeleton {
+  @apply bg-base-200 rounded-box;
+  will-change: background-position;
+  background-image: linear-gradient(
+    105deg,
+    #0000 0% 40%,
+    var(--color-base-100) 50%,
+    #0000 60% 100%
+  );
+  background-size: 200% auto;
+  background-repeat: no-repeat;
+  background-position-x: -50%;
+}
+
+/* Animation Variant */
+
+@utility skeleton-animated {
+  animation: skeleton 1.8s ease-in-out infinite;
+
+  @media (prefers-reduced-motion: reduce) {
+    animation-duration: 15s;
+  }
+}
+
+/* Pattern Variant */
+
+@utility skeleton-striped {
+  background-image: repeating-linear-gradient(
+    45deg,
+    var(--color-base-200),
+    var(--color-base-200) 2px,
+    var(--color-base-100) 3px,
+    var(--color-base-100) 6px
+  );
+}
+
+/* Keyframes */
+
+@keyframes skeleton {
+  0% {
+    background-position: 150%;
+  }
+
+  100% {
+    background-position: -50%;
+  }
+}

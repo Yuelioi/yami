@@ -1,0 +1,127 @@
+/* ===================== Divider ===================== */
+
+@utility divider {
+  @apply flex w-full items-center self-stretch text-sm whitespace-nowrap;
+
+  &:not(:empty) {
+    @apply gap-4;
+  }
+
+  &:before,
+  &:after {
+    content: "";
+    @apply border-base-content/20 h-px w-full grow border-e-0 border-t border-solid;
+  }
+}
+
+/* Direction Variants */
+
+@utility divider-horizontal {
+  &.divider {
+    @apply h-auto w-auto flex-col;
+
+    &:before,
+    &:after {
+      @apply h-full w-px border-e border-t-0;
+    }
+  }
+}
+
+@utility divider-vertical {
+  &.divider {
+    @apply h-auto w-auto flex-row;
+
+    &:before,
+    &:after {
+      @apply h-px border-e-0 border-t;
+    }
+  }
+}
+
+/* Color Variants */
+
+@utility divider-neutral {
+  &:before,
+  &:after {
+    @apply border-neutral;
+  }
+}
+
+@utility divider-primary {
+  &:before,
+  &:after {
+    @apply border-primary;
+  }
+}
+
+@utility divider-secondary {
+  &:before,
+  &:after {
+    @apply border-secondary;
+  }
+}
+
+@utility divider-accent {
+  &:before,
+  &:after {
+    @apply border-accent;
+  }
+}
+
+@utility divider-success {
+  &:before,
+  &:after {
+    @apply border-success;
+  }
+}
+
+@utility divider-warning {
+  &:before,
+  &:after {
+    @apply border-warning;
+  }
+}
+
+@utility divider-info {
+  &:before,
+  &:after {
+    @apply border-info;
+  }
+}
+
+@utility divider-error {
+  &:before,
+  &:after {
+    @apply border-error;
+  }
+}
+
+/* Style Variants */
+
+@utility divider-dotted {
+  &:before,
+  &:after {
+    @apply border-dotted;
+  }
+}
+
+@utility divider-dashed {
+  &:before,
+  &:after {
+    @apply border-dashed;
+  }
+}
+
+/* Placement Variants */
+
+@utility divider-start {
+  &:before {
+    @apply hidden;
+  }
+}
+
+@utility divider-end {
+  &:after {
+    @apply hidden;
+  }
+}

@@ -1,0 +1,29 @@
+@theme {
+  /* 触摸目标 - 针对桌面端优化 */
+  --touch-target-xs: 32px;
+  --touch-target-sm: 36px;
+  --touch-target-md: 44px;
+  --touch-target-lg: 48px;
+  --touch-target-xl: 52px;
+}
+
+/* 触摸目标工具类 */
+@utility touch-target {
+  min-width: var(--touch-target-md);
+  min-height: var(--touch-target-md);
+}
+
+@utility touch-target-sm {
+  min-width: var(--touch-target-sm);
+  min-height: var(--touch-target-sm);
+}
+
+@utility touch-target-xs {
+  min-width: var(--touch-target-xs);
+  min-height: var(--touch-target-xs);
+}
+
+@utility touch-target-lg {
+  min-width: var(--touch-target-lg);
+  min-height: var(--touch-target-lg);
+}

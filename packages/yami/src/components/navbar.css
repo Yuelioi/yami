@@ -1,0 +1,17 @@
+/* ===================== Navbar ===================== */
+
+@utility navbar {
+  @apply bg-base-100 flex w-full items-center px-6 py-3;
+}
+
+@utility navbar-start {
+  @apply flex w-1/2 justify-start;
+}
+
+@utility navbar-center {
+  @apply shrink-0;
+}
+
+@utility navbar-end {
+  @apply flex w-1/2 justify-end;
+}

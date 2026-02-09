@@ -143,7 +143,7 @@ const variables = {
       dark: 'oklch(0.1743 0.0227 283.7998)',
     },
     {
-      name: '--foreground',
+      name: '--content',
       label: '前景色',
       type: 'color',
       light: 'oklch(0.25 0.02 280)',
@@ -157,7 +157,7 @@ const variables = {
       dark: 'oklch(0.2284 0.0384 282.9324)',
     },
     {
-      name: '--card-foreground',
+      name: '--card-content',
       label: '卡片文字',
       type: 'color',
       light: 'oklch(0.25 0.02 280)',
@@ -171,7 +171,7 @@ const variables = {
       dark: 'oklch(0.7162 0.1597 290.3962)',
     },
     {
-      name: '--primary-foreground',
+      name: '--primary-content',
       label: '主色文字',
       type: 'color',
       light: 'oklch(0.99 0 0)',
@@ -185,7 +185,7 @@ const variables = {
       dark: 'oklch(0.3139 0.0736 283.4591)',
     },
     {
-      name: '--secondary-foreground',
+      name: '--secondary-content',
       label: '次要色文字',
       type: 'color',
       light: 'oklch(0.99 0 0)',
@@ -194,14 +194,14 @@ const variables = {
   ],
   semantic: [
     {
-      name: '--muted',
+      name: '--neutral',
       label: '弱化色',
       type: 'color',
       light: 'oklch(0.96 0.015 285)',
       dark: 'oklch(0.271 0.0621 281.4377)',
     },
     {
-      name: '--muted-foreground',
+      name: '--neutral-content',
       label: '弱化文字',
       type: 'color',
       light: 'oklch(0.5 0.04 285)',
@@ -215,7 +215,7 @@ const variables = {
       dark: 'oklch(0.3354 0.0828 280.9705)',
     },
     {
-      name: '--accent-foreground',
+      name: '--accent-content',
       label: '强调文字',
       type: 'color',
       light: 'oklch(0.25 0.02 280)',
@@ -252,7 +252,7 @@ const variables = {
       dark: 'oklch(0.65 0.16 150)',
     },
     {
-      name: '--success-foreground',
+      name: '--success-content',
       label: '成功文字',
       type: 'color',
       light: 'oklch(0.2 0.03 150)',
@@ -266,7 +266,7 @@ const variables = {
       dark: 'oklch(0.68 0.14 250)',
     },
     {
-      name: '--info-foreground',
+      name: '--info-content',
       label: '信息文字',
       type: 'color',
       light: 'oklch(0.2 0.04 250)',
@@ -280,7 +280,7 @@ const variables = {
       dark: 'oklch(0.76 0.15 80)',
     },
     {
-      name: '--warning-foreground',
+      name: '--warning-content',
       label: '警告文字',
       type: 'color',
       light: 'oklch(0.25 0.05 80)',
@@ -294,7 +294,7 @@ const variables = {
       dark: 'oklch(0.6861 0.2061 14.9941)',
     },
     {
-      name: '--destructive-foreground',
+      name: '--destructive-content',
       label: '危险文字',
       type: 'color',
       light: 'oklch(0.99 0 0)',

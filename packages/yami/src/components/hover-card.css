@@ -1,0 +1,197 @@
+/*
+name: hover-card
+desc: 悬浮卡片组件，用于在悬停时展示额外内容。
+usage: 常用于显示用户简介、商品预览、提示信息等。
+syntax:
+<div class="hover-card">
+  <button class="px-3 py-2 border rounded-md bg-base-100">悬停查看</button>
+  <div class="hover-card-content">
+    <div class="hover-card-header">
+      <div class="hover-card-title">Hover Card 标题</div>
+      <div class="hover-card-description">这是一个简单的悬浮卡片描述。</div>
+    </div>
+    <div class="hover-card-body">内容区域可以放置任意文字、图片或操作按钮。</div>
+  </div>
+</div>
+*/
+
+@theme {
+  /* spacing */
+  --hover-card-padding: 1rem;
+  --hover-card-padding-sm: 0.75rem;
+  --hover-card-padding-content: 1rem;
+  --hover-card-padding-content-sm: 0.75rem;
+  --hover-card-padding-body: 1rem;
+  --hover-card-padding-body-sm: 0.75rem;
+  --hover-card-padding-footer: 1rem;
+  --hover-card-padding-footer-sm: 0.75rem;
+
+  /* width */
+  --hover-card-width-xs: 180px;
+  --hover-card-width-sm: 220px;
+  --hover-card-width-md: 280px;
+  --hover-card-width-lg: 320px;
+  --hover-card-width-xl: 400px;
+
+  /* animation */
+  --hover-card-transition: var(--duration-medium);
+  --hover-card-delay: 0.3s;
+
+  /* transform */
+  --hover-card-translate-y: -100%;
+  --hover-card-translate-x: -50%;
+  --hover-card-translate-x-hover: -1;
+  --hover-card-translate-x-center: 50%;
+  --hover-card-translate-x-calc: calc(-50% * -1);
+
+  /* border */
+  --hover-card-border-width: var(--border-width);
+  --hover-card-radius-lg: var(--radius-lg);
+  --hover-card-shadow-lg: var(--shadow-lg);
+  --hover-card-z-index: 50;
+  --hover-card-opacity-hidden: 0;
+  --hover-card-opacity-visible: 1;
+  --hover-card-delay-none: 0s;
+  --hover-card-content-y-offset: 4px;
+  --hover-card-opacity-hover: 1;
+  --hover-card-opacity-invisible: 0;
+}
+
+/* === Hover Card 基础样式 === */
+@utility hover-card {
+  @apply relative inline-block;
+
+  & .hover-card-content {
+    @apply absolute z-50;
+    @apply top-full left-0 mt-2;
+    @apply bg-base-100 text-base-content;
+    @apply border border-border;
+    @apply opacity-0 invisible pointer-events-none;
+    @apply transition-all duration-200 ease-in-out;
+    @apply rounded-lg shadow-lg;
+    @apply w-[280px];
+  }
+
+  &:hover .hover-card-content {
+    @apply opacity-100 visible pointer-events-auto;
+    @apply translate-y-1;
+  }
+
+  /* 保持悬停在卡片上时的显示 */
+  & .hover-card-content:hover {
+    @apply opacity-100 visible pointer-events-auto;
+  }
+}
+
+/* === Hover Card 内容区域样式 === */
+@utility hover-card {
+  & .hover-card-header {
+    @apply p-4 pb-2;
+  }
+
+  & .hover-card-title {
+    @apply font-semibold text-sm;
+  }
+
+  & .hover-card-description {
+    @apply text-sm text-base-content/60 mt-1;
+  }
+
+  & .hover-card-body {
+    @apply px-4 py-3 text-sm;
+  }
+
+  & .hover-card-footer {
+    @apply px-4 pb-4 pt-2 text-xs text-base-content/60;
+  }
+}
+
+/* === Hover Card 对齐方式 === */
+@utility hover-card-center {
+  & .hover-card-content {
+    @apply left-1/2 -translate-x-1/2;
+  }
+
+  &:hover .hover-card-content {
+    @apply -translate-x-1/2;
+  }
+}
+
+@utility hover-card-right {
+  & .hover-card-content {
+    @apply left-auto right-0;
+  }
+}
+
+/* === Hover Card 宽度变体 === */
+@utility hover-card-sm {
+  & .hover-card-content {
+    @apply w-[220px];
+  }
+}
+
+@utility hover-card-md {
+  & .hover-card-content {
+    @apply w-[320px];
+  }
+}
+
+@utility hover-card-lg {
+  & .hover-card-content {
+    @apply w-[400px];
+  }
+}
+
+/* === Hover Card 延迟显示 === */
+@utility hover-card-delay {
+  & .hover-card-content {
+    position: absolute;
+    z-index: var(--hover-card-z-index);
+    top: 100%;
+    left: 0;
+    margin-top: var(--hover-card-padding-sm);
+    background-color: var(--popover);
+    color: var(--popover-content);
+    border: var(--border-width) solid var(--border);
+    opacity: var(--hover-card-opacity-hidden);
+    visibility: hidden;
+    pointer-events: none;
+    transition: all var(--hover-card-transition);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-lg);
+    width: var(--hover-card-width-md);
+  }
+
+  &:hover .hover-card-content {
+    transition-delay: 0s;
+  }
+}
+
+/* === Hover Card 紧凑模式 === */
+@utility hover-card-compact {
+  & .hover-card-header {
+    @apply p-3 pb-1;
+  }
+
+  & .hover-card-body {
+    @apply px-3 py-2 text-xs;
+  }
+
+  & .hover-card-footer {
+    @apply px-3 pb-3 pt-1;
+  }
+}
+
+/* === Hover Card 简化版(仅内容) === */
+@utility hover-card-simple {
+  & .hover-card-content {
+    @apply p-4;
+  }
+}
+
+/* === Hover Card 始终显示 === */
+@utility hover-card-open {
+  & .hover-card-content {
+    @apply opacity-100 visible pointer-events-auto translate-y-1;
+  }
+}

@@ -1,0 +1,245 @@
+/* ===================== FAB ===================== */
+
+@utility fab {
+  @apply fixed bottom-4 end-4 z-50
+    flex flex-col-reverse items-end gap-2
+    text-sm whitespace-nowrap
+    pointer-events-none;
+
+  & > * {
+    @apply flex items-center gap-2 pointer-events-auto;
+  }
+
+  & > *:hover,
+  & > *:has(:focus-visible) {
+    @apply z-10;
+  }
+
+  /* 主按钮容器 - 第一个子元素 */
+  & > :first-child {
+    @apply relative grid;
+    transition-property: opacity, visibility, rotate;
+    transition-duration: 300ms;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  & .fab-close,
+  & .fab-main-action {
+    @apply absolute inset-0;
+  }
+
+  /* close 按钮默认隐藏 */
+  & .fab-close {
+    @apply invisible opacity-0;
+    transition-property: opacity, visibility;
+    transition-duration: 300ms;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  /* 子菜单项默认隐藏 */
+  & > :not(:first-child) {
+    @apply invisible opacity-0;
+    scale: 0.8;
+    transition-property: opacity, scale, visibility;
+    transition-duration: 300ms;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  /* 渐进延迟 */
+  & > :nth-child(2) {
+    transition-delay: 0ms;
+  }
+
+  & > :nth-child(3) {
+    transition-delay: 30ms;
+  }
+
+  & > :nth-child(4) {
+    transition-delay: 60ms;
+  }
+
+  & > :nth-child(5) {
+    transition-delay: 90ms;
+  }
+
+  & > :nth-child(6) {
+    transition-delay: 120ms;
+  }
+
+  /* 展开状态 - 当主按钮获得焦点时 */
+  &:focus-within {
+    /* 主按钮旋转并禁用交互 */
+    & > :first-child {
+      rotate: 45deg;
+      @apply pointer-events-none;
+    }
+
+    /* 显示子菜单项 */
+    & > :not(:first-child) {
+      @apply visible opacity-100;
+      scale: 1;
+    }
+
+    /* 如果有 close 按钮，显示它并隐藏主图标 */
+    & > :first-child:has(.fab-close) {
+      & > :not(.fab-close) {
+        @apply opacity-0;
+      }
+
+      & .fab-close {
+        @apply visible opacity-100;
+      }
+    }
+  }
+}
+
+/* FAB Flower Layout */
+
+@utility fab-flower {
+  @apply grid;
+
+  --fab-position-base: 0rem;
+  --fab-degree-base: 180deg;
+  --fab-flower-position: var(--fab-position-base);
+
+  /* 主按钮不移动 */
+  & > :first-child {
+    --fab-flower-position: var(--fab-position-base);
+  }
+
+  & > * {
+    @apply col-start-1 row-start-1;
+
+    --fab-degree: var(--fab-degree-base);
+    --fab-flip-degree: calc(var(--fab-degree-base) - var(--fab-degree));
+
+    transform: translateX(
+        calc(cos(var(--fab-degree)) * var(--fab-flower-position))
+      )
+      translateY(
+        calc(sin(var(--fab-degree)) * calc(-1 * var(--fab-flower-position)))
+      );
+  }
+
+  [dir="rtl"] & > * {
+    transform: translateX(
+        calc(cos(var(--fab-flip-degree)) * var(--fab-flower-position))
+      )
+      translateY(
+        calc(
+          sin(var(--fab-flip-degree)) * calc(-1 * var(--fab-flower-position))
+        )
+      );
+  }
+
+  & > * > .btn:active,
+  & > .btn:active {
+    transform: translateX(
+        calc(cos(var(--fab-degree)) * var(--fab-flower-position))
+      )
+      translateY(
+        calc(sin(var(--fab-degree)) * calc(-1 * var(--fab-flower-position)))
+      ) !important;
+  }
+
+  [dir="rtl"] & > * > .btn:active,
+  [dir="rtl"] & > .btn:active {
+    transform: translateX(
+        calc(cos(var(--fab-flip-degree)) * var(--fab-flower-position))
+      )
+      translateY(
+        calc(
+          sin(var(--fab-flip-degree)) * calc(-1 * var(--fab-flower-position))
+        )
+      ) !important;
+  }
+
+  & > :nth-child(n + 7) {
+    @apply hidden;
+  }
+
+  /* 2 Items: 主按钮 + 1个子按钮 */
+  &:has(:nth-child(2)):not(:has(:nth-child(3))) {
+    --fab-flower-position: 200%;
+
+    & > :nth-child(2) {
+      --fab-degree: 135deg;
+    }
+  }
+
+  /* 3 Items: 主按钮 + 2个子按钮 */
+  &:has(:nth-child(3)):not(:has(:nth-child(4))) {
+    --fab-flower-position: 180%;
+
+    & > :nth-child(2) {
+      --fab-degree: 160deg;
+    }
+
+    & > :nth-child(3) {
+      --fab-degree: 110deg;
+    }
+  }
+
+  /* 4 Items: 主按钮 + 3个子按钮 */
+  &:has(:nth-child(4)):not(:has(:nth-child(5))) {
+    --fab-flower-position: 200%;
+
+    & > :nth-child(2) {
+      --fab-degree: 180deg;
+    }
+
+    & > :nth-child(3) {
+      --fab-degree: 135deg;
+    }
+
+    & > :nth-child(4) {
+      --fab-degree: 90deg;
+    }
+  }
+
+  /* 5 Items: 主按钮 + 4个子按钮 */
+  &:has(:nth-child(5)):not(:has(:nth-child(6))) {
+    --fab-flower-position: 220%;
+
+    & > :nth-child(2) {
+      --fab-degree: 180deg;
+    }
+
+    & > :nth-child(3) {
+      --fab-degree: 150deg;
+    }
+
+    & > :nth-child(4) {
+      --fab-degree: 120deg;
+    }
+
+    & > :nth-child(5) {
+      --fab-degree: 90deg;
+    }
+  }
+
+  /* 6 Items: 主按钮 + 5个子按钮 */
+  &:has(:nth-child(6)) {
+    --fab-flower-position: 270%;
+
+    & > :nth-child(2) {
+      --fab-degree: 180deg;
+    }
+
+    & > :nth-child(3) {
+      --fab-degree: 158deg;
+    }
+
+    & > :nth-child(4) {
+      --fab-degree: 135deg;
+    }
+
+    & > :nth-child(5) {
+      --fab-degree: 113deg;
+    }
+
+    & > :nth-child(6) {
+      --fab-degree: 90deg;
+    }
+  }
+}

@@ -1,0 +1,310 @@
+/*
+name: select-checkbox
+desc: 多选下拉框组件，用于从多个选项中选择多个。
+usage: 常用于表单、过滤器、标签选择。
+syntax:
+ <div class="select-checkbox">
+   <label class="select-checkbox-item">
+     <input type="checkbox" />
+     <span>选项 A</span>
+   </label>
+   <label class="select-checkbox-item">
+     <input type="checkbox" />
+     <span>选项 B</span>
+   </label>
+ </div>
+*/
+
+@theme {
+  /* 尺寸变量 */
+  --size-sm: 3.5px;
+  --size-md: 4px;
+  --size-lg: 5px;
+  --size-checkbox: 1rem;
+
+  /* 高度变量 */
+  --height-sm: 12rem;
+  --height-md: 15rem;
+  --height-lg: 20rem;
+
+  /* 过渡变量 */
+  --transition-duration: 200ms;
+  --transition-duration-sm: 150ms;
+}
+
+/* 多选容器 */
+@utility select-checkbox {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  max-height: var(--height-md);
+  overflow-y: auto;
+  border: 1px solid var(--color-input);
+  border-radius: var(--radius-md);
+  background-color: var(--color-background);
+  padding: var(--spacing-md);
+  transition:
+    color var(--transition-duration),
+    border-color var(--transition-duration);
+
+  &:focus-within {
+    ring: 2px;
+    ring-color: var(--color-ring);
+    ring-offset: 2px;
+    ring-offset-color: var(--color-background);
+    border-color: transparent;
+  }
+}
+
+/* 单个选项 */
+@utility select-checkbox-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: var(--spacing-md) 0.75rem;
+  cursor: pointer;
+  border-radius: var(--radius-md);
+  transition: color var(--transition-duration-sm);
+
+  &:hover {
+    background-color: var(--color-muted);
+  }
+
+  & input[type="checkbox"] {
+    width: 1rem;
+    height: 1rem;
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--color-input);
+    cursor: pointer;
+    appearance: none;
+    transition: all var(--transition-duration);
+    background-color: var(--color-background);
+
+    &:checked {
+      background-color: var(--color-primary);
+      border-color: var(--color-primary);
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='white'%3E%3Cpath d='M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z'%3E%3C/path%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: 1rem;
+    }
+
+    &:disabled {
+      opacity: 0.4;
+      cursor: not-allowed;
+    }
+
+    &:focus {
+      outline: none;
+      ring: 2px;
+      ring-color: var(--color-ring);
+      ring-offset: 2px;
+      ring-offset-color: var(--color-background);
+    }
+  }
+
+  & span {
+    font-size: 0.875rem;
+    color: var(--color-base-content);
+    flex: 1;
+  }
+
+  &:has(input:disabled) {
+    opacity: 0.4;
+    cursor: not-allowed;
+  }
+}
+
+/* 颜色变体 */
+@utility select-checkbox-primary {
+  &:focus-within {
+    ring-color: var(--color-primary);
+    border-color: transparent;
+  }
+
+  & .select-checkbox-item input[type="checkbox"]:checked {
+    background-color: var(--color-primary);
+    border-color: var(--color-primary);
+  }
+}
+
+@utility select-checkbox-secondary {
+  &:focus-within {
+    ring-color: var(--color-secondary);
+    border-color: transparent;
+  }
+
+  & .select-checkbox-item input[type="checkbox"]:checked {
+    background-color: var(--color-secondary);
+    border-color: var(--color-secondary);
+  }
+}
+
+@utility select-checkbox-accent {
+  &:focus-within {
+    ring-color: var(--color-accent);
+    border-color: transparent;
+  }
+
+  & .select-checkbox-item input[type="checkbox"]:checked {
+    background-color: var(--color-accent);
+    border-color: var(--color-accent);
+  }
+}
+
+/* 尺寸变体 */
+@utility select-checkbox-sm {
+  max-height: var(--height-sm);
+  padding: var(--spacing-sm);
+
+  & .select-checkbox-item {
+    padding: 0.375rem 0.5rem;
+    font-size: 0.75rem;
+
+    & input[type="checkbox"] {
+      width: 0.875rem;
+      height: 0.875rem;
+    }
+  }
+}
+
+@utility select-checkbox-lg {
+  max-height: var(--height-lg);
+  padding: var(--spacing-lg);
+
+  & .select-checkbox-item {
+    padding: 0.625rem 1rem;
+    font-size: 1rem;
+
+    & input[type="checkbox"] {
+      width: 1.25rem;
+      height: 1.25rem;
+    }
+  }
+}
+
+/* Ghost 样式 */
+@utility select-checkbox-ghost {
+  border-color: transparent;
+  background-color: transparent;
+
+  &:hover {
+    background-color: var(--color-muted);
+  }
+}
+
+/* Bordered 样式 */
+@utility select-checkbox-bordered {
+  border-width: 2px;
+}
+
+/* 无边框样式 */
+@utility select-checkbox-borderless {
+  border-color: transparent;
+
+  &:focus-within {
+    ring: 0;
+  }
+}
+
+/* 分组样式 */
+@utility select-checkbox-group {
+  margin-bottom: 0.75rem;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+@utility select-checkbox-group-title {
+  padding: 0.5rem 0.75rem;
+  font-weight: 600;
+  font-size: 0.75rem;
+  color: var(--color-muted-content);
+  text-transform: uppercase;
+  background-color: color-mix(in srgb, var(--color-muted) 50%, transparent);
+  border-radius: var(--radius-sm);
+}
+
+/* 全选项容器 */
+@utility select-checkbox-with-all {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+
+  & > .select-checkbox-all {
+    padding: 0.5rem 0.75rem 0.75rem 0.75rem;
+    border-bottom: 1px solid var(--color-input);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    cursor: pointer;
+    border-radius: var(--radius-md);
+    transition: background-color var(--transition-duration);
+
+    &:hover {
+      background-color: var(--color-muted);
+    }
+
+    & input[type="checkbox"] {
+      width: 1rem;
+      height: 1rem;
+    }
+
+    & span {
+      font-size: 0.875rem;
+      font-weight: 500;
+      color: var(--color-base-content);
+    }
+  }
+
+  & > .select-checkbox-items {
+    max-height: var(--height-md);
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    padding: 0 0.5rem;
+  }
+}
+
+/* 已选择标签展示 */
+@utility select-checkbox-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.375rem;
+  margin-top: 0.5rem;
+
+  & .tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.375rem;
+    background-color: var(--color-primary);
+    color: var(--color-primary-content);
+    padding: 0.625rem;
+    border-radius: var(--radius-full);
+    font-size: 0.75rem;
+    font-weight: 500;
+    transition: color var(--transition-duration);
+
+    & button {
+      margin-left: 0.25rem;
+      font-weight: 700;
+      cursor: pointer;
+      opacity: 1;
+      transition: opacity var(--transition-duration);
+
+      &:hover {
+        opacity: 0.7;
+      }
+    }
+  }
+}
+
+/* 空状态 */
+@utility select-checkbox-empty {
+  padding: 2rem 0;
+  text-align: center;
+  font-size: 0.875rem;
+  color: var(--color-muted-content);
+}

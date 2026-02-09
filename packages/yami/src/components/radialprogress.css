@@ -1,0 +1,97 @@
+/* ===================== Radial Progress ===================== */
+
+@utility radial-progress {
+  @apply text-base-content relative box-content inline-grid place-content-center rounded-full font-medium;
+  vertical-align: middle;
+  height: var(--size);
+  width: var(--size);
+  --value: 0;
+  --size: 5rem;
+  --thickness: calc(var(--size) / 10);
+  --radialprogress: calc(var(--value) * 1%);
+  transition: --radialprogress 300ms linear;
+
+  &:before {
+    @apply absolute inset-0 rounded-full;
+    content: "";
+    background:
+      radial-gradient(farthest-side, currentColor 98%, #0000)
+        top/var(--thickness) var(--thickness) no-repeat,
+      conic-gradient(
+        currentColor var(--radialprogress),
+        color-mix(in oklab, var(--color-base-content) 20%, transparent) 0
+      );
+
+    -webkit-mask: radial-gradient(
+      farthest-side,
+      #0000 calc(100% - var(--thickness)),
+      #000 calc(100% + 0.5px - var(--thickness))
+    );
+    mask: radial-gradient(
+      farthest-side,
+      #0000 calc(100% - var(--thickness)),
+      #000 calc(100% + 0.5px - var(--thickness))
+    );
+  }
+
+  &:after {
+    @apply absolute rounded-full bg-current;
+    transition: transform 300ms linear;
+    content: "";
+    inset: calc(50% - var(--thickness) / 2);
+    transform: rotate(calc(var(--value) * 3.6deg - 90deg))
+      translate(calc(var(--size) / 2 - 50%));
+  }
+}
+
+/* Size Variants */
+
+@utility radial-progress-xs {
+  --size: 3rem;
+}
+
+@utility radial-progress-sm {
+  --size: 4rem;
+}
+
+@utility radial-progress-md {
+  --size: 5rem;
+}
+
+@utility radial-progress-lg {
+  --size: 6rem;
+}
+
+@utility radial-progress-xl {
+  --size: 8rem;
+}
+
+/* Color Variants */
+
+@utility radial-progress-primary {
+  color: var(--color-primary);
+}
+
+@utility radial-progress-secondary {
+  color: var(--color-secondary);
+}
+
+@utility radial-progress-accent {
+  color: var(--color-accent);
+}
+
+@utility radial-progress-info {
+  color: var(--color-info);
+}
+
+@utility radial-progress-success {
+  color: var(--color-success);
+}
+
+@utility radial-progress-warning {
+  color: var(--color-warning);
+}
+
+@utility radial-progress-error {
+  color: var(--color-error);
+}

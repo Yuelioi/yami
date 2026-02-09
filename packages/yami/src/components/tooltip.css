@@ -1,0 +1,286 @@
+/* ===================== Tooltip ===================== */
+
+@utility tooltip {
+  @apply relative inline-block;
+
+  & .tooltip-content {
+    @apply absolute z-50 px-3 py-2 text-sm font-medium;
+    @apply bg-base-100 text-base-content;
+    @apply border border-base-300;
+    @apply opacity-0 invisible pointer-events-none;
+    @apply transition-all duration-200 ease-in-out;
+    white-space: nowrap;
+    @apply rounded-md;
+  }
+
+  &:hover .tooltip-content,
+  &:focus .tooltip-content {
+    @apply opacity-100 visible;
+  }
+}
+
+/* Data-tip Attribute Support */
+
+[data-tip] {
+  @apply relative inline-block;
+
+  &::after {
+    content: attr(data-tip);
+    @apply absolute z-50 px-3 py-2 text-sm font-medium;
+    @apply bg-base-100 text-base-content;
+    @apply border border-base-300;
+    @apply opacity-0 invisible pointer-events-none;
+    @apply transition-all duration-200 ease-in-out;
+    white-space: nowrap;
+    @apply rounded-md;
+    width: max-content;
+  }
+
+  &::before {
+    content: "";
+    @apply absolute z-50;
+    @apply opacity-0 invisible pointer-events-none;
+    @apply transition-all duration-200 ease-in-out;
+  }
+
+  &:hover::after,
+  &:focus::after,
+  &:hover::before,
+  &:focus::before {
+    @apply opacity-100 visible;
+  }
+}
+
+/* Position - Top */
+
+@utility tooltip-top {
+  & .tooltip-content {
+    @apply bottom-full left-1/2 -translate-x-1/2 mb-1;
+
+    &::after {
+      content: "";
+      @apply absolute top-full left-1/2 -translate-x-1/2;
+      @apply border-4 border-transparent;
+      border-top-color: rgb(209, 213, 219);
+      margin-top: -1px;
+    }
+
+    &::before {
+      content: "";
+      @apply absolute top-full left-1/2 -translate-x-1/2;
+      @apply border-[5px] border-transparent;
+      border-top-color: white;
+    }
+  }
+
+  &:hover .tooltip-content,
+  &:focus .tooltip-content {
+    @apply -translate-y-1 -translate-x-1/2;
+  }
+}
+
+[data-tip].tooltip-top {
+  &::after {
+    @apply bottom-full left-1/2 -translate-x-1/2 mb-1;
+  }
+
+  &::before {
+    @apply bottom-full left-1/2 -translate-x-1/2;
+    @apply border-4 border-transparent;
+    border-top-color: rgb(209, 213, 219);
+    margin-top: -1px;
+  }
+
+  &:hover::after,
+  &:focus::after {
+    @apply -translate-y-1 -translate-x-1/2;
+  }
+
+  &:hover::before,
+  &:focus::before {
+    @apply border-[5px] border-transparent;
+    border-top-color: white;
+    margin-top: -5px;
+  }
+}
+
+/* Position - Bottom */
+
+@utility tooltip-bottom {
+  & .tooltip-content {
+    @apply top-full left-1/2 -translate-x-1/2 mt-1;
+
+    &::after {
+      content: "";
+      @apply absolute bottom-full left-1/2 -translate-x-1/2;
+      @apply border-4 border-transparent;
+      border-bottom-color: rgb(209, 213, 219);
+      margin-bottom: -1px;
+    }
+
+    &::before {
+      content: "";
+      @apply absolute bottom-full left-1/2 -translate-x-1/2;
+      @apply border-[5px] border-transparent;
+      border-bottom-color: white;
+    }
+  }
+
+  &:hover .tooltip-content,
+  &:focus .tooltip-content {
+    @apply translate-y-1 -translate-x-1/2;
+  }
+}
+
+[data-tip].tooltip-bottom {
+  &::after {
+    @apply top-full left-1/2 -translate-x-1/2 mt-1;
+  }
+
+  &::before {
+    @apply top-full left-1/2 -translate-x-1/2;
+    @apply border-4 border-transparent;
+    border-bottom-color: rgb(209, 213, 219);
+    margin-bottom: -1px;
+  }
+
+  &:hover::after,
+  &:focus::after {
+    @apply translate-y-1 -translate-x-1/2;
+  }
+
+  &:hover::before,
+  &:focus::before {
+    @apply border-[5px] border-transparent;
+    border-bottom-color: white;
+    margin-bottom: -5px;
+  }
+}
+
+/* Position - Left */
+
+@utility tooltip-left {
+  & .tooltip-content {
+    @apply right-full top-1/2 -translate-y-1/2 mr-1;
+
+    &::after {
+      content: "";
+      @apply absolute left-full top-1/2 -translate-y-1/2;
+      @apply border-4 border-transparent;
+      border-left-color: rgb(209, 213, 219);
+      margin-left: -1px;
+    }
+
+    &::before {
+      content: "";
+      @apply absolute left-full top-1/2 -translate-y-1/2;
+      @apply border-[5px] border-transparent;
+      border-left-color: white;
+    }
+  }
+
+  &:hover .tooltip-content,
+  &:focus .tooltip-content {
+    @apply -translate-x-1 -translate-y-1/2;
+  }
+}
+
+[data-tip].tooltip-left {
+  &::after {
+    @apply right-full top-1/2 -translate-y-1/2 mr-1;
+  }
+
+  &::before {
+    @apply right-full top-1/2 -translate-y-1/2;
+    @apply border-4 border-transparent;
+    border-left-color: rgb(209, 213, 219);
+    margin-left: -1px;
+  }
+
+  &:hover::after,
+  &:focus::after {
+    @apply -translate-x-1 -translate-y-1/2;
+  }
+
+  &:hover::before,
+  &:focus::before {
+    @apply border-[5px] border-transparent;
+    border-left-color: white;
+    margin-left: -5px;
+  }
+}
+
+/* Position - Right */
+
+@utility tooltip-right {
+  & .tooltip-content {
+    @apply left-full top-1/2 -translate-y-1/2 ml-1;
+
+    &::after {
+      content: "";
+      @apply absolute right-full top-1/2 -translate-y-1/2;
+      @apply border-4 border-transparent;
+      border-right-color: rgb(209, 213, 219);
+      margin-right: -1px;
+    }
+
+    &::before {
+      content: "";
+      @apply absolute right-full top-1/2 -translate-y-1/2;
+      @apply border-[5px] border-transparent;
+      border-right-color: white;
+    }
+  }
+
+  &:hover .tooltip-content,
+  &:focus .tooltip-content {
+    @apply translate-x-1 -translate-y-1/2;
+  }
+}
+
+[data-tip].tooltip-right {
+  &::after {
+    @apply left-full top-1/2 -translate-y-1/2 ml-1;
+  }
+
+  &::before {
+    @apply left-full top-1/2 -translate-y-1/2;
+    @apply border-4 border-transparent;
+    border-right-color: rgb(209, 213, 219);
+    margin-right: -1px;
+  }
+
+  &:hover::after,
+  &:focus::after {
+    @apply translate-x-1 -translate-y-1/2;
+  }
+
+  &:hover::before,
+  &:focus::before {
+    @apply border-[5px] border-transparent;
+    border-right-color: white;
+    margin-right: -5px;
+  }
+}
+
+/* Size Variants */
+
+@utility tooltip-sm {
+  & .tooltip-content {
+    @apply px-2 py-1 text-xs;
+  }
+}
+
+@utility tooltip-lg {
+  & .tooltip-content {
+    @apply px-4 py-3 text-base;
+  }
+}
+
+[data-tip].tooltip-sm::after {
+  @apply px-2 py-1 text-xs;
+}
+
+[data-tip].tooltip-lg::after {
+  @apply px-4 py-3 text-base;
+}

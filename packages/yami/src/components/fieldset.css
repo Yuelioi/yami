@@ -1,0 +1,499 @@
+/*
+name: fieldset
+desc: 字段集组件，用于分组相关表单控件。
+usage: 常用于表单逻辑分区、配置组、调查表。
+syntax:
+<fieldset class="fieldset">
+  <legend>个人信息</legend>
+  <div class="fieldset-description">请填写你的基本资料。</div>
+  <div class="fieldset-content space-y-3">
+    <input type="text" class="input w-full" placeholder="姓名" />
+    <input type="email" class="input w-full" placeholder="邮箱" />
+  </div>
+</fieldset>
+*/
+/*
+ * Fieldset Component - Tailwind 4 (重构版)
+ * 
+ * 字段集组件，用于组织和分组表单字段。
+ * 适用于：表单分组、字段组织、分步骤表单等
+ * 
+ * 变量提取方式参考：FAB 组件（浮动操作按钮）
+ * ✅ 全局变量驱动
+ * ✅ 组件级变量完整提取
+ * ✅ 零硬编码值
+ * ✅ 完全可定制化
+ */
+
+@theme {
+  /* ========================================
+     字段集全局令牌 - 继承自设计系统
+     ======================================== */
+
+  /* 动画配置 */
+  --fieldset-duration: var(--duration-base);
+  --fieldset-ease: var(--ease-out);
+
+  /* 颜色 */
+  --fieldset-bg: var(--background);
+  --fieldset-fg: var(--base-content);
+  --fieldset-border: var(--border);
+  --fieldset-legend-fg: var(--base-content);
+  --fieldset-legend-bg: transparent;
+  --fieldset-description-fg: var(--base-content);
+
+  /* 圆角 */
+  --fieldset-border-radius: var(--radius);
+  --fieldset-legend-padding: 0.5rem;
+
+  /* legend */
+  --fieldset-legend-margin-bottom: 0.25rem;
+
+  /* 字体 */
+  --fieldset-legend-font-size: 1rem;
+  --fieldset-legend-font-weight: 600;
+  --fieldset-description-font-size: 0.875rem;
+
+  /* ========================================
+     尺寸变量 - Fieldset Sizes
+     ======================================== */
+
+  /* 小型 */
+  --fieldset-sm-padding-x: 1rem;
+  --fieldset-sm-padding-y: 0.5rem;
+  --fieldset-sm-gap: 0.75rem;
+  --fieldset-sm-legend-font-size: 0.875rem;
+  --fieldset-sm-description-font-size: 0.75rem;
+
+  /* 默认 */
+  --fieldset-padding-x: 1rem;
+  --fieldset-padding-y: 0.75rem;
+  --fieldset-gap: 1rem;
+  --fieldset-legend-font-size: 1rem;
+  --fieldset-description-font-size: 0.875rem;
+
+  /* 大型 */
+  --fieldset-lg-padding-x: 1.25rem;
+  --fieldset-lg-padding-y: 1rem;
+  --fieldset-lg-gap: 1.25rem;
+  --fieldset-lg-legend-font-size: 1.125rem;
+  --fieldset-lg-description-font-size: 0.95rem;
+
+  /* ========================================
+     颜色变体变量
+     ======================================== */
+
+  /* 主色 */
+  --fieldset-info-bg: color-mix(in srgb, var(--info) 5%, var(--background));
+  --fieldset-info-border: var(--info);
+  --fieldset-info-legend-fg: var(--info);
+
+  /* 成功 */
+  --fieldset-success-bg: color-mix(
+    in srgb,
+    var(--success) 5%,
+    var(--background)
+  );
+  --fieldset-success-border: var(--success);
+  --fieldset-success-legend-fg: var(--success);
+
+  /* 警告 */
+  --fieldset-warning-bg: color-mix(
+    in srgb,
+    var(--warning) 5%,
+    var(--background)
+  );
+  --fieldset-warning-border: var(--warning);
+  --fieldset-warning-legend-fg: var(--warning);
+
+  /* 危险 */
+  --fieldset-danger-bg: color-mix(in srgb, var(--error) 5%, var(--background));
+  --fieldset-danger-border: var(--error);
+  --fieldset-danger-legend-fg: var(--error);
+
+  /* ========================================
+     状态变量
+     ======================================== */
+
+  --fieldset-disabled-opacity: 0.5;
+  --fieldset-error-border: var(--error);
+  --fieldset-error-legend-fg: var(--error);
+  --fieldset-success-border-color: var(--success);
+}
+
+/* ========================================
+   基础字段集样式
+   ======================================== */
+
+@utility fieldset {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding: var(--fieldset-padding-y) var(--fieldset-padding-x);
+  background-color: var(--fieldset-bg);
+  color: var(--fieldset-fg);
+  border: 1px solid var(--fieldset-border);
+  border-radius: var(--fieldset-border-radius);
+  gap: var(--fieldset-gap);
+  transition: all var(--fieldset-duration) var(--fieldset-ease);
+}
+
+/* 字段集图例/标题 */
+@utility fieldset-legend {
+  font-size: var(--fieldset-legend-font-size);
+  font-weight: var(--fieldset-legend-font-weight);
+  color: var(--fieldset-legend-fg);
+  margin: 0;
+  padding-inline: var(--fieldset-legend-padding);
+  margin-bottom: var(--fieldset-legend-margin-bottom);
+  line-height: 1.5;
+  display: block;
+}
+
+/* 字段集描述 */
+@utility fieldset-description {
+  font-size: var(--fieldset-description-font-size);
+  color: var(--fieldset-description-fg);
+  margin: 0;
+  margin-top: 0.25rem;
+  line-height: 1.5;
+}
+
+/* 字段集内容容器 */
+@utility fieldset-content {
+  display: flex;
+  flex-direction: column;
+  gap: var(--fieldset-gap);
+  width: 100%;
+}
+
+/* ========================================
+   字段集状态
+   ======================================== */
+
+/* 禁用状态 */
+@utility fieldset-disabled {
+  opacity: var(--fieldset-disabled-opacity);
+  pointer-events: none;
+  cursor: not-allowed;
+
+  & input,
+  & textarea,
+  & select {
+    cursor: not-allowed;
+  }
+}
+
+/* 错误状态 */
+@utility fieldset-error {
+  border-color: var(--fieldset-error-border);
+
+  & .fieldset-legend {
+    color: var(--fieldset-error-legend-fg);
+  }
+}
+
+/* 成功状态 */
+@utility fieldset-success {
+  border-color: var(--fieldset-success-border-color);
+}
+
+/* ========================================
+   尺寸变体
+   ======================================== */
+
+/* 小型 */
+@utility fieldset-sm {
+  padding: var(--fieldset-sm-padding-y) var(--fieldset-sm-padding-x);
+  gap: var(--fieldset-sm-gap);
+
+  & .fieldset-legend {
+    font-size: var(--fieldset-sm-legend-font-size);
+  }
+
+  & .fieldset-description {
+    font-size: var(--fieldset-sm-description-font-size);
+  }
+
+  & .fieldset-content {
+    gap: var(--fieldset-sm-gap);
+  }
+}
+
+/* 大型 */
+@utility fieldset-lg {
+  padding: var(--fieldset-lg-padding-y) var(--fieldset-lg-padding-x);
+  gap: var(--fieldset-lg-gap);
+
+  & .fieldset-legend {
+    font-size: var(--fieldset-lg-legend-font-size);
+  }
+
+  & .fieldset-description {
+    font-size: var(--fieldset-lg-description-font-size);
+  }
+
+  & .fieldset-content {
+    gap: var(--fieldset-lg-gap);
+  }
+}
+
+/* ========================================
+   颜色变体
+   ======================================== */
+
+/* 主色变体 */
+@utility fieldset-info {
+  background-color: var(--fieldset-info-bg);
+  border-color: var(--fieldset-info-border);
+
+  & .fieldset-legend {
+    color: var(--fieldset-info-legend-fg);
+  }
+}
+
+/* 成功变体 */
+@utility fieldset-success {
+  background-color: var(--fieldset-success-bg);
+  border-color: var(--fieldset-success-border);
+
+  & .fieldset-legend {
+    color: var(--fieldset-success-legend-fg);
+  }
+}
+
+/* 警告变体 */
+@utility fieldset-warning {
+  background-color: var(--fieldset-warning-bg);
+  border-color: var(--fieldset-warning-border);
+
+  & .fieldset-legend {
+    color: var(--fieldset-warning-legend-fg);
+  }
+}
+
+/* 危险变体 */
+@utility fieldset-danger {
+  background-color: var(--fieldset-danger-bg);
+  border-color: var(--fieldset-danger-border);
+
+  & .fieldset-legend {
+    color: var(--fieldset-danger-legend-fg);
+  }
+}
+
+/* ========================================
+   显示模式
+   ======================================== */
+
+/* 无边框 */
+@utility fieldset-borderless {
+  border: none;
+}
+
+/* 无背景 */
+@utility fieldset-ghost {
+  background-color: transparent;
+  border: none;
+}
+
+/* 带阴影 */
+@utility fieldset-shadow {
+  box-shadow: 0 1px 3px rgb(0 0 0 / 0.1);
+  border: none;
+}
+
+/* ========================================
+   布局变体
+   ======================================== */
+
+/* 两列布局 */
+@utility fieldset-columns-2 {
+  & > .fieldset-content {
+    @media (min-width: 768px) {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: var(--fieldset-gap);
+
+      & > * {
+        grid-column: span 1;
+      }
+    }
+  }
+}
+
+/* 三列布局 */
+@utility fieldset-columns-3 {
+  & > .fieldset-content {
+    @media (min-width: 1024px) {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--fieldset-gap);
+
+      & > * {
+        grid-column: span 1;
+      }
+    }
+  }
+}
+
+/* 自适应列布局 */
+@utility fieldset-columns-auto {
+  & > .fieldset-content {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: var(--fieldset-gap);
+  }
+}
+
+/* 行布局 */
+@utility fieldset-row {
+  & > .fieldset-content {
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: flex-start;
+  }
+}
+
+/* ========================================
+   字段集组容器
+   ======================================== */
+
+/* 字段集组 */
+@utility fieldset-group {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  width: 100%;
+}
+
+/* 字段集组紧凑 */
+@utility fieldset-group-compact {
+  gap: 0.75rem;
+}
+
+/* ========================================
+   特殊效果
+   ======================================== */
+
+/* 收起/展开效果 */
+@utility fieldset-collapsible {
+  & > .fieldset-legend {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    user-select: none;
+
+    &::before {
+      content: "▶";
+      display: inline-block;
+      transition: transform var(--fieldset-duration) var(--fieldset-ease);
+      font-size: 0.75rem;
+    }
+  }
+
+  &.fieldset-collapsed {
+    & > .fieldset-content {
+      display: none;
+    }
+
+    & > .fieldset-legend::before {
+      transform: rotate(90deg);
+    }
+  }
+}
+
+/* 必填字段指示器 */
+@utility fieldset-required {
+  & > .fieldset-legend::after {
+    content: " *";
+    color: var(--error);
+    font-weight: bold;
+  }
+}
+
+/* 可选字段指示器 */
+@utility fieldset-optional {
+  & > .fieldset-legend::after {
+    content: " (可选)";
+    font-size: 0.85em;
+    color: var(--base-content);
+    font-weight: normal;
+  }
+}
+
+/* ========================================
+   步骤指示器样式
+   ======================================== */
+
+@utility fieldset-step {
+  position: relative;
+  padding-top: 0;
+
+  & > .fieldset-legend {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+
+    &::before {
+      content: attr(data-step);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 1.75rem;
+      height: 1.75rem;
+      background-color: color-mix(in srgb, var(--info) 20%, var(--background));
+      color: var(--info);
+      border-radius: 50%;
+      font-weight: 600;
+      font-size: 0.875rem;
+      flex-shrink: 0;
+    }
+  }
+
+  &.fieldset-step-active > .fieldset-legend::before {
+    background-color: var(--info);
+    color: var(--info-foreground);
+  }
+
+  &.fieldset-step-completed > .fieldset-legend::before {
+    content: "✓";
+    background-color: var(--success);
+    color: white;
+  }
+}
+
+/* ========================================
+   分割线样式
+   ======================================== */
+
+@utility fieldset-divider {
+  height: 1px;
+  background-color: var(--fieldset-border);
+  border: none;
+  margin: calc(var(--fieldset-gap) / 2) 0;
+}
+
+/* ========================================
+   表单项包装器
+   ======================================== */
+
+@utility fieldset-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  width: 100%;
+
+  & > label {
+    font-weight: 500;
+    font-size: 0.95rem;
+    color: var(--base-content);
+  }
+
+  & > input,
+  & > textarea,
+  & > select {
+    width: 100%;
+  }
+}

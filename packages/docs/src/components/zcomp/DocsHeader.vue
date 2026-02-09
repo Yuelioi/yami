@@ -6,18 +6,18 @@
     >
       {{ title }}
     </h1>
-    <p class="text-muted-foreground">{{ description }}</p>
+    <p class="text-base-content/60">{{ description }}</p>
   </header>
 </template>
 
 <script setup lang="ts">
 interface Props {
-  title: string;
-  description?: string;
+  title: string
+  description?: string
 }
 
 withDefaults(defineProps<Props>(), {
-  title: "组件示例",
-  description: "组件的描述信息",
-});
+  title: '组件示例',
+  description: '组件的描述信息',
+})
 </script>

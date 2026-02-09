@@ -1,0 +1,141 @@
+/* ===================== Advance Select ===================== */
+
+@utility advance-select-toggle {
+  @apply bg-base-100 text-base-content relative inline-flex w-full shrink cursor-pointer appearance-none items-center ps-3 pe-10 align-middle text-base select-none;
+  height: var(--size);
+  border-radius: var(--radius-field);
+  text-overflow: ellipsis;
+  border: 1px solid transparent;
+  border-color: color-mix(in oklab, var(--color-base-content) 40%, #0000);
+  --size: calc(var(--size-field, 0.25rem) * 9.5);
+
+  transition:
+    border-color 200ms,
+    outline 200ms,
+    box-shadow 200ms;
+
+  &:hover:not(:focus, :focus-within) {
+    @apply border-base-content/60;
+  }
+
+  &:focus,
+  &:focus-within {
+    @apply shadow-xs;
+    outline: 1px solid var(--color-primary);
+    border-color: var(--color-primary);
+  }
+
+  &:focus-visible {
+    outline: unset;
+  }
+}
+
+/* Select Menu */
+
+@utility advance-select-menu {
+  @apply bg-base-100 rounded-box shadow-md z-10 w-full space-y-0.5 p-2;
+}
+
+/* Select Option */
+
+@utility advance-select-option {
+  @apply text-base-content rounded-field w-full cursor-pointer px-4 py-2.5 text-base font-normal;
+  @apply transition-colors duration-150;
+
+  &:hover,
+  &:focus {
+    @apply bg-neutral/10;
+    @apply outline-none;
+  }
+}
+
+/* Active State */
+
+@utility select-active {
+  @apply bg-primary/10 text-primary;
+}
+
+/* Select Tag */
+
+@utility advance-select-tag {
+  @apply bg-base-100 text-base-content rounded-field relative flex w-full cursor-pointer items-center border ps-1.5 pe-10 text-start text-base font-normal text-nowrap;
+  border-color: color-mix(in oklab, var(--color-base-content) 40%, #0000);
+  --size: calc(var(--size-field, 0.25rem) * 9.5);
+
+  transition:
+    border-color 200ms,
+    outline 200ms,
+    box-shadow 200ms;
+
+  &:hover:not(:focus, :focus-within) {
+    @apply border-base-content/60;
+  }
+
+  &:focus,
+  &:focus-within {
+    @apply shadow-xs;
+    outline: 1px solid var(--color-primary);
+    border-color: var(--color-primary);
+  }
+
+  &:focus-visible {
+    outline: unset;
+  }
+}
+
+/* Size Variants */
+
+@utility advance-select-xs {
+  --size: calc(var(--size-field, 0.25rem) * 6);
+  @apply ps-2.5 pe-8 text-xs;
+
+  & ~ .advance-select-menu {
+    & .advance-select-option {
+      @apply px-2 py-1 text-xs;
+    }
+  }
+}
+
+@utility advance-select-sm {
+  --size: calc(var(--size-field, 0.25rem) * 7.5);
+  @apply ps-2.5 pe-8 text-sm;
+
+  & ~ .advance-select-menu {
+    & .advance-select-option {
+      @apply px-2 py-1.5 text-sm;
+    }
+  }
+}
+
+@utility advance-select-md {
+  --size: calc(var(--size-field, 0.25rem) * 9.5);
+  @apply ps-3 pe-10 text-base;
+
+  & ~ .advance-select-menu {
+    & .advance-select-option {
+      @apply px-2 py-1.5 text-sm;
+    }
+  }
+}
+
+@utility advance-select-lg {
+  --size: calc(var(--size-field, 0.25rem) * 11.5);
+  @apply px-4 pe-10 text-lg;
+
+  & ~ .advance-select-menu {
+    & .advance-select-option {
+      @apply px-4 py-3 text-lg;
+    }
+  }
+}
+
+@utility advance-select-xl {
+  --size: calc(var(--size-field, 0.25rem) * 14);
+  @apply px-4.5 pe-10 text-xl;
+
+  & ~ .advance-select-menu {
+    & .advance-select-option {
+      @apply px-4 py-3 text-xl;
+    }
+  }
+}

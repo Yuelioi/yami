@@ -1,0 +1,15 @@
+@theme {
+  /* 动画时间 */
+  --duration-instant: 0ms;
+  --duration-fast: 100ms;
+  --duration-base: 150ms;
+  --duration-medium: 200ms;
+  --duration-slow: 300ms;
+
+  /* 缓动函数 */
+  --ease-linear: linear;
+  --ease-in: cubic-bezier(0.4, 0, 1, 1);
+  --ease-out: cubic-bezier(0, 0, 0.2, 1);
+  --ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
+  --ease-bounce: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}

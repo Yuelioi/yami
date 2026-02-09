@@ -1,0 +1,63 @@
+/* ===================== Status ===================== */
+
+@utility status {
+  @apply bg-neutral text-neutral inline-block aspect-square size-2.5 rounded-full bg-center bg-no-repeat align-middle;
+  background-image: radial-gradient(
+    circle at 35% 30%,
+    oklch(1 0 0 / 50%),
+    #0000
+  );
+  box-shadow: 0 2px 3px -1px color-mix(in oklab, currentColor 50%, #0000);
+}
+
+/* Color Variants */
+
+@utility status-primary {
+  @apply bg-primary text-primary;
+}
+
+@utility status-secondary {
+  @apply bg-secondary text-secondary;
+}
+
+@utility status-accent {
+  @apply bg-accent text-accent;
+}
+
+@utility status-info {
+  @apply bg-info text-info;
+}
+
+@utility status-success {
+  @apply bg-success text-success;
+}
+
+@utility status-warning {
+  @apply bg-warning text-warning;
+}
+
+@utility status-error {
+  @apply bg-error text-error;
+}
+
+/* Size Variants */
+
+@utility status-xs {
+  @apply size-1.5;
+}
+
+@utility status-sm {
+  @apply size-2;
+}
+
+@utility status-md {
+  @apply size-2.5;
+}
+
+@utility status-lg {
+  @apply size-3;
+}
+
+@utility status-xl {
+  @apply size-3.5;
+}

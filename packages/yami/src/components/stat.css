@@ -1,0 +1,54 @@
+/* ===================== Stats ===================== */
+
+@utility stats {
+  @apply rounded-box bg-base-100 border-base-content/20 inline-grid grid-flow-col divide-x divide-y-0 overflow-x-auto border-solid;
+  box-shadow:
+    0 1px 3px 0 color-mix(in oklab, var(--color-base-300) 20%, #0000),
+    0 1px 2px -1px color-mix(in oklab, var(--color-base-300) 20%, #0000);
+  border-width: 0px;
+}
+
+@utility stats-border {
+  border: 1px solid
+    color-mix(in oklab, var(--color-base-content) 20%, transparent);
+}
+
+/* Stat Item */
+
+@utility stat {
+  @apply inline-grid w-full gap-x-4 gap-y-1 px-6 py-4;
+  grid-template-columns: repeat(1, 1fr);
+  border-color: inherit;
+}
+
+/* Stat Components */
+
+@utility stat-figure {
+  @apply col-start-2 row-span-3 row-start-1 place-self-center justify-self-end;
+}
+
+@utility stat-title {
+  @apply text-base-content/80 col-start-1 whitespace-nowrap;
+}
+
+@utility stat-value {
+  @apply text-base-content col-start-1 text-3xl font-semibold whitespace-nowrap;
+}
+
+@utility stat-desc {
+  @apply text-base-content/50 col-start-1 text-xs whitespace-nowrap;
+}
+
+@utility stat-actions {
+  @apply col-start-1 mt-3 whitespace-nowrap;
+}
+
+/* Direction Variants */
+
+@utility stats-horizontal {
+  @apply grid-flow-col divide-x divide-y-0 overflow-x-auto;
+}
+
+@utility stats-vertical {
+  @apply grid-flow-row divide-x-0 divide-y overflow-y-auto;
+}

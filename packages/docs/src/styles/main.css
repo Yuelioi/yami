@@ -7,3 +7,7 @@
 @plugin "@iconify/tailwind4";
 
 @import '@yuelioi/yami/src/index.css';
+
+@import '@yuelioi/yami/themes/notion.light.css';
+@import '@yuelioi/yami/themes/notion.dark.css';
+/* @import '@yuelioi/yami/themes/x.dark.css'; */

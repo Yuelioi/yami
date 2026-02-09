@@ -1,0 +1,55 @@
+/* ===================== File Input ===================== */
+
+@utility input-file {
+  & {
+    @apply overflow-hidden ps-0;
+  }
+
+  &::file-selector-button {
+    @apply bg-primary text-primary-content me-4 inline-flex h-full shrink-0 cursor-pointer flex-wrap items-center justify-center border-0 px-4 text-center text-base leading-none font-semibold uppercase no-underline select-none;
+    --input-color: var(--color-primary);
+  }
+}
+
+/* Size Variants */
+
+@utility input-file-xs {
+  &::file-selector-button {
+    @apply text-xs;
+  }
+}
+
+@utility input-file-sm {
+  &::file-selector-button {
+    @apply text-sm;
+  }
+}
+
+@utility input-file-md {
+  &::file-selector-button {
+    @apply text-base;
+  }
+}
+
+@utility input-file-lg {
+  &::file-selector-button {
+    @apply text-lg;
+  }
+}
+
+@utility input-file-xl {
+  &::file-selector-button {
+    @apply text-xl;
+  }
+}
+
+/* Floating Label Variant */
+
+@utility input-file-floating {
+  &::file-selector-button {
+    @apply bg-base-100 text-base-content;
+    border-inline-end: var(--border) solid
+      color-mix(in oklab, var(--color-base-content) 40%, #0000);
+    outline: none;
+  }
+}

@@ -1,0 +1,63 @@
+@theme inline {
+  /* ========================================
+     基础颜色 - Base
+     ======================================== */
+  --color-base-100: var(--base-100);
+  --color-base-200: var(--base-200);
+  --color-base-300: var(--base-300);
+  --color-base-content: var(--base-content);
+
+  /* ========================================
+     品牌色 - Primary, Secondary, Accent
+     ======================================== */
+  --color-primary: var(--primary);
+  --color-primary-focus: var(--primary-focus);
+  --color-primary-content: var(--primary-content);
+
+  --color-secondary: var(--secondary);
+  --color-secondary-focus: var(--secondary-focus);
+  --color-secondary-content: var(--secondary-content);
+
+  --color-accent: var(--accent);
+  --color-accent-focus: var(--accent-focus);
+  --color-accent-content: var(--accent-content);
+
+  --color-neutral: var(--neutral);
+  --color-neutral-focus: var(--neutral-focus);
+  --color-neutral-content: var(--neutral-content);
+
+  /* ========================================
+     状态色
+     ======================================== */
+  --color-info: var(--info);
+  --color-info-focus: var(--info-focus);
+  --color-info-content: var(--info-content);
+
+  --color-success: var(--success);
+  --color-success-focus: var(--success-focus);
+  --color-success-content: var(--success-content);
+
+  --color-warning: var(--warning);
+  --color-warning-focus: var(--warning-focus);
+  --color-warning-content: var(--warning-content);
+
+  --color-error: var(--error);
+  --color-error-focus: var(--error-focus);
+  --color-error-content: var(--error-content);
+
+  /* ========================================
+     圆角 & 尺寸 & 边框 & 其他
+     ======================================== */
+  --radius-selector: var(--radius-selector);
+  --radius-field: var(--radius-field);
+  --radius-box: var(--radius-box);
+
+  --size-selector: var(--size-selector);
+  --size-field: var(--size-field);
+
+  --border: var(--border);
+  --depth: var(--depth);
+  --noise: var(--noise);
+
+  --color-border: var(--base-300);
+}

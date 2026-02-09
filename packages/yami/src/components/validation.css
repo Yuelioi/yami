@@ -1,0 +1,550 @@
+/* ===================== Form Validation ===================== */
+
+/* 验证消息显示 */
+@utility validate {
+  /* 成功消息 */
+  *:valid ~ .success-message,
+  *:has(:valid) ~ .success-message {
+    @apply block;
+  }
+
+  /* 错误消息 */
+  *:invalid ~ .error-message,
+  *:has(:invalid) ~ .error-message {
+    @apply block;
+  }
+
+  /* Input, Select, Textarea 验证状态 */
+  .input:valid,
+  .input:has(:valid),
+  .select:valid,
+  .select:has(:valid),
+  .textarea:valid,
+  .textarea:has(:valid) {
+    @apply hover:border-success border-success;
+
+    &:has(:hover):not(:focus, :focus-within) {
+      @apply border-success;
+    }
+
+    &:focus,
+    &:focus-within {
+      --input-color: var(--color-success);
+    }
+  }
+
+  .input:invalid,
+  .input:has(:invalid),
+  .select:invalid,
+  .select:has(:invalid),
+  .textarea:invalid,
+  .textarea:has(:invalid) {
+    @apply hover:border-error border-error;
+
+    &:has(:hover):not(:focus, :focus-within) {
+      @apply border-error;
+    }
+
+    &:focus,
+    &:focus-within {
+      --input-color: var(--color-error);
+    }
+  }
+
+  /* Switch, Checkbox, Radio 验证状态 */
+  .switch:valid,
+  .switch:has(:valid),
+  .checkbox:valid,
+  .checkbox:has(:valid),
+  .radio:valid,
+  .radio:has(:valid),
+  .radio-inset:valid,
+  .radio-inset:has(:valid) {
+    --input-color: var(--color-success);
+    border-color: var(--input-color);
+
+    &:checked,
+    &[aria-checked="true"],
+    &:has(> input:checked) {
+      --input-color: var(--color-success);
+    }
+  }
+
+  .switch:invalid,
+  .switch:has(:invalid),
+  .checkbox:invalid,
+  .checkbox:has(:invalid),
+  .radio:invalid,
+  .radio:has(:invalid),
+  .radio-inset:invalid,
+  .radio-inset:has(:invalid) {
+    --input-color: var(--color-error);
+    border-color: var(--input-color);
+
+    &:checked,
+    &[aria-checked="true"],
+    &:has(> input:checked) {
+      --input-color: var(--color-error);
+    }
+  }
+
+  /* Checkbox 勾选颜色 */
+  .checkbox:valid,
+  .checkbox:has(:valid) {
+    color: var(--color-success-content);
+  }
+
+  .checkbox:invalid,
+  .checkbox:has(:invalid) {
+    color: var(--color-error-content);
+  }
+
+  /* 自定义选项 */
+  .custom-option:has(:valid),
+  .custom-soft-option:has(:valid) {
+    --input-color: var(--color-success);
+  }
+
+  .custom-option:has(:invalid),
+  .custom-soft-option:has(:invalid) {
+    --input-color: var(--color-error);
+  }
+
+  /* 文件输入按钮 */
+  .input:valid::file-selector-button {
+    @apply bg-success text-success-content;
+    --input-color: var(--color-success);
+  }
+
+  .input:invalid::file-selector-button {
+    @apply bg-error text-error-content;
+    --input-color: var(--color-error);
+  }
+
+  .input-floating > .input:valid::file-selector-button {
+    @apply bg-base-100 text-base-content;
+    border-inline-end: var(--border) solid var(--color-success);
+  }
+
+  .input-floating > .input:invalid::file-selector-button {
+    @apply bg-base-100 text-base-content;
+    border-inline-end: var(--border) solid var(--color-error);
+  }
+
+  /* 标签成功状态 */
+  .label-text:has(~ :valid),
+  .label-text:has(~ * :valid),
+  :is(:valid) ~ .helper-text,
+  *:has(:valid) ~ .helper-text,
+  :is(:valid) ~ .label-text,
+  :is(:valid) ~ .label-text *,
+  :is(:valid) ~ * > .label-text {
+    color: var(--color-success);
+  }
+
+  /* 标签错误状态 */
+  .label-text:has(~ :invalid),
+  .label-text:has(~ * :invalid),
+  :is(:invalid) ~ .helper-text,
+  *:has(:invalid) ~ .helper-text,
+  :is(:invalid) ~ .label-text,
+  :is(:invalid) ~ .label-text *,
+  :is(:invalid) ~ * > .label-text {
+    color: var(--color-error);
+  }
+
+  /* 高级选择器 */
+  select:has(~ * > .selected) + .advance-select-toggle {
+    --input-color: var(--color-success);
+
+    &:focus,
+    &:focus-within {
+      --input-color: var(--color-success);
+    }
+  }
+
+  select:not(:has(~ * > .selected)) + .advance-select-toggle {
+    --input-color: var(--color-error);
+
+    &:focus,
+    &:focus-within {
+      --input-color: var(--color-error);
+    }
+  }
+
+  /* 浮动标签 - Input */
+  .input-floating:has(:valid) {
+    @apply hover:border-success;
+
+    .input-floating-label {
+      color: var(--color-success);
+    }
+
+    &:focus-within,
+    &:not(:has(input:placeholder-shown)),
+    &:has(.input:focus) {
+      .input-floating-label {
+        color: var(--color-success);
+      }
+    }
+  }
+
+  .input-floating:has(:invalid) {
+    @apply hover:border-error;
+
+    .input-floating-label {
+      color: var(--color-error);
+    }
+
+    &:focus-within,
+    &:not(:has(input:placeholder-shown)),
+    &:has(.input:focus) {
+      .input-floating-label {
+        color: var(--color-error);
+      }
+    }
+  }
+
+  /* 浮动标签 - Textarea */
+  .textarea-floating:has(:valid) {
+    .textarea-floating-label {
+      color: var(--color-success);
+    }
+
+    &:focus-within,
+    &:not(:has(textarea:placeholder-shown)),
+    &:has(.textarea:focus) {
+      .textarea-floating-label {
+        color: var(--color-success);
+      }
+    }
+  }
+
+  .textarea-floating:has(:invalid) {
+    .textarea-floating-label {
+      color: var(--color-error);
+    }
+
+    &:focus-within,
+    &:not(:has(textarea:placeholder-shown)),
+    &:has(.textarea:focus) {
+      .textarea-floating-label {
+        color: var(--color-error);
+      }
+    }
+  }
+
+  /* 浮动标签 - Select */
+  .select-floating:has(:valid) {
+    .select-floating-label {
+      color: var(--color-success);
+    }
+
+    &:focus-within,
+    &:not(:has(select:placeholder-shown)),
+    &:has(.select:focus) {
+      .select-floating-label {
+        color: var(--color-success);
+      }
+    }
+  }
+
+  .select-floating:has(:invalid) {
+    .select-floating-label {
+      color: var(--color-error);
+    }
+
+    &:focus-within,
+    &:not(:has(select:placeholder-shown)),
+    &:has(.select:focus) {
+      .select-floating-label {
+        color: var(--color-error);
+      }
+    }
+  }
+}
+
+/* 手动验证状态类（单独定义以支持自动补全） */
+
+/* 成功状态 */
+@utility is-valid {
+  /* 适用于 input, select, textarea */
+  &.input,
+  &.select,
+  &.textarea {
+    @apply hover:border-success border-success;
+
+    &:has(:hover):not(:focus, :focus-within) {
+      @apply border-success;
+    }
+
+    &:focus,
+    &:focus-within {
+      --input-color: var(--color-success);
+    }
+  }
+
+  /* 适用于 switch, checkbox, radio */
+  &.switch,
+  &.checkbox,
+  &.radio,
+  &.radio-inset {
+    --input-color: var(--color-success);
+    border-color: var(--input-color);
+
+    &:checked,
+    &[aria-checked="true"] {
+      --input-color: var(--color-success);
+    }
+  }
+
+  /* Checkbox 特殊颜色 */
+  &.checkbox {
+    color: var(--color-success-content);
+  }
+}
+
+/* 错误状态 */
+@utility is-invalid {
+  /* 适用于 input, select, textarea */
+  &.input,
+  &.select,
+  &.textarea {
+    @apply hover:border-error border-error;
+
+    &:has(:hover):not(:focus, :focus-within) {
+      @apply border-error;
+    }
+
+    &:focus,
+    &:focus-within {
+      --input-color: var(--color-error);
+    }
+  }
+
+  /* 适用于 switch, checkbox, radio */
+  &.switch,
+  &.checkbox,
+  &.radio,
+  &.radio-inset {
+    --input-color: var(--color-error);
+    border-color: var(--input-color);
+
+    &:checked,
+    &[aria-checked="true"] {
+      --input-color: var(--color-error);
+    }
+  }
+
+  /* Checkbox 特殊颜色 */
+  &.checkbox {
+    color: var(--color-error-content);
+  }
+}
+
+/* 成功消息 */
+@utility success-message {
+  @apply hidden text-success text-sm mt-1;
+}
+
+/* 错误消息 */
+@utility error-message {
+  @apply hidden text-error text-sm mt-1;
+}
+
+/* 辅助文本 */
+@utility helper-text {
+  @apply text-base-content/70 text-sm mt-1;
+}
+
+/* 针对包含验证元素的容器 */
+.input:has(.is-valid),
+.select:has(.is-valid),
+.textarea:has(.is-valid) {
+  @apply hover:border-success border-success;
+
+  &:focus,
+  &:focus-within {
+    --input-color: var(--color-success);
+  }
+}
+
+.input:has(.is-invalid),
+.select:has(.is-invalid),
+.textarea:has(.is-invalid) {
+  @apply hover:border-error border-error;
+
+  &:focus,
+  &:focus-within {
+    --input-color: var(--color-error);
+  }
+}
+
+/* 文件输入手动验证状态 */
+.input.is-valid::file-selector-button {
+  @apply bg-success text-success-content;
+  --input-color: var(--color-success);
+}
+
+.input.is-invalid::file-selector-button {
+  @apply bg-error text-error-content;
+  --input-color: var(--color-error);
+}
+
+.input-floating > .input.is-valid::file-selector-button {
+  @apply bg-base-100 text-base-content;
+  border-inline-end: var(--border) solid var(--color-success);
+}
+
+.input-floating > .input.is-invalid::file-selector-button {
+  @apply bg-base-100 text-base-content;
+  border-inline-end: var(--border) solid var(--color-error);
+}
+
+/* 标签手动验证状态 */
+.label-text:has(~ .is-valid),
+.label-text:has(~ * .is-valid),
+:is(.is-valid) ~ .helper-text,
+*:has(.is-valid) ~ .helper-text,
+:is(.is-valid) ~ .label-text,
+:is(.is-valid) ~ .label-text *,
+:is(.is-valid) ~ * > .label-text {
+  color: var(--color-success);
+}
+
+.label-text:has(~ .is-invalid),
+.label-text:has(~ * .is-invalid),
+:is(.is-invalid) ~ .helper-text,
+*:has(.is-invalid) ~ .helper-text,
+:is(.is-invalid) ~ .label-text,
+:is(.is-invalid) ~ .label-text *,
+:is(.is-invalid) ~ * > .label-text {
+  color: var(--color-error);
+}
+
+/* 自定义选项手动验证状态 */
+.custom-option:has(.is-valid),
+.custom-soft-option:has(.is-valid) {
+  --input-color: var(--color-success);
+}
+
+.custom-option:has(.is-invalid),
+.custom-soft-option:has(.is-invalid) {
+  --input-color: var(--color-error);
+}
+
+/* 高级选择器手动验证状态 */
+select.is-valid + .advance-select-toggle {
+  --input-color: var(--color-success);
+
+  &:focus,
+  &:focus-within {
+    --input-color: var(--color-success);
+  }
+}
+
+select.is-invalid + .advance-select-toggle {
+  --input-color: var(--color-error);
+
+  &:focus,
+  &:focus-within {
+    --input-color: var(--color-error);
+  }
+}
+
+.advance-select-tag:has(> .is-valid) {
+  --input-color: var(--color-success);
+}
+
+.advance-select-tag:has(> .is-invalid) {
+  --input-color: var(--color-error);
+}
+
+/* 浮动标签手动验证状态 */
+.input-floating:has(.is-valid) {
+  @apply hover:border-success;
+
+  .input-floating-label {
+    color: var(--color-success);
+  }
+
+  &:focus-within,
+  &:not(:has(input:placeholder-shown)),
+  &:has(.input:focus) {
+    .input-floating-label {
+      color: var(--color-success);
+    }
+  }
+}
+
+.input-floating:has(.is-invalid) {
+  @apply hover:border-error;
+
+  .input-floating-label {
+    color: var(--color-error);
+  }
+
+  &:focus-within,
+  &:not(:has(input:placeholder-shown)),
+  &:has(.input:focus) {
+    .input-floating-label {
+      color: var(--color-error);
+    }
+  }
+}
+
+.textarea-floating:has(.is-valid) {
+  .textarea-floating-label {
+    color: var(--color-success);
+  }
+
+  &:focus-within,
+  &:not(:has(textarea:placeholder-shown)),
+  &:has(.textarea:focus) {
+    .textarea-floating-label {
+      color: var(--color-success);
+    }
+  }
+}
+
+.textarea-floating:has(.is-invalid) {
+  .textarea-floating-label {
+    color: var(--color-error);
+  }
+
+  &:focus-within,
+  &:not(:has(textarea:placeholder-shown)),
+  &:has(.textarea:focus) {
+    .textarea-floating-label {
+      color: var(--color-error);
+    }
+  }
+}
+
+.select-floating:has(.is-valid) {
+  .select-floating-label {
+    color: var(--color-success);
+  }
+
+  &:focus-within,
+  &:not(:has(select:placeholder-shown)),
+  &:has(.select:focus) {
+    .select-floating-label {
+      color: var(--color-success);
+    }
+  }
+}
+
+.select-floating:has(.is-invalid) {
+  .select-floating-label {
+    color: var(--color-error);
+  }
+
+  &:focus-within,
+  &:not(:has(select:placeholder-shown)),
+  &:has(.select:focus) {
+    .select-floating-label {
+      color: var(--color-error);
+    }
+  }
+}

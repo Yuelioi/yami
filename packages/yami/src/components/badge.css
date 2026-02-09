@@ -1,0 +1,99 @@
+/* ===================== Badge ===================== */
+
+@utility badge {
+  @apply rounded-selector inline-flex items-center justify-center gap-1.5 text-center align-middle text-sm;
+  border: var(--border) solid var(--badge-border);
+
+  width: fit-content;
+  color: var(--badge-fg);
+  background-size: auto, calc(var(--noise) * 100%);
+  background-image: none, var(--fx-noise);
+  background-color: var(--badge-bg);
+  --badge-border: var(--badge-color, var(--color-neutral));
+  --badge-bg: var(--badge-color, var(--color-neutral));
+  --badge-fg: var(--color-neutral-content);
+  --size: calc(var(--size-selector, 0.25rem) * 6);
+  height: var(--size);
+  @apply px-2;
+}
+
+@utility badge-outline {
+  @apply border;
+
+  &.badge {
+    --badge-fg: var(--badge-color, var(--color-neutral));
+  }
+  --badge-bg: transparent;
+  --badge-border: var(--badge-color, var(--color-neutral));
+  background-image: none;
+}
+
+@utility badge-soft {
+  --badge-border: none;
+  &.badge {
+    --badge-fg: var(--badge-color, var(--color-neutral));
+  }
+  --badge-bg: color-mix(
+    in oklab,
+    var(--badge-color, var(--color-neutral)) 10%,
+    var(--color-base-100)
+  );
+  background-image: none;
+}
+
+/* Color Variants */
+
+@utility badge-primary {
+  --badge-color: var(--color-primary);
+  --badge-fg: var(--color-primary-content);
+}
+
+@utility badge-secondary {
+  --badge-color: var(--color-secondary);
+  --badge-fg: var(--color-secondary-content);
+}
+
+@utility badge-accent {
+  --badge-color: var(--color-accent);
+  --badge-fg: var(--color-accent-content);
+}
+
+@utility badge-info {
+  --badge-color: var(--color-info);
+  --badge-fg: var(--color-info-content);
+}
+
+@utility badge-success {
+  --badge-color: var(--color-success);
+  --badge-fg: var(--color-success-content);
+}
+
+@utility badge-warning {
+  --badge-color: var(--color-warning);
+  --badge-fg: var(--color-warning-content);
+}
+
+@utility badge-error {
+  --badge-color: var(--color-error);
+  --badge-fg: var(--color-error-content);
+}
+
+/* Size Variants */
+
+@utility badge-sm {
+  @apply text-xs;
+  --size: calc(var(--size-selector, 0.25rem) * 5);
+  padding-inline: calc(0.25rem * 2);
+}
+
+@utility badge-md {
+  @apply text-sm;
+  --size: calc(var(--size-selector, 0.25rem) * 6);
+  padding-inline: calc(0.25rem * 3);
+}
+
+@utility badge-lg {
+  @apply text-base;
+  --size: calc(var(--size-selector, 0.25rem) * 7);
+  padding-inline: calc(0.25rem * 3.5);
+}
