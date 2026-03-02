@@ -1,286 +1,174 @@
 /* ===================== Tooltip ===================== */
 
 @utility tooltip {
-  @apply relative inline-block;
+  @apply relative inline-flex;
 
-  & .tooltip-content {
-    @apply absolute z-50 px-3 py-2 text-sm font-medium;
-    @apply bg-base-100 text-base-content;
-    @apply border border-base-300;
-    @apply opacity-0 invisible pointer-events-none;
-    @apply transition-all duration-200 ease-in-out;
-    white-space: nowrap;
-    @apply rounded-md;
-  }
-
-  &:hover .tooltip-content,
-  &:focus .tooltip-content {
-    @apply opacity-100 visible;
-  }
-}
-
-/* Data-tip Attribute Support */
-
-[data-tip] {
-  @apply relative inline-block;
-
-  &::after {
+  /* 气泡体 */
+  &::before {
     content: attr(data-tip);
-    @apply absolute z-50 px-3 py-2 text-sm font-medium;
-    @apply bg-base-100 text-base-content;
-    @apply border border-base-300;
-    @apply opacity-0 invisible pointer-events-none;
-    @apply transition-all duration-200 ease-in-out;
-    white-space: nowrap;
-    @apply rounded-md;
+    position: absolute;
+    z-index: 100;
+    max-width: 16rem;
     width: max-content;
+    padding: 0.35em 0.7em;
+    background-color: var(--tooltip-bg, oklch(20% 0.01 260));
+    color: var(--tooltip-fg, oklch(95% 0.005 260));
+    border-radius: var(--radius-field);
+    font-size: 0.78rem;
+    line-height: 1.4;
+    white-space: normal;
+    word-break: break-word;
+    pointer-events: none;
+
+    /* 默认 top：气泡体在上方，间距 = 箭头高度(6px) + 间隙(4px) */
+    bottom: calc(100% + 10px);
+    left: 50%;
+    translate: -50% 0;
+
+    opacity: 0;
+    scale: 0.94;
+    transform-origin: bottom center;
+    transition:
+      opacity 150ms ease,
+      scale 150ms ease;
   }
 
-  &::before {
+  /* 箭头：直接定位到触发元素边缘，紧贴气泡体 */
+  &::after {
     content: "";
-    @apply absolute z-50;
-    @apply opacity-0 invisible pointer-events-none;
-    @apply transition-all duration-200 ease-in-out;
+    position: absolute;
+    z-index: 100;
+    pointer-events: none;
+
+    /* 默认 top：箭头在触发元素正上方，底边与气泡体底边刚好接触 */
+    bottom: calc(100% + 4px); /* 4px = 间隙，箭头底部距触发元素顶部 */
+    left: 50%;
+    translate: -50% 0;
+
+    border: 6px solid transparent;
+    border-top: 6px solid var(--tooltip-bg, oklch(20% 0.01 260));
+    border-bottom: none;
+
+    opacity: 0;
+    transition: opacity 150ms ease;
   }
 
-  &:hover::after,
-  &:focus::after,
+  /* 触发 */
   &:hover::before,
-  &:focus::before {
-    @apply opacity-100 visible;
-  }
-}
-
-/* Position - Top */
-
-@utility tooltip-top {
-  & .tooltip-content {
-    @apply bottom-full left-1/2 -translate-x-1/2 mb-1;
-
-    &::after {
-      content: "";
-      @apply absolute top-full left-1/2 -translate-x-1/2;
-      @apply border-4 border-transparent;
-      border-top-color: rgb(209, 213, 219);
-      margin-top: -1px;
-    }
-
-    &::before {
-      content: "";
-      @apply absolute top-full left-1/2 -translate-x-1/2;
-      @apply border-[5px] border-transparent;
-      border-top-color: white;
-    }
-  }
-
-  &:hover .tooltip-content,
-  &:focus .tooltip-content {
-    @apply -translate-y-1 -translate-x-1/2;
-  }
-}
-
-[data-tip].tooltip-top {
-  &::after {
-    @apply bottom-full left-1/2 -translate-x-1/2 mb-1;
-  }
-
-  &::before {
-    @apply bottom-full left-1/2 -translate-x-1/2;
-    @apply border-4 border-transparent;
-    border-top-color: rgb(209, 213, 219);
-    margin-top: -1px;
-  }
-
   &:hover::after,
-  &:focus::after {
-    @apply -translate-y-1 -translate-x-1/2;
-  }
-
-  &:hover::before,
-  &:focus::before {
-    @apply border-[5px] border-transparent;
-    border-top-color: white;
-    margin-top: -5px;
+  &:focus-within::before,
+  &:focus-within::after,
+  &[data-open]::before,
+  &[data-open]::after {
+    opacity: 1;
+    scale: 1;
   }
 }
 
-/* Position - Bottom */
-
+/* ── Bottom ── */
 @utility tooltip-bottom {
-  & .tooltip-content {
-    @apply top-full left-1/2 -translate-x-1/2 mt-1;
-
-    &::after {
-      content: "";
-      @apply absolute bottom-full left-1/2 -translate-x-1/2;
-      @apply border-4 border-transparent;
-      border-bottom-color: rgb(209, 213, 219);
-      margin-bottom: -1px;
-    }
-
-    &::before {
-      content: "";
-      @apply absolute bottom-full left-1/2 -translate-x-1/2;
-      @apply border-[5px] border-transparent;
-      border-bottom-color: white;
-    }
-  }
-
-  &:hover .tooltip-content,
-  &:focus .tooltip-content {
-    @apply translate-y-1 -translate-x-1/2;
-  }
-}
-
-[data-tip].tooltip-bottom {
-  &::after {
-    @apply top-full left-1/2 -translate-x-1/2 mt-1;
-  }
-
   &::before {
-    @apply top-full left-1/2 -translate-x-1/2;
-    @apply border-4 border-transparent;
-    border-bottom-color: rgb(209, 213, 219);
-    margin-bottom: -1px;
+    top: calc(100% + 10px);
+    bottom: auto;
+    transform-origin: top center;
   }
 
-  &:hover::after,
-  &:focus::after {
-    @apply translate-y-1 -translate-x-1/2;
-  }
-
-  &:hover::before,
-  &:focus::before {
-    @apply border-[5px] border-transparent;
-    border-bottom-color: white;
-    margin-bottom: -5px;
+  &::after {
+    top: calc(100% + 4px);
+    bottom: auto;
+    translate: -50% 0;
+    border-top: none;
+    border-bottom: 6px solid var(--tooltip-bg, oklch(20% 0.01 260));
   }
 }
 
-/* Position - Left */
-
+/* ── Left ── */
 @utility tooltip-left {
-  & .tooltip-content {
-    @apply right-full top-1/2 -translate-y-1/2 mr-1;
-
-    &::after {
-      content: "";
-      @apply absolute left-full top-1/2 -translate-y-1/2;
-      @apply border-4 border-transparent;
-      border-left-color: rgb(209, 213, 219);
-      margin-left: -1px;
-    }
-
-    &::before {
-      content: "";
-      @apply absolute left-full top-1/2 -translate-y-1/2;
-      @apply border-[5px] border-transparent;
-      border-left-color: white;
-    }
-  }
-
-  &:hover .tooltip-content,
-  &:focus .tooltip-content {
-    @apply -translate-x-1 -translate-y-1/2;
-  }
-}
-
-[data-tip].tooltip-left {
-  &::after {
-    @apply right-full top-1/2 -translate-y-1/2 mr-1;
-  }
-
   &::before {
-    @apply right-full top-1/2 -translate-y-1/2;
-    @apply border-4 border-transparent;
-    border-left-color: rgb(209, 213, 219);
-    margin-left: -1px;
+    right: calc(100% + 10px);
+    left: auto;
+    bottom: auto;
+    top: 50%;
+    translate: 0 -50%;
+    transform-origin: right center;
   }
 
-  &:hover::after,
-  &:focus::after {
-    @apply -translate-x-1 -translate-y-1/2;
-  }
-
-  &:hover::before,
-  &:focus::before {
-    @apply border-[5px] border-transparent;
-    border-left-color: white;
-    margin-left: -5px;
+  &::after {
+    right: calc(100% + 4px);
+    left: auto;
+    bottom: auto;
+    top: 50%;
+    translate: 0 -50%;
+    border: 6px solid transparent;
+    border-left: 6px solid var(--tooltip-bg, oklch(20% 0.01 260));
+    border-right: none;
   }
 }
 
-/* Position - Right */
-
+/* ── Right ── */
 @utility tooltip-right {
-  & .tooltip-content {
-    @apply left-full top-1/2 -translate-y-1/2 ml-1;
-
-    &::after {
-      content: "";
-      @apply absolute right-full top-1/2 -translate-y-1/2;
-      @apply border-4 border-transparent;
-      border-right-color: rgb(209, 213, 219);
-      margin-right: -1px;
-    }
-
-    &::before {
-      content: "";
-      @apply absolute right-full top-1/2 -translate-y-1/2;
-      @apply border-[5px] border-transparent;
-      border-right-color: white;
-    }
-  }
-
-  &:hover .tooltip-content,
-  &:focus .tooltip-content {
-    @apply translate-x-1 -translate-y-1/2;
-  }
-}
-
-[data-tip].tooltip-right {
-  &::after {
-    @apply left-full top-1/2 -translate-y-1/2 ml-1;
-  }
-
   &::before {
-    @apply left-full top-1/2 -translate-y-1/2;
-    @apply border-4 border-transparent;
-    border-right-color: rgb(209, 213, 219);
-    margin-right: -1px;
+    left: calc(100% + 10px);
+    right: auto;
+    bottom: auto;
+    top: 50%;
+    translate: 0 -50%;
+    transform-origin: left center;
   }
 
-  &:hover::after,
-  &:focus::after {
-    @apply translate-x-1 -translate-y-1/2;
-  }
-
-  &:hover::before,
-  &:focus::before {
-    @apply border-[5px] border-transparent;
-    border-right-color: white;
-    margin-right: -5px;
-  }
-}
-
-/* Size Variants */
-
-@utility tooltip-sm {
-  & .tooltip-content {
-    @apply px-2 py-1 text-xs;
+  &::after {
+    left: calc(100% + 4px);
+    right: auto;
+    bottom: auto;
+    top: 50%;
+    translate: 0 -50%;
+    border: 6px solid transparent;
+    border-right: 6px solid var(--tooltip-bg, oklch(20% 0.01 260));
+    border-left: none;
   }
 }
 
-@utility tooltip-lg {
-  & .tooltip-content {
-    @apply px-4 py-3 text-base;
+/* ── 颜色变体 ── */
+@utility tooltip-primary {
+  --tooltip-bg: var(--color-primary);
+  --tooltip-fg: var(--color-primary-content);
+}
+@utility tooltip-secondary {
+  --tooltip-bg: var(--color-secondary);
+  --tooltip-fg: var(--color-secondary-content);
+}
+@utility tooltip-accent {
+  --tooltip-bg: var(--color-accent);
+  --tooltip-fg: var(--color-accent-content);
+}
+@utility tooltip-info {
+  --tooltip-bg: var(--color-info);
+  --tooltip-fg: var(--color-info-content);
+}
+@utility tooltip-success {
+  --tooltip-bg: var(--color-success);
+  --tooltip-fg: var(--color-success-content);
+}
+@utility tooltip-warning {
+  --tooltip-bg: var(--color-warning);
+  --tooltip-fg: var(--color-warning-content);
+}
+@utility tooltip-error {
+  --tooltip-bg: var(--color-error);
+  --tooltip-fg: var(--color-error-content);
+}
+
+/* ── 样式变体 ── */
+@utility tooltip-open {
+  &::before,
+  &::after {
+    opacity: 1 !important;
+    scale: 1 !important;
   }
 }
 
-[data-tip].tooltip-sm::after {
-  @apply px-2 py-1 text-xs;
-}
-
-[data-tip].tooltip-lg::after {
-  @apply px-4 py-3 text-base;
+@utility tooltip-no-arrow {
+  &::after {
+    display: none;
+  }
 }

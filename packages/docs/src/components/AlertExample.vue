@@ -1,224 +1,297 @@
 ﻿<script setup lang="ts">
 import DocsHeader from '@/components/zcomp/DocsHeader.vue'
-import DocsContainer from '@/components/zcomp/DocsContainer.vue'
 import DocsSection from '@/components/zcomp/DocsSection.vue'
 import ApiReference from '@/components/zcomp/ApiReference.vue'
+import DocsContainer from '@/components/zcomp/DocsContainer.vue'
+import { ref } from 'vue'
 
 const apiClasses = [
   {
     category: '基础',
     className: 'alert',
-    description: '警告容器，带圆角、背景、边框与图标布局。',
+    description: '警告提示容器',
     isCategoryStart: true,
   },
   {
     category: '基础',
     className: 'alert-title',
-    description: '警告标题文本。',
+    description: '标题',
     isCategoryStart: false,
   },
   {
     category: '基础',
     className: 'alert-description',
-    description: '警告描述内容。',
+    description: '描述文字',
     isCategoryStart: false,
   },
   {
     category: '基础',
     className: 'alert-close',
-    description: '关闭按钮，内置关闭图标。',
+    description: '关闭按钮',
     isCategoryStart: false,
   },
-
   {
-    category: '状态',
+    category: '颜色',
     className: 'alert-info',
-    description: '信息提示（蓝色，使用 Primary 颜色）。',
+    description: '信息',
     isCategoryStart: true,
   },
   {
-    category: '状态',
+    category: '颜色',
     className: 'alert-success',
-    description: '成功提示（绿色）。',
+    description: '成功',
     isCategoryStart: false,
   },
   {
-    category: '状态',
+    category: '颜色',
     className: 'alert-warning',
-    description: '警告提示（琥珀色）。',
+    description: '警告',
     isCategoryStart: false,
   },
   {
-    category: '状态',
+    category: '颜色',
     className: 'alert-error',
-    description: '错误提示（红色，Destructive）。',
+    description: '错误',
     isCategoryStart: false,
   },
-
   {
-    category: '填充样式',
-    className: 'alert-filled',
-    description: '去除边框的填充样式基类。',
+    category: '样式',
+    className: 'alert-soft',
+    description: '更淡的背景（默认）',
     isCategoryStart: true,
   },
   {
-    category: '填充样式',
-    className: 'alert-info alert-filled',
-    description: '信息提示的填充样式。',
+    category: '样式',
+    className: 'alert-outline',
+    description: '无背景描边',
     isCategoryStart: false,
   },
   {
-    category: '填充样式',
-    className: 'alert-success alert-filled',
-    description: '成功提示的填充样式。',
+    category: '样式',
+    className: 'alert-solid',
+    description: '实色背景',
     isCategoryStart: false,
   },
   {
-    category: '填充样式',
-    className: 'alert-warning alert-filled',
-    description: '警告提示的填充样式。',
+    category: '样式',
+    className: 'alert-borderless',
+    description: '无边框',
     isCategoryStart: false,
   },
   {
-    category: '填充样式',
-    className: 'alert-error alert-filled',
-    description: '错误提示的填充样式。',
+    category: '样式',
+    className: 'alert-no-icon',
+    description: '隐藏图标',
     isCategoryStart: false,
   },
-
   {
     category: '尺寸',
     className: 'alert-sm',
-    description: '小号警告框，紧凑间距与字体。',
+    description: '小',
     isCategoryStart: true,
   },
   {
     category: '尺寸',
     className: 'alert-lg',
-    description: '大号警告框，增加间距与字体。',
-    isCategoryStart: false,
-  },
-
-  {
-    category: '修饰类',
-    className: 'alert-no-icon',
-    description: '隐藏默认图标。',
-    isCategoryStart: true,
-  },
-  {
-    category: '修饰类',
-    className: 'alert-borderless',
-    description: '移除边框样式。',
+    description: '大',
     isCategoryStart: false,
   },
 ]
+
+const alerts = ref([
+  { id: 1, type: 'info', msg: '账户邮箱变更需要重新验证。' },
+  { id: 2, type: 'success', msg: '文件已成功上传。' },
+  { id: 3, type: 'warning', msg: '当前处于只读模式，部分功能不可用。' },
+  { id: 4, type: 'error', msg: '请求失败，请检查网络连接后重试。' },
+])
+
+const dismiss = (id: number) => {
+  alerts.value = alerts.value.filter((a) => a.id !== id)
+}
 </script>
 
 <template>
   <DocsContainer>
     <DocsHeader
-      title="Alert 警告组件"
-      description="用于显示状态提示、信息反馈的警告框组件，内置图标与关闭按钮，支持多种状态与样式。"
+      title="Alert"
+      description="警告提示用于展示重要信息、操作结果或状态反馈，Flowbite 风格。"
     />
 
     <ApiReference :data="apiClasses" />
 
-    <DocsSection title="基础示例">
-      <div class="flex flex-col gap-4">
+    <!-- 颜色 -->
+    <DocsSection title="颜色">
+      <div class="flex flex-col gap-3">
+        <div class="alert alert-info">
+          <span>这是一条信息提示内容。</span>
+        </div>
+        <div class="alert alert-success">
+          <span>操作已成功完成。</span>
+        </div>
+        <div class="alert alert-warning">
+          <span>请注意，此操作不可撤销。</span>
+        </div>
+        <div class="alert alert-error">
+          <span>发生错误，请稍后重试。</span>
+        </div>
+      </div>
+    </DocsSection>
+
+    <!-- 样式 -->
+    <DocsSection title="样式">
+      <div>
+        <p class="text-sm text-base-content/60 mb-3">默认（soft）</p>
+        <div class="flex flex-col gap-3">
+          <div class="alert alert-info"><span>信息提示内容。</span></div>
+          <div class="alert alert-success"><span>成功提示内容。</span></div>
+          <div class="alert alert-warning"><span>警告提示内容。</span></div>
+          <div class="alert alert-error"><span>错误提示内容。</span></div>
+        </div>
+      </div>
+
+      <div>
+        <p class="text-sm text-base-content/60 mb-3">描边（outline）</p>
+        <div class="flex flex-col gap-3">
+          <div class="alert alert-info alert-outline"><span>信息提示内容。</span></div>
+          <div class="alert alert-success alert-outline"><span>成功提示内容。</span></div>
+          <div class="alert alert-warning alert-outline"><span>警告提示内容。</span></div>
+          <div class="alert alert-error alert-outline"><span>错误提示内容。</span></div>
+        </div>
+      </div>
+
+      <div>
+        <p class="text-sm text-base-content/60 mb-3">实色（solid）</p>
+        <div class="flex flex-col gap-3">
+          <div class="alert alert-info alert-solid"><span>信息提示内容。</span></div>
+          <div class="alert alert-success alert-solid"><span>成功提示内容。</span></div>
+          <div class="alert alert-warning alert-solid"><span>警告提示内容。</span></div>
+          <div class="alert alert-error alert-solid"><span>错误提示内容。</span></div>
+        </div>
+      </div>
+
+      <div>
+        <p class="text-sm text-base-content/60 mb-3">无边框（borderless）</p>
+        <div class="flex flex-col gap-3">
+          <div class="alert alert-info alert-borderless"><span>信息提示内容。</span></div>
+          <div class="alert alert-success alert-borderless"><span>成功提示内容。</span></div>
+        </div>
+      </div>
+    </DocsSection>
+
+    <!-- 带标题描述 -->
+    <DocsSection title="带标题描述">
+      <div class="flex flex-col gap-3 max-w-lg">
         <div class="alert alert-info">
           <div>
-            <div class="alert-title">信息提示</div>
-            <div class="alert-description">这是一条信息提示内容。</div>
+            <div class="alert-title">账户验证</div>
+            <div class="alert-description">你的邮箱尚未验证，部分功能受到限制。</div>
           </div>
-          <div class="alert-close"></div>
         </div>
-
         <div class="alert alert-success">
           <div>
-            <div class="alert-title">操作成功</div>
-            <div class="alert-description">你的请求已成功处理。</div>
+            <div class="alert-title">保存成功</div>
+            <div class="alert-description">你的设置已保存，变更将在下次登录后生效。</div>
           </div>
-          <div class="alert-close"></div>
         </div>
-
         <div class="alert alert-warning">
           <div>
-            <div class="alert-title">警告提示</div>
-            <div class="alert-description">请注意相关操作风险。</div>
+            <div class="alert-title">存储空间不足</div>
+            <div class="alert-description">当前已使用 90% 的存储空间，请及时清理。</div>
           </div>
-          <div class="alert-close"></div>
         </div>
-
         <div class="alert alert-error">
           <div>
-            <div class="alert-title">错误提示</div>
-            <div class="alert-description">发生了意外错误，请重试。</div>
+            <div class="alert-title">上传失败</div>
+            <div class="alert-description">文件大小超出限制，最大支持 10MB。</div>
           </div>
-          <div class="alert-close"></div>
         </div>
       </div>
     </DocsSection>
 
-    <DocsSection title="填充样式">
-      <div class="flex flex-col gap-4">
-        <div class="alert-info alert-filled">
-          <div>
-            <div class="alert-title">信息提示</div>
-            <div class="alert-description">浅色填充样式，适合卡片背景。</div>
+    <!-- 带关闭按钮 -->
+    <DocsSection title="带关闭按钮">
+      <div class="flex flex-col gap-3 max-w-lg">
+        <TransitionGroup
+          enter-from-class="alert-enter-from"
+          enter-active-class="alert-enter-active"
+          enter-to-class="alert-enter-to"
+          leave-from-class="alert-leave-from"
+          leave-active-class="alert-leave-active"
+          leave-to-class="alert-leave-to"
+        >
+          <div v-for="a in alerts" :key="a.id" class="alert" :class="`alert-${a.type}`">
+            <span>{{ a.msg }}</span>
+            <button class="alert-close" @click="dismiss(a.id)" />
           </div>
-          <div class="alert-close"></div>
-        </div>
+        </TransitionGroup>
 
-        <div class="alert-success alert-filled">
-          <div>
-            <div class="alert-title">成功提示</div>
-            <div class="alert-description">操作已成功完成。</div>
-          </div>
-          <div class="alert-close"></div>
-        </div>
+        <button
+          v-if="alerts.length < 4"
+          class="btn btn-sm btn-outline btn-primary self-start"
+          @click="
+            alerts = [
+              { id: Date.now(), type: 'info', msg: '账户邮箱变更需要重新验证。' },
+              { id: Date.now() + 1, type: 'success', msg: '文件已成功上传。' },
+              { id: Date.now() + 2, type: 'warning', msg: '当前处于只读模式，部分功能不可用。' },
+              { id: Date.now() + 3, type: 'error', msg: '请求失败，请检查网络连接后重试。' },
+            ]
+          "
+        >
+          重置示例
+        </button>
+      </div>
+    </DocsSection>
 
-        <div class="alert-warning alert-filled">
-          <div>
-            <div class="alert-title">警告提示</div>
-            <div class="alert-description">请谨慎执行此操作。</div>
+    <!-- 带关闭按钮 + 标题 -->
+    <DocsSection title="带标题与关闭按钮">
+      <div class="flex flex-col gap-3 max-w-lg">
+        <div class="alert alert-warning">
+          <div class="flex-1">
+            <div class="alert-title">存储空间不足</div>
+            <div class="alert-description">当前已使用 90% 的存储空间，请及时清理文件。</div>
           </div>
-          <div class="alert-close"></div>
+          <button class="alert-close self-start" />
         </div>
-
-        <div class="alert-error alert-filled">
-          <div>
-            <div class="alert-title">错误提示</div>
-            <div class="alert-description">操作失败，请稍后重试。</div>
+        <div class="alert alert-error alert-solid">
+          <div class="flex-1">
+            <div class="alert-title">上传失败</div>
+            <div class="alert-description">文件大小超出限制，最大支持 10MB。</div>
           </div>
-          <div class="alert-close"></div>
+          <button class="alert-close self-start" />
         </div>
       </div>
     </DocsSection>
 
-    <DocsSection title="尺寸与修饰">
-      <div class="flex flex-col gap-4">
+    <!-- 无图标 -->
+    <DocsSection title="无图标">
+      <div class="flex flex-col gap-3 max-w-lg">
+        <div class="alert alert-info alert-no-icon">
+          <span>这是一条没有图标的提示内容。</span>
+          <button class="alert-close" />
+        </div>
+        <div class="alert alert-success alert-no-icon">
+          <div class="flex-1">
+            <div class="alert-title">保存成功</div>
+            <div class="alert-description">你的设置已成功保存。</div>
+          </div>
+        </div>
+      </div>
+    </DocsSection>
+
+    <!-- 尺寸 -->
+    <DocsSection title="尺寸">
+      <div class="flex flex-col gap-3 max-w-lg">
         <div class="alert alert-info alert-sm">
-          <div>
-            <div class="alert-title">小号提示</div>
-            <div class="alert-description">适合紧凑布局。</div>
-          </div>
-          <div class="alert-close"></div>
+          <span>小尺寸提示内容。</span>
+          <button class="alert-close" />
         </div>
-
-        <div class="alert alert-success alert-lg alert-no-icon">
-          <div>
-            <div class="alert-title">无图标提示</div>
-            <div class="alert-description">图标已隐藏。</div>
-          </div>
-          <div class="alert-close"></div>
+        <div class="alert alert-info">
+          <span>默认尺寸提示内容。</span>
+          <button class="alert-close" />
         </div>
-
-        <div class="alert alert-warning alert-borderless">
-          <div>
-            <div class="alert-title">无边框样式</div>
-            <div class="alert-description">更简洁的视觉风格。</div>
-          </div>
-          <div class="alert-close"></div>
+        <div class="alert alert-info alert-lg">
+          <span>大尺寸提示内容。</span>
+          <button class="alert-close" />
         </div>
       </div>
     </DocsSection>

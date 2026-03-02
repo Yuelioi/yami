@@ -1,6 +1,6 @@
 @utility collapse {
   @apply grid relative overflow-hidden w-full isolate;
-  @apply rounded-lg;
+  @apply rounded-box;
   grid-template-rows: max-content 0fr;
   grid-template-columns: minmax(0, 1fr);
 
@@ -16,7 +16,7 @@
   & > input[type="radio"],
   & > input[type="checkbox"] {
     @apply appearance-none opacity-0;
-    @apply absolute z-10 w-full cursor-pointer;
+    @apply z-10 w-full cursor-pointer;
     @apply px-4 pr-12 py-3 min-h-12;
     grid-column-start: 1;
     grid-row-start: 1;
@@ -84,7 +84,7 @@
   &:not(.collapse-close) {
     & > input[type="checkbox"],
     & > input[type="radio"]:not(:checked) {
-      @apply absolute inset-0;
+      @apply inset-0;
       @apply opacity-0;
     }
   }
@@ -371,10 +371,6 @@
 /* 手风琴容器 */
 @utility collapse-group {
   @apply space-y-2;
-
-  & > .collapse {
-    @apply rounded-lg;
-  }
 
   & > .collapse + .collapse {
     @apply mt-0 border-t-0 rounded-t-none;

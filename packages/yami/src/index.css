@@ -10,13 +10,14 @@
 @import "./utilities/touch.css";
 @import "./utilities/z-index.css";
 @import "./utilities/join.css";
+@import "./utilities/size.css";
 
 /* ====================== components ====================== */
 @import "./components/accordion.css";
-@import "./components/advanceSelect.css";
 @import "./components/alert.css";
 @import "./components/avatar.css";
 @import "./components/badge.css";
+@import "./components/banner.css";
 @import "./components/breadcrumb.css";
 @import "./components/button.css";
 @import "./components/card.css";
@@ -70,3 +71,8 @@
 @import "./components/toggle.css";
 @import "./components/tooltip.css";
 @import "./components/validation.css";
+@import "./components/list-group.css";
+@import "./components/mega-menu.css";
+@import "./components/popover.css";
+@import "./components/sidebar.css";
+@import "./components/banner.css";

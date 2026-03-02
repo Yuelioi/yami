@@ -1,0 +1,434 @@
+/* ===================== Sidebar ===================== */
+
+@utility sidebar {
+  --sidebar-width: 16rem;
+  --sidebar-collapsed-width: 4rem;
+  --sidebar-bg: var(--color-base-100);
+  --sidebar-border: var(--color-base-300);
+  --sidebar-item-fg: var(--color-base-content);
+  --sidebar-item-hover-bg: color-mix(
+    in oklab,
+    var(--color-base-content) 6%,
+    transparent
+  );
+  --sidebar-item-active-bg: color-mix(
+    in oklab,
+    var(--color-primary) 10%,
+    var(--color-base-100)
+  );
+  --sidebar-item-active-fg: var(--color-primary);
+  --sidebar-icon-size: 1.25rem;
+  --sidebar-item-radius: var(--radius-field);
+  --sidebar-transition: 250ms cubic-bezier(0.4, 0, 0.2, 1);
+
+  display: flex;
+  flex-direction: column;
+  width: var(--sidebar-width);
+  height: 100%;
+  background-color: var(--sidebar-bg);
+  border-right: var(--border) solid var(--sidebar-border);
+  overflow: hidden;
+  flex-shrink: 0;
+  transition: width var(--sidebar-transition);
+
+  /* 折叠状态 */
+  &[data-collapsed] {
+    width: var(--sidebar-collapsed-width);
+
+    & .sidebar-label,
+    & .sidebar-group-title,
+    & .sidebar-badge,
+    & .sidebar-chevron,
+    & .sidebar-footer-text {
+      opacity: 0;
+      width: 0;
+      overflow: hidden;
+      pointer-events: none;
+      display: none;
+    }
+
+    & .sidebar-item {
+      justify-content: center;
+      padding-inline: 0;
+    }
+
+    & .sidebar-header-brand span {
+      opacity: 0;
+      width: 0;
+      overflow: hidden;
+      display: none;
+    }
+
+    & .sidebar-submenu {
+      display: none;
+    }
+
+    & .sidebar-section {
+      padding-inline: 0.5rem;
+    }
+  }
+}
+
+/* ══════════════════════════════════════════
+   顶部 Header
+══════════════════════════════════════════ */
+
+@utility sidebar-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.875rem 1rem;
+  border-bottom: var(--border) solid var(--sidebar-border);
+  min-height: 3.5rem;
+  flex-shrink: 0;
+}
+
+@utility sidebar-header-brand {
+  display: flex;
+  align-items: center;
+  gap: 0.625rem;
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--sidebar-item-fg);
+  text-decoration: none;
+  white-space: nowrap;
+  overflow: hidden;
+
+  & span {
+    transition:
+      opacity var(--sidebar-transition),
+      width var(--sidebar-transition);
+    white-space: nowrap;
+  }
+}
+
+@utility sidebar-toggle-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2rem;
+  height: 2rem;
+  border-radius: var(--sidebar-item-radius);
+  color: var(--sidebar-item-fg);
+  opacity: 0.5;
+  cursor: pointer;
+  border: none;
+  background: none;
+  flex-shrink: 0;
+  transition:
+    opacity 0.15s ease,
+    background-color 0.15s ease;
+
+  @media (hover: hover) {
+    &:hover {
+      opacity: 1;
+      background-color: var(--sidebar-item-hover-bg);
+    }
+  }
+}
+
+/* ══════════════════════════════════════════
+   搜索框
+══════════════════════════════════════════ */
+
+@utility sidebar-search {
+  padding: 0.625rem 0.75rem;
+  border-bottom: var(--border) solid var(--sidebar-border);
+  flex-shrink: 0;
+
+  [data-collapsed] & {
+    display: none;
+  }
+}
+
+/* ══════════════════════════════════════════
+   滚动区域
+══════════════════════════════════════════ */
+
+@utility sidebar-content {
+  flex: 1;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: 0.5rem 0;
+
+  /* 细滚动条 */
+  scrollbar-width: thin;
+  scrollbar-color: color-mix(
+      in oklab,
+      var(--color-base-content) 15%,
+      transparent
+    )
+    transparent;
+}
+
+/* ══════════════════════════════════════════
+   分组
+══════════════════════════════════════════ */
+
+@utility sidebar-section {
+  padding: 0.25rem 0.75rem;
+  margin-bottom: 0.25rem;
+  transition: padding var(--sidebar-transition);
+}
+
+@utility sidebar-group-title {
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: var(--sidebar-item-fg);
+  opacity: 0.4;
+  padding: 0.5rem 0.25rem 0.25rem;
+  white-space: nowrap;
+  overflow: hidden;
+  transition:
+    opacity var(--sidebar-transition),
+    width var(--sidebar-transition);
+}
+
+@utility sidebar-divider {
+  height: var(--border);
+  background-color: var(--sidebar-border);
+  margin: 0.5rem 0.75rem;
+}
+
+/* ══════════════════════════════════════════
+   菜单项
+══════════════════════════════════════════ */
+
+@utility sidebar-item {
+  display: flex;
+  align-items: center;
+  gap: 0.625rem;
+  width: 100%;
+  padding: 0.4375rem 0.625rem;
+  border-radius: var(--sidebar-item-radius);
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--sidebar-item-fg);
+  text-decoration: none;
+  cursor: pointer;
+  border: none;
+  background: none;
+  outline: none;
+  text-align: start;
+  white-space: nowrap;
+  overflow: hidden;
+  transition:
+    background-color 0.15s ease,
+    color 0.15s ease,
+    padding var(--sidebar-transition),
+    justify-content var(--sidebar-transition);
+
+  @media (hover: hover) {
+    &:hover:not(.sidebar-item-active) {
+      background-color: var(--sidebar-item-hover-bg);
+    }
+  }
+
+  &:focus-visible {
+    outline: 2px solid
+      color-mix(in oklab, var(--color-primary) 50%, transparent);
+    outline-offset: -2px;
+  }
+
+  &.sidebar-item-active {
+    background-color: var(--sidebar-item-active-bg);
+    color: var(--sidebar-item-active-fg);
+    font-weight: 600;
+  }
+
+  &.sidebar-item-disabled {
+    opacity: 0.4;
+    pointer-events: none;
+  }
+}
+
+/* ── 图标 ── */
+@utility sidebar-icon {
+  width: var(--sidebar-icon-size);
+  height: var(--sidebar-icon-size);
+  flex-shrink: 0;
+  transition: color 0.15s ease;
+}
+
+/* ── 文字标签 ── */
+@utility sidebar-label {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  transition:
+    opacity var(--sidebar-transition),
+    width var(--sidebar-transition);
+}
+
+/* ── 徽章 ── */
+@utility sidebar-badge {
+  flex-shrink: 0;
+  transition:
+    opacity var(--sidebar-transition),
+    width var(--sidebar-transition);
+}
+
+/* ── 子菜单展开箭头 ── */
+@utility sidebar-chevron {
+  width: 1rem;
+  height: 1rem;
+  flex-shrink: 0;
+  opacity: 0.5;
+  transition:
+    transform 0.2s ease,
+    opacity var(--sidebar-transition),
+    width var(--sidebar-transition);
+
+  [data-open] > & {
+    transform: rotate(90deg);
+  }
+}
+
+/* ══════════════════════════════════════════
+   子菜单
+══════════════════════════════════════════ */
+
+@utility sidebar-submenu {
+  overflow: hidden;
+  max-height: 0;
+  transition: max-height 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+
+  &[data-open] {
+    max-height: 60rem;
+  }
+}
+
+@utility sidebar-submenu-list {
+  padding: 0.125rem 0 0.125rem 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  border-left: var(--border) solid var(--sidebar-border);
+  margin: 0.125rem 0 0.125rem 1.25rem;
+}
+
+/* ── 子菜单项（稍小） ── */
+@utility sidebar-subitem {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  width: 100%;
+  padding: 0.3125rem 0.5rem;
+  border-radius: var(--sidebar-item-radius);
+  font-size: 0.8125rem;
+  font-weight: 400;
+  color: var(--sidebar-item-fg);
+  opacity: 0.75;
+  text-decoration: none;
+  cursor: pointer;
+  border: none;
+  background: none;
+  transition:
+    background-color 0.15s ease,
+    color 0.15s ease,
+    opacity 0.15s ease;
+
+  @media (hover: hover) {
+    &:hover:not(.sidebar-item-active) {
+      background-color: var(--sidebar-item-hover-bg);
+      opacity: 1;
+    }
+  }
+
+  &.sidebar-item-active {
+    background-color: var(--sidebar-item-active-bg);
+    color: var(--sidebar-item-active-fg);
+    opacity: 1;
+    font-weight: 600;
+  }
+}
+
+/* ══════════════════════════════════════════
+   底部 Footer
+══════════════════════════════════════════ */
+
+@utility sidebar-footer {
+  border-top: var(--border) solid var(--sidebar-border);
+  padding: 0.75rem;
+  flex-shrink: 0;
+}
+
+@utility sidebar-user {
+  display: flex;
+  align-items: center;
+  gap: 0.625rem;
+  padding: 0.375rem 0.375rem;
+  border-radius: var(--sidebar-item-radius);
+  cursor: pointer;
+  transition: background-color 0.15s ease;
+  overflow: hidden;
+
+  @media (hover: hover) {
+    &:hover {
+      background-color: var(--sidebar-item-hover-bg);
+    }
+  }
+}
+
+@utility sidebar-footer-text {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  flex: 1;
+  overflow: hidden;
+  transition:
+    opacity var(--sidebar-transition),
+    width var(--sidebar-transition);
+  white-space: nowrap;
+}
+
+/* ══════════════════════════════════════════
+   样式变体
+══════════════════════════════════════════ */
+
+@utility sidebar-bordered {
+  & .sidebar-item.sidebar-item-active {
+    background-color: transparent;
+    border-right: 2px solid var(--color-primary);
+    border-radius: 0;
+  }
+}
+
+@utility sidebar-dark {
+  --sidebar-bg: oklch(15% 0.01 260);
+  --sidebar-border: oklch(100% 0 0 / 8%);
+  --sidebar-item-fg: oklch(90% 0 0);
+  --sidebar-item-hover-bg: oklch(100% 0 0 / 6%);
+  --sidebar-item-active-bg: oklch(100% 0 0 / 10%);
+  --sidebar-item-active-fg: var(--color-primary);
+}
+
+/* 颜色变体 */
+@utility sidebar-primary {
+  --sidebar-item-active-bg: color-mix(
+    in oklab,
+    var(--color-primary) 10%,
+    var(--color-base-100)
+  );
+  --sidebar-item-active-fg: var(--color-primary);
+}
+@utility sidebar-secondary {
+  --sidebar-item-active-bg: color-mix(
+    in oklab,
+    var(--color-secondary) 10%,
+    var(--color-base-100)
+  );
+  --sidebar-item-active-fg: var(--color-secondary);
+}
+@utility sidebar-accent {
+  --sidebar-item-active-bg: color-mix(
+    in oklab,
+    var(--color-accent) 10%,
+    var(--color-base-100)
+  );
+  --sidebar-item-active-fg: var(--color-accent);
+}

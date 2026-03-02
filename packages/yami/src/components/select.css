@@ -15,7 +15,7 @@
   text-overflow: ellipsis;
   border: 1px solid;
   border-color: color-mix(in oklab, var(--color-base-content) 40%, #0000);
-  --size: calc(var(--size-field, 0.25rem) * 9.5);
+  --size: var(--size-field-md);
 
   &:hover:not(:focus, :focus-within) {
     @apply border-base-content/60;
@@ -61,7 +61,7 @@
 /* Size Variants */
 
 @utility select-xs {
-  --size: calc(var(--size-field, 0.25rem) * 6);
+  --size: var(--size-field-xs);
   @apply ps-2.5 pe-8 text-xs;
 
   select {
@@ -70,7 +70,7 @@
 }
 
 @utility select-sm {
-  --size: calc(var(--size-field, 0.25rem) * 7.5);
+  --size: var(--size-field-sm);
   @apply ps-2.5 pe-8 text-sm;
 
   select {
@@ -79,7 +79,7 @@
 }
 
 @utility select-md {
-  --size: calc(var(--size-field, 0.25rem) * 9.5);
+  --size: var(--size-field-md);
   @apply ps-3 pe-10 text-base;
 
   select {
@@ -88,7 +88,7 @@
 }
 
 @utility select-lg {
-  --size: calc(var(--size-field, 0.25rem) * 11.5);
+  --size: var(--size-field-lg);
   @apply px-4 pe-10 text-lg;
 
   select {
@@ -97,7 +97,7 @@
 }
 
 @utility select-xl {
-  --size: calc(var(--size-field, 0.25rem) * 14);
+  --size: var(--size-field-xl);
   @apply px-4.5 pe-10 text-xl;
 
   select {

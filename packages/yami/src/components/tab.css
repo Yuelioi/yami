@@ -1,13 +1,26 @@
-/* ===================== Tab ===================== */
+/* ===================== Tabs ===================== */
 
 @utility tabs {
-  @apply relative flex flex-wrap font-sans;
+  @apply relative flex flex-wrap;
 
+  --tabs-active-color: var(--color-primary);
+  --tabs-active-fg: var(--color-primary-content);
+  --tabs-border-color: var(--color-base-300);
+
+  /* ── 隐藏原生 radio ── */
   & input[type="radio"] {
     @apply sr-only;
   }
 
-  /* 并列结构：input + label 和 tab-content 在同一级 */
+  /* ══════════════════════════════════════════════
+     内容面板：默认隐藏，激活时显示
+  ══════════════════════════════════════════════ */
+
+  & .tab-content {
+    @apply hidden basis-full w-full;
+  }
+
+  /* ── 并列结构（input + label + content 同级） ── */
   & input:nth-of-type(1):checked ~ .tab-content:nth-of-type(1),
   & input:nth-of-type(2):checked ~ .tab-content:nth-of-type(2),
   & input:nth-of-type(3):checked ~ .tab-content:nth-of-type(3),
@@ -20,7 +33,11 @@
     @apply block;
   }
 
-  /* 推荐结构：tab-header + tab-body */
+  /* ── 分离结构（tab-header + tab-body） ── */
+  &:has(.tab-header) {
+    @apply flex-col;
+  }
+
   &:has(.tab-header > input:nth-of-type(1):checked)
     > .tab-body
     > .tab-content:nth-child(1),
@@ -50,174 +67,273 @@
     > .tab-content:nth-child(9) {
     @apply block;
   }
+}
 
-  &:has(.tab-header) {
-    @apply flex-col;
+/* ══════════════════════════════════════════════
+   Tab 标签项
+══════════════════════════════════════════════ */
+
+@utility tab {
+  @apply relative inline-flex cursor-pointer shrink-0 select-none;
+  @apply items-center justify-center gap-1.5;
+  @apply text-sm font-medium text-base-content/60;
+  padding-inline: var(--tab-p, 1rem);
+  height: var(--tab-size, 2.5rem);
+  transition-property: color, background-color, border-color, box-shadow;
+  transition-timing-function: cubic-bezier(0, 0, 0.96, 1.03);
+  transition-duration: 0.2s;
+  outline: none;
+
+  /* focus-visible（键盘导航） */
+  input:focus-visible + & {
+    outline: 2px solid
+      color-mix(in oklab, var(--tabs-active-color) 50%, transparent);
+    outline-offset: -2px;
+    border-radius: var(--radius-field);
   }
 
-  & .tab-content {
-    @apply basis-full hidden w-full;
-  }
-}
-
-@utility tab-header {
-  @apply flex items-center relative gap-1;
-}
-
-@utility tab-title {
-  @apply cursor-pointer px-3 py-2;
-  @apply font-medium transition-colors;
-  @apply text-base-content/70;
-  @apply hover:text-base-content hover:bg-base-200/50;
-  @apply border-b-2 border-transparent;
-  margin-bottom: -2px;
-}
-
-@utility tab-content {
-  @apply w-full p-6;
-  @apply bg-base-100 text-base-content;
-}
-
-/* Bordered Variant */
-
-@utility tabs-bordered {
-  & input:checked + .tab-title {
-    @apply text-primary border-b-primary;
-    border-bottom-width: 2px;
-    margin-bottom: -2px;
-  }
-
-  & .tab-title {
-    @apply border-b-2 border-base-300;
+  /* 禁用 */
+  &:is(.tab-disabled) {
+    @apply pointer-events-none opacity-40;
   }
 }
 
-/* Boxed Variant */
+/* ══════════════════════════════════════════════
+   样式变体
+══════════════════════════════════════════════ */
 
+/* ── Line（下划线，默认） ── */
+@utility tabs-line {
+  @apply border-b border-base-300;
+
+  & .tab {
+    @apply -mb-px border-b-2 border-transparent;
+    color: var(--color-base-content);
+    opacity: 0.6;
+  }
+
+  /* 激活：并列结构 */
+  & input:checked + .tab {
+    border-bottom-color: var(--tabs-active-color);
+    color: var(--tabs-active-color);
+    opacity: 1;
+  }
+
+  /* 激活：分离结构 */
+  &:has(.tab-header) .tab-header input:checked + .tab {
+    border-bottom-color: var(--tabs-active-color);
+    color: var(--tabs-active-color);
+    opacity: 1;
+  }
+
+  @media (hover: hover) {
+    & input:not(:checked) + .tab:hover {
+      opacity: 0.8;
+      border-bottom-color: color-mix(
+        in oklab,
+        var(--tabs-active-color) 30%,
+        transparent
+      );
+    }
+  }
+}
+
+/* ── Boxed ── */
 @utility tabs-boxed {
-  & .tab-header {
-    @apply p-2 bg-base-200 rounded-lg max-w-fit gap-1;
+  @apply bg-base-200 p-1 gap-1 border-none;
+
+  & .tab {
+    border-radius: var(--radius-field);
+    height: calc(var(--tab-size, 2.5rem) - 0.5rem);
   }
 
-  & .tab-title {
-    @apply bg-base-100 border-0 rounded-md;
-    @apply hover:bg-base-100;
+  & input:checked + .tab {
+    background-color: var(--color-base-100);
+    color: var(--tabs-active-color);
+    opacity: 1;
+    box-shadow:
+      0 1px 3px 0 color-mix(in oklab, var(--color-base-300) 60%, #0000),
+      0 0.5px 0 0.5px oklch(100% 0 0 / calc(var(--depth) * 8%)) inset;
   }
 
-  & input:checked + .tab-title {
-    @apply bg-primary text-primary-content border-0;
+  &:has(.tab-header) .tab-header input:checked + .tab {
+    background-color: var(--color-base-100);
+    color: var(--tabs-active-color);
+    opacity: 1;
+    box-shadow:
+      0 1px 3px 0 color-mix(in oklab, var(--color-base-300) 60%, #0000),
+      0 0.5px 0 0.5px oklch(100% 0 0 / calc(var(--depth) * 8%)) inset;
   }
 
-  & .tab-content {
-    @apply mt-2 border border-base-300 rounded-lg;
+  @media (hover: hover) {
+    & input:not(:checked) + .tab:hover {
+      @apply bg-base-100/50;
+      color: var(--color-base-content);
+      opacity: 0.8;
+    }
   }
 }
 
-/* Lifted Variant */
-
-@utility tabs-lifted {
+/* ── Pill（胶囊） ── */
+@utility tabs-pill {
   @apply gap-1;
 
-  & .tab-header {
-    @apply gap-1;
+  & .tab {
+    border-radius: var(--radius-selector);
   }
 
-  & .tab-title {
-    @apply bg-transparent border-0;
-    @apply rounded-t-lg;
-    border-top-left-radius: var(--radius-field);
-    border-top-right-radius: var(--radius-field);
-    margin-bottom: -1px;
-    padding-top: 0.5rem;
+  & input:checked + .tab {
+    background-color: var(--tabs-active-color);
+    color: var(--tabs-active-fg);
+    opacity: 1;
+    box-shadow:
+      0 1px 3px 0 color-mix(in oklab, var(--tabs-active-color) 40%, #0000),
+      0 0.5px 0 0.5px oklch(100% 0 0 / calc(var(--depth) * 10%)) inset;
   }
 
-  & input:checked + .tab-title {
-    @apply bg-base-100 border border-base-300;
-    border-bottom-color: var(--base-100);
-    margin-bottom: -1px;
-    padding-top: 0.5rem;
+  &:has(.tab-header) .tab-header input:checked + .tab {
+    background-color: var(--tabs-active-color);
+    color: var(--tabs-active-fg);
+    opacity: 1;
+    box-shadow:
+      0 1px 3px 0 color-mix(in oklab, var(--tabs-active-color) 40%, #0000),
+      0 0.5px 0 0.5px oklch(100% 0 0 / calc(var(--depth) * 10%)) inset;
   }
 
-  & .tab-content {
-    @apply border border-base-300;
-    border-top-left-radius: 0;
-    border-top-right-radius: 0;
-    border-bottom-left-radius: var(--radius-field);
-    border-bottom-right-radius: var(--radius-field);
-    margin-top: -1px;
-  }
-}
-
-/* Size Variants */
-
-@utility tabs-xs {
-  & .tab-title {
-    @apply text-xs px-2 py-1;
-  }
-
-  & .tab-content {
-    @apply p-3;
+  @media (hover: hover) {
+    & input:not(:checked) + .tab:hover {
+      background-color: color-mix(
+        in oklab,
+        var(--tabs-active-color) 10%,
+        transparent
+      );
+      color: var(--tabs-active-color);
+      opacity: 1;
+    }
   }
 }
 
-@utility tabs-sm {
-  & .tab-title {
-    @apply text-sm px-2.5 py-1.5;
+/* ── Soft（柔和） ── */
+@utility tabs-soft {
+  @apply gap-1;
+
+  & .tab {
+    border-radius: var(--radius-field);
   }
 
-  & .tab-content {
-    @apply p-4;
+  & input:checked + .tab {
+    background-color: color-mix(
+      in oklab,
+      var(--tabs-active-color) 12%,
+      var(--color-base-100)
+    );
+    color: var(--tabs-active-color);
+    opacity: 1;
+  }
+
+  &:has(.tab-header) .tab-header input:checked + .tab {
+    background-color: color-mix(
+      in oklab,
+      var(--tabs-active-color) 12%,
+      var(--color-base-100)
+    );
+    color: var(--tabs-active-color);
+    opacity: 1;
+  }
+
+  @media (hover: hover) {
+    & input:not(:checked) + .tab:hover {
+      background-color: color-mix(
+        in oklab,
+        var(--tabs-active-color) 6%,
+        transparent
+      );
+      color: var(--tabs-active-color);
+      opacity: 1;
+    }
   }
 }
 
-@utility tabs-md {
-  & .tab-title {
-    @apply text-sm px-3 py-2;
-  }
-
-  & .tab-content {
-    @apply p-6;
-  }
-}
-
-@utility tabs-lg {
-  & .tab-title {
-    @apply text-base px-4 py-2.5;
-  }
-
-  & .tab-content {
-    @apply p-8;
-  }
-}
-
-/* Color Variants */
+/* ══════════════════════════════════════════════
+   颜色变体
+══════════════════════════════════════════════ */
 
 @utility tabs-primary {
-  & input:checked + .tab-title {
-    @apply text-primary border-b-primary;
-  }
+  --tabs-active-color: var(--color-primary);
+  --tabs-active-fg: var(--color-primary-content);
 }
-
 @utility tabs-secondary {
-  & input:checked + .tab-title {
-    @apply text-secondary border-b-secondary;
-  }
+  --tabs-active-color: var(--color-secondary);
+  --tabs-active-fg: var(--color-secondary-content);
 }
-
+@utility tabs-accent {
+  --tabs-active-color: var(--color-accent);
+  --tabs-active-fg: var(--color-accent-content);
+}
+@utility tabs-neutral {
+  --tabs-active-color: var(--color-neutral);
+  --tabs-active-fg: var(--color-neutral-content);
+}
 @utility tabs-success {
-  & input:checked + .tab-title {
-    @apply text-success border-b-success;
-  }
+  --tabs-active-color: var(--color-success);
+  --tabs-active-fg: var(--color-success-content);
 }
-
 @utility tabs-warning {
-  & input:checked + .tab-title {
-    @apply text-warning border-b-warning;
+  --tabs-active-color: var(--color-warning);
+  --tabs-active-fg: var(--color-warning-content);
+}
+@utility tabs-error {
+  --tabs-active-color: var(--color-error);
+  --tabs-active-fg: var(--color-error-content);
+}
+
+/* ══════════════════════════════════════════════
+   尺寸变体
+══════════════════════════════════════════════ */
+
+@utility tabs-sm {
+  & .tab {
+    --tab-size: 2rem;
+    --tab-p: 0.75rem;
+    @apply text-xs;
+  }
+}
+@utility tabs-md {
+  & .tab {
+    --tab-size: 2.5rem;
+    --tab-p: 1rem;
+    @apply text-sm;
+  }
+}
+@utility tabs-lg {
+  & .tab {
+    --tab-size: 3rem;
+    --tab-p: 1.25rem;
+    @apply text-base;
+  }
+}
+@utility tabs-xl {
+  & .tab {
+    --tab-size: 3.5rem;
+    --tab-p: 1.5rem;
+    @apply text-lg;
   }
 }
 
-@utility tabs-error {
-  & input:checked + .tab-title {
-    @apply text-error border-b-error;
+/* ══════════════════════════════════════════════
+   布局
+══════════════════════════════════════════════ */
+
+@utility tabs-stretch {
+  & .tab {
+    @apply flex-1;
   }
+}
+
+/* ══════════════════════════════════════════════
+   tab-body 内容区（分离结构专用）
+══════════════════════════════════════════════ */
+
+@utility tab-body {
+  @apply w-full;
 }

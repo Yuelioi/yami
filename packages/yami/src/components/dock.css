@@ -12,7 +12,7 @@
   & > * {
     @apply relative mb-2 flex h-full max-w-32 shrink basis-full;
     @apply cursor-pointer flex-col items-center justify-center gap-px;
-    @apply bg-transparent rounded-lg;
+    @apply bg-transparent rounded-box;
     @apply transition-opacity duration-200 ease-out;
 
     @media (hover: hover) {

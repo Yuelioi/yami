@@ -53,7 +53,7 @@
 <script setup lang="ts">
 import { computed, ref } from 'vue'
 import { useRoute, RouterLink, RouterView } from 'vue-router'
-import ThemeToggle from './components/ThemeToggle.vue'
+import ThemeToggle from './components/zcomp/ThemeToggle.vue'
 import { Settings } from 'lucide-vue-next'
 import { tabs, type TabItem } from './router'
 

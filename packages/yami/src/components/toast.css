@@ -1,7 +1,7 @@
 /* ===================== Toast ===================== */
 
 @utility toast {
-  @apply rounded-md p-3 backdrop-blur-sm;
+  @apply rounded-box p-3 backdrop-blur-sm;
   @apply bg-base-100 border border-base-300 text-base-content;
   @apply flex items-start gap-3 relative;
 }
@@ -19,7 +19,7 @@
 /* Close Button */
 
 @utility toast-close {
-  @apply rounded-sm p-1 transition-colors duration-200 size-6 cursor-pointer;
+  @apply rounded-selector p-1 transition-colors duration-200 size-6 cursor-pointer;
   @apply flex items-center justify-center ml-auto;
   @apply text-base-content/60;
 

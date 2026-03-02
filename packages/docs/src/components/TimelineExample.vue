@@ -308,7 +308,7 @@ const apiClasses = [
           <li>
             <div class="timeline-middle">
               <div
-                class="size-12 rounded-full bg-success flex items-center justify-center shadow-sm"
+                class="w-full h-full rounded-full bg-success flex items-center justify-center shadow-sm"
               >
                 <span class="icon-[lucide--check] text-xl text-white"></span>
               </div>
@@ -331,7 +331,7 @@ const apiClasses = [
             <hr class="bg-success" />
             <div class="timeline-middle">
               <div
-                class="size-12 rounded-full bg-success flex items-center justify-center shadow-sm"
+                class="w-full h-full rounded-full bg-success flex items-center justify-center shadow-sm"
               >
                 <span class="icon-[lucide--check] text-xl text-white"></span>
               </div>
@@ -354,7 +354,7 @@ const apiClasses = [
             <hr class="bg-success" />
             <div class="timeline-middle">
               <div
-                class="size-12 rounded-full bg-primary flex items-center justify-center shadow-sm animate-pulse"
+                class="w-full h-full rounded-full bg-primary flex items-center justify-center shadow-sm animate-pulse"
               >
                 <span class="icon-[lucide--package] text-xl text-white"></span>
               </div>
@@ -378,7 +378,9 @@ const apiClasses = [
           <li>
             <hr class="bg-base-content/10" />
             <div class="timeline-middle">
-              <div class="size-12 rounded-full bg-base-content/10 flex items-center justify-center">
+              <div
+                class="w-full h-full rounded-full bg-base-content/10 flex items-center justify-center"
+              >
                 <span class="icon-[lucide--truck] text-xl text-base-content/40"></span>
               </div>
             </div>
@@ -398,7 +400,9 @@ const apiClasses = [
           <li>
             <hr class="bg-base-content/10" />
             <div class="timeline-middle">
-              <div class="size-12 rounded-full bg-base-content/10 flex items-center justify-center">
+              <div
+                class="w-full h-full rounded-full bg-base-content/10 flex items-center justify-center"
+              >
                 <span class="icon-[lucide--home] text-xl text-base-content/40"></span>
               </div>
             </div>
@@ -554,10 +558,8 @@ const apiClasses = [
         <ul class="timeline timeline-vertical timeline-snap-icon">
           <li>
             <div class="timeline-middle">
-              <div class="avatar">
-                <div
-                  class="w-10 rounded-full bg-primary text-primary-content flex items-center justify-center"
-                >
+              <div class="avatar avatar-placeholder">
+                <div class="w-10 rounded-full bg-primary text-primary-content">
                   <span class="text-sm font-semibold">张</span>
                 </div>
               </div>
@@ -587,7 +589,7 @@ const apiClasses = [
           <li>
             <hr />
             <div class="timeline-middle">
-              <div class="avatar">
+              <div class="avatar avatar-placeholder">
                 <div
                   class="w-10 rounded-full bg-secondary text-secondary-content flex items-center justify-center"
                 >
@@ -627,7 +629,7 @@ const apiClasses = [
           <li>
             <hr />
             <div class="timeline-middle">
-              <div class="avatar">
+              <div class="avatar avatar-placeholder">
                 <div
                   class="w-10 rounded-full bg-accent text-accent-content flex items-center justify-center"
                 >
@@ -671,7 +673,7 @@ const apiClasses = [
         <li>
           <div class="timeline-start text-sm font-semibold">需求分析</div>
           <div class="timeline-middle">
-            <div class="size-12 rounded-full bg-success flex items-center justify-center">
+            <div class="h-full w-full rounded-full bg-success flex items-center justify-center">
               <span class="icon-[lucide--file-search] text-xl text-white"></span>
             </div>
           </div>
@@ -685,7 +687,7 @@ const apiClasses = [
           <hr class="bg-success" />
           <div class="timeline-start text-sm font-semibold">方案设计</div>
           <div class="timeline-middle">
-            <div class="size-12 rounded-full bg-success flex items-center justify-center">
+            <div class="h-full w-full rounded-full bg-success flex items-center justify-center">
               <span class="icon-[lucide--layout-template] text-xl text-white"></span>
             </div>
           </div>
@@ -700,7 +702,7 @@ const apiClasses = [
           <div class="timeline-start text-sm font-semibold">开发实现</div>
           <div class="timeline-middle">
             <div
-              class="size-12 rounded-full bg-primary flex items-center justify-center animate-pulse"
+              class="h-full w-full rounded-full bg-primary flex items-center justify-center animate-pulse"
             >
               <span class="icon-[lucide--code-2] text-xl text-white"></span>
             </div>
@@ -716,7 +718,9 @@ const apiClasses = [
           <hr />
           <div class="timeline-start text-sm font-semibold opacity-60">测试验证</div>
           <div class="timeline-middle">
-            <div class="size-12 rounded-full bg-base-content/10 flex items-center justify-center">
+            <div
+              class="h-full w-full rounded-full bg-base-content/10 flex items-center justify-center"
+            >
               <span class="icon-[lucide--bug] text-xl text-base-content/40"></span>
             </div>
           </div>
@@ -730,7 +734,9 @@ const apiClasses = [
           <hr />
           <div class="timeline-start text-sm font-semibold opacity-60">上线部署</div>
           <div class="timeline-middle">
-            <div class="size-12 rounded-full bg-base-content/10 flex items-center justify-center">
+            <div
+              class="h-full w-full rounded-full bg-base-content/10 flex items-center justify-center"
+            >
               <span class="icon-[lucide--rocket] text-xl text-base-content/40"></span>
             </div>
           </div>

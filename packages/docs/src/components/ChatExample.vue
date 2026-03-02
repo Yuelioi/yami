@@ -59,12 +59,8 @@ const apiClasses = [
     <DocsSection title="接收消息">
       <div class="chat chat-receiver">
         <div class="chat-avatar">
-          <div class="avatar">
-            <div
-              class="w-10 h-10 rounded-full bg-primary flex items-center justify-center text-white"
-            >
-              A
-            </div>
+          <div class="avatar avatar-placeholder w-10 h-10">
+            <div class="rounded-full bg-primary text-primary-content">A</div>
           </div>
         </div>
         <div class="chat-header">Alice</div>
@@ -79,12 +75,8 @@ const apiClasses = [
         <div class="chat-bubble">这是一条发送的消息。</div>
         <div class="chat-footer text-xs text-base-content/60">12:01</div>
         <div class="chat-avatar">
-          <div class="avatar">
-            <div
-              class="w-10 h-10 rounded-full bg-secondary flex items-center justify-center text-white"
-            >
-              B
-            </div>
+          <div class="avatar avatar-placeholder">
+            <div class="w-10 h-10 rounded-full bg-secondary text-secondary-content">B</div>
           </div>
         </div>
       </div>
@@ -94,10 +86,8 @@ const apiClasses = [
       <div class="space-y-2">
         <div class="chat chat-receiver">
           <div class="chat-avatar">
-            <div class="avatar">
-              <div
-                class="w-10 h-10 rounded-full bg-primary flex items-center justify-center text-white text-sm font-bold"
-              >
+            <div class="avatar avatar-placeholder">
+              <div class="w-10 h-10 rounded-full bg-primary text-primary-content text-sm font-bold">
                 A
               </div>
             </div>
@@ -112,9 +102,9 @@ const apiClasses = [
           <div class="chat-bubble">很好，谢谢！你呢？</div>
           <div class="chat-footer text-xs text-base-content/60">10:02</div>
           <div class="chat-avatar">
-            <div class="avatar">
+            <div class="avatar avatar-placeholder">
               <div
-                class="w-10 h-10 rounded-full bg-secondary flex items-center justify-center text-white text-sm font-bold"
+                class="w-10 h-10 rounded-full bg-secondary text-secondary-content text-sm font-bold"
               >
                 B
               </div>
@@ -124,12 +114,8 @@ const apiClasses = [
 
         <div class="chat chat-receiver">
           <div class="chat-avatar">
-            <div class="avatar">
-              <div
-                class="w-10 h-10 rounded-full bg-primary flex items-center justify-center text-white text-sm font-bold"
-              >
-                A
-              </div>
+            <div class="avatar avatar-placeholder size-10">
+              <div class="rounded-full bg-primary text-primary-content text-sm font-bold">A</div>
             </div>
           </div>
           <div class="chat-header">Alice</div>
@@ -142,9 +128,9 @@ const apiClasses = [
           <div class="chat-bubble">在做一个有趣的项目</div>
           <div class="chat-footer text-xs text-base-content/60">10:05</div>
           <div class="chat-avatar">
-            <div class="avatar">
+            <div class="avatar avatar-placeholder">
               <div
-                class="w-10 h-10 rounded-full bg-secondary flex items-center justify-center text-white text-sm font-bold"
+                class="w-10 h-10 rounded-full bg-secondary text-secondary-content text-sm font-bold"
               >
                 B
               </div>
@@ -158,12 +144,8 @@ const apiClasses = [
       <div class="space-y-2">
         <div class="chat chat-receiver">
           <div class="chat-avatar">
-            <div class="avatar">
-              <div
-                class="w-10 h-10 rounded-full bg-primary flex items-center justify-center text-white"
-              >
-                A
-              </div>
+            <div class="avatar avatar-placeholder">
+              <div class="w-10 h-10 rounded-full bg-primary text-primary-content">A</div>
             </div>
           </div>
           <div class="chat-bubble">
@@ -184,12 +166,8 @@ const apiClasses = [
             />
           </div>
           <div class="chat-avatar">
-            <div class="avatar">
-              <div
-                class="w-10 h-10 rounded-full bg-secondary flex items-center justify-center text-white"
-              >
-                B
-              </div>
+            <div class="avatar avatar-placeholder">
+              <div class="w-10 h-10 rounded-full bg-secondary text-secondary-content">B</div>
             </div>
           </div>
         </div>
@@ -212,10 +190,8 @@ const apiClasses = [
     <DocsSection title="长消息">
       <div class="chat chat-receiver">
         <div class="chat-avatar">
-          <div class="avatar">
-            <div
-              class="w-10 h-10 rounded-full bg-primary flex items-center justify-center text-white"
-            ></div>
+          <div class="avatar avatar-placeholder">
+            <div class="w-10 h-10 rounded-full bg-primary text-primary-content">A</div>
           </div>
         </div>
         <div class="chat-header">Alice</div>

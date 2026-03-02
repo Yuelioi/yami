@@ -79,10 +79,11 @@ const apiClasses = [
   },
   {
     category: '样式',
-    className: 'btn-text',
-    description: '文本样式',
+    className: 'btn-ghost',
+    description: '幽灵样式',
     isCategoryStart: false,
   },
+
   {
     category: '样式',
     className: 'btn-gradient',
@@ -239,15 +240,15 @@ const apiClasses = [
             </button>
           </div>
         </div>
-
         <div>
-          <p class="text-sm text-base-content/60 mb-3">文本</p>
+          <p class="text-sm text-base-content/60 mb-3">幽灵</p>
           <div class="flex flex-wrap gap-2">
-            <button class="btn btn-text btn-primary">Primary</button>
-            <button class="btn btn-text btn-success">Success</button>
-            <button class="btn btn-text btn-error">Error</button>
+            <button class="btn btn-ghost btn-primary">Primary</button>
+            <button class="btn btn-ghost btn-success">Success</button>
+            <button class="btn btn-ghost btn-error">Error</button>
           </div>
         </div>
+
         <div>
           <p class="text-sm text-base-content/60 mb-3">渐变</p>
           <div class="flex flex-wrap gap-2">

@@ -7,7 +7,7 @@
   transition:
     border-color 150ms ease-in-out,
     box-shadow 150ms ease-in-out;
-  --size: calc(var(--size-field, 0.25rem) * 9.5);
+  --size: var(--size-field-md);
 
   &:hover:not(:focus, :focus-within) {
     @apply border-base-content/60;
@@ -43,25 +43,25 @@
 
 @utility pin-input-xs {
   @apply text-xs;
-  --size: calc(var(--size-field, 0.25rem) * 6);
+  --size: var(--size-field-xs);
 }
 
 @utility pin-input-sm {
   @apply text-sm;
-  --size: calc(var(--size-field, 0.25rem) * 7.5);
+  --size: var(--size-field-sm);
 }
 
 @utility pin-input-md {
   @apply text-base;
-  --size: calc(var(--size-field, 0.25rem) * 9.5);
+  --size: var(--size-field-md);
 }
 
 @utility pin-input-lg {
   @apply text-lg;
-  --size: calc(var(--size-field, 0.25rem) * 11.5);
+  --size: var(--size-field-lg);
 }
 
 @utility pin-input-xl {
   @apply text-xl;
-  --size: calc(var(--size-field, 0.25rem) * 14);
+  --size: var(--size-field-xl);
 }

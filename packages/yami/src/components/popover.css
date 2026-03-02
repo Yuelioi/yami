@@ -1,0 +1,228 @@
+/* ===================== Popover ===================== */
+
+@utility popover {
+  --popover-bg: var(--color-base-100);
+  --popover-fg: var(--color-base-content);
+  --popover-border: var(--color-base-300);
+  --popover-shadow:
+    0 4px 6px -1px
+      color-mix(in oklab, var(--color-base-content) 8%, transparent),
+    0 2px 4px -2px
+      color-mix(in oklab, var(--color-base-content) 6%, transparent);
+  --popover-arrow-size: 6px;
+  --popover-radius: var(--radius-box);
+  --popover-max-width: 20rem;
+
+  position: absolute;
+  z-index: 50;
+  max-width: var(--popover-max-width);
+  min-width: 10rem;
+  background-color: var(--popover-bg);
+  color: var(--popover-fg);
+  border: var(--border) solid var(--popover-border);
+  border-radius: var(--popover-radius);
+  box-shadow: var(--popover-shadow);
+  padding: 0.875rem 1rem;
+
+  /* 入场动画 */
+  opacity: 0;
+  transform: scale(0.96) translateY(4px);
+  transition:
+    opacity 0.15s ease,
+    transform 0.15s ease;
+  pointer-events: none;
+
+  &[data-open] {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+    pointer-events: auto;
+  }
+
+  /* 方向微调动画起始位置 */
+  &[data-placement="top"] {
+    transform-origin: bottom center;
+    transform: scale(0.96) translateY(-4px);
+
+    &[data-open] {
+      transform: scale(1) translateY(0);
+    }
+  }
+
+  &[data-placement="left"] {
+    transform-origin: right center;
+    transform: scale(0.96) translateX(-4px);
+
+    &[data-open] {
+      transform: scale(1) translateX(0);
+    }
+  }
+
+  &[data-placement="right"] {
+    transform-origin: left center;
+    transform: scale(0.96) translateX(4px);
+
+    &[data-open] {
+      transform: scale(1) translateX(0);
+    }
+  }
+}
+
+/* ── 标题 ── */
+@utility popover-title {
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: var(--popover-fg);
+  margin-bottom: 0.375rem;
+  line-height: 1.3;
+}
+
+/* ── 内容 ── */
+@utility popover-body {
+  font-size: 0.875rem;
+  color: var(--popover-fg);
+  opacity: 0.75;
+  line-height: 1.55;
+}
+
+/* ── 底部操作区 ── */
+@utility popover-footer {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 0.75rem;
+  padding-top: 0.625rem;
+  border-top: var(--border) solid var(--popover-border);
+}
+
+/* ── 箭头 ── */
+@utility popover-arrow {
+  position: absolute;
+  width: calc(var(--popover-arrow-size) * 2);
+  height: calc(var(--popover-arrow-size) * 2);
+  pointer-events: none;
+
+  &::before,
+  &::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-style: solid;
+    border-color: transparent;
+  }
+
+  /* 边框层 */
+  &::before {
+    border-width: calc(var(--popover-arrow-size) + 1px);
+  }
+
+  /* 填充层 */
+  &::after {
+    border-width: var(--popover-arrow-size);
+  }
+}
+
+/* 箭头方向（由 data-placement 驱动） */
+[data-placement="bottom"] > .popover-arrow {
+  top: calc(var(--popover-arrow-size) * -2);
+  left: 50%;
+  transform: translateX(-50%);
+
+  &::before {
+    border-bottom-color: var(--popover-border);
+    border-top: none;
+  }
+  &::after {
+    border-bottom-color: var(--popover-bg);
+    border-top: none;
+    top: 2px;
+  }
+}
+
+[data-placement="top"] > .popover-arrow {
+  bottom: calc(var(--popover-arrow-size) * -2);
+  left: 50%;
+  transform: translateX(-50%);
+
+  &::before {
+    border-top-color: var(--popover-border);
+    border-bottom: none;
+  }
+  &::after {
+    border-top-color: var(--popover-bg);
+    border-bottom: none;
+    bottom: 2px;
+  }
+}
+
+[data-placement="left"] > .popover-arrow {
+  right: calc(var(--popover-arrow-size) * -2);
+  top: 50%;
+  transform: translateY(-50%);
+
+  &::before {
+    border-left-color: var(--popover-border);
+    border-right: none;
+  }
+  &::after {
+    border-left-color: var(--popover-bg);
+    border-right: none;
+    right: 2px;
+  }
+}
+
+[data-placement="right"] > .popover-arrow {
+  left: calc(var(--popover-arrow-size) * -2);
+  top: 50%;
+  transform: translateY(-50%);
+
+  &::before {
+    border-right-color: var(--popover-border);
+    border-left: none;
+  }
+  &::after {
+    border-right-color: var(--popover-bg);
+    border-left: none;
+    left: 2px;
+  }
+}
+
+/* ══════════════════════════════════════════
+   样式变体
+══════════════════════════════════════════ */
+
+/* 深色 */
+@utility popover-dark {
+  --popover-bg: oklch(20% 0.01 260);
+  --popover-fg: oklch(95% 0 0);
+  --popover-border: oklch(100% 0 0 / 12%);
+}
+
+/* 无箭头 */
+@utility popover-no-arrow {
+  & .popover-arrow {
+    display: none;
+  }
+}
+
+/* 紧凑 */
+@utility popover-compact {
+  padding: 0.5rem 0.75rem;
+
+  & .popover-title {
+    font-size: 0.875rem;
+  }
+  & .popover-body {
+    font-size: 0.8125rem;
+  }
+}
+
+/* 宽度变体 */
+@utility popover-sm {
+  --popover-max-width: 14rem;
+}
+@utility popover-lg {
+  --popover-max-width: 28rem;
+}
+@utility popover-xl {
+  --popover-max-width: 36rem;
+}

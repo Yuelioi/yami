@@ -3,7 +3,6 @@ import { createRouter, createWebHistory, type RouteRecordRaw } from 'vue-router'
 
 // components (A-Z)
 import AccordionExample from '@/components/AccordionExample.vue'
-import AdvancedSelectExample from '@/components/AdvancedSelectExample.vue'
 import AlertExample from '@/components/AlertExample.vue'
 import AvatarExample from '@/components/AvatarExample.vue'
 import BadgeExample from '@/components/BadgeExample.vue'
@@ -59,16 +58,21 @@ import TextareaExample from '@/components/TextareaExample.vue'
 import TimelineExample from '@/components/TimelineExample.vue'
 import ToastExample from '@/components/ToastExample.vue'
 import ToggleExample from '@/components/ToggleExample.vue'
+import FooterExample from '@/components/FooterExample.vue'
+import ListGroupExample from '@/components/ListGroupExample.vue'
+import MegaMenuExample from '@/components/MegaMenuExample.vue'
+import PopoverExample from '@/components/PopoverExample.vue'
+import SidebarExample from '@/components/SidebarExample.vue'
 import TooltipFeedbackExample from '@/components/TooltipExample.vue'
 import ValidatorExample from '@/components/ValidatorExample.vue'
-import VTest from '@/components/VTest.vue'
+import BannerExample from '@/components/BannerExample.vue'
 import SwitchesExample from '@/components/SwitchesExample.vue'
+import VTest from '@/components/VTest.vue'
 import SettingsView from '@/components/SettingsView.vue'
 
 /* ------------------ 组件映射（A-Z） ------------------ */
 const componentMap: Record<string, any> = {
   accordion: AccordionExample,
-  advancedSelect: AdvancedSelectExample,
   alert: AlertExample,
   avatar: AvatarExample,
   badge: BadgeExample,
@@ -125,9 +129,15 @@ const componentMap: Record<string, any> = {
   textarea: TextareaExample,
   timeline: TimelineExample,
   toast: ToastExample,
-  toggle: ToggleExample,
+toggle: ToggleExample,
+  listGroup: ListGroupExample,
+  megaMenu: MegaMenuExample,
+  popover: PopoverExample,
+  sidebar: SidebarExample,
+  footer: FooterExample,
   tooltipFeedback: TooltipFeedbackExample,
   validator: ValidatorExample,
+  banner: BannerExample,
 }
 
 /* ------------------ 左侧菜单数据（在 App.vue 中仍需要） ------------------ */
@@ -145,10 +155,12 @@ export const tabs: TabItem[] = [
   { label: 'Modal 模态框 √', value: 'modal', group: '操作组件' },
   { label: 'Swap 交换 √', value: 'swap', group: '操作组件' },
 
-  // feedback
+// feedback
   { label: 'Alert 警告 √', value: 'alert', group: '反馈组件' },
+  { label: 'Banner 横幅', value: 'banner', group: '反馈组件' },
   { label: 'Hover Card 悬停卡片', value: 'hoverCard', group: '反馈组件' },
   { label: 'Loading √', value: 'loading', group: '反馈组件' },
+  { label: 'Popover 弹出框', value: 'popover', group: '反馈组件' },
   { label: 'Progress 进度条 √', value: 'progress', group: '反馈组件' },
   { label: 'Radial Progress 进度条 √', value: 'radialProgress', group: '反馈组件' },
   { label: 'Skeleton 骨架屏 √', value: 'skeleton', group: '反馈组件' },
@@ -161,12 +173,13 @@ export const tabs: TabItem[] = [
   },
 
   // data
-  { label: 'Accordion 手风琴 √', value: 'accordion', group: '数据展示' },
+{ label: 'Accordion 手风琴 √', value: 'accordion', group: '数据展示' },
   { label: 'Avatar 头像 √', value: 'avatar', group: '数据展示' },
   { label: 'Badge 徽章 √', value: 'badge', group: '数据展示' },
   { label: 'Card 卡片 √', value: 'card', group: '数据展示' },
   { label: 'Carousel 轮播图', value: 'carousel', group: '数据展示' },
   { label: 'Chat 聊天 √', value: 'chat', group: '数据展示' },
+  { label: 'List Group 列表组', value: 'listGroup', group: '数据展示' },
   { label: 'Collapse 折叠面板', value: 'collapse', group: '数据展示' },
   { label: 'DIFF 对比 √', value: 'diff', group: '数据展示' },
   { label: 'Kbd 按键 √', value: 'kbd', group: '数据展示' },
@@ -177,7 +190,6 @@ export const tabs: TabItem[] = [
   { label: 'Timeline √', value: 'timeline', group: '数据展示' },
 
   // form
-  { label: 'advancedSelect', value: 'advancedSelect', group: '表单组件' },
   { label: 'Checkbox 复选框 √', value: 'checkbox', group: '表单组件' },
   { label: 'CustomOption √', value: 'customOption', group: '表单组件' },
   { label: 'Fieldset 字段集', value: 'fieldset', group: '表单组件' },
@@ -197,9 +209,11 @@ export const tabs: TabItem[] = [
   { label: 'Toggle 开关 √', value: 'toggle', group: '表单组件' },
   { label: 'Validator 校验器 √', value: 'validator', group: '表单组件' },
 
-  // layout
-  { label: 'Divider 分割线 √', value: 'divider', group: '布局组件' },
+// layout
+{ label: 'Divider 分割线 √', value: 'divider', group: '布局组件' },
   { label: 'Drawer 抽屉 √', value: 'drawer', group: '布局组件' },
+  { label: 'Sidebar 侧边栏', value: 'sidebar', group: '布局组件' },
+  { label: 'Footer 页脚', value: 'footer', group: '布局组件' },
   { label: 'Grid 网格', value: 'grid', group: '布局组件' },
   { label: 'Indicator √', value: 'indicator', group: '布局组件' },
   { label: 'Link √', value: 'link', group: '布局组件' },

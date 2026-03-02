@@ -1,49 +1,111 @@
 /* ===================== Skeleton ===================== */
 
 @utility skeleton {
-  @apply bg-base-200 rounded-box;
-  will-change: background-position;
-  background-image: linear-gradient(
-    105deg,
-    #0000 0% 40%,
-    var(--color-base-100) 50%,
-    #0000 60% 100%
+  --skeleton-bg: color-mix(
+    in oklab,
+    var(--color-base-content) 8%,
+    var(--color-base-100)
   );
-  background-size: 200% auto;
-  background-repeat: no-repeat;
-  background-position-x: -50%;
-}
+  --skeleton-highlight: color-mix(
+    in oklab,
+    var(--color-base-content) 15%,
+    var(--color-base-100)
+  );
+  --skeleton-radius: var(--radius-field);
+  --skeleton-duration: 1.8s;
 
-/* Animation Variant */
+  display: block;
+  background-color: var(--skeleton-bg);
+  border-radius: var(--skeleton-radius);
+  position: relative;
+  overflow: hidden;
 
-@utility skeleton-animated {
-  animation: skeleton 1.8s ease-in-out infinite;
+  &::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    transform: translateX(-100%);
+    background: linear-gradient(
+      90deg,
+      transparent 0%,
+      var(--skeleton-highlight) 50%,
+      transparent 100%
+    );
+    animation: skeleton-shimmer var(--skeleton-duration) ease-in-out infinite;
+  }
 
   @media (prefers-reduced-motion: reduce) {
-    animation-duration: 15s;
+    &::after {
+      display: none;
+    }
   }
 }
 
-/* Pattern Variant */
-
-@utility skeleton-striped {
-  background-image: repeating-linear-gradient(
-    45deg,
-    var(--color-base-200),
-    var(--color-base-200) 2px,
-    var(--color-base-100) 3px,
-    var(--color-base-100) 6px
-  );
-}
-
-/* Keyframes */
-
-@keyframes skeleton {
+@keyframes skeleton-shimmer {
   0% {
-    background-position: 150%;
+    transform: translateX(-100%);
   }
-
   100% {
-    background-position: -50%;
+    transform: translateX(100%);
+  }
+}
+
+/* ══════════════════════════════════════════
+   形状辅助
+══════════════════════════════════════════ */
+
+@utility skeleton-circle {
+  border-radius: 9999px;
+  aspect-ratio: 1;
+}
+
+@utility skeleton-square {
+  border-radius: 0;
+}
+
+@utility skeleton-box {
+  border-radius: var(--radius-box);
+}
+
+@utility skeleton-text {
+  height: 0.75rem;
+  border-radius: 9999px;
+}
+
+@utility skeleton-heading {
+  height: 1.125rem;
+  border-radius: 9999px;
+}
+
+@utility skeleton-btn {
+  height: 2.25rem;
+  border-radius: var(--radius-field);
+}
+
+/* ══════════════════════════════════════════
+   动画变体
+══════════════════════════════════════════ */
+
+@utility skeleton-pulse {
+  animation: skeleton-pulse var(--skeleton-duration) ease-in-out infinite;
+
+  &::after {
+    display: none;
+  }
+}
+
+@keyframes skeleton-pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.4;
+  }
+}
+
+@utility skeleton-static {
+  &::after {
+    display: none;
   }
 }

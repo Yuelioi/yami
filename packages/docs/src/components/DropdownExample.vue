@@ -4,7 +4,13 @@ import DocsSection from '@/components/zcomp/DocsSection.vue'
 import ApiReference from '@/components/zcomp/ApiReference.vue'
 import DocsContainer from '@/components/zcomp/DocsContainer.vue'
 
-import { vClickModalOutside } from '../directives/vClickOutside'
+import { initDropdowns } from '@yuelioi/yami/plugins/dropdown'
+
+import { onMounted } from 'vue'
+
+onMounted(() => {
+  initDropdowns()
+})
 
 const apiClasses = [
   {
@@ -131,7 +137,7 @@ const apiClasses = [
     <ApiReference :data="apiClasses"></ApiReference>
 
     <DocsSection title="基础下拉菜单">
-      <details class="dropdown dropdown-bottom">
+      <details class="dropdown dropdown-bottom w-max">
         <summary class="btn btn-primary">打开菜单</summary>
         <div class="dropdown-content">
           <ul class="menu">
@@ -193,7 +199,7 @@ const apiClasses = [
     </DocsSection>
 
     <DocsSection title="带箭头">
-      <details class="dropdown dropdown-bottom dropdown-arrow">
+      <details class="dropdown dropdown-bottom dropdown-arrow w-max">
         <summary class="btn btn-primary">选择选项</summary>
         <div class="dropdown-content">
           <ul class="menu">
@@ -296,7 +302,7 @@ const apiClasses = [
     </DocsSection>
 
     <DocsSection title="禁用项">
-      <details class="dropdown dropdown-bottom">
+      <details class="dropdown dropdown-bottom w-max">
         <summary class="btn btn-primary">操作菜单</summary>
         <div class="dropdown-content">
           <ul class="menu">
@@ -310,7 +316,7 @@ const apiClasses = [
     </DocsSection>
 
     <DocsSection title="复杂菜单">
-      <details class="dropdown dropdown-bottom dropdown-wide w-64">
+      <details class="dropdown dropdown-bottom dropdown-wide w-max">
         <summary class="btn">更多选项</summary>
         <div class="dropdown-content">
           <div class="p-3 space-y-2">
@@ -332,27 +338,32 @@ const apiClasses = [
       </details>
     </DocsSection>
 
-    <!-- 行为说明 -->
-    <DocsSection title="行为说明">
-      <p class="text-sm text-base-content/60 max-w-2xl leading-relaxed">
-        Dropdown 基于原生 <code>&lt;details&gt;</code> 元素实现，默认情况下：
-      </p>
-      <ul class="list-disc pl-5 mt-2 text-sm text-base-content/60">
-        <li>点击 summary 可切换展开状态</li>
-        <li>点击外部 <strong>不会</strong> 自动关闭</li>
-        <li>支持键盘与可访问性特性</li>
-      </ul>
+    <DocsSection title="JS菜单" :description="'需要引入js'">
+      <div>
+        <code>import { initDropdowns } from '@yuelioi/yami/plugins/dropdown'</code>
+      </div>
+      <!-- click 触发（默认）-->
+      <div class="dropdown dropdown-bottom w-max">
+        <button data-dropdown-toggle="my-dropdown" class="btn btn-primary">打开菜单</button>
+        <ul id="my-dropdown" class="dropdown-content menu" hidden>
+          <li><a>选项1</a></li>
+          <li><a>选项2</a></li>
+        </ul>
+      </div>
 
-      <p class="text-sm text-base-content/60 mt-4">
-        若需要「点击外部关闭」行为，建议结合 Vue 指令使用：
-      </p>
-
-      <details class="dropdown mt-3 w-72" v-click-modal-outside>
-        <summary class="btn btn-primary w-full">带 v-click-modal-outside</summary>
-        <div class="dropdown-content p-2">
-          <button class="btn btn-ghost w-full justify-start text-sm">点击外部可关闭</button>
-        </div>
-      </details>
+      <!-- hover 触发 -->
+      <div class="dropdown dropdown-hover w-max">
+        <button
+          data-dropdown-toggle="my-dropdown2"
+          data-dropdown-trigger="hover"
+          class="btn btn-primary"
+        >
+          Hover我
+        </button>
+        <ul id="my-dropdown2" class="dropdown-content menu" hidden>
+          <li><a>选项1</a></li>
+        </ul>
+      </div>
     </DocsSection>
   </DocsContainer>
 </template>

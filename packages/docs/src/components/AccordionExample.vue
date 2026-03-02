@@ -157,12 +157,12 @@ const apiClasses = [
         </h2>
         <p class="text-base-content/60">
           使用
-          <code class="px-2 py-0.5 bg-base-200 rounded text-sm font-mono">radio</code>
+          <code class="px-2 py-0.5 bg-base-200 text-sm font-mono">radio</code>
           实现手风琴效果，同时只能展开一个面板
         </p>
       </div>
 
-      <div class="bg-base-100 rounded-xl border shadow-sm overflow-hidden">
+      <div class="overflow-hidden">
         <div class="collapse-group collapse-group-compact">
           <div class="collapse collapse-plus collapse-primary">
             <input type="radio" name="accordion" id="acc1" />
@@ -172,20 +172,20 @@ const apiClasses = [
                 首先，请确保您的项目已经安装了 Tailwind CSS v4+ 和相关的 PostCSS 插件。使用 npm 或
                 yarn 进行安装。
               </p>
-              <pre class="mt-3 p-3 bg-base-200 rounded text-xs font-mono overflow-x-auto">
+              <pre class="mt-3 p-3 bg-base-200 text-xs font-mono overflow-x-auto">
 npm install tailwindcss@latest postcss autoprefixer</pre
               >
             </div>
           </div>
 
-          <div class="collapse collapse-plus collapse-primary border-t border-border">
+          <div class="collapse collapse-plus collapse-primary">
             <input type="radio" name="accordion" id="acc2" />
             <label for="acc2" class="collapse-title font-semibold"> 第二步：配置主题色 </label>
             <div class="collapse-content">
               <p class="text-sm text-base-content/60 pt-2">
                 在您的 CSS 文件中定义好颜色变量，包括
-                <code class="px-1.5 py-0.5 bg-base-100 rounded text-xs">--primary</code>、<code
-                  class="px-1.5 py-0.5 bg-base-100 rounded text-xs"
+                <code class="px-1.5 py-0.5 bg-base-100 text-xs">--primary</code>、<code
+                  class="px-1.5 py-0.5 bg-base-100 text-xs"
                   >--secondary</code
                 >
                 等，以配合组件的配色方案。
@@ -193,9 +193,7 @@ npm install tailwindcss@latest postcss autoprefixer</pre
             </div>
           </div>
 
-          <div
-            class="collapse collapse-plus collapse-primary border-t border-border accordion-bordered"
-          >
+          <div class="collapse collapse-plus collapse-primary">
             <input type="radio" name="accordion" id="acc3" />
             <label for="acc3" class="collapse-title font-semibold"> 第三步：开始使用 </label>
             <div class="collapse-content">

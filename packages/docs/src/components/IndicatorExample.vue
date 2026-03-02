@@ -5,44 +5,45 @@ import ApiReference from '@/components/zcomp/ApiReference.vue'
 import DocsContainer from '@/components/zcomp/DocsContainer.vue'
 
 const apiClasses = [
+  { category: '基础', className: 'indicator', description: '徽标容器', isCategoryStart: true },
   {
     category: '基础',
-    className: 'indicator',
-    description: '指示器容器',
+    className: 'indicator-item',
+    description: '徽标本体（绝对定位）',
+    isCategoryStart: false,
+  },
+  {
+    category: '水平位置',
+    className: 'indicator-start',
+    description: '左侧',
     isCategoryStart: true,
   },
   {
-    category: '水平',
-    className: 'indicator-start',
-    description: '左侧',
-    isCategoryStart: false,
-  },
-  {
-    category: '水平',
+    category: '水平位置',
     className: 'indicator-center',
-    description: '中间',
+    description: '水平居中',
     isCategoryStart: false,
   },
   {
-    category: '水平',
+    category: '水平位置',
     className: 'indicator-end',
-    description: '右侧',
+    description: '右侧（默认）',
     isCategoryStart: false,
   },
   {
-    category: '竖直',
+    category: '垂直位置',
     className: 'indicator-top',
-    description: '顶部',
-    isCategoryStart: false,
+    description: '顶部（默认）',
+    isCategoryStart: true,
   },
   {
-    category: '竖直',
+    category: '垂直位置',
     className: 'indicator-middle',
-    description: '中间',
+    description: '垂直居中',
     isCategoryStart: false,
   },
   {
-    category: '竖直',
+    category: '垂直位置',
     className: 'indicator-bottom',
     description: '底部',
     isCategoryStart: false,
@@ -181,36 +182,50 @@ const apiClasses = [
       </div>
     </DocsSection>
 
+    <!-- 配合 badge 颜色 -->
+    <DocsSection title="颜色">
+      <div class="flex flex-wrap gap-8 items-center">
+        <div
+          v-for="color in ['primary', 'secondary', 'accent', 'success', 'warning', 'error']"
+          :key="color"
+          class="indicator"
+        >
+          <span class="indicator-item badge badge-dot" :class="`badge-${color}`" />
+          <div class="w-12 h-12 rounded-box bg-base-200" />
+        </div>
+      </div>
+    </DocsSection>
+
     <DocsSection title="头像指示器">
-      <div class="space-y-4">
-        <div>
-          <p class="text-sm text-base-content/60 mb-2">在线状态</p>
-          <div class="indicator">
-            <div class="indicator-item indicator-bottom indicator-start">
-              <div class="badge badge-sm badge-success"></div>
-            </div>
-            <div class="avatar">
-              <div
-                class="w-12 h-12 rounded-full bg-primary flex items-center justify-center text-white font-bold"
-              >
-                A
-              </div>
+      <!-- 头像在线状态 -->
+      <div>
+        <p class="text-sm text-base-content/60 mb-3">头像在线状态</p>
+        <div class="flex flex-wrap gap-6 items-center">
+          <div class="indicator indicator-end indicator-bottom">
+            <span class="indicator-item badge badge-dot badge-success w-3 h-3" />
+            <div
+              class="w-12 h-12 rounded-full bg-primary flex items-center justify-center text-primary-content font-bold"
+            >
+              张
             </div>
           </div>
-        </div>
-
-        <div>
-          <p class="text-sm text-base-content/60 mb-2">离线状态</p>
-          <div class="indicator">
-            <div class="indicator-item indicator-bottom indicator-start">
-              <div class="badge badge-sm badge-error"></div>
+          <div class="indicator indicator-end indicator-bottom">
+            <span class="indicator-item badge badge-dot badge-warning w-3 h-3" />
+            <div
+              class="w-12 h-12 rounded-full bg-secondary flex items-center justify-center text-secondary-content font-bold"
+            >
+              李
             </div>
-            <div class="avatar">
-              <div
-                class="w-12 h-12 rounded-full bg-neutral flex items-center justify-center text-white font-bold"
-              >
-                B
-              </div>
+          </div>
+          <div class="indicator indicator-end indicator-bottom">
+            <span
+              class="indicator-item badge badge-dot badge-base-300 w-3 h-3"
+              style="background: var(--color-base-300)"
+            />
+            <div
+              class="w-12 h-12 rounded-full bg-accent flex items-center justify-center text-accent-content font-bold"
+            >
+              王
             </div>
           </div>
         </div>
@@ -263,6 +278,75 @@ const apiClasses = [
           </button>
         </div>
       </div>
+      <!-- 导航图标 -->
+      <div>
+        <p class="text-sm text-base-content/60 mb-3">导航图标角标</p>
+        <div class="flex flex-wrap gap-4 items-center">
+          <div class="indicator">
+            <span class="indicator-item badge badge-xs badge-error badge-pill">3</span>
+            <button class="btn btn-ghost btn-circle">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="h-5 w-5"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"
+                />
+              </svg>
+            </button>
+          </div>
+          <div class="indicator">
+            <span class="indicator-item badge badge-xs badge-primary badge-pill">12</span>
+            <button class="btn btn-ghost btn-circle">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="h-5 w-5"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+                />
+              </svg>
+            </button>
+          </div>
+          <div class="indicator">
+            <span class="indicator-item badge badge-dot badge-error" />
+            <button class="btn btn-ghost btn-circle">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="h-5 w-5"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"
+                />
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
+                />
+              </svg>
+            </button>
+          </div>
+        </div>
+      </div>
     </DocsSection>
 
     <DocsSection title="图片指示器">
@@ -292,7 +376,37 @@ const apiClasses = [
     </DocsSection>
 
     <DocsSection title="卡片指示器">
-      <div class="indicator w-full">
+      <!-- 卡片新品标签 -->
+      <div>
+        <p class="text-sm text-base-content/60 mb-3">卡片标签</p>
+        <div class="flex flex-wrap gap-4">
+          <div class="indicator">
+            <span class="indicator-item indicator-start badge badge-sm badge-success">新品</span>
+            <div
+              class="w-40 h-24 rounded-box bg-base-200 border border-base-300 flex items-center justify-center text-sm text-base-content/50"
+            >
+              商品卡片
+            </div>
+          </div>
+          <div class="indicator">
+            <span class="indicator-item badge badge-sm badge-warning">热销</span>
+            <div
+              class="w-40 h-24 rounded-box bg-base-200 border border-base-300 flex items-center justify-center text-sm text-base-content/50"
+            >
+              商品卡片
+            </div>
+          </div>
+          <div class="indicator indicator-center indicator-bottom">
+            <span class="indicator-item badge badge-sm badge-error badge-pill">限时</span>
+            <div
+              class="w-40 h-24 rounded-box bg-base-200 border border-base-300 flex items-center justify-center text-sm text-base-content/50"
+            >
+              商品卡片
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="indicator border w-full">
         <div class="indicator-item indicator-top indicator-start">
           <div class="badge badge-secondary">推荐</div>
         </div>

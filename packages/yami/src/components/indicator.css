@@ -1,72 +1,82 @@
 /* ===================== Indicator ===================== */
 
 @utility indicator {
-  @apply relative inline-flex;
-  width: max-content;
-
-  :where(.indicator-item) {
-    z-index: 1;
-    @apply absolute whitespace-nowrap;
-    top: var(--indicator-t, 0);
-    bottom: var(--indicator-b, auto);
-    inset-inline-start: var(--indicator-s, auto);
-    inset-inline-end: var(--indicator-e, 0);
-    translate: var(--indicator-x, 50%) var(--indicator-y, -50%);
-
-    [dir="rtl"] & {
-      --indicator-x: -50%;
-    }
-  }
+  position: relative;
+  display: inline-flex;
+  width: fit-content;
 }
 
-/* Horizontal Position Variants */
+/* ── 徽标本体 ── */
+@utility indicator-item {
+  --indicator-x: 0%;
+  --indicator-y: 0%;
+  --indicator-offset-x: 0px;
+  --indicator-offset-y: 0px;
+
+  position: absolute;
+  z-index: 10;
+  transform: translate(var(--indicator-x), var(--indicator-y))
+    translate(var(--indicator-offset-x), var(--indicator-offset-y));
+
+  /* 默认：右上角 */
+  top: 0;
+  right: 0;
+  --indicator-x: 50%;
+  --indicator-y: -50%;
+}
+
+/* ══════════════════════════════════════════
+   水平位置
+══════════════════════════════════════════ */
 
 @utility indicator-start {
-  --indicator-s: 0;
-  --indicator-e: auto;
-  --indicator-x: -50%;
-
-  [dir="rtl"] & {
-    --indicator-x: 50%;
-  }
-}
-
-@utility indicator-center {
-  --indicator-s: 50%;
-  --indicator-e: 50%;
-  --indicator-x: -50%;
-
-  [dir="rtl"] & {
-    --indicator-x: 50%;
-  }
-}
-
-@utility indicator-end {
-  --indicator-s: auto;
-  --indicator-e: 0;
-  --indicator-x: 50%;
-
-  [dir="rtl"] & {
+  & .indicator-item {
+    right: auto;
+    left: 0;
     --indicator-x: -50%;
   }
 }
 
-/* Vertical Position Variants */
+@utility indicator-center {
+  & .indicator-item {
+    right: auto;
+    left: 50%;
+    --indicator-x: -50%;
+  }
+}
+
+@utility indicator-end {
+  & .indicator-item {
+    left: auto;
+    right: 0;
+    --indicator-x: 50%;
+  }
+}
+
+/* ══════════════════════════════════════════
+   垂直位置
+══════════════════════════════════════════ */
 
 @utility indicator-top {
-  --indicator-t: 0;
-  --indicator-b: auto;
-  --indicator-y: -50%;
+  & .indicator-item {
+    bottom: auto;
+    top: 0;
+    --indicator-y: -50%;
+  }
 }
 
 @utility indicator-middle {
-  --indicator-t: 50%;
-  --indicator-b: 50%;
-  --indicator-y: -50%;
+  & .indicator-item {
+    top: 50%;
+    bottom: auto;
+    --indicator-y: -50%;
+  }
 }
 
 @utility indicator-bottom {
-  --indicator-t: auto;
-  --indicator-b: 0;
-  --indicator-y: 50%;
+  & .indicator-item {
+    top: auto;
+    bottom: 0;
+    --indicator-y: 50%;
+  }
 }

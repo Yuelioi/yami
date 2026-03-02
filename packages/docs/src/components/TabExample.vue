@@ -8,32 +8,44 @@ const apiClasses = [
   {
     category: '基础',
     className: 'tabs',
-    description: '标签页容器',
+    description: '选项卡容器',
     isCategoryStart: true,
   },
   {
     category: '基础',
-    className: 'tab-header',
-    description: '标签页头',
-    isCategoryStart: false,
-  },
-  {
-    category: '基础',
-    className: 'tab-title',
-    description: '标签页标题',
+    className: 'tab',
+    description: '选项卡标签项（label 元素）',
     isCategoryStart: false,
   },
   {
     category: '基础',
     className: 'tab-content',
-    description: '标签页内容',
+    description: '内容面板',
+    isCategoryStart: false,
+  },
+  {
+    category: '基础',
+    className: 'tab-disabled',
+    description: '禁用状态',
+    isCategoryStart: false,
+  },
+  {
+    category: '基础',
+    className: 'tab-header',
+    description: '标签头部容器（分离结构专用）',
+    isCategoryStart: false,
+  },
+  {
+    category: '基础',
+    className: 'tab-body',
+    description: '内容区容器（分离结构专用）',
     isCategoryStart: false,
   },
   {
     category: '样式',
-    className: 'tabs-bordered',
-    description: '带边框',
-    isCategoryStart: false,
+    className: 'tabs-line',
+    description: '下划线样式（默认）',
+    isCategoryStart: true,
   },
   {
     category: '样式',
@@ -43,44 +55,38 @@ const apiClasses = [
   },
   {
     category: '样式',
-    className: 'tabs-lifted',
-    description: '浮起样式',
+    className: 'tabs-pill',
+    description: '胶囊样式',
     isCategoryStart: false,
   },
   {
-    category: '尺寸',
-    className: 'tabs-xs',
-    description: '超小',
-    isCategoryStart: false,
-  },
-  {
-    category: '尺寸',
-    className: 'tabs-sm',
-    description: '小',
-    isCategoryStart: false,
-  },
-  {
-    category: '尺寸',
-    className: 'tabs-md',
-    description: '中',
-    isCategoryStart: false,
-  },
-  {
-    category: '尺寸',
-    className: 'tabs-lg',
-    description: '大',
+    category: '样式',
+    className: 'tabs-soft',
+    description: '柔和样式',
     isCategoryStart: false,
   },
   {
     category: '颜色',
     className: 'tabs-primary',
     description: '主色',
-    isCategoryStart: false,
+    isCategoryStart: true,
   },
   {
     category: '颜色',
     className: 'tabs-secondary',
     description: '次色',
+    isCategoryStart: false,
+  },
+  {
+    category: '颜色',
+    className: 'tabs-accent',
+    description: '强调色',
+    isCategoryStart: false,
+  },
+  {
+    category: '颜色',
+    className: 'tabs-neutral',
+    description: '中性色',
     isCategoryStart: false,
   },
   {
@@ -101,300 +107,343 @@ const apiClasses = [
     description: '错误色',
     isCategoryStart: false,
   },
+  {
+    category: '尺寸',
+    className: 'tabs-sm',
+    description: '小',
+    isCategoryStart: true,
+  },
+  {
+    category: '尺寸',
+    className: 'tabs-md',
+    description: '中（默认）',
+    isCategoryStart: false,
+  },
+  {
+    category: '尺寸',
+    className: 'tabs-lg',
+    description: '大',
+    isCategoryStart: false,
+  },
+  {
+    category: '尺寸',
+    className: 'tabs-xl',
+    description: '特大',
+    isCategoryStart: false,
+  },
+  {
+    category: '布局',
+    className: 'tabs-stretch',
+    description: '标签项等宽铺满',
+    isCategoryStart: true,
+  },
 ]
 </script>
 
 <template>
   <DocsContainer>
-    <DocsHeader title="Tab" description="选项卡/标签页组件，用于在同一区域切换不同内容。" />
+    <DocsHeader
+      title="Tabs"
+      description="选项卡用于在同一空间内切换展示不同内容区域，纯 CSS 驱动，无需 JavaScript。"
+    />
 
-    <ApiReference :data="apiClasses"></ApiReference>
+    <ApiReference :data="apiClasses" />
 
-    <DocsSection title="基础标签页">
-      <div class="tabs tabs-bordered w-full max-w-md">
-        <div class="tab-header">
-          <input type="radio" id="tab-1" name="tab-basic" checked />
-          <label for="tab-1" class="tab-title">概述</label>
-
-          <input type="radio" id="tab-2" name="tab-basic" />
-          <label for="tab-2" class="tab-title">功能</label>
-
-          <input type="radio" id="tab-3" name="tab-basic" />
-          <label for="tab-3" class="tab-title">价格</label>
+    <!-- 样式 -->
+    <DocsSection title="样式">
+      <div>
+        <p class="text-sm text-base-content/60 mb-3">下划线（默认）</p>
+        <div class="tabs tabs-line tabs-primary">
+          <input type="radio" name="style-line" id="line-1" checked />
+          <label class="tab" for="line-1">个人资料</label>
+          <input type="radio" name="style-line" id="line-2" />
+          <label class="tab" for="line-2">设置</label>
+          <input type="radio" name="style-line" id="line-3" />
+          <label class="tab" for="line-3">账单</label>
         </div>
+      </div>
 
-        <div class="tab-body">
-          <div class="tab-content">
-            <p>这是产品的总体介绍。</p>
-          </div>
-          <div class="tab-content">
-            <ul class="list-disc list-inside space-y-1">
-              <li>实时数据同步</li>
-              <li>智能分析报告</li>
-              <li>团队协作工具</li>
-            </ul>
-          </div>
-          <div class="tab-content">
-            <p>基础版免费，专业版 ¥99/月，企业版请联系我们。</p>
+      <div>
+        <p class="text-sm text-base-content/60 mb-3">盒子</p>
+        <div class="tabs tabs-boxed tabs-primary">
+          <input type="radio" name="style-boxed" id="boxed-1" checked />
+          <label class="tab" for="boxed-1">全部</label>
+          <input type="radio" name="style-boxed" id="boxed-2" />
+          <label class="tab" for="boxed-2">进行中</label>
+          <input type="radio" name="style-boxed" id="boxed-3" />
+          <label class="tab" for="boxed-3">已归档</label>
+        </div>
+      </div>
+
+      <div>
+        <p class="text-sm text-base-content/60 mb-3">胶囊</p>
+        <div class="tabs tabs-pill tabs-primary">
+          <input type="radio" name="style-pill" id="pill-1" checked />
+          <label class="tab" for="pill-1">设计</label>
+          <input type="radio" name="style-pill" id="pill-2" />
+          <label class="tab" for="pill-2">开发</label>
+          <input type="radio" name="style-pill" id="pill-3" />
+          <label class="tab" for="pill-3">部署</label>
+        </div>
+      </div>
+
+      <div>
+        <p class="text-sm text-base-content/60 mb-3">柔和</p>
+        <div class="tabs tabs-soft tabs-primary">
+          <input type="radio" name="style-soft" id="soft-1" checked />
+          <label class="tab" for="soft-1">概览</label>
+          <input type="radio" name="style-soft" id="soft-2" />
+          <label class="tab" for="soft-2">分析</label>
+          <input type="radio" name="style-soft" id="soft-3" />
+          <label class="tab" for="soft-3">报告</label>
+        </div>
+      </div>
+    </DocsSection>
+
+    <!-- 颜色 -->
+    <DocsSection title="颜色">
+      <div class="flex flex-col gap-3">
+        <div
+          v-for="(color, i) in [
+            'primary',
+            'secondary',
+            'accent',
+            'neutral',
+            'success',
+            'warning',
+            'error',
+          ]"
+          :key="color"
+        >
+          <div class="tabs tabs-pill" :class="`tabs-${color}`">
+            <input type="radio" :name="`color-${color}`" :id="`${color}-1`" checked />
+            <label class="tab" :for="`${color}-1`">选项一</label>
+            <input type="radio" :name="`color-${color}`" :id="`${color}-2`" />
+            <label class="tab" :for="`${color}-2`">选项二</label>
+            <input type="radio" :name="`color-${color}`" :id="`${color}-3`" />
+            <label class="tab" :for="`${color}-3`">选项三</label>
           </div>
         </div>
       </div>
     </DocsSection>
 
-    <DocsSection title="带边框样式">
-      <div class="tabs tabs-bordered w-full max-w-md">
-        <div class="tab-header">
-          <input type="radio" id="bordered-1" name="bordered" checked />
-          <label for="bordered-1" class="tab-title">首页</label>
-
-          <input type="radio" id="bordered-2" name="bordered" />
-          <label for="bordered-2" class="tab-title">文档</label>
-
-          <input type="radio" id="bordered-3" name="bordered" />
-          <label for="bordered-3" class="tab-title">示例</label>
-        </div>
-
-        <div class="tab-body">
-          <div class="tab-content">欢迎来到我们的网站</div>
-          <div class="tab-content">查看完整的文档</div>
-          <div class="tab-content">浏览更多示例</div>
-        </div>
-      </div>
-    </DocsSection>
-
-    <DocsSection title="盒子样式">
-      <div class="tabs tabs-boxed w-full max-w-md">
-        <div class="tab-header">
-          <input type="radio" id="boxed-1" name="boxed" checked />
-          <label for="boxed-1" class="tab-title">账户</label>
-
-          <input type="radio" id="boxed-2" name="boxed" />
-          <label for="boxed-2" class="tab-title">配置</label>
-
-          <input type="radio" id="boxed-3" name="boxed" />
-          <label for="boxed-3" class="tab-title">关于</label>
-        </div>
-
-        <div class="tab-body">
-          <div class="tab-content">
-            <h3 class="font-semibold mb-2">账户设置</h3>
-            <p>管理您的账户信息和偏好设置。</p>
-          </div>
-          <div class="tab-content">
-            <h3 class="font-semibold mb-2">系统配置</h3>
-            <p>配置应用程序参数。</p>
-          </div>
-          <div class="tab-content">
-            <h3 class="font-semibold mb-2">关于本应用</h3>
-            <p>版本 1.0.0</p>
+    <!-- 尺寸 -->
+    <DocsSection title="尺寸">
+      <div class="flex flex-col gap-4">
+        <div v-for="size in ['sm', 'md', 'lg', 'xl']" :key="size">
+          <p class="text-sm text-base-content/60 mb-2">{{ size }}</p>
+          <div class="tabs tabs-line tabs-primary" :class="`tabs-${size}`">
+            <input type="radio" :name="`size-${size}`" :id="`${size}-a`" checked />
+            <label class="tab" :for="`${size}-a`">选项一</label>
+            <input type="radio" :name="`size-${size}`" :id="`${size}-b`" />
+            <label class="tab" :for="`${size}-b`">选项二</label>
+            <input type="radio" :name="`size-${size}`" :id="`${size}-c`" />
+            <label class="tab" :for="`${size}-c`">选项三</label>
           </div>
         </div>
       </div>
     </DocsSection>
 
-    <DocsSection title="浮起样式">
-      <div class="tabs tabs-lifted w-full max-w-md">
-        <div class="tab-header">
-          <input type="radio" id="lifted-1" name="lifted" checked />
-          <label for="lifted-1" class="tab-title">描述</label>
-
-          <input type="radio" id="lifted-2" name="lifted" />
-          <label for="lifted-2" class="tab-title">规格</label>
-
-          <input type="radio" id="lifted-3" name="lifted" />
-          <label for="lifted-3" class="tab-title">评论</label>
-        </div>
-
-        <div class="tab-body">
-          <div class="tab-content">
-            <p>这是一个高质量的产品，具有卓越的性能。</p>
-          </div>
-          <div class="tab-content">
-            <ul class="list-disc list-inside space-y-1">
-              <li>尺寸：10 x 10 x 5 cm</li>
-              <li>重量：250g</li>
-              <li>材质：优质塑料</li>
-            </ul>
-          </div>
-          <div class="tab-content">
-            <p>⭐⭐⭐⭐⭐ "非常棒的产品！" - 用户 A</p>
-          </div>
-        </div>
+    <!-- 等宽铺满 -->
+    <DocsSection title="等宽铺满">
+      <div class="tabs tabs-line tabs-primary tabs-stretch w-full max-w-sm">
+        <input type="radio" name="stretch" id="stretch-1" checked />
+        <label class="tab" for="stretch-1">选项一</label>
+        <input type="radio" name="stretch" id="stretch-2" />
+        <label class="tab" for="stretch-2">选项二</label>
+        <input type="radio" name="stretch" id="stretch-3" />
+        <label class="tab" for="stretch-3">选项三</label>
       </div>
     </DocsSection>
 
-    <DocsSection title="尺寸变体">
-      <div class="space-y-6">
-        <div>
-          <p class="text-sm text-base-content/60 mb-2">超小 (xs)</p>
-          <div class="tabs tabs-boxed tabs-xs w-full max-w-md">
-            <div class="tab-header">
-              <input type="radio" id="xs-1" name="xs" checked />
-              <label for="xs-1" class="tab-title">标签 1</label>
-              <input type="radio" id="xs-2" name="xs" />
-              <label for="xs-2" class="tab-title">标签 2</label>
-            </div>
-            <div class="tab-body">
-              <div class="tab-content">内容 1</div>
-              <div class="tab-content">内容 2</div>
-            </div>
-          </div>
-        </div>
+    <!-- 带内容面板 -->
+    <DocsSection title="带内容面板">
+      <div>
+        <p class="text-sm text-base-content/60 mb-3">并列结构</p>
+        <div class="tabs tabs-boxed tabs-primary w-full max-w-md">
+          <input type="radio" name="flat-content" id="flat-1" checked />
+          <label class="tab" for="flat-1">收件箱</label>
+          <input type="radio" name="flat-content" id="flat-2" />
+          <label class="tab" for="flat-2">已发送</label>
+          <input type="radio" name="flat-content" id="flat-3" />
+          <label class="tab" for="flat-3">草稿箱</label>
 
-        <div>
-          <p class="text-sm text-base-content/60 mb-2">小 (sm)</p>
-          <div class="tabs tabs-boxed tabs-sm w-full max-w-md">
-            <div class="tab-header">
-              <input type="radio" id="sm-1" name="sm" checked />
-              <label for="sm-1" class="tab-title">标签 1</label>
-              <input type="radio" id="sm-2" name="sm" />
-              <label for="sm-2" class="tab-title">标签 2</label>
-            </div>
-            <div class="tab-body">
-              <div class="tab-content">内容 1</div>
-              <div class="tab-content">内容 2</div>
-            </div>
+          <div
+            class="tab-content mt-2 p-4 rounded-box border bg-base-100 border-base-300 text-sm text-base-content/70"
+          >
+            📥 你有 <strong class="text-base-content">3 封</strong> 未读邮件。
           </div>
-        </div>
-
-        <div>
-          <p class="text-sm text-base-content/60 mb-2">大 (lg)</p>
-          <div class="tabs tabs-boxed tabs-lg w-full max-w-md">
-            <div class="tab-header">
-              <input type="radio" id="lg-1" name="lg" checked />
-              <label for="lg-1" class="tab-title">标签 1</label>
-              <input type="radio" id="lg-2" name="lg" />
-              <label for="lg-2" class="tab-title">标签 2</label>
-            </div>
-            <div class="tab-body">
-              <div class="tab-content">内容 1</div>
-              <div class="tab-content">内容 2</div>
-            </div>
+          <div
+            class="tab-content mt-4 p-4 rounded-box border border-base-200 text-sm text-base-content/70"
+          >
+            📤 最近发送了 <strong class="text-base-content">12 封</strong> 邮件。
+          </div>
+          <div
+            class="tab-content mt-4 p-4 rounded-box border border-base-200 text-sm text-base-content/70"
+          >
+            📝 你有 <strong class="text-base-content">1 封</strong> 草稿待完成。
           </div>
         </div>
       </div>
-    </DocsSection>
 
-    <DocsSection title="颜色变体">
-      <div class="space-y-4">
-        <div>
-          <p class="text-sm text-base-content/60 mb-2">主色 (primary)</p>
-          <div class="tabs tabs-bordered tabs-primary w-full max-w-md">
-            <div class="tab-header">
-              <input type="radio" id="primary-1" name="primary" checked />
-              <label for="primary-1" class="tab-title">标签 1</label>
-              <input type="radio" id="primary-2" name="primary" />
-              <label for="primary-2" class="tab-title">标签 2</label>
-            </div>
-            <div class="tab-body">
-              <div class="tab-content">内容 1</div>
-              <div class="tab-content">内容 2</div>
-            </div>
+      <div>
+        <p class="text-sm text-base-content/60 mb-3">分离结构（tab-header + tab-body）</p>
+        <div class="tabs tabs-soft tabs-primary w-full max-w-md">
+          <div class="tab-header">
+            <input type="radio" name="sep-content" id="sep-1" checked />
+            <label class="tab" for="sep-1">概览</label>
+            <input type="radio" name="sep-content" id="sep-2" />
+            <label class="tab" for="sep-2">成员</label>
+            <input type="radio" name="sep-content" id="sep-3" />
+            <label class="tab" for="sep-3">设置</label>
           </div>
-        </div>
 
-        <div>
-          <p class="text-sm text-base-content/60 mb-2">成功色 (success)</p>
-          <div class="tabs tabs-bordered tabs-success w-full max-w-md">
-            <div class="tab-header">
-              <input type="radio" id="success-1" name="success" checked />
-              <label for="success-1" class="tab-title">标签 1</label>
-              <input type="radio" id="success-2" name="success" />
-              <label for="success-2" class="tab-title">标签 2</label>
+          <div class="tab-body mt-4 border border-base-200 rounded-box">
+            <div class="tab-content p-4 text-sm text-base-content/70">
+              📊 项目整体进度 <strong class="text-base-content">72%</strong>，本周新增任务 8 项。
             </div>
-            <div class="tab-body">
-              <div class="tab-content">内容 1</div>
-              <div class="tab-content">内容 2</div>
+            <div class="tab-content p-4 text-sm text-base-content/70">
+              👥 当前团队共 <strong class="text-base-content">6 名</strong> 成员，2 人本周在线。
+            </div>
+            <div class="tab-content p-4 text-sm text-base-content/70">
+              ⚙️ 项目可见性：<strong class="text-base-content">私有</strong>，通知已开启。
             </div>
           </div>
         </div>
       </div>
     </DocsSection>
 
-    <DocsSection title="多个标签页">
-      <div class="tabs tabs-boxed w-full max-w-2xl">
-        <div class="tab-header">
-          <input type="radio" id="multi-1" name="multi" checked />
-          <label for="multi-1" class="tab-title">步骤 1</label>
+    <!-- 带图标 -->
+    <DocsSection title="带图标">
+      <div class="tabs tabs-soft tabs-primary">
+        <input type="radio" name="icon-tab" id="icon-1" checked />
+        <label class="tab" for="icon-1">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="h-4 w-4"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"
+            />
+          </svg>
+          首页
+        </label>
 
-          <input type="radio" id="multi-2" name="multi" />
-          <label for="multi-2" class="tab-title">步骤 2</label>
+        <input type="radio" name="icon-tab" id="icon-2" />
+        <label class="tab" for="icon-2">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="h-4 w-4"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
+            />
+          </svg>
+          用户
+        </label>
 
-          <input type="radio" id="multi-3" name="multi" />
-          <label for="multi-3" class="tab-title">步骤 3</label>
-
-          <input type="radio" id="multi-4" name="multi" />
-          <label for="multi-4" class="tab-title">步骤 4</label>
-
-          <input type="radio" id="multi-5" name="multi" />
-          <label for="multi-5" class="tab-title">步骤 5</label>
-        </div>
-
-        <div class="tab-body">
-          <div class="tab-content">填写基本信息</div>
-          <div class="tab-content">选择套餐</div>
-          <div class="tab-content">确认订单</div>
-          <div class="tab-content">付款</div>
-          <div class="tab-content">完成</div>
-        </div>
+        <input type="radio" name="icon-tab" id="icon-3" disabled />
+        <label class="tab tab-disabled" for="icon-3">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="h-4 w-4"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"
+            />
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
+            />
+          </svg>
+          设置（禁用）
+        </label>
       </div>
     </DocsSection>
 
-    <DocsSection title="表单分步界面">
-      <div class="tabs tabs-lifted w-full max-w-2xl">
-        <div class="tab-header">
-          <input type="radio" id="form-1" name="form" checked />
-          <label for="form-1" class="tab-title">
-            <span class="icon-[lucide--user] w-4 h-4 mr-1"></span>
-            个人信息
-          </label>
+    <!-- 带徽章 -->
+    <DocsSection title="带徽章">
+      <div class="tabs tabs-line tabs-primary">
+        <input type="radio" name="badge-tab" id="badge-1" checked />
+        <label class="tab" for="badge-1">
+          全部
+          <span class="badge badge-sm badge-soft badge-primary">24</span>
+        </label>
 
-          <input type="radio" id="form-2" name="form" />
-          <label for="form-2" class="tab-title">
-            <span class="icon-[lucide--map-pin] w-4 h-4 mr-1"></span>
-            地址信息
-          </label>
+        <input type="radio" name="badge-tab" id="badge-2" />
+        <label class="tab" for="badge-2">
+          待审核
+          <span class="badge badge-sm badge-soft badge-warning">5</span>
+        </label>
 
-          <input type="radio" id="form-3" name="form" />
-          <label for="form-3" class="tab-title">
-            <span class="icon-[lucide--check-circle] w-4 h-4 mr-1"></span>
-            确认信息
-          </label>
+        <input type="radio" name="badge-tab" id="badge-3" />
+        <label class="tab" for="badge-3">
+          已完成
+          <span class="badge badge-sm badge-soft badge-success">19</span>
+        </label>
+      </div>
+    </DocsSection>
+
+    <!-- HTML 结构说明 -->
+    <DocsSection title="两种结构">
+      <div class="flex flex-col gap-4 text-sm">
+        <div class="p-4 rounded-box bg-base-200">
+          <p class="font-semibold text-base-content mb-2">并列结构</p>
+          <p class="text-base-content/60 mb-3">
+            input、label、tab-content 在同一层级，适合轻量简单场景。注意三者顺序不能打乱。
+          </p>
+          <pre
+            class="text-xs bg-base-300/50 rounded p-3 overflow-x-auto"
+          ><code>&lt;div class="tabs tabs-line tabs-primary"&gt;
+  &lt;input type="radio" name="t" id="t1" checked /&gt;
+  &lt;label class="tab" for="t1"&gt;Tab 1&lt;/label&gt;
+  &lt;input type="radio" name="t" id="t2" /&gt;
+  &lt;label class="tab" for="t2"&gt;Tab 2&lt;/label&gt;
+
+  &lt;div class="tab-content"&gt;内容一&lt;/div&gt;
+  &lt;div class="tab-content"&gt;内容二&lt;/div&gt;
+&lt;/div&gt;</code></pre>
         </div>
 
-        <div class="tab-body">
-          <div class="tab-content">
-            <div class="form-control mb-4">
-              <label class="label">
-                <span class="label-text">姓名</span>
-              </label>
-              <input type="text" placeholder="输入姓名" class="input input-bordered" />
-            </div>
-            <div class="form-control">
-              <label class="label">
-                <span class="label-text">邮箱</span>
-              </label>
-              <input type="email" placeholder="输入邮箱" class="input input-bordered" />
-            </div>
-          </div>
-          <div class="tab-content">
-            <div class="form-control mb-4">
-              <label class="label">
-                <span class="label-text">城市</span>
-              </label>
-              <input type="text" placeholder="输入城市" class="input input-bordered" />
-            </div>
-            <div class="form-control">
-              <label class="label">
-                <span class="label-text">邮编</span>
-              </label>
-              <input type="text" placeholder="输入邮编" class="input input-bordered" />
-            </div>
-          </div>
-          <div class="tab-content">
-            <p class="text-base-content/70">请确认您的信息无误</p>
-            <button class="btn btn-primary mt-4">提交</button>
-          </div>
+        <div class="p-4 rounded-box bg-base-200">
+          <p class="font-semibold text-base-content mb-2">分离结构（推荐）</p>
+          <p class="text-base-content/60 mb-3">
+            tab-header 与 tab-body 分开，语义更清晰，内容区可独立设置样式。
+          </p>
+          <pre
+            class="text-xs bg-base-300/50 rounded p-3 overflow-x-auto"
+          ><code>&lt;div class="tabs tabs-boxed tabs-primary"&gt;
+  &lt;div class="tab-header"&gt;
+    &lt;input type="radio" name="t" id="t1" checked /&gt;
+    &lt;label class="tab" for="t1"&gt;Tab 1&lt;/label&gt;
+    &lt;input type="radio" name="t" id="t2" /&gt;
+    &lt;label class="tab" for="t2"&gt;Tab 2&lt;/label&gt;
+  &lt;/div&gt;
+  &lt;div class="tab-body"&gt;
+    &lt;div class="tab-content"&gt;内容一&lt;/div&gt;
+    &lt;div class="tab-content"&gt;内容二&lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
         </div>
       </div>
     </DocsSection>

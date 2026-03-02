@@ -1,156 +1,468 @@
+/* ===================== Number Input ===================== */
+
 /*
-name: number
-desc: 数字输入组件，用于输入或调整数值。
-usage: 常用于数量、价格、步进值输入等。
-syntax:
-<div class="flex flex-nowrap items-center gap-4">
-  <div class="input-number">
-    <button>-</button>
-    <input type="number" value="1" />
-    <button>+</button>
+  结构：
+  <div class="number-input">
+    <button class="number-input-decrement">−</button>
+    <input type="number" class="number-input-field" />
+    <button class="number-input-increment">+</button>
   </div>
-  <input type="text" class="input" value="正常的input" />
-</div>
+
+  变体：
+  - number-input-sm / number-input-lg / number-input-xl
+  - number-input-primary / secondary / accent / ...
+  - number-input-ghost
+  - number-input-vertical（上下布局，按钮在两侧变上下）
 */
-@theme {
-  /* ========================================
-     Number 全局令牌
-     ======================================== */
-
-  /* 动画 */
-  --number-duration: var(--duration-base);
-  --number-ease: var(--ease-out);
-
-  /* 颜色 */
-  --number-bg: var(--background);
-  --number-fg: var(--base-content);
-  --number-border: var(--input);
-  --number-border-hover: var(--ring);
-  --number-border-focus: var(--ring);
-
-  --number-placeholder: var(--base-content);
-
-  /* 错误 */
-  --number-error-border: var(--error);
-  --number-error-fg: var(--error);
-
-  /* 圆角 */
-  --number-radius: var(--radius-md);
-
-  /* 尺寸 */
-  --number-height: 2.5rem;
-  --number-padding-x: 0.75rem;
-  --number-font-size: 0.875rem;
-
-  /* 控制按钮 */
-  --number-control-width: 2rem;
-  --number-control-bg-hover: var(--base-200);
-  --number-control-fg: var(--base-content);
-  --number-control-fg-hover: var(--base-content);
-
-  /* 禁用 */
-  --number-disabled-opacity: var(--opacity-disabled);
-}
-
-/* ========================================
-   Number 容器
-   ======================================== */
-
-@utility number {
-  display: inline-flex;
-  align-items: stretch;
-  width: 100%;
-  height: var(--number-height);
-  border-radius: var(--number-radius);
-  background-color: var(--number-bg);
-  color: var(--number-fg);
-  border: 1px solid var(--number-border);
-  overflow: hidden;
-
-  transition:
-    border-color var(--number-duration) var(--number-ease),
-    box-shadow var(--number-duration) var(--number-ease);
-
-  &:hover {
-    border-color: var(--number-border-hover);
-  }
-
-  &:focus-within {
-    border-color: var(--number-border-focus);
-    box-shadow: 0 0 0 1px var(--number-border-focus);
-  }
-}
-
-/* 错误状态 */
-@utility number-error {
-  border-color: var(--number-error-border);
-
-  &:focus-within {
-    box-shadow: 0 0 0 1px var(--number-error-border);
-  }
-}
-
-/* 禁用状态 */
-@utility number-disabled {
-  opacity: var(--number-disabled-opacity);
-  pointer-events: none;
-}
-
-/* ========================================
-   Input 本体
-   ======================================== */
 
 @utility number-input {
-  flex: 1;
-  width: 100%;
-  border: none;
-  background: transparent;
-  padding: 0 var(--number-padding-x);
-  font-size: var(--number-font-size);
-  color: inherit;
-  outline: none;
+  --number-input-size: var(--size-field-md);
+  --number-input-color: color-mix(
+    in oklab,
+    var(--color-base-content) 40%,
+    #0000
+  );
+  --number-input-btn-w: var(--number-input-size);
 
-  &::placeholder {
-    color: var(--number-placeholder);
+  display: inline-flex;
+  align-items: stretch;
+  height: var(--number-input-size);
+  border: var(--border) solid var(--number-input-color);
+  border-radius: var(--radius-field);
+  background-color: var(--color-base-100);
+  overflow: hidden;
+  transition:
+    border-color 150ms ease,
+    box-shadow 150ms ease;
+
+  /* hover */
+  &:hover:not(:has(input:disabled)):not(:has(input:focus)) {
+    border-color: color-mix(in oklab, var(--color-base-content) 60%, #0000);
   }
 
-  /* 移除原生箭头 */
-  &::-webkit-outer-spin-button,
-  &::-webkit-inner-spin-button {
-    -webkit-appearance: none;
-    margin: 0;
+  /* focus-within */
+  &:focus-within {
+    --number-input-color: var(--color-primary);
+    border-color: var(--number-input-color);
+    outline: 1px solid var(--number-input-color);
+    box-shadow: 0 0 0 3px
+      color-mix(in oklab, var(--number-input-color) 20%, transparent);
   }
 
-  &[type="number"] {
-    -moz-appearance: textfield;
+  /* disabled */
+  &:has(input:disabled) {
+    opacity: 0.5;
+    cursor: not-allowed;
+    background-color: color-mix(
+      in oklab,
+      var(--color-base-200) 60%,
+      transparent
+    );
+    pointer-events: none;
   }
 }
 
-/* ========================================
-   控制区（加 / 减）
-   ======================================== */
-
-@utility number-controls {
-  display: flex;
-  flex-direction: column;
-  border-left: 1px solid var(--number-border);
-}
-
-@utility number-control {
-  display: flex;
+/* 减号 / 加号按钮 */
+@utility number-input-decrement {
+  display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: var(--number-control-width);
-  flex: 1;
+  width: var(--number-input-btn-w);
+  flex-shrink: 0;
+  font-size: 1.1em;
+  line-height: 1;
+  color: color-mix(in oklab, var(--color-base-content) 50%, transparent);
+  background: none;
+  border: none;
+  border-inline-end: var(--border) solid
+    color-mix(in oklab, var(--color-base-content) 12%, transparent);
   cursor: pointer;
-  color: var(--number-control-fg);
-
   transition:
-    background-color var(--number-duration) var(--number-ease),
-    color var(--number-duration) var(--number-ease);
+    background-color 120ms ease,
+    color 120ms ease;
+  user-select: none;
 
   &:hover {
-    background-color: var(--number-control-bg-hover);
-    color: var(--number-control-fg-hover);
+    background-color: color-mix(
+      in oklab,
+      var(--color-base-content) 6%,
+      transparent
+    );
+    color: var(--color-base-content);
+  }
+
+  &:active {
+    background-color: color-mix(
+      in oklab,
+      var(--color-base-content) 12%,
+      transparent
+    );
+  }
+}
+
+@utility number-input-increment {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--number-input-btn-w);
+  flex-shrink: 0;
+  font-size: 1.1em;
+  line-height: 1;
+  color: color-mix(in oklab, var(--color-base-content) 50%, transparent);
+  background: none;
+  border: none;
+  border-inline-start: var(--border) solid
+    color-mix(in oklab, var(--color-base-content) 12%, transparent);
+  cursor: pointer;
+  transition:
+    background-color 120ms ease,
+    color 120ms ease;
+  user-select: none;
+
+  &:hover {
+    background-color: color-mix(
+      in oklab,
+      var(--color-base-content) 6%,
+      transparent
+    );
+    color: var(--color-base-content);
+  }
+
+  &:active {
+    background-color: color-mix(
+      in oklab,
+      var(--color-base-content) 12%,
+      transparent
+    );
+  }
+}
+
+/* 中间 input */
+@utility number-input-field {
+  flex: 1;
+  min-width: 3rem;
+  width: 100%;
+  height: 100%;
+  padding-inline: 0.5rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  text-align: center;
+  color: var(--color-base-content);
+  background: none;
+  border: none;
+  outline: none;
+  appearance: none;
+
+  /* 隐藏原生 spin 按钮 */
+  &::-webkit-inner-spin-button,
+  &::-webkit-outer-spin-button {
+    appearance: none;
+    margin: 0;
+  }
+  -moz-appearance: textfield;
+}
+
+/* ── 尺寸 ── */
+
+@utility number-input-xs {
+  --number-input-size: var(--size-field-xs);
+  --number-input-btn-w: calc(var(--size-field-xs) * 1.1);
+
+  .number-input-field {
+    font-size: 0.75rem;
+    min-width: 2rem;
+  }
+  .number-input-decrement,
+  .number-input-increment {
+    font-size: 0.9em;
+  }
+}
+
+@utility number-input-sm {
+  --number-input-size: var(--size-field-sm);
+  --number-input-btn-w: calc(var(--size-field-sm) * 1.1);
+
+  .number-input-field {
+    font-size: 0.8125rem;
+    min-width: 2.5rem;
+  }
+}
+
+@utility number-input-lg {
+  --number-input-size: var(--size-field-lg);
+  --number-input-btn-w: calc(var(--size-field-lg) * 1.1);
+
+  .number-input-field {
+    font-size: 1rem;
+    min-width: 3.5rem;
+  }
+  .number-input-decrement,
+  .number-input-increment {
+    font-size: 1.2em;
+  }
+}
+
+@utility number-input-xl {
+  --number-input-size: var(--size-field-xl);
+  --number-input-btn-w: calc(var(--size-field-xl) * 1.1);
+
+  .number-input-field {
+    font-size: 1.125rem;
+    min-width: 4rem;
+  }
+  .number-input-decrement,
+  .number-input-increment {
+    font-size: 1.3em;
+  }
+}
+
+/* ── 颜色变体 ── */
+
+@utility number-input-primary {
+  --number-input-color: var(--color-primary);
+  border-color: var(--number-input-color);
+
+  .number-input-decrement,
+  .number-input-increment {
+    color: var(--color-primary);
+    &:hover {
+      background-color: color-mix(
+        in oklab,
+        var(--color-primary) 10%,
+        transparent
+      );
+      color: var(--color-primary);
+    }
+    &:active {
+      background-color: color-mix(
+        in oklab,
+        var(--color-primary) 18%,
+        transparent
+      );
+    }
+  }
+
+  .number-input-decrement {
+    border-inline-end-color: color-mix(
+      in oklab,
+      var(--color-primary) 25%,
+      transparent
+    );
+  }
+  .number-input-increment {
+    border-inline-start-color: color-mix(
+      in oklab,
+      var(--color-primary) 25%,
+      transparent
+    );
+  }
+
+  &:focus-within {
+    --number-input-color: var(--color-primary);
+  }
+}
+
+@utility number-input-success {
+  --number-input-color: var(--color-success);
+  border-color: var(--number-input-color);
+  background-color: color-mix(
+    in oklab,
+    var(--color-success) 6%,
+    var(--color-base-100)
+  );
+
+  .number-input-decrement,
+  .number-input-increment {
+    color: var(--color-success);
+    &:hover {
+      background-color: color-mix(
+        in oklab,
+        var(--color-success) 10%,
+        transparent
+      );
+    }
+    &:active {
+      background-color: color-mix(
+        in oklab,
+        var(--color-success) 18%,
+        transparent
+      );
+    }
+  }
+  .number-input-decrement {
+    border-inline-end-color: color-mix(
+      in oklab,
+      var(--color-success) 25%,
+      transparent
+    );
+  }
+  .number-input-increment {
+    border-inline-start-color: color-mix(
+      in oklab,
+      var(--color-success) 25%,
+      transparent
+    );
+  }
+}
+
+@utility number-input-warning {
+  --number-input-color: var(--color-warning);
+  border-color: var(--number-input-color);
+  background-color: color-mix(
+    in oklab,
+    var(--color-warning) 6%,
+    var(--color-base-100)
+  );
+
+  .number-input-decrement,
+  .number-input-increment {
+    color: var(--color-warning);
+    &:hover {
+      background-color: color-mix(
+        in oklab,
+        var(--color-warning) 10%,
+        transparent
+      );
+    }
+    &:active {
+      background-color: color-mix(
+        in oklab,
+        var(--color-warning) 18%,
+        transparent
+      );
+    }
+  }
+  .number-input-decrement {
+    border-inline-end-color: color-mix(
+      in oklab,
+      var(--color-warning) 25%,
+      transparent
+    );
+  }
+  .number-input-increment {
+    border-inline-start-color: color-mix(
+      in oklab,
+      var(--color-warning) 25%,
+      transparent
+    );
+  }
+}
+
+@utility number-input-error {
+  --number-input-color: var(--color-error);
+  border-color: var(--number-input-color);
+  background-color: color-mix(
+    in oklab,
+    var(--color-error) 6%,
+    var(--color-base-100)
+  );
+
+  .number-input-decrement,
+  .number-input-increment {
+    color: var(--color-error);
+    &:hover {
+      background-color: color-mix(
+        in oklab,
+        var(--color-error) 10%,
+        transparent
+      );
+    }
+    &:active {
+      background-color: color-mix(
+        in oklab,
+        var(--color-error) 18%,
+        transparent
+      );
+    }
+  }
+  .number-input-decrement {
+    border-inline-end-color: color-mix(
+      in oklab,
+      var(--color-error) 25%,
+      transparent
+    );
+  }
+  .number-input-increment {
+    border-inline-start-color: color-mix(
+      in oklab,
+      var(--color-error) 25%,
+      transparent
+    );
+  }
+}
+
+/* ── Ghost 变体 ── */
+
+@utility number-input-ghost {
+  background-color: transparent;
+  border-color: transparent;
+  border-bottom: var(--border) solid
+    color-mix(in oklab, var(--color-base-content) 20%, transparent);
+  border-radius: 0;
+
+  .number-input-decrement {
+    border-inline-end-color: color-mix(
+      in oklab,
+      var(--color-base-content) 12%,
+      transparent
+    );
+  }
+  .number-input-increment {
+    border-inline-start-color: color-mix(
+      in oklab,
+      var(--color-base-content) 12%,
+      transparent
+    );
+  }
+
+  &:focus-within {
+    border-color: transparent;
+    border-bottom-color: var(--color-primary);
+    outline: none;
+    box-shadow: none;
+  }
+}
+
+/* ── 竖排（按钮在右侧上下叠放）── */
+
+@utility number-input-vertical {
+  flex-direction: row;
+
+  .number-input-field {
+    order: 1;
+    border-radius: var(--radius-field) 0 0 var(--radius-field);
+  }
+
+  /* 右侧竖排按钮组 */
+  .number-input-increment,
+  .number-input-decrement {
+    order: 2;
+    width: calc(var(--number-input-btn-w) * 0.75);
+    height: 50%;
+    font-size: 0.75em;
+    border-inline-start: var(--border) solid
+      color-mix(in oklab, var(--color-base-content) 12%, transparent);
+    border-inline-end: none;
+  }
+
+  .number-input-increment {
+    order: 2;
+    align-self: flex-start;
+    border-bottom: calc(var(--border) / 2) solid
+      color-mix(in oklab, var(--color-base-content) 12%, transparent);
+  }
+
+  .number-input-decrement {
+    order: 3;
+    align-self: flex-end;
+    border-top: calc(var(--border) / 2) solid
+      color-mix(in oklab, var(--color-base-content) 12%, transparent);
+    border-inline-end: none;
+  }
+
+  /* 右侧按钮组容器（用 flex-col 包裹两个按钮）*/
+  &:has(.number-input-increment + .number-input-decrement),
+  &:has(.number-input-decrement + .number-input-increment) {
+    /* 依赖 HTML 顺序，见文档示例 */
   }
 }

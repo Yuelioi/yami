@@ -1,0 +1,8 @@
+@theme inline {
+  /* 输入字段尺寸 */
+  --size-field-xs: calc(var(--size-field, 0.25rem) * 6);
+  --size-field-sm: calc(var(--size-field, 0.25rem) * 7.5);
+  --size-field-md: calc(var(--size-field, 0.25rem) * 9);
+  --size-field-lg: calc(var(--size-field, 0.25rem) * 10.5);
+  --size-field-xl: calc(var(--size-field, 0.25rem) * 12);
+}

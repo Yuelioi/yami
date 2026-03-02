@@ -24,7 +24,7 @@
   box-shadow:
     0 0.5px 0 0.5px oklch(100% 0 0 / calc(var(--depth) * 8%)) inset,
     var(--btn-shadow);
-  --size: calc(var(--size-field, 0.25rem) * 9);
+  --size: var(--size-field-md);
   --btn-bg: var(--btn-color, var(--color-neutral));
   --btn-fg: var(--color-neutral-content);
   --btn-p: 0.75rem;
@@ -50,7 +50,7 @@
 
   &:active:hover:not(.btn-active),
   &:active:focus:not(.btn-active) {
-    @apply scale-95 transition-transform duration-300;
+    @apply scale-98 transition-transform duration-100;
     transition-timing-function: ease-out;
   }
 
@@ -212,7 +212,7 @@
   );
 }
 
-@utility btn-text {
+@utility btn-ghost {
   --btn-shadow: "";
   color: var(--btn-color, var(--color-neutral));
   --btn-bg: "";
@@ -240,7 +240,7 @@
   }
 }
 
-.btn-text.btn-active {
+.btn-ghost.btn-active {
   --btn-bg: color-mix(
     in oklab,
     var(--btn-color, var(--color-neutral)) 10%,
@@ -308,30 +308,30 @@
 @utility btn-xs {
   @apply text-xs;
   --btn-p: 0.5rem;
-  --size: calc(var(--size-field, 0.25rem) * 6);
+  --size: var(--size-field-xs);
 }
 
 @utility btn-sm {
   @apply text-sm;
   --btn-p: 0.675rem;
-  --size: calc(var(--size-field, 0.25rem) * 7.5);
+  --size: var(--size-field-sm);
 }
 
 @utility btn-md {
   @apply text-base;
-  --size: calc(var(--size-field, 0.25rem) * 9);
+  --size: var(--size-field-md);
 }
 
 @utility btn-lg {
   @apply text-lg;
   --btn-p: 1rem;
-  --size: calc(var(--size-field, 0.25rem) * 10.5);
+  --size: var(--size-field-lg);
 }
 
 @utility btn-xl {
   @apply text-lg;
   --btn-p: 1.25rem;
-  --size: calc(var(--size-field, 0.25rem) * 12);
+  --size: var(--size-field-xl);
 }
 
 /* Shape Variants */

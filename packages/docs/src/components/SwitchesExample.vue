@@ -141,31 +141,31 @@ const apiClasses = [
           <span>默认</span>
         </label>
         <label class="flex items-center gap-3 cursor-pointer">
-          <input type="checkbox" class="switch switch-primary" />
+          <input type="checkbox" checked class="switch switch-primary" />
           <span>主色</span>
         </label>
         <label class="flex items-center gap-3 cursor-pointer">
-          <input type="checkbox" class="switch switch-secondary" />
+          <input type="checkbox" checked class="switch switch-secondary" />
           <span>次色</span>
         </label>
         <label class="flex items-center gap-3 cursor-pointer">
-          <input type="checkbox" class="switch switch-accent" />
+          <input type="checkbox" checked class="switch switch-accent" />
           <span>强调色</span>
         </label>
         <label class="flex items-center gap-3 cursor-pointer">
-          <input type="checkbox" class="switch switch-success" />
+          <input type="checkbox" checked class="switch switch-success" />
           <span>成功</span>
         </label>
         <label class="flex items-center gap-3 cursor-pointer">
-          <input type="checkbox" class="switch switch-warning" />
+          <input type="checkbox" checked class="switch switch-warning" />
           <span>警告</span>
         </label>
         <label class="flex items-center gap-3 cursor-pointer">
-          <input type="checkbox" class="switch switch-info" />
+          <input type="checkbox" checked class="switch switch-info" />
           <span>信息</span>
         </label>
         <label class="flex items-center gap-3 cursor-pointer">
-          <input type="checkbox" class="switch switch-error" />
+          <input type="checkbox" checked class="switch switch-error" />
           <span>错误</span>
         </label>
       </div>

@@ -50,7 +50,7 @@
   @apply flex flex-col gap-3 p-5;
   max-width: 90vw;
   max-height: 90vh;
-  @apply bg-base-100 text-base-content rounded-lg shadow-lg border border-base-300;
+  @apply bg-base-100 text-base-content rounded-box shadow-lg border border-base-300;
   overflow-y: auto;
   transition-behavior: allow-discrete;
   scale: 0.95;
@@ -141,7 +141,7 @@
 /* Close Button */
 
 @utility modal-close {
-  @apply flex items-center justify-center rounded-lg cursor-pointer transition-colors;
+  @apply flex items-center justify-center rounded-selector cursor-pointer transition-colors;
   @apply text-base-content/70 hover:text-base-content hover:bg-base-200;
   @apply min-w-10 min-h-10;
   padding: 0.5rem;
