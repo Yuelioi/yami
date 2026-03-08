@@ -2,72 +2,98 @@
 
 @utility btn {
   @apply inline-flex shrink-0 cursor-pointer flex-nowrap items-center justify-center gap-2 text-center align-middle text-base font-medium no-underline select-none motion-reduce:transition-none;
+
+  @apply outline-none;
+  /* ── 尺寸 & 间距 ── */
   padding-inline: var(--btn-p);
-  color: var(--btn-fg);
   height: var(--size);
+
+  /* ── 圆角：使用 field 语义半径 ── */
+  border-start-start-radius: var(--join-ss, var(--radius-field));
+  border-start-end-radius: var(--join-se, var(--radius-field));
+  border-end-start-radius: var(--join-es, var(--radius-field));
+  border-end-end-radius: var(--join-ee, var(--radius-field));
+
+  /* ── 边框 ── */
+  border: var(--border) solid var(--btn-border);
+
+  /* ── 颜色 ── */
+  color: var(--btn-fg);
+  background-color: var(--btn-bg);
+
+  /* ── 噪点纹理 ── */
+  background-size: auto, calc(var(--noise) * 100%);
+  background-image: none, var(--btn-noise);
+
+  box-shadow:
+    0 0.5px 0 0.5px oklch(100% 0 0 / calc(var(--depth) * 8%)) inset,
+    var(--btn-shadow);
+
+  /* ── Focus ring：使用语义 focus token ── */
   outline-color: color-mix(
     in oklab,
     var(--btn-color, var(--color-neutral)) 30%,
     var(--color-base-100)
   );
+
+  /* ── 过渡：使用 motion token ── */
   transition-property: color, background-color, border-color, box-shadow;
   transition-timing-function: cubic-bezier(0, 0, 0.96, 1.03);
-  transition-duration: 0.25s;
-  border-start-start-radius: var(--join-ss, var(--radius-field));
-  border-start-end-radius: var(--join-se, var(--radius-field));
-  border-end-start-radius: var(--join-es, var(--radius-field));
-  border-end-end-radius: var(--join-ee, var(--radius-field));
-  background-color: var(--btn-bg);
-  background-size: auto, calc(var(--noise) * 100%);
-  background-image: none, var(--btn-noise);
-  border: var(--border) solid var(--btn-border);
-  box-shadow:
-    0 0.5px 0 0.5px oklch(100% 0 0 / calc(var(--depth) * 8%)) inset,
-    var(--btn-shadow);
+  transition-duration: var(--duration-slow);
+
+  /* ── 内部变量默认值 ── */
   --size: var(--size-field-md);
-  --btn-bg: var(--btn-color, var(--color-neutral));
+  --btn-p: 1rem;
+  --btn-color: var(--color-neutral);
+  --btn-bg: var(--btn-color);
   --btn-fg: var(--color-neutral-content);
-  --btn-p: 0.75rem;
   --btn-border: color-mix(
     in oklab,
     var(--btn-bg),
     #000 calc(var(--depth) * 5%)
   );
   --btn-shadow:
-    0px 1px 3px 0px color-mix(in oklab, var(--color-base-300) 40%, #0000),
-    0px 1px 2px -1px color-mix(in oklab, var(--color-base-300) 40%, #0000);
+    0px 1px 3px 0px
+      color-mix(in oklab, var(--color-base-300) calc(var(--depth) * 40%), #0000),
+    0px 1px 2px -1px
+      color-mix(in oklab, var(--color-base-300) calc(var(--depth) * 40%), #0000);
   --btn-noise: var(--fx-noise);
 
   @media (hover: hover) {
     &:hover {
       --btn-bg: color-mix(
         in oklab,
-        var(--btn-color, var(--color-neutral)) 90%,
-        #000
+        var(--btn-color),
+        #000 calc(var(--depth) * 10%)
       );
     }
   }
 
   &:active:hover:not(.btn-active),
   &:active:focus:not(.btn-active) {
-    @apply scale-98 transition-transform duration-100;
-    transition-timing-function: ease-out;
+    @apply scale-98;
+    transition-property: transform;
+    transition-duration: var(--duration-fast);
+    transition-timing-function: var(--ease-spring);
   }
 
   &:focus-visible {
     --btn-bg: color-mix(
       in oklab,
-      var(--btn-color, var(--color-neutral)),
-      #000 10%
+      var(--btn-color),
+      #000 calc(var(--depth) * 10%)
     );
-    outline-width: 2px;
+    outline-width: var(--outline-focus-width);
     outline-style: solid;
+    outline-offset: var(--outline-focus-offset);
   }
 
+  /* ── Disabled ── */
   &:is(:disabled, [disabled], .btn-disabled) {
     @apply pointer-events-none opacity-50 shadow-none;
   }
 
+  /* ── Checkbox / Radio 伪装成 btn ── */
   &:is(input[type="checkbox"], input[type="radio"]) {
     @apply appearance-none;
 
@@ -76,11 +102,12 @@
     }
 
     &:checked {
-      background: var(--color-primary);
-      color: var(--color-primary-content);
-      outline-color: var(--color-primary);
+      --btn-color: var(--color-primary);
+      --btn-bg: var(--color-primary);
+      --btn-fg: var(--color-primary-content);
       --btn-shadow: 0 0 0 0 oklch(0% 0 0/0), 0 0 0 0 oklch(0% 0 0/0);
-      isolation: isolate;
+      outline-color: var(--color-primary);
+      z-index: var(--z-raised);
     }
   }
 }
@@ -88,13 +115,13 @@
 @utility btn-active {
   --btn-bg: color-mix(
     in oklab,
-    var(--btn-color, var(--color-neutral)) 90%,
-    #000
+    var(--btn-color, var(--color-neutral)),
+    #000 calc(var(--depth) * 10%)
   );
-  isolation: isolate;
+  z-index: var(--z-raised);
 }
 
-/* Color Variants */
+/* ===================== Color Variants ===================== */
 
 @utility btn-primary {
   --btn-color: var(--color-primary);
@@ -136,18 +163,28 @@
   --btn-fg: var(--color-error-content);
 }
 
-/* Style Variants */
+/* ===================== Style Variants ===================== */
 
 @utility btn-soft {
   --btn-shadow: "";
+  --btn-noise: none;
+  border-width: 0;
   color: var(--btn-color, var(--color-neutral));
   --btn-bg: color-mix(
     in oklab,
     var(--btn-color, var(--color-neutral)) 10%,
     var(--color-base-100)
   );
-  border-width: 0;
-  --btn-noise: none;
+
+  @media (hover: hover) {
+    &:hover {
+      --btn-bg: color-mix(
+        in oklab,
+        var(--btn-color, var(--color-neutral)) 20%,
+        var(--color-base-100)
+      );
+    }
+  }
 
   &:focus-visible {
     --btn-bg: color-mix(
@@ -164,24 +201,14 @@
       var(--color-base-100)
     );
   }
-
-  @media (hover: hover) {
-    &:hover {
-      --btn-bg: color-mix(
-        in oklab,
-        var(--btn-color, var(--color-neutral)) 20%,
-        var(--color-base-100)
-      );
-    }
-  }
 }
 
 @utility btn-outline {
   --btn-shadow: "";
   --btn-bg: "";
-  color: var(--btn-color, var(--color-neutral));
-  --btn-border: var(--btn-color, var(--color-neutral));
   --btn-noise: none;
+  --btn-border: var(--btn-color, var(--color-neutral));
+  color: var(--btn-color, var(--color-neutral));
   outline-color: var(--btn-color, var(--color-neutral));
 
   @media (hover: hover) {
@@ -200,6 +227,7 @@
       var(--btn-color, var(--color-neutral)) 10%,
       #0000
     );
+    /* outline-focus-width 保持一致，但 outline 降为 1px 以区别普通 btn */
     outline-width: 1px;
   }
 }
@@ -214,11 +242,11 @@
 
 @utility btn-ghost {
   --btn-shadow: "";
-  color: var(--btn-color, var(--color-neutral));
   --btn-bg: "";
   --btn-border: "";
   --btn-noise: none;
   border-width: 0;
+  color: var(--btn-color, var(--color-neutral));
   outline-color: var(--btn-color, var(--color-neutral));
 
   @media (hover: hover) {
@@ -250,21 +278,7 @@
 
 @utility btn-gradient {
   border-width: 2px;
-  transition-property: background-position, box-shadow;
-  transition-timing-function: ease-in-out;
-  transition-duration: 0.4s;
   background-color: transparent;
-  --btn-shadow:
-    0px 1px 3px 0px
-      color-mix(in oklab, var(--btn-color, var(--color-neutral)) 30%, #0000),
-    0px 1px 2px -1px
-      color-mix(in oklab, var(--btn-color, var(--color-neutral)) 30%, #0000);
-  --btn-border: var(--btn-color, var(--color-neutral));
-  --dark-shade: color-mix(
-    in oklab,
-    var(--btn-color, var(--color-neutral)) 80%,
-    black
-  );
   background-size: 200% auto;
   background-image: linear-gradient(
     102deg,
@@ -272,48 +286,63 @@
     var(--dark-shade) 51%,
     var(--btn-color, var(--color-neutral)) 100%
   );
+  --btn-border: var(--btn-color, var(--color-neutral));
+  --dark-shade: color-mix(
+    in oklab,
+    var(--btn-color, var(--color-neutral)) 80%,
+    black
+  );
+  --btn-shadow:
+    0px 1px 3px 0px
+      color-mix(in oklab, var(--btn-color, var(--color-neutral)) 30%, #0000),
+    0px 1px 2px -1px
+      color-mix(in oklab, var(--btn-color, var(--color-neutral)) 30%, #0000);
+
+  transition-property: background-position, box-shadow;
+  transition-duration: var(--duration-slower);
+  transition-timing-function: var(--ease-spring);
 
   @media (hover: hover) {
     &:hover {
+      background-position: 99% center;
       --btn-shadow:
         0px 4px 6px -1px
           color-mix(in oklab, var(--btn-color, var(--color-neutral)) 30%, #0000),
         0px 2px 4px -2px
           color-mix(in oklab, var(--btn-color, var(--color-neutral)) 30%, #0000);
-      background-position: 99% center;
     }
   }
 
   &:focus-visible {
+    background-position: 99% center;
     --btn-shadow:
       0px 4px 6px -1px
         color-mix(in oklab, var(--btn-color, var(--color-neutral)) 30%, #0000),
       0px 2px 4px -2px
         color-mix(in oklab, var(--btn-color, var(--color-neutral)) 30%, #0000);
-    background-position: 99% center;
   }
 }
 
 .btn-gradient.btn-active {
+  background-position: 99% center;
   --btn-shadow:
     0px 4px 6px -1px
       color-mix(in oklab, var(--btn-color, var(--color-neutral)) 30%, #0000),
     0px 2px 4px -2px
       color-mix(in oklab, var(--btn-color, var(--color-neutral)) 30%, #0000);
-  background-position: 99% center;
 }
 
-/* Size Variants */
+/* ===================== Size Variants ===================== */
 
 @utility btn-xs {
   @apply text-xs;
-  --btn-p: 0.5rem;
+  --btn-p: 0.675rem;
   --size: var(--size-field-xs);
 }
 
 @utility btn-sm {
   @apply text-sm;
-  --btn-p: 0.675rem;
+  --btn-p: 0.75rem;
   --size: var(--size-field-sm);
 }
 
@@ -324,20 +353,20 @@
 
 @utility btn-lg {
   @apply text-lg;
-  --btn-p: 1rem;
+  --btn-p: 1.25rem;
   --size: var(--size-field-lg);
 }
 
 @utility btn-xl {
   @apply text-lg;
-  --btn-p: 1.25rem;
+  --btn-p: 1.5rem;
   --size: var(--size-field-xl);
 }
 
-/* Shape Variants */
+/* ===================== Shape Variants ===================== */
 
 @utility btn-square {
-  @apply px-0;
+  @apply px-0 rounded-none;
   width: var(--size);
   height: var(--size);
 }
@@ -348,7 +377,7 @@
   height: var(--size);
 }
 
-/* Width Variants */
+/* ===================== Width Variants ===================== */
 
 @utility btn-wide {
   @apply w-full max-w-64;

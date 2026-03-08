@@ -53,17 +53,6 @@ const showBanners = ref({
   primary: true,
   neutral: true,
 })
-
-const showAction = ref(true)
-const showTitle = ref(true)
-
-const resetAll = () => {
-  Object.keys(showBanners.value).forEach((k) => {
-    showBanners.value[k as keyof typeof showBanners.value] = true
-  })
-  showAction.value = true
-  showTitle.value = true
-}
 </script>
 
 <template>
@@ -77,38 +66,23 @@ const resetAll = () => {
 
     <!-- 颜色 -->
     <DocsSection title="颜色">
-      <div class="flex flex-col gap-2 rounded-box overflow-hidden border border-base-200">
-        <div
-          class="banner banner-info banner-no-icon"
-          style="position: static; border: none; border-bottom: 1px solid var(--banner-border)"
-        >
+      <div class="flex flex-col gap-2 overflow-hidden border border-base-200">
+        <div class="banner banner-info banner-no-icon" style="position: static">
           <div class="banner-content">这是一条信息横幅提示内容。</div>
         </div>
-        <div
-          class="banner banner-success banner-no-icon"
-          style="position: static; border: none; border-bottom: 1px solid var(--banner-border)"
-        >
+        <div class="banner banner-success banner-no-icon" style="position: static">
           <div class="banner-content">操作已成功完成，数据已同步。</div>
         </div>
-        <div
-          class="banner banner-warning banner-no-icon"
-          style="position: static; border: none; border-bottom: 1px solid var(--banner-border)"
-        >
+        <div class="banner banner-warning banner-no-icon" style="position: static">
           <div class="banner-content">你的订阅将在 3 天后到期，请及时续费。</div>
         </div>
-        <div
-          class="banner banner-error banner-no-icon"
-          style="position: static; border: none; border-bottom: 1px solid var(--banner-border)"
-        >
+        <div class="banner banner-error banner-no-icon" style="position: static">
           <div class="banner-content">服务连接异常，部分功能暂时不可用。</div>
         </div>
-        <div
-          class="banner banner-primary banner-no-icon"
-          style="position: static; border: none; border-bottom: 1px solid var(--banner-border)"
-        >
+        <div class="banner banner-primary banner-no-icon" style="position: static">
           <div class="banner-content">新版本已发布，立即查看更新内容。</div>
         </div>
-        <div class="banner banner-neutral banner-no-icon" style="position: static; border: none">
+        <div class="banner banner-neutral banner-no-icon" style="position: static">
           <div class="banner-content">系统将于今晚 22:00 进行例行维护。</div>
         </div>
       </div>
@@ -116,20 +90,14 @@ const resetAll = () => {
 
     <!-- 带图标 -->
     <DocsSection title="带图标">
-      <div class="flex flex-col gap-2 rounded-box overflow-hidden border border-base-200">
-        <div
-          class="banner banner-info"
-          style="position: static; border: none; border-bottom: 1px solid var(--banner-border)"
-        >
+      <div class="flex flex-col gap-2 overflow-hidden border border-base-200">
+        <div class="banner banner-info" style="position: static">
           <div class="banner-content">账户邮箱尚未验证，请检查收件箱。</div>
         </div>
-        <div
-          class="banner banner-warning"
-          style="position: static; border: none; border-bottom: 1px solid var(--banner-border)"
-        >
+        <div class="banner banner-warning" style="position: static">
           <div class="banner-content">存储空间已使用 90%，请及时清理。</div>
         </div>
-        <div class="banner banner-error" style="position: static; border: none">
+        <div class="banner banner-error" style="position: static">
           <div class="banner-content">支付方式已过期，请更新付款信息。</div>
         </div>
       </div>
@@ -137,17 +105,14 @@ const resetAll = () => {
 
     <!-- 带标题描述 -->
     <DocsSection title="带标题描述">
-      <div class="flex flex-col gap-2 rounded-box overflow-hidden border border-base-200">
-        <div
-          class="banner banner-info"
-          style="position: static; border: none; border-bottom: 1px solid var(--banner-border)"
-        >
+      <div class="flex flex-col gap-2 overflow-hidden border border-base-200">
+        <div class="banner banner-info" style="position: static">
           <div class="banner-content">
             <span class="banner-title">系统更新</span>
             <span class="banner-description">新版本 v2.4.0 已发布，包含性能优化与 bug 修复。</span>
           </div>
         </div>
-        <div class="banner banner-warning" style="position: static; border: none">
+        <div class="banner banner-warning" style="position: static">
           <div class="banner-content">
             <span class="banner-title">订阅即将到期</span>
             <span class="banner-description"
@@ -160,12 +125,9 @@ const resetAll = () => {
 
     <!-- 带操作按钮 -->
     <DocsSection title="带操作按钮">
-      <div class="flex flex-col gap-2 rounded-box overflow-hidden border border-base-200">
+      <div class="flex flex-col gap-2 overflow-hidden border border-base-200">
         <!-- info + 链接 -->
-        <div
-          class="banner banner-info"
-          style="position: static; border: none; border-bottom: 1px solid var(--banner-border)"
-        >
+        <div class="banner banner-info" style="position: static">
           <div class="banner-content">
             <span class="banner-title">新版本可用</span>
             <span class="banner-description">v2.5.0 已发布，包含重要安全更新。</span>
@@ -177,10 +139,7 @@ const resetAll = () => {
         </div>
 
         <!-- warning + 两个按钮 -->
-        <div
-          class="banner banner-warning"
-          style="position: static; border: none; border-bottom: 1px solid var(--banner-border)"
-        >
+        <div class="banner banner-warning" style="position: static">
           <div class="banner-content">
             你的试用期还剩 <strong>7 天</strong>，升级以解锁全部功能。
           </div>
@@ -191,7 +150,7 @@ const resetAll = () => {
         </div>
 
         <!-- primary 实色 + 操作 -->
-        <div class="banner banner-primary" style="position: static; border: none">
+        <div class="banner banner-primary" style="position: static">
           <div class="banner-content">
             <span class="banner-title">🎉 黑五特惠</span>
             <span class="banner-description">全场 Pro 计划限时 5 折，今日截止。</span>
@@ -266,22 +225,16 @@ const resetAll = () => {
 
     <!-- 尺寸 -->
     <DocsSection title="尺寸">
-      <div class="flex flex-col gap-2 rounded-box overflow-hidden border border-base-200">
-        <div
-          class="banner banner-info banner-sm"
-          style="position: static; border: none; border-bottom: 1px solid var(--banner-border)"
-        >
+      <div class="flex flex-col gap-2 overflow-hidden border border-base-200">
+        <div class="banner banner-info banner-sm" style="position: static">
           <div class="banner-content">小尺寸横幅提示内容。</div>
           <button class="banner-close" />
         </div>
-        <div
-          class="banner banner-info"
-          style="position: static; border: none; border-bottom: 1px solid var(--banner-border)"
-        >
+        <div class="banner banner-info" style="position: static">
           <div class="banner-content">默认尺寸横幅提示内容。</div>
           <button class="banner-close" />
         </div>
-        <div class="banner banner-info banner-lg" style="position: static; border: none">
+        <div class="banner banner-info banner-lg" style="position: static">
           <div class="banner-content">大尺寸横幅提示内容。</div>
           <button class="banner-close" />
         </div>
@@ -290,11 +243,8 @@ const resetAll = () => {
 
     <!-- 无图标 -->
     <DocsSection title="无图标">
-      <div class="flex flex-col gap-2 rounded-box overflow-hidden border border-base-200">
-        <div
-          class="banner banner-primary banner-no-icon"
-          style="position: static; border: none; border-bottom: 1px solid var(--banner-border)"
-        >
+      <div class="flex flex-col gap-2 overflow-hidden border border-base-200">
+        <div class="banner banner-primary banner-no-icon" style="position: static">
           <div class="banner-content">
             <span class="banner-title">🎉 新功能上线</span>
             <span class="banner-description">协作白板功能现已开放，邀请团队一起使用。</span>
@@ -306,7 +256,7 @@ const resetAll = () => {
             <button class="banner-close" />
           </div>
         </div>
-        <div class="banner banner-neutral banner-no-icon" style="position: static; border: none">
+        <div class="banner banner-neutral banner-no-icon" style="position: static">
           <div class="banner-content">系统将于今晚 22:00 进行例行维护，预计持续 1 小时。</div>
           <button class="banner-close" />
         </div>
@@ -316,7 +266,7 @@ const resetAll = () => {
     <!-- 吸附位置说明 -->
     <DocsSection title="吸附位置">
       <div class="flex flex-col gap-3 text-sm">
-        <div class="p-4 rounded-box bg-base-200">
+        <div class="p-4 bg-base-200">
           <p class="font-semibold text-base-content mb-2">顶部吸附（banner-top）</p>
           <p class="text-base-content/60 mb-3">
             使用
@@ -334,7 +284,7 @@ const resetAll = () => {
 &lt;/div&gt;</code></pre>
         </div>
 
-        <div class="p-4 rounded-box bg-base-200">
+        <div class="p-4 bg-base-200">
           <p class="font-semibold text-base-content mb-2">底部吸附（banner-bottom）</p>
           <p class="text-base-content/60 mb-3">
             使用 <code class="badge badge-ghost badge-sm">position: sticky; bottom: 0</code>，适合
@@ -354,3 +304,9 @@ const resetAll = () => {
     </DocsSection>
   </DocsContainer>
 </template>
+
+<style scoped>
+.banner {
+  border-radius: var(--radius-box);
+}
+</style>

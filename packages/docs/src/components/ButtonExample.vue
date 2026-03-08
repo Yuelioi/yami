@@ -167,43 +167,68 @@ const apiClasses = [
     </DocsSection>
 
     <DocsSection title="样式">
-      <div class="space-y-4">
+      <div class="space-y-6">
+        <!-- 实心 -->
         <div>
           <p class="text-sm text-base-content/60 mb-3">实心（默认）</p>
           <div class="flex flex-wrap gap-2">
             <button class="btn btn-primary">Primary</button>
+            <button class="btn btn-secondary">Secondary</button>
+            <button class="btn btn-accent">Accent</button>
+            <button class="btn btn-neutral">Neutral</button>
+            <button class="btn btn-info">Info</button>
             <button class="btn btn-success">Success</button>
+            <button class="btn btn-warning">Warning</button>
             <button class="btn btn-error">Error</button>
           </div>
         </div>
+
+        <!-- 柔和 -->
         <div>
           <p class="text-sm text-base-content/60 mb-3">柔和</p>
           <div class="flex flex-wrap gap-2">
             <button class="btn btn-soft btn-primary">Primary</button>
+            <button class="btn btn-soft btn-secondary">Secondary</button>
+            <button class="btn btn-soft btn-accent">Accent</button>
+            <button class="btn btn-soft btn-neutral">Neutral</button>
+            <button class="btn btn-soft btn-info">Info</button>
             <button class="btn btn-soft btn-success">Success</button>
+            <button class="btn btn-soft btn-warning">Warning</button>
             <button class="btn btn-soft btn-error">Error</button>
           </div>
         </div>
+
+        <!-- 描边 -->
         <div>
           <p class="text-sm text-base-content/60 mb-3">描边</p>
           <div class="flex flex-wrap gap-2">
             <button class="btn btn-outline btn-primary">Primary</button>
+            <button class="btn btn-outline btn-secondary">Secondary</button>
+            <button class="btn btn-outline btn-accent">Accent</button>
+            <button class="btn btn-outline btn-neutral">Neutral</button>
+            <button class="btn btn-outline btn-info">Info</button>
             <button class="btn btn-outline btn-success">Success</button>
+            <button class="btn btn-outline btn-warning">Warning</button>
             <button class="btn btn-outline btn-error">Error</button>
           </div>
         </div>
+
+        <!-- 虚线 -->
         <div>
           <p class="text-sm text-base-content/60 mb-3">虚线</p>
           <div class="flex flex-wrap gap-2">
             <button class="btn btn-outline border-dashed btn-primary">Primary</button>
             <button class="btn btn-outline border-dashed btn-secondary">Secondary</button>
             <button class="btn btn-outline border-dashed btn-accent">Accent</button>
+            <button class="btn btn-outline border-dashed btn-neutral">Neutral</button>
             <button class="btn btn-outline border-dashed btn-info">Info</button>
             <button class="btn btn-outline border-dashed btn-success">Success</button>
             <button class="btn btn-outline border-dashed btn-warning">Warning</button>
             <button class="btn btn-outline border-dashed btn-error">Error</button>
           </div>
         </div>
+
+        <!-- 虚线浅色背景 -->
         <div>
           <p class="text-sm text-base-content/60 mb-3">虚线浅色背景</p>
           <div class="flex flex-wrap gap-2">
@@ -221,6 +246,11 @@ const apiClasses = [
               class="btn btn-outline border-dashed bg-accent/10 hover:bg-accent/30 btn-accent"
             >
               Accent
+            </button>
+            <button
+              class="btn btn-outline border-dashed bg-neutral/10 hover:bg-neutral/30 btn-neutral"
+            >
+              Neutral
             </button>
             <button class="btn btn-outline border-dashed bg-info/10 hover:bg-info/30 btn-info">
               Info
@@ -240,20 +270,33 @@ const apiClasses = [
             </button>
           </div>
         </div>
+
+        <!-- 幽灵 -->
         <div>
           <p class="text-sm text-base-content/60 mb-3">幽灵</p>
           <div class="flex flex-wrap gap-2">
             <button class="btn btn-ghost btn-primary">Primary</button>
+            <button class="btn btn-ghost btn-secondary">Secondary</button>
+            <button class="btn btn-ghost btn-accent">Accent</button>
+            <button class="btn btn-ghost btn-neutral">Neutral</button>
+            <button class="btn btn-ghost btn-info">Info</button>
             <button class="btn btn-ghost btn-success">Success</button>
+            <button class="btn btn-ghost btn-warning">Warning</button>
             <button class="btn btn-ghost btn-error">Error</button>
           </div>
         </div>
 
+        <!-- 渐变 -->
         <div>
           <p class="text-sm text-base-content/60 mb-3">渐变</p>
           <div class="flex flex-wrap gap-2">
             <button class="btn btn-gradient btn-primary">Primary</button>
+            <button class="btn btn-gradient btn-secondary">Secondary</button>
+            <button class="btn btn-gradient btn-accent">Accent</button>
+            <button class="btn btn-gradient btn-neutral">Neutral</button>
+            <button class="btn btn-gradient btn-info">Info</button>
             <button class="btn btn-gradient btn-success">Success</button>
+            <button class="btn btn-gradient btn-warning">Warning</button>
             <button class="btn btn-gradient btn-error">Error</button>
           </div>
         </div>

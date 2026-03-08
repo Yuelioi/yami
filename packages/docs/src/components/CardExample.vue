@@ -124,7 +124,7 @@ const apiClasses = [
         <div class="card-footer">
           <div class="card-actions w-full">
             <button class="btn btn-primary flex-1">确定</button>
-            <button class="btn btn-ghost flex-1">取消</button>
+            <button class="btn flex-1">取消</button>
           </div>
         </div>
       </div>

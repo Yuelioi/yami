@@ -1,8 +1,8 @@
 :root {
   /* Base */
   --base-100: oklch(98% 0.004 255);
-  --base-200: oklch(95% 0.006 255);
-  --base-300: oklch(90% 0.008 255);
+  --base-200: oklch(95% 0.004 220);
+  --base-300: oklch(92% 0.0213 210);
   --base-content: oklch(22% 0.02 255);
 
   /* Primary (Modern Indigo) */
@@ -35,23 +35,21 @@
   --error-content: oklch(98% 0.01 25);
 
   /* Shape */
-  --radius-selector: 0.25rem;
-  --radius-field: 0rem;
-  --radius-box: 0.75rem;
-
+  --radius-selector: 2rem;
+  --radius-field: 1rem;
+  --radius-box: 1rem;
   --size-selector: 0.25rem;
   --size-field: 0.25rem;
-
   --border: 1px;
-  --depth: 0;
+  --depth: 1;
   --noise: 0;
 }
 
 [data-theme='dark'] {
   /* Base */
-  --base-100: oklch(16% 0.01 255);
+  --base-100: oklch(17.9% 0.0061 285.8);
   --base-200: oklch(20% 0.012 255);
-  --base-300: oklch(26% 0.014 255);
+  --base-300: oklch(22.48% 0.0116 285.4);
   --base-content: oklch(92% 0.01 255);
 
   /* Primary */
@@ -84,14 +82,14 @@
   --error-content: oklch(15% 0.03 25);
 
   /* Shape */
-  --radius-selector: 0.5rem;
-  --radius-field: 0.5rem;
-  --radius-box: 0.75rem;
+  --radius-selector: 0rem;
+  --radius-field: 0rem;
+  --radius-box: 0rem;
 
   --size-selector: 0.25rem;
   --size-field: 0.25rem;
 
   --border: 1px;
-  --depth: 0;
+  --depth: 1;
   --noise: 0;
 }

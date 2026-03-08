@@ -10,6 +10,7 @@
 @import "./utilities/touch.css";
 @import "./utilities/join.css";
 @import "./utilities/size.css";
+@import "./utilities/typography.css";
 
 /* ====================== components ====================== */
 @import "./components/accordion.css";
