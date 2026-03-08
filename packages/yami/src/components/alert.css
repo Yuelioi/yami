@@ -9,7 +9,10 @@
   --alert-fg: var(--alert-color);
 
   border-radius: var(--radius-box);
-  border: var(--border) solid var(--alert-border);
+  border-width: var(--border);
+  border-style: solid;
+  border-color: var(--alert-border);
+
   background-color: var(--alert-bg);
   color: var(--alert-fg);
   padding: 1rem 1rem;

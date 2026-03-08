@@ -263,10 +263,10 @@ const apiClasses = [
     <DocsSection title="尺寸">
       <div class="flex flex-wrap gap-2 items-center">
         <button class="btn btn-xs btn-primary">xs</button>
-        <button class="btn btn-sm btn-primary">sm</button>
-        <button class="btn btn-md btn-primary">md</button>
-        <button class="btn btn-lg btn-primary">lg</button>
-        <button class="btn btn-xl btn-primary">xl</button>
+        <button class="btn btn-sm btn-primary">sm btn</button>
+        <button class="btn btn-md btn-primary">md btn</button>
+        <button class="btn btn-lg btn-primary">lg btn</button>
+        <button class="btn btn-xl btn-primary">xl btn</button>
       </div>
     </DocsSection>
 

@@ -1,71 +1,56 @@
-/* ===================== Input ===================== */
-
 @utility input {
   cursor: text;
-  @apply relative inline-flex shrink-0 appearance-none items-center gap-2 align-middle whitespace-nowrap;
-  @apply bg-base-100 text-base-content;
-  @apply placeholder:text-base-content/40;
+  @apply bg-base-100 text-base-content placeholder:text-base-content/50;
+  @apply inline-flex w-full shrink-0 appearance-none items-center gap-2 align-middle;
+  @apply focus-visible:outline-none;
 
-  width: clamp(3rem, 20rem, 100%);
-  height: var(--size);
   padding-inline: var(--input-p);
+  height: var(--size);
   font-size: max(var(--input-font-size, 0.875rem), 0.875rem);
   touch-action: manipulation;
 
-  border-radius: var(--radius-field);
+  /* join 兼容 */
+  border-start-start-radius: var(--join-ss, var(--radius-field));
+  border-start-end-radius: var(--join-se, var(--radius-field));
+  border-end-start-radius: var(--join-es, var(--radius-field));
+  border-end-end-radius: var(--join-ee, var(--radius-field));
+
   border: var(--border) solid var(--input-color);
-
-  box-shadow:
-    0 1px
-      color-mix(in oklab, var(--input-color) calc(var(--depth) * 10%), #0000)
-      inset,
-    0 -1px oklch(100% 0 0 / calc(var(--depth) * 0.1)) inset;
-
-  outline: 2px solid transparent;
-  outline-offset: 2px;
-  transition:
-    outline-color 0.15s ease,
-    border-color 0.15s ease;
 
   --size: var(--size-field-md);
   --input-p: 0.75rem;
   --input-font-size: 0.875rem;
-  --input-color: color-mix(in oklab, var(--color-base-content) 20%, #0000);
+  --input-color: color-mix(in oklab, var(--color-base-content) 40%, #0000);
 
-  /* 裸 input 元素写法 */
-  &:where(input) {
-    @apply inline-flex;
+  /* hover：加深边框，排除聚焦 */
+  &:hover:not(:focus, :focus-within),
+  &:has(:hover):not(:focus, :focus-within) {
+    border-color: color-mix(in oklab, var(--color-base-content) 60%, #0000);
   }
 
-  /* 容器写法：内部 input 清除自身样式，撑满高度 */
-  :where(input) {
-    @apply inline-flex h-full w-full appearance-none bg-transparent border-none outline-none;
+  &:where(input) {
+    @apply inline-block;
+  }
+
+  :where(input:not([type="checkbox"]):not([type="radio"])) {
+    @apply inline-block h-full w-full appearance-none bg-transparent border-none outline-none;
     &:focus,
-    &:focus-within {
+    &:focus-within,
+    &:focus-visible {
       @apply outline-none;
     }
   }
 
-  :where(input[type="url"]),
-  :where(input[type="email"]) {
-    direction: ltr;
-  }
-
-  :where(input[type="date"]) {
-    @apply inline-flex;
-  }
-
-  /* 聚焦：--input-color 切实色，outline 显现 */
+  /* 聚焦：primary 色，1px outline + 淡阴影 */
   &:focus,
   &:focus-within {
-    --input-color: var(--color-base-content);
-    outline-color: var(--input-color);
-    box-shadow: 0 1px
-      color-mix(in oklab, var(--input-color) calc(var(--depth) * 10%), #0000);
+    @apply shadow-xs;
+    --input-color: var(--color-primary);
+    --tw-shadow-color: color-mix(in oklab, var(--color-primary) 30%, #0000);
+    outline: 1px solid var(--input-color);
     isolation: isolate;
   }
 
-  /* iOS 防缩放 */
   @media (pointer: coarse) {
     @supports (-webkit-touch-callout: none) {
       &:focus,
@@ -75,18 +60,17 @@
     }
   }
 
-  /* 禁用 */
   &:is(:disabled, [disabled]),
   fieldset:disabled &,
   &:has(> input[disabled]) {
-    @apply cursor-not-allowed opacity-50 pointer-events-none bg-base-200;
+    @apply bg-neutral/10 text-base-content/50 cursor-not-allowed border-0;
     box-shadow: none;
   }
   &:has(> input[disabled]) > input[disabled] {
     @apply cursor-not-allowed;
   }
 
-  /* 只读 */
+  &:read-only,
   &:has(> input[readonly]) {
     @apply cursor-default;
     background-color: color-mix(
@@ -96,104 +80,94 @@
     );
     &:focus,
     &:focus-within {
-      outline-color: transparent;
-      box-shadow:
-        0 1px
-          color-mix(
-            in oklab,
-            var(--input-color) calc(var(--depth) * 10%),
-            #0000
-          )
-          inset,
-        0 -1px oklch(100% 0 0 / calc(var(--depth) * 0.1)) inset;
+      outline: none;
+      box-shadow: none;
+      --input-color: color-mix(in oklab, var(--color-base-content) 40%, #0000);
     }
   }
 
-  /* date/number 原生细节 */
   &::-webkit-date-and-time-value {
     text-align: inherit;
   }
   &[type="number"]::-webkit-inner-spin-button {
     @apply -my-3 -me-3;
   }
-  &::-webkit-calendar-picker-indicator {
-    position: absolute;
-    inset-inline-end: 0.75em;
-  }
-  &:has(> input[type="date"]) {
-    :where(input[type="date"]) {
-      @apply inline-flex;
-      -webkit-appearance: none;
-      appearance: none;
-    }
-    input[type="date"]::-webkit-calendar-picker-indicator {
-      position: absolute;
-      inset-inline-end: 0.75em;
-      width: 1em;
-      height: 1em;
-      cursor: pointer;
-    }
-  }
 }
 
 /* ========================================
-   颜色变体 - 覆盖 --input-color，静态+聚焦一并生效
+   颜色变体（静态+聚焦同色）
    ======================================== */
 
 @utility input-neutral {
-  &,
+  --input-color: var(--color-neutral);
   &:focus,
   &:focus-within {
     --input-color: var(--color-neutral);
+    --tw-shadow-color: color-mix(in oklab, var(--color-neutral) 30%, #0000);
+    outline-color: var(--color-neutral);
   }
 }
 @utility input-primary {
-  &,
+  --input-color: var(--color-primary);
   &:focus,
   &:focus-within {
     --input-color: var(--color-primary);
+    --tw-shadow-color: color-mix(in oklab, var(--color-primary) 30%, #0000);
+    outline-color: var(--color-primary);
   }
 }
 @utility input-secondary {
-  &,
+  --input-color: var(--color-secondary);
   &:focus,
   &:focus-within {
     --input-color: var(--color-secondary);
+    --tw-shadow-color: color-mix(in oklab, var(--color-secondary) 30%, #0000);
+    outline-color: var(--color-secondary);
   }
 }
 @utility input-accent {
-  &,
+  --input-color: var(--color-accent);
   &:focus,
   &:focus-within {
     --input-color: var(--color-accent);
+    --tw-shadow-color: color-mix(in oklab, var(--color-accent) 30%, #0000);
+    outline-color: var(--color-accent);
   }
 }
 @utility input-info {
-  &,
+  --input-color: var(--color-info);
   &:focus,
   &:focus-within {
     --input-color: var(--color-info);
+    --tw-shadow-color: color-mix(in oklab, var(--color-info) 30%, #0000);
+    outline-color: var(--color-info);
   }
 }
 @utility input-success {
-  &,
+  --input-color: var(--color-success);
   &:focus,
   &:focus-within {
     --input-color: var(--color-success);
+    --tw-shadow-color: color-mix(in oklab, var(--color-success) 30%, #0000);
+    outline-color: var(--color-success);
   }
 }
 @utility input-warning {
-  &,
+  --input-color: var(--color-warning);
   &:focus,
   &:focus-within {
     --input-color: var(--color-warning);
+    --tw-shadow-color: color-mix(in oklab, var(--color-warning) 30%, #0000);
+    outline-color: var(--color-warning);
   }
 }
 @utility input-error {
-  &,
+  --input-color: var(--color-error);
   &:focus,
   &:focus-within {
     --input-color: var(--color-error);
+    --tw-shadow-color: color-mix(in oklab, var(--color-error) 30%, #0000);
+    outline-color: var(--color-error);
   }
 }
 
@@ -202,14 +176,22 @@
    ======================================== */
 
 @utility input-ghost {
-  @apply bg-transparent;
+  @apply bg-transparent border-transparent;
   box-shadow: none;
-  border-color: transparent;
+  &:hover:not(:focus, :focus-within) {
+    @apply border-transparent;
+  }
   &:focus,
   &:focus-within {
-    @apply bg-base-100;
-    border-color: transparent;
+    @apply bg-base-100 border-transparent;
     box-shadow: none;
+  }
+}
+
+@utility no-focus {
+  &:focus,
+  &:focus-within {
+    @apply border-none shadow-none outline-none;
   }
 }
 
@@ -218,45 +200,116 @@
    ======================================== */
 
 @utility input-xs {
+  @apply text-xs;
+  --input-p: 0.625rem;
   --size: var(--size-field-xs);
-  --input-p: 0.5rem;
-  --input-font-size: 0.6875rem;
-  font-size: max(var(--input-font-size), 0.6875rem);
+  --input-font-size: 0.75rem;
+  font-size: max(var(--input-font-size), 0.75rem);
   &[type="number"]::-webkit-inner-spin-button {
     @apply -my-1 -me-3;
   }
 }
-
 @utility input-sm {
-  --size: var(--size-field-sm);
+  @apply text-sm;
   --input-p: 0.625rem;
-  --input-font-size: 0.75rem;
-  font-size: max(var(--input-font-size), 0.75rem);
+  --size: var(--size-field-sm);
+  --input-font-size: 0.875rem;
+  font-size: max(var(--input-font-size), 0.875rem);
   &[type="number"]::-webkit-inner-spin-button {
     @apply -my-2 -me-3;
   }
 }
-
 @utility input-md {
-  --size: var(--size-field-md);
+  @apply text-base;
   --input-p: 0.75rem;
-  --input-font-size: 0.875rem;
-  font-size: max(var(--input-font-size), 0.875rem);
+  --size: var(--size-field-md);
+  --input-font-size: 1rem;
+  font-size: max(var(--input-font-size), 1rem);
 }
-
 @utility input-lg {
+  @apply text-lg;
+  --input-p: 1rem;
   --size: var(--size-field-lg);
-  --input-p: 0.875rem;
   --input-font-size: 1.125rem;
   font-size: max(var(--input-font-size), 1.125rem);
 }
-
 @utility input-xl {
+  @apply text-xl;
+  --input-p: 1.125rem;
   --size: var(--size-field-xl);
-  --input-p: 1rem;
-  --input-font-size: 1.375rem;
-  font-size: max(var(--input-font-size), 1.375rem);
+  --input-font-size: 1.25rem;
+  font-size: max(var(--input-font-size), 1.25rem);
   &[type="number"]::-webkit-inner-spin-button {
     @apply -my-4 -me-3;
   }
+}
+
+@utility input-floating {
+  @apply relative block w-full;
+
+  .input {
+    @apply placeholder:text-transparent focus:placeholder:text-base-content/50;
+
+    &:is(:disabled, [disabled]),
+    &:has(> input[disabled]) {
+      @apply border bg-transparent opacity-50;
+      & ~ .input-floating-label {
+        @apply text-base-content/30;
+      }
+    }
+  }
+
+  /* 有内容或聚焦：标签上浮缩小 */
+  &:focus-within,
+  &:not(:has(input:placeholder-shown)),
+  &:has(.input:focus) {
+    .input-floating-label {
+      @apply bg-base-100 pointer-events-auto px-1 font-medium;
+      top: 0;
+      translate: -12.5% calc(-50% - 0.125em);
+      scale: 0.75;
+      color: color-mix(in oklab, var(--color-base-content) 50%, transparent);
+    }
+  }
+
+  /* 聚焦：标签变 primary */
+  &:focus-within,
+  &:has(.input:focus) {
+    .input-floating-label {
+      color: var(--color-primary);
+    }
+  }
+
+  /* 各尺寸初始垂直位置 */
+  .input-floating-label {
+    @apply ms-3 text-base;
+    top: calc(var(--size-field-md) / 2);
+  }
+  &:has(.input-xs) .input-floating-label {
+    @apply ms-2.5 text-xs;
+    top: calc(var(--size-field-xs) / 2);
+  }
+  &:has(.input-sm) .input-floating-label {
+    @apply ms-2.5 text-sm;
+    top: calc(var(--size-field-sm) / 2);
+  }
+  &:has(.input-lg) .input-floating-label {
+    @apply ms-4 text-lg;
+    top: calc(var(--size-field-lg) / 2);
+  }
+  &:has(.input-xl) .input-floating-label {
+    @apply ms-4 text-xl;
+    top: calc(var(--size-field-xl) / 2);
+  }
+}
+
+@utility input-floating-label {
+  @apply pointer-events-none absolute start-0 ms-3 overflow-hidden text-ellipsis whitespace-nowrap;
+  @apply text-base-content/50 bg-transparent;
+  translate: 0 -50%;
+  transition:
+    top 0.1s ease-out,
+    translate 0.1s ease-out,
+    scale 0.1s ease-out,
+    color 0.1s ease-out;
 }

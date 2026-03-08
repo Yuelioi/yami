@@ -158,6 +158,23 @@ const dismiss = (id: number) => {
           <div class="alert alert-error alert-outline"><span>错误提示内容。</span></div>
         </div>
       </div>
+      <div>
+        <p class="text-sm text-base-content/60 mb-3">dashed（border-dashed）</p>
+        <div class="flex flex-col gap-3">
+          <div class="alert alert-info alert-outline border-dashed">
+            <span>信息提示内容。</span>
+          </div>
+          <div class="alert alert-success alert-outline border-dashed">
+            <span>成功提示内容。</span>
+          </div>
+          <div class="alert alert-warning alert-outline border-dashed">
+            <span>警告提示内容。</span>
+          </div>
+          <div class="alert alert-error alert-outline border-dashed">
+            <span>错误提示内容。</span>
+          </div>
+        </div>
+      </div>
 
       <div>
         <p class="text-sm text-base-content/60 mb-3">实色（solid）</p>
@@ -292,6 +309,16 @@ const dismiss = (id: number) => {
         <div class="alert alert-info alert-lg">
           <span>大尺寸提示内容。</span>
           <button class="alert-close" />
+        </div>
+      </div>
+    </DocsSection>
+    <DocsSection title="尺寸">
+      <div class="alert alert-soft alert-primary" role="alert">
+        Please read the <a href="#" class="link link-primary font-semibold">policy</a>. These can be
+        configured in Settings.
+        <div class="mt-4 flex gap-2">
+          <button type="button" class="btn btn-primary btn-sm">Ok</button>
+          <button type="button" class="btn btn-outline btn-secondary btn-sm">Cancel</button>
         </div>
       </div>
     </DocsSection>

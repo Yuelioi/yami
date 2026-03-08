@@ -27,6 +27,7 @@ import GridExample from '@/components/GridExample.vue'
 import HoverCardExample from '@/components/HoverCardExample.vue'
 import IndicatorExample from '@/components/IndicatorExample.vue'
 import InputExample from '@/components/InputExample.vue'
+import JoinExample from '@/components/JoinExample.vue'
 import KbdExample from '@/components/KbdExample.vue'
 import LabelExample from '@/components/LabelExample.vue'
 import LinkExample from '@/components/LinkExample.vue'
@@ -97,6 +98,7 @@ const componentMap: Record<string, any> = {
   hoverCard: HoverCardExample,
   indicator: IndicatorExample,
   input: InputExample,
+  join: JoinExample,
   kbd: KbdExample,
   label: LabelExample,
   link: LinkExample,
@@ -129,7 +131,7 @@ const componentMap: Record<string, any> = {
   textarea: TextareaExample,
   timeline: TimelineExample,
   toast: ToastExample,
-toggle: ToggleExample,
+  toggle: ToggleExample,
   listGroup: ListGroupExample,
   megaMenu: MegaMenuExample,
   popover: PopoverExample,
@@ -155,7 +157,7 @@ export const tabs: TabItem[] = [
   { label: 'Modal 模态框 √', value: 'modal', group: '操作组件' },
   { label: 'Swap 交换 √', value: 'swap', group: '操作组件' },
 
-// feedback
+  // feedback
   { label: 'Alert 警告 √', value: 'alert', group: '反馈组件' },
   { label: 'Banner 横幅', value: 'banner', group: '反馈组件' },
   { label: 'Hover Card 悬停卡片', value: 'hoverCard', group: '反馈组件' },
@@ -173,7 +175,7 @@ export const tabs: TabItem[] = [
   },
 
   // data
-{ label: 'Accordion 手风琴 √', value: 'accordion', group: '数据展示' },
+  { label: 'Accordion 手风琴 √', value: 'accordion', group: '数据展示' },
   { label: 'Avatar 头像 √', value: 'avatar', group: '数据展示' },
   { label: 'Badge 徽章 √', value: 'badge', group: '数据展示' },
   { label: 'Card 卡片 √', value: 'card', group: '数据展示' },
@@ -182,6 +184,7 @@ export const tabs: TabItem[] = [
   { label: 'List Group 列表组', value: 'listGroup', group: '数据展示' },
   { label: 'Collapse 折叠面板', value: 'collapse', group: '数据展示' },
   { label: 'DIFF 对比 √', value: 'diff', group: '数据展示' },
+  { label: 'Join √', value: 'join', group: '数据展示' },
   { label: 'Kbd 按键 √', value: 'kbd', group: '数据展示' },
   { label: 'List 列表 √', value: 'list', group: '数据展示' },
   { label: 'Mockup √', value: 'mockup', group: '数据展示' },
@@ -209,8 +212,8 @@ export const tabs: TabItem[] = [
   { label: 'Toggle 开关 √', value: 'toggle', group: '表单组件' },
   { label: 'Validator 校验器 √', value: 'validator', group: '表单组件' },
 
-// layout
-{ label: 'Divider 分割线 √', value: 'divider', group: '布局组件' },
+  // layout
+  { label: 'Divider 分割线 √', value: 'divider', group: '布局组件' },
   { label: 'Drawer 抽屉 √', value: 'drawer', group: '布局组件' },
   { label: 'Sidebar 侧边栏', value: 'sidebar', group: '布局组件' },
   { label: 'Footer 页脚', value: 'footer', group: '布局组件' },

@@ -6,9 +6,8 @@
 @import "./base/scrollbar.css";
 @import "./base/svg.css";
 
-@import "./utilities/theme.css";
+@import "./utilities/token.css";
 @import "./utilities/touch.css";
-@import "./utilities/z-index.css";
 @import "./utilities/join.css";
 @import "./utilities/size.css";
 

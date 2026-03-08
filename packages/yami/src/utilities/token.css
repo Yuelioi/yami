@@ -1,0 +1,152 @@
+@theme inline {
+  /* ========================================
+     颜色
+     ======================================== */
+
+  /* Base 表面色 */
+  --color-base-100: var(--base-100);
+  --color-base-200: var(--base-200);
+  --color-base-300: var(--base-300);
+  --color-base-content: var(--base-content);
+
+  /* 品牌色*/
+  --color-primary: var(--primary);
+  --color-primary-focus: var(--primary-focus);
+  --color-primary-content: var(--primary-content);
+
+  --color-secondary: var(--secondary);
+  --color-secondary-focus: var(--secondary-focus);
+  --color-secondary-content: var(--secondary-content);
+
+  --color-accent: var(--accent);
+  --color-accent-focus: var(--accent-focus);
+  --color-accent-content: var(--accent-content);
+
+  --color-neutral: var(--neutral);
+  --color-neutral-focus: var(--neutral-focus);
+  --color-neutral-content: var(--neutral-content);
+
+  /* 状态色 */
+  --color-info: var(--info);
+  --color-info-focus: var(--info-focus);
+  --color-info-content: var(--info-content);
+
+  --color-success: var(--success);
+  --color-success-focus: var(--success-focus);
+  --color-success-content: var(--success-content);
+
+  --color-warning: var(--warning);
+  --color-warning-focus: var(--warning-focus);
+  --color-warning-content: var(--warning-content);
+
+  --color-error: var(--error);
+  --color-error-focus: var(--error-focus);
+  --color-error-content: var(--error-content);
+
+  --color-border: var(--base-300);
+
+  /* ========================================
+     组件尺寸系统
+     selector = checkbox/radio/toggle 类
+     field     = input/select/textarea 类
+     box       = card/modal/dropdown 类
+     ======================================== */
+  --radius-selector: var(--radius-selector);
+  --radius-field: var(--radius-field);
+  --radius-box: var(--radius-box);
+
+  --size-selector: var(--size-selector);
+  --size-field: var(--size-field);
+
+  /* ========================================
+     视觉风格 token
+     ======================================== */
+  --border: var(--border);
+  --depth: var(--depth);
+  --noise: var(--noise);
+
+  /* ========================================
+     Z-Index 语义层级
+     ======================================== */
+  --z-hide: -1;
+  --z-base: 0;
+  --z-raised: 10;
+  --z-dropdown: 100;
+  --z-sticky: 200;
+  --z-fixed: 300;
+  --z-drawer: 400;
+  --z-modal-backdrop: 500;
+  --z-modal: 600;
+  --z-popover: 700;
+  --z-toast: 800;
+  --z-tooltip: 900;
+  --z-notification: 1000;
+
+  /* ========================================
+     Motion - Easing
+     bounce 和 spring 需要自定义
+     ======================================== */
+  --ease-bounce: cubic-bezier(0.68, -0.55, 0.27, 1.55);
+  --ease-spring: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+
+  /* ========================================
+     Motion - Duration 语义别名
+     TW 内置的是数字（--duration-200 等），
+     这里补充语义名方便记忆
+     ======================================== */
+  --duration-fast: 100ms;
+  --duration-base: 200ms;
+  --duration-slow: 300ms;
+  --duration-slower: 500ms;
+
+  /* ========================================
+     Aspect Ratio
+     ======================================== */
+  --aspect-photo: 4 / 3;
+  --aspect-portrait: 3 / 4;
+  --aspect-cinema: 21 / 9;
+
+  /* ========================================
+     Focus Ring 语义 token
+     ======================================== */
+  --outline-focus-width: 2px;
+  --outline-focus-offset: 2px;
+  --outline-focus-color: var(--primary);
+}
+
+@utility z-hide {
+  z-index: var(--z-hide);
+}
+@utility z-raised {
+  z-index: var(--z-raised);
+}
+@utility z-dropdown {
+  z-index: var(--z-dropdown);
+}
+@utility z-sticky {
+  z-index: var(--z-sticky);
+}
+@utility z-fixed {
+  z-index: var(--z-fixed);
+}
+@utility z-drawer {
+  z-index: var(--z-drawer);
+}
+@utility z-modal-backdrop {
+  z-index: var(--z-modal-backdrop);
+}
+@utility z-modal {
+  z-index: var(--z-modal);
+}
+@utility z-popover {
+  z-index: var(--z-popover);
+}
+@utility z-toast {
+  z-index: var(--z-toast);
+}
+@utility z-tooltip {
+  z-index: var(--z-tooltip);
+}
+@utility z-notification {
+  z-index: var(--z-notification);
+}
