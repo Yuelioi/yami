@@ -1,6 +1,6 @@
 {
   "name": "@yuelioi/yami",
-  "version": "1.0.36",
+  "version": "1.0.37",
   "description": "💫 A lightweight Tailwind CSS utility library for Yuelioi projects.",
   "main": "src/index.css",
   "type": "module",
@@ -32,8 +32,8 @@
       "types": "./dist/plugins/sidebar.d.ts"
     },
     "./plugins": {
-      "import": "./plugins/dist/index.js",
-      "types": "./plugins/dist/index.d.ts"
+      "import": "./dist/plugins/index.js",
+      "types": "./dist/plugins/index.d.ts"
     }
   },
   "repository": {

@@ -3,7 +3,6 @@
 @import 'tailwindcss';
 @import 'tw-animate-css';
 @import './base.css';
-@import './theme.css';
 @import '@yuelioi/yami/index.css';
 
 @plugin "@iconify/tailwind4";

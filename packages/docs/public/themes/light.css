@@ -1,0 +1,50 @@
+[data-theme='light'] {
+  /* 表面色 — 纯净冷白 */
+  --color-base-100: oklch(100% 0 0);
+  --color-base-200: oklch(97% 0.005 250);
+  --color-base-300: oklch(92% 0.008 250);
+  --color-base-content: oklch(18% 0.012 260);
+
+  /* 品牌色 — 靛蓝 */
+  --color-primary: oklch(54% 0.24 262);
+  --color-primary-content: oklch(97% 0.015 262);
+
+  /* 辅助色 — 玫瑰 */
+  --color-secondary: oklch(62% 0.23 350);
+  --color-secondary-content: oklch(97% 0.015 350);
+
+  /* 强调色 — 翠绿 */
+  --color-accent: oklch(66% 0.185 162);
+  --color-accent-content: oklch(97% 0.015 162);
+
+  /* 中性色 */
+  --color-neutral: oklch(20% 0.008 260);
+  --color-neutral-content: oklch(94% 0.004 260);
+
+  /* 状态色 */
+  --color-info: oklch(60% 0.19 232);
+  --color-info-content: oklch(97% 0.015 232);
+
+  --color-success: oklch(60% 0.19 150);
+  --color-success-content: oklch(97% 0.015 150);
+
+  --color-warning: oklch(72% 0.2 72);
+  --color-warning-content: oklch(22% 0.06 72);
+
+  --color-error: oklch(58% 0.22 25);
+  --color-error-content: oklch(97% 0.015 25);
+
+  /* 圆角 */
+  --radius-selector: 0.5rem;
+  --radius-field: 0.375rem;
+  --radius-box: 0.75rem;
+
+  /* 尺寸 */
+  --size-selector: 0.25rem;
+  --size-field: 0.25rem;
+
+  /* 视觉风格 */
+  --border: 1px;
+  --depth: 1;
+  --noise: 0;
+}

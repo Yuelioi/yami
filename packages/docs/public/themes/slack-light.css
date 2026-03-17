@@ -1,32 +1,32 @@
 [data-theme="slack-light"] {
-  --base-100: oklch(1 0 0);
-  --base-200: oklch(0.97 0.005 270);
-  --base-300: oklch(0.92 0.008 270);
-  --base-content: oklch(0.15 0.01 270);
+  --color-base-100: oklch(1 0 0);
+  --color-base-200: oklch(0.97 0.005 270);
+  --color-base-300: oklch(0.92 0.008 270);
+  --color-base-content: oklch(0.15 0.01 270);
 
-  --primary: oklch(0.38 0.18 285);
-  --primary-content: oklch(1 0 0);
+  --color-primary: oklch(0.38 0.18 285);
+  --color-primary-content: oklch(1 0 0);
 
-  --secondary: oklch(0.52 0.16 300);
-  --secondary-content: oklch(1 0 0);
+  --color-secondary: oklch(0.52 0.16 300);
+  --color-secondary-content: oklch(1 0 0);
 
-  --accent: oklch(0.62 0.18 155);
-  --accent-content: oklch(1 0 0);
+  --color-accent: oklch(0.62 0.18 155);
+  --color-accent-content: oklch(1 0 0);
 
-  --neutral: oklch(0.25 0.02 270);
-  --neutral-content: oklch(0.97 0 0);
+  --color-neutral: oklch(0.25 0.02 270);
+  --color-neutral-content: oklch(0.97 0 0);
 
-  --info: oklch(0.55 0.15 230);
-  --info-content: oklch(1 0 0);
+  --color-info: oklch(0.55 0.15 230);
+  --color-info-content: oklch(1 0 0);
 
-  --success: oklch(0.6 0.17 150);
-  --success-content: oklch(1 0 0);
+  --color-success: oklch(0.6 0.17 150);
+  --color-success-content: oklch(1 0 0);
 
-  --warning: oklch(0.7 0.15 75);
-  --warning-content: oklch(0.2 0.02 75);
+  --color-warning: oklch(0.7 0.15 75);
+  --color-warning-content: oklch(0.2 0.02 75);
 
-  --error: oklch(0.56 0.2 18);
-  --error-content: oklch(1 0 0);
+  --color-error: oklch(0.56 0.2 18);
+  --color-error-content: oklch(1 0 0);
 
   --radius-selector: 0.375rem;
   --radius-field: 0.375rem;

@@ -98,6 +98,10 @@ syntax:
   @apply text-2xl font-semibold text-base-content;
 }
 
+@utility card-description {
+  @apply text-sm text-base-content/60;
+}
+
 @utility card-header {
   @apply rounded-t-box;
   padding: var(--card-p, 1.5rem);

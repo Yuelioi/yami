@@ -230,14 +230,14 @@
     /* outline-focus-width 保持一致，但 outline 降为 1px 以区别普通 btn */
     outline-width: 1px;
   }
-}
 
-.btn-outline.btn-active {
-  --btn-bg: color-mix(
-    in oklab,
-    var(--btn-color, var(--color-neutral)) 10%,
-    #0000
-  );
+  &.btn-active {
+    --btn-bg: color-mix(
+      in oklab,
+      var(--btn-color, var(--color-neutral)) 10%,
+      #0000
+    );
+  }
 }
 
 @utility btn-ghost {
@@ -266,14 +266,14 @@
       #0000
     );
   }
-}
 
-.btn-ghost.btn-active {
-  --btn-bg: color-mix(
-    in oklab,
-    var(--btn-color, var(--color-neutral)) 10%,
-    #0000
-  );
+  &.btn-active {
+    --btn-bg: color-mix(
+      in oklab,
+      var(--btn-color, var(--color-neutral)) 10%,
+      #0000
+    );
+  }
 }
 
 @utility btn-gradient {
@@ -321,15 +321,15 @@
       0px 2px 4px -2px
         color-mix(in oklab, var(--btn-color, var(--color-neutral)) 30%, #0000);
   }
-}
 
-.btn-gradient.btn-active {
-  background-position: 99% center;
-  --btn-shadow:
-    0px 4px 6px -1px
-      color-mix(in oklab, var(--btn-color, var(--color-neutral)) 30%, #0000),
-    0px 2px 4px -2px
-      color-mix(in oklab, var(--btn-color, var(--color-neutral)) 30%, #0000);
+  &.btn-active {
+    background-position: 99% center;
+    --btn-shadow:
+      0px 4px 6px -1px
+        color-mix(in oklab, var(--btn-color, var(--color-neutral)) 30%, #0000),
+      0px 2px 4px -2px
+        color-mix(in oklab, var(--btn-color, var(--color-neutral)) 30%, #0000);
+  }
 }
 
 /* ===================== Size Variants ===================== */

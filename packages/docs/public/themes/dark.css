@@ -1,0 +1,50 @@
+[data-theme='dark'] {
+  /* 表面色 — 深邃冷蓝 */
+  --color-base-100: oklch(22% 0.014 258);
+  --color-base-200: oklch(19% 0.012 258);
+  --color-base-300: oklch(16% 0.01 258);
+  --color-base-content: oklch(95% 0.008 258);
+
+  /* 品牌色 — 靛蓝（暗色下提高亮度增强可读性） */
+  --color-primary: oklch(65% 0.235 262);
+  --color-primary-content: oklch(97% 0.015 262);
+
+  /* 辅助色 — 玫瑰（暗色下适当提亮） */
+  --color-secondary: oklch(68% 0.22 350);
+  --color-secondary-content: oklch(97% 0.015 350);
+
+  /* 强调色 — 翠绿（暗色下适当提亮） */
+  --color-accent: oklch(70% 0.175 162);
+  --color-accent-content: oklch(18% 0.05 162);
+
+  /* 中性色 */
+  --color-neutral: oklch(32% 0.01 260);
+  --color-neutral-content: oklch(92% 0.005 260);
+
+  /* 状态色（暗色下提高亮度，确保在深色背景上清晰） */
+  --color-info: oklch(68% 0.17 232);
+  --color-info-content: oklch(14% 0.04 232);
+
+  --color-success: oklch(68% 0.17 150);
+  --color-success-content: oklch(14% 0.04 150);
+
+  --color-warning: oklch(78% 0.18 72);
+  --color-warning-content: oklch(18% 0.06 72);
+
+  --color-error: oklch(65% 0.2 25);
+  --color-error-content: oklch(14% 0.04 25);
+
+  /* 圆角 */
+  --radius-selector: 0.5rem;
+  --radius-field: 0.375rem;
+  --radius-box: 0.75rem;
+
+  /* 尺寸 */
+  --size-selector: 0.25rem;
+  --size-field: 0.25rem;
+
+  /* 视觉风格 */
+  --border: 1px;
+  --depth: 1;
+  --noise: 0;
+}
