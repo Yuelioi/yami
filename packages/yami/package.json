@@ -14,6 +14,7 @@
     "dev:plugins": "tsup --watch"
   },
   "exports": {
+    ".": "./src/index.css",
     "./index.css": "./src/index.css",
     "./plugins/dropdown": {
       "import": "./dist/plugins/dropdown.js",
