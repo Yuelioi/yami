@@ -7,118 +7,638 @@ version: 1.0.0
 
 # Yami UI - Component Library
 
-## Color Theme
+基于 Tailwind CSS v4 的轻量级 CSS 组件库，使用 OKLCH 颜色系统，支持 22 个主题。
 
-| Variable | Light | Dark |
-|----------|--------|--------|
-| `--background` | oklch(98.5% 0.008 280) | oklch(0.1743 0.0227 283.7998) |
-| `--foreground` | oklch(0.25 0.02 280) | oklch(0.9185 0.0257 285.8834) |
-| `--card` | oklch(99.5% 0.002 280) | oklch(0.2284 0.0384 282.9324) |
-| `--card-foreground` | oklch(0.25 0.02 280) | oklch(0.9185 0.0257 285.8834) |
-| `--popover` | oklch(99.8% 0.001 280) | oklch(0.2284 0.0384 282.9324) |
-| `--popover-foreground` | oklch(0.25 0.02 280) | oklch(0.9185 0.0257 285.8834) |
-| `--primary` | oklch(0.55 0.22 285) | oklch(0.7162 0.1597 290.3962) |
-| `--primary-foreground` | oklch(0.99 0 0) | oklch(0.1743 0.0227 283.7998) |
-| `--secondary` | oklch(65.211% 0.19064 286.761) | oklch(0.3139 0.0736 283.4591) |
-| `--secondary-foreground` | oklch(0.99 0 0) | oklch(0.8367 0.0849 285.9111) |
-| `--muted` | oklch(0.96 0.015 285) | oklch(0.271 0.0621 281.4377) |
-| `--muted-foreground` | oklch(0.5 0.04 285) | oklch(0.7166 0.0462 285.1741) |
-| `--accent` | oklch(0.93 0.055 270) | oklch(0.3354 0.0828 280.9705) |
-| `--accent-foreground` | oklch(0.25 0.02 280) | oklch(0.9185 0.0257 285.8834) |
-| `--destructive` | oklch(63.408% 0.23096 22.528) | oklch(0.6861 0.2061 14.9941) |
-| `--destructive-foreground` | oklch(0.99 0 0) | oklch(1 0 0) |
-| `--border` | oklch(0.92 0.018 285) | oklch(0.3261 0.0597 282.5832) |
-| `--input` | oklch(0.92 0.018 285) | oklch(0.3261 0.0597 282.5832) |
-| `--ring` | oklch(0.55 0.22 285) | oklch(0.7162 0.1597 290.3962) |
-| `--chart-1` | oklch(0.55 0.22 285) | oklch(0.7162 0.1597 290.3962) |
-| `--chart-2` | oklch(0.65 0.18 275) | oklch(0.6382 0.1047 274.9117) |
-| `--chart-3` | oklch(0.6 0.25 290) | oklch(0.7482 0.1235 244.7492) |
-| `--chart-4` | oklch(0.7 0.15 265) | oklch(0.7124 0.0977 186.6761) |
-| `--chart-5` | oklch(0.48 0.2 295) | oklch(0.7546 0.1831 346.8124) |
-| `--sidebar` | oklch(0.97 0.012 285) | oklch(0.2284 0.0384 282.9324) |
-| `--sidebar-foreground` | oklch(0.25 0.02 280) | oklch(0.9185 0.0257 285.8834) |
-| `--sidebar-primary` | oklch(0.55 0.22 285) | oklch(0.7162 0.1597 290.3962) |
-| `--sidebar-primary-foreground` | oklch(0.99 0 0) | oklch(0.1743 0.0227 283.7998) |
-| `--sidebar-accent` | oklch(0.93 0.055 270) | oklch(0.3354 0.0828 280.9705) |
-| `--sidebar-accent-foreground` | oklch(0.25 0.02 280) | oklch(0.9185 0.0257 285.8834) |
-| `--sidebar-border` | oklch(0.92 0.018 285) | oklch(0.3261 0.0597 282.5832) |
-| `--sidebar-ring` | oklch(0.55 0.22 285) | oklch(0.7162 0.1597 290.3962) |
-| `--font-sans` | Inter, system-ui, -apple-system, sans-serif | Inter, sans-serif |
-| `--font-serif` | Georgia, Cambria, serif | Georgia, serif |
-| `--font-mono` | 'JetBrains Mono', 'Fira Code', monospace | JetBrains Mono, monospace |
-| `--radius` | 0 | 0.5rem |
-| `--shadow-2xs` | 0px 1px 2px 0px oklch(0.3 0.02 280 / 0.05) | 0px 4px 10px 0px hsl(240 30% 25% / 0.06) |
-| `--shadow-xs` | 0px 2px 4px 0px oklch(0.3 0.02 280 / 0.06) | 0px 4px 10px 0px hsl(240 30% 25% / 0.06) |
-| `--shadow-sm` | 0px 2px 6px -1px oklch(0.3 0.02 280 / 0.08), 0px 4px 8px -2px oklch(0.3 0.02 280 / 0.08) | 0px 4px 10px 0px hsl(240 30% 25% / 0.12), 0px 1px 2px -1px hsl(240 30% 25% / 0.12) |
-| `--shadow` | 0px 4px 12px -2px oklch(0.3 0.02 280 / 0.1), 0px 2px 6px -1px oklch(0.3 0.02 280 / 0.08) | 0px 4px 10px 0px hsl(240 30% 25% / 0.12), 0px 1px 2px -1px hsl(240 30% 25% / 0.12) |
-| `--shadow-md` | 0px 6px 16px -4px oklch(0.3 0.02 280 / 0.12), 0px 4px 8px -2px oklch(0.3 0.02 280 / 0.08) | 0px 4px 10px 0px hsl(240 30% 25% / 0.12), 0px 2px 4px -1px hsl(240 30% 25% / 0.12) |
-| `--shadow-lg` | 0px 10px 24px -6px oklch(0.3 0.02 280 / 0.14), 0px 6px 12px -3px oklch(0.3 0.02 280 / 0.1) | 0px 4px 10px 0px hsl(240 30% 25% / 0.12), 0px 4px 6px -1px hsl(240 30% 25% / 0.12) |
-| `--shadow-xl` | 0px 16px 32px -8px oklch(0.3 0.02 280 / 0.16), 0px 8px 16px -4px oklch(0.3 0.02 280 / 0.12) | 0px 4px 10px 0px hsl(240 30% 25% / 0.12), 0px 8px 10px -1px hsl(240 30% 25% / 0.12) |
-| `--shadow-2xl` | 0px 24px 48px -12px oklch(0.3 0.02 280 / 0.24) | 0px 4px 10px 0px hsl(240 30% 25% / 0.3) |
-| `--success` | oklch(0.75 0.15 150) | oklch(0.65 0.16 150) |
-| `--success-foreground` | oklch(0.2 0.03 150) | oklch(0.9185 0.0257 285.8834) |
-| `--info` | oklch(0.78 0.12 250) | oklch(0.68 0.14 250) |
-| `--info-foreground` | oklch(0.2 0.04 250) | oklch(0.9185 0.0257 285.8834) |
-| `--warning` | oklch(0.86 0.14 80) | oklch(0.76 0.15 80) |
-| `--warning-foreground` | oklch(0.25 0.05 80) | oklch(0.9185 0.0257 285.8834) |
-| `--error` | var(--destructive) | oklch(0.63 0.23 22.528) |
-| `--error-foreground` | var(--destructive-foreground) | oklch(0.98 0 0) |
+```css
+@import "@yuelioi/yami";
+```
 
 ## Components
 
+### accordion
+手风琴折叠组件。
+
+[accordion docs](https://yami.yuelili.com/accordion)
+
+**Usage:** 用于展示可折叠内容，适合 FAQ、内容分组等场景。
+
+#### Class Names
+- `accordion`
+
+#### Syntax
+```html
+<div class="accordion">
+  <details>
+    <summary>标题</summary>
+    <p>展开的内容</p>
+  </details>
+</div>
+```
+
+---
+
+### alert
+提示框/警告条。
+
+[alert docs](https://yami.yuelili.com/alert)
+
+**Usage:** 用于显示操作结果通知、系统警告、信息提示。
+
+#### Class Names
+- `alert`
+- `alert-title`
+- `alert-description`
+- `alert-close`
+- `alert-info`
+- `alert-success`
+- `alert-warning`
+- `alert-error`
+- `alert-outline`
+- `alert-soft`
+- `alert-solid`
+- `alert-borderless`
+- `alert-no-icon`
+- `alert-sm`
+- `alert-lg`
+- `alert-enter-from`
+- `alert-enter-active`
+- `alert-enter-to`
+- `alert-leave-from`
+- `alert-leave-active`
+- `alert-leave-to`
+
+#### Syntax
+```html
+<div class="alert alert-success">
+  <span class="alert-title">成功</span>
+  <span class="alert-description">操作已完成。</span>
+  <button class="alert-close">✕</button>
+</div>
+```
+
+---
+
+### avatar
+用户头像组件。
+
+[avatar docs](https://yami.yuelili.com/avatar)
+
+**Usage:** 常用于个人资料、聊天列表、评论区等用户展示场景。
+
+#### Class Names
+- `avatar`
+- `avatar-group`
+- `avatar-placeholder`
+- `pull-up`
+- `avatar-online-top`
+- `avatar-offline-top`
+- `avatar-busy-top`
+- `avatar-away-top`
+- `avatar-online-bottom`
+- `avatar-offline-bottom`
+- `avatar-busy-bottom`
+- `avatar-away-bottom`
+
+#### Syntax
+```html
+<div class="avatar avatar-online-bottom">
+  <img src="/avatar.png" alt="用户" />
+</div>
+
+<div class="avatar-group">
+  <div class="avatar"><img src="/a.png" /></div>
+  <div class="avatar"><img src="/b.png" /></div>
+  <div class="avatar avatar-placeholder"><span>+3</span></div>
+</div>
+```
+
+---
+
+### badge
+徽章/标签组件。
+
+[badge docs](https://yami.yuelili.com/badge)
+
+**Usage:** 常见于按钮、图标、标签旁显示数量或状态。
+
+#### Class Names
+- `badge`
+- `badge-primary`
+- `badge-secondary`
+- `badge-accent`
+- `badge-neutral`
+- `badge-info`
+- `badge-success`
+- `badge-warning`
+- `badge-error`
+- `badge-soft`
+- `badge-outline`
+- `badge-ghost`
+- `badge-xs`
+- `badge-sm`
+- `badge-md`
+- `badge-lg`
+- `badge-xl`
+- `badge-pill`
+- `badge-square`
+- `badge-dot`
+
+#### Syntax
+```html
+<span class="badge badge-primary">新功能</span>
+<span class="badge badge-success badge-outline">已完成</span>
+<span class="badge badge-error badge-dot"></span>
+```
+
+---
+
+### banner
+横幅通知条。
+
+[banner docs](https://yami.yuelili.com/banner)
+
+**Usage:** 用于页面顶部或底部的全局提示，如公告、促销信息。
+
+#### Class Names
+- `banner`
+- `banner-content`
+- `banner-title`
+- `banner-description`
+- `banner-actions`
+- `banner-close`
+- `banner-primary`
+- `banner-secondary`
+- `banner-accent`
+- `banner-neutral`
+- `banner-info`
+- `banner-success`
+- `banner-warning`
+- `banner-error`
+- `banner-top`
+- `banner-bottom`
+- `banner-no-icon`
+- `banner-sm`
+- `banner-lg`
+- `banner-enter-from`
+- `banner-enter-active`
+- `banner-enter-to`
+- `banner-leave-from`
+- `banner-leave-active`
+- `banner-leave-to`
+
+#### Syntax
+```html
+<div class="banner banner-info banner-top">
+  <div class="banner-content">
+    <span class="banner-title">系统通知</span>
+    <span class="banner-description">将于今晚 22:00 进行维护。</span>
+  </div>
+  <div class="banner-actions">
+    <button class="banner-close">✕</button>
+  </div>
+</div>
+```
+
+---
+
+### breadcrumbs
+面包屑导航。
+
+[breadcrumbs docs](https://yami.yuelili.com/breadcrumbs)
+
+**Usage:** 显示当前页面在网站层级中的位置。
+
+#### Class Names
+- `breadcrumbs`
+- `breadcrumbs-separator`
+
+#### Syntax
+```html
+<nav class="breadcrumbs">
+  <a href="/">首页</a>
+  <span class="breadcrumbs-separator">/</span>
+  <a href="/docs">文档</a>
+  <span class="breadcrumbs-separator">/</span>
+  <span>当前页</span>
+</nav>
+```
+
+---
+
 ### button
-用于触发操作的主按钮组件，支持多种尺寸与颜色变体
+按钮组件。
 
 [button docs](https://yami.yuelili.com/button)
 
-**Usage:** 在表单提交、弹窗确认、交互操作等场景使用
+**Usage:** 用于触发操作，支持多种颜色、尺寸、风格变体。
 
 #### Class Names
 - `btn`
+- `btn-active`
 - `btn-primary`
 - `btn-secondary`
-- `btn-destructive`
-- `btn-muted`
 - `btn-accent`
+- `btn-neutral`
+- `btn-info`
+- `btn-success`
+- `btn-warning`
+- `btn-error`
+- `btn-soft`
 - `btn-outline`
 - `btn-ghost`
+- `btn-gradient`
 - `btn-xs`
 - `btn-sm`
 - `btn-md`
 - `btn-lg`
 - `btn-xl`
-- `btn-left`
-- `btn-center`
-- `btn-right`
-- `btn-link`
-- `btn-icon`
-- `btn-icon-xs`
-- `btn-icon-sm`
-- `btn-icon-md`
-- `btn-icon-lg`
-- `btn-icon-xl`
-- `btn-pill`
 - `btn-square`
-- `btn-full`
+- `btn-circle`
 - `btn-wide`
-- `btn-shadow`
-- `btn-lift`
-- `btn-loading`
-- `btn-group`
+- `btn-block`
 
 #### Syntax
 ```html
-<button class="btn btn-primary btn-md">确认</button>
+<button class="btn btn-primary">主要操作</button>
+<button class="btn btn-outline btn-secondary">次要操作</button>
+<button class="btn btn-ghost btn-sm">幽灵按钮</button>
+<button class="btn btn-circle btn-primary">+</button>
+```
+
+---
+
+### card
+卡片容器组件。
+
+[card docs](https://yami.yuelili.com/card)
+
+**Usage:** 常用于仪表盘、商品列表、信息展示区。
+
+#### Class Names
+- `card`
+- `card-title`
+- `card-description`
+- `card-header`
+- `card-body`
+- `card-actions`
+- `card-footer`
+- `card-xs`
+- `card-sm`
+- `card-md`
+- `card-lg`
+- `card-xl`
+- `card-side`
+- `card-alert`
+- `card-group`
+
+#### Syntax
+```html
+<div class="card card-md">
+  <div class="card-header">
+    <h3 class="card-title">卡片标题</h3>
+    <p class="card-description">副标题描述</p>
+  </div>
+  <div class="card-body">
+    <p>卡片内容区域</p>
+  </div>
+  <div class="card-footer">
+    <div class="card-actions">
+      <button class="btn btn-primary btn-sm">确认</button>
+    </div>
+  </div>
+</div>
+```
+
+---
+
+### carousel
+轮播图组件。
+
+[carousel docs](https://yami.yuelili.com/carousel)
+
+**Usage:** 适用于图片展示、横幅、广告位、产品展示等。
+
+#### Class Names
+- `carousel`
+- `carousel-track`
+- `carousel-item`
+- `carousel-caption`
+- `carousel-caption-title`
+- `carousel-caption-description`
+- `carousel-prev`
+- `carousel-next`
+- `carousel-indicators`
+- `carousel-indicator`
+- `carousel-xs`
+- `carousel-sm`
+- `carousel-md`
+- `carousel-lg`
+- `carousel-xl`
+- `carousel-full`
+- `carousel-fade`
+- `carousel-square`
+- `carousel-controls-square`
+- `carousel-indicators-square`
+
+#### Syntax
+```html
+<div class="carousel carousel-md">
+  <div class="carousel-track">
+    <div class="carousel-item"><img src="/1.jpg" /></div>
+    <div class="carousel-item"><img src="/2.jpg" /></div>
+  </div>
+  <button class="carousel-prev">←</button>
+  <button class="carousel-next">→</button>
+  <div class="carousel-indicators">
+    <button class="carousel-indicator"></button>
+    <button class="carousel-indicator"></button>
+  </div>
+</div>
+```
+
+---
+
+### chat
+聊天气泡组件。
+
+[chat docs](https://yami.yuelili.com/chat)
+
+**Usage:** 适用于即时通讯、评论区、客服对话等场景。
+
+#### Class Names
+- `chat`
+- `chat-start`
+- `chat-end`
+- `chat-image`
+- `chat-header`
+- `chat-bubble`
+- `chat-footer`
+- `chat-bubble-primary`
+- `chat-bubble-secondary`
+- `chat-bubble-accent`
+- `chat-bubble-info`
+- `chat-bubble-success`
+- `chat-bubble-warning`
+- `chat-bubble-error`
+
+#### Syntax
+```html
+<div class="chat chat-start">
+  <img src="/avatar.png" class="chat-image" />
+  <div>
+    <div class="chat-header">Alice</div>
+    <div class="chat-bubble">你好！</div>
+    <div class="chat-footer">10:23</div>
+  </div>
+</div>
+
+<div class="chat chat-end">
+  <div>
+    <div class="chat-bubble chat-bubble-primary">你好，有什么事吗？</div>
+  </div>
+</div>
+```
+
+---
+
+### checkbox
+复选框组件。
+
+[checkbox docs](https://yami.yuelili.com/checkbox)
+
+**Usage:** 用于多项选择场景，支持颜色和尺寸变体。
+
+#### Class Names
+- `checkbox`
+- `checkbox-primary`
+- `checkbox-secondary`
+- `checkbox-accent`
+- `checkbox-info`
+- `checkbox-success`
+- `checkbox-warning`
+- `checkbox-error`
+- `checkbox-xs`
+- `checkbox-sm`
+- `checkbox-md`
+- `checkbox-lg`
+- `checkbox-xl`
+
+#### Syntax
+```html
+<input type="checkbox" class="checkbox checkbox-primary" />
+<input type="checkbox" class="checkbox checkbox-success checkbox-lg" checked />
+```
+
+---
+
+### collapse
+折叠面板组件。
+
+[collapse docs](https://yami.yuelili.com/collapse)
+
+**Usage:** 用于收纳内容，减少页面信息密度，支持手风琴效果。
+
+#### Class Names
+- `collapse`
+- `collapse-title`
+- `collapse-content`
+- `collapse-arrow`
+- `collapse-plus`
+- `collapse-open`
+- `collapse-close`
+- `collapse-primary`
+- `collapse-secondary`
+- `collapse-accent`
+- `collapse-bordered`
+- `collapse-shadow`
+- `collapse-sm`
+- `collapse-lg`
+- `collapse-group`
+- `collapse-group-compact`
+- `collapse-hover`
+- `collapse-disabled`
+
+#### Syntax
+```html
+<details class="collapse collapse-arrow collapse-bordered">
+  <summary class="collapse-title">点击展开</summary>
+  <div class="collapse-content">这里是展开内容</div>
+</details>
+
+<div class="collapse-group">
+  <details class="collapse collapse-arrow">
+    <summary class="collapse-title">项目一</summary>
+    <div class="collapse-content">内容一</div>
+  </details>
+  <details class="collapse collapse-arrow">
+    <summary class="collapse-title">项目二</summary>
+    <div class="collapse-content">内容二</div>
+  </details>
+</div>
+```
+
+---
+
+### customOptions
+自定义选项卡片（radio/checkbox 美化）。
+
+[customOptions docs](https://yami.yuelili.com/customOptions)
+
+**Usage:** 将 radio/checkbox 渲染为可选卡片，用于计划选择、配置选项等。
+
+#### Class Names
+- `custom-option`
+- `custom-soft-option`
+
+#### Syntax
+```html
+<label class="custom-option">
+  <input type="radio" name="plan" value="free" />
+  <span>免费版</span>
+</label>
+<label class="custom-option">
+  <input type="radio" name="plan" value="pro" />
+  <span>专业版</span>
+</label>
+```
+
+---
+
+### diff
+图片对比滑块。
+
+[diff docs](https://yami.yuelili.com/diff)
+
+**Usage:** 用于展示前后对比效果，如图片处理前后、设计稿对比。
+
+#### Class Names
+- `diff`
+- `diff-resizer`
+- `diff-item-1`
+- `diff-item-2`
+
+#### Syntax
+```html
+<div class="diff">
+  <div class="diff-item-1"><img src="/before.jpg" /></div>
+  <div class="diff-item-2"><img src="/after.jpg" /></div>
+  <div class="diff-resizer"></div>
+</div>
+```
+
+---
+
+### divider
+分割线组件。
+
+[divider docs](https://yami.yuelili.com/divider)
+
+**Usage:** 用于分隔内容区块，支持带文字的分割线。
+
+#### Class Names
+- `divider`
+- `divider-horizontal`
+- `divider-vertical`
+- `divider-neutral`
+- `divider-primary`
+- `divider-secondary`
+- `divider-accent`
+- `divider-success`
+- `divider-warning`
+- `divider-info`
+- `divider-error`
+- `divider-dotted`
+- `divider-dashed`
+- `divider-start`
+- `divider-end`
+
+#### Syntax
+```html
+<div class="divider">或者</div>
+<div class="divider divider-primary divider-dashed"></div>
+<div class="divider divider-vertical h-16"></div>
+```
+
+---
+
+### dock
+底部浮动任务栏。
+
+[dock docs](https://yami.yuelili.com/dock)
+
+**Usage:** 移动端 Tab Bar，固定在页面底部的导航区域。
+
+#### Class Names
+- `dock`
+- `dock-label`
+- `dock-active`
+- `dock-xs`
+- `dock-sm`
+- `dock-md`
+- `dock-lg`
+- `dock-xl`
+
+#### Syntax
+```html
+<div class="dock">
+  <button class="dock-active">
+    🏠
+    <span class="dock-label">首页</span>
+  </button>
+  <button>
+    🔍
+    <span class="dock-label">搜索</span>
+  </button>
+  <button>
+    👤
+    <span class="dock-label">我的</span>
+  </button>
+</div>
+```
+
+---
+
+### drawer
+侧边抽屉组件。
+
+[drawer docs](https://yami.yuelili.com/drawer)
+
+**Usage:** 移动端侧边菜单，桌面端辅助面板。
+
+#### Class Names
+- `drawer`
+- `drawer-content`
+- `drawer-side`
+- `drawer-toggle`
+- `drawer-button`
+- `drawer-overlay`
+- `drawer-end`
+- `drawer-open`
+
+#### Syntax
+```html
+<div class="drawer">
+  <input id="my-drawer" type="checkbox" class="drawer-toggle" />
+  <div class="drawer-content">
+    <label for="my-drawer" class="btn drawer-button">打开抽屉</label>
+  </div>
+  <div class="drawer-side">
+    <label for="my-drawer" class="drawer-overlay"></label>
+    <ul class="menu bg-base-200 min-h-full w-80 p-4">
+      <li><a>菜单项</a></li>
+    </ul>
+  </div>
+</div>
 ```
 
 ---
 
 ### dropdown
-下拉菜单组件，用于显示可选项或操作菜单
+下拉菜单组件。
 
 [dropdown docs](https://yami.yuelili.com/dropdown)
 
-**Usage:** 适用于按钮菜单、导航菜单、筛选选项等场景
+**Usage:** 按钮菜单、导航下拉、筛选项等场景。
 
 #### Class Names
 - `dropdown`
@@ -128,27 +648,45 @@ version: 1.0.0
 - `dropdown-start`
 - `dropdown-end`
 - `dropdown-center`
+- `dropdown-xs`
+- `dropdown-sm`
+- `dropdown-md`
+- `dropdown-lg`
+- `dropdown-xl`
+- `dropdown-arrow`
+- `dropdown-arrow-up`
+- `dropdown-arrow-down`
+- `dropdown-hover`
+- `dropdown-fixed`
+- `dropdown-fit`
+- `dropdown-wide`
 
 #### Syntax
 ```html
-<details class="dropdown w-36">
-  <summary class="btn btn-primary">Dropdown 示例</summary>
-  <div class="dropdown-content menu p-2 border rounded shadow-md">
-    <li><a href="#" class="">菜单项 1</a></li>
-    <li><a href="#" class="">菜单项 2</a></li>
-    <li><a href="#" class="">菜单项 3</a></li>
-  </div>
+<!-- CSS-only（details/summary） -->
+<details class="dropdown">
+  <summary class="btn btn-primary">打开菜单</summary>
+  <ul class="dropdown-content dropdown-bottom menu p-2 shadow bg-base-100 rounded-box">
+    <li><a>选项一</a></li>
+    <li><a>选项二</a></li>
+  </ul>
 </details>
+
+<!-- JS 插件方式 -->
+<button data-dropdown-toggle="my-dropdown" class="btn">菜单</button>
+<ul id="my-dropdown" class="dropdown-content" hidden>
+  <li><a>选项一</a></li>
+</ul>
 ```
 
 ---
 
 ### fab
-悬浮操作按钮（Floating Action Button）
+浮动操作按钮。
 
 [fab docs](https://yami.yuelili.com/fab)
 
-**Usage:** 在界面右下角展示主要操作，如“新建”、“添加”等
+**Usage:** 在界面右下角展示主操作，如"新建"、"添加"，支持展开子按钮。
 
 #### Class Names
 - `fab`
@@ -156,33 +694,535 @@ version: 1.0.0
 
 #### Syntax
 ```html
-<div class="fab right-48">
-  <!-- 主按钮 -->
-  <button tabindex="0" class="btn btn-primary rounded-full size-14 shadow-lg">
-    <Plus class="w-6 h-6" />
-  </button>
-
-  <!-- 子操作项 -->
-  <button class="btn btn-secondary rounded-full size-12 shadow-md">
-    <Edit class="w-5 h-5" />
-  </button>
-  <button class="btn btn-primary rounded-full size-12 shadow-md">
-    <Share2 class="w-5 h-5" />
-  </button>
-  <button class="btn btn-destructive rounded-full size-12 shadow-md">
-    <Trash2 class="w-5 h-5" />
-  </button>
+<div class="fab">
+  <button class="btn btn-primary rounded-full size-14 shadow-lg">+</button>
+  <!-- fab-flower：鼠标悬停展开子按钮 -->
+  <button class="btn btn-secondary rounded-full size-12">✏</button>
+  <button class="btn btn-error rounded-full size-12">🗑</button>
 </div>
 ```
 
 ---
 
+### fieldset
+表单字段分组。
+
+[fieldset docs](https://yami.yuelili.com/fieldset)
+
+**Usage:** 将相关表单字段组织在一起，添加标题和描述。
+
+#### Class Names
+- `fieldset`
+- `fieldset-legend`
+- `fieldset-description`
+- `fieldset-content`
+- `fieldset-item`
+- `fieldset-divider`
+- `fieldset-disabled`
+- `fieldset-error`
+- `fieldset-success`
+- `fieldset-info`
+- `fieldset-warning`
+- `fieldset-danger`
+- `fieldset-sm`
+- `fieldset-lg`
+- `fieldset-borderless`
+- `fieldset-ghost`
+- `fieldset-shadow`
+- `fieldset-row`
+- `fieldset-columns-2`
+- `fieldset-columns-3`
+- `fieldset-columns-auto`
+- `fieldset-group`
+- `fieldset-group-compact`
+- `fieldset-collapsible`
+- `fieldset-required`
+- `fieldset-optional`
+- `fieldset-step`
+
+#### Syntax
+```html
+<fieldset class="fieldset">
+  <legend class="fieldset-legend">个人信息</legend>
+  <p class="fieldset-description">请填写基本资料</p>
+  <div class="fieldset-content space-y-3">
+    <input type="text" class="input w-full" placeholder="姓名" />
+    <input type="email" class="input w-full" placeholder="邮箱" />
+  </div>
+</fieldset>
+```
+
+---
+
+### file
+文件上传输入框。
+
+[file docs](https://yami.yuelili.com/file)
+
+**Usage:** 文件选择上传场景。
+
+#### Class Names
+- `input-file`
+- `input-file-xs`
+- `input-file-sm`
+- `input-file-md`
+- `input-file-lg`
+- `input-file-xl`
+- `input-file-floating`
+
+#### Syntax
+```html
+<input type="file" class="input-file input-file-md" />
+```
+
+---
+
+### filter
+筛选条组件。
+
+[filter docs](https://yami.yuelili.com/filter)
+
+**Usage:** 内容列表的状态/类型筛选。
+
+#### Class Names
+- `filter`
+
+#### Syntax
+```html
+<div class="filter">
+  <div class="filter-bar">
+    <div class="filter-item" data-active="true">全部</div>
+    <div class="filter-item">待处理</div>
+    <div class="filter-item">已完成</div>
+  </div>
+</div>
+```
+
+---
+
+### footer
+页脚区域组件。
+
+[footer docs](https://yami.yuelili.com/footer)
+
+**Usage:** 网站底部信息区，包含链接、版权、社交媒体等。
+
+#### Class Names
+- `footer`
+- `footer-section`
+- `footer-title`
+- `footer-link`
+- `footer-logo`
+- `footer-description`
+- `footer-divider`
+- `footer-bottom`
+- `footer-social`
+- `footer-social-btn`
+- `footer-center`
+- `footer-bordered`
+- `footer-dark`
+
+#### Syntax
+```html
+<footer class="footer footer-bordered">
+  <div class="footer-section">
+    <span class="footer-logo">Logo</span>
+    <p class="footer-description">公司简介</p>
+  </div>
+  <div class="footer-section">
+    <span class="footer-title">产品</span>
+    <a class="footer-link" href="#">功能</a>
+    <a class="footer-link" href="#">定价</a>
+  </div>
+  <div class="footer-bottom">© 2025 公司名</div>
+</footer>
+```
+
+---
+
+### hover-card
+鼠标悬停弹出卡片。
+
+[hover-card docs](https://yami.yuelili.com/hover-card)
+
+**Usage:** 鼠标悬停时显示额外信息，如用户资料卡片、产品预览。
+
+#### Class Names
+- `hover-card`
+- `hover-card-trigger`
+- `hover-card-content`
+- `hover-card-top`
+- `hover-card-start`
+- `hover-card-end`
+- `hover-card-sm`
+- `hover-card-lg`
+- `hover-card-bordered`
+- `hover-card-glass`
+
+#### Syntax
+```html
+<div class="hover-card">
+  <button class="hover-card-trigger btn">悬停查看</button>
+  <div class="hover-card-content">
+    <p>这是悬停卡片内容</p>
+  </div>
+</div>
+```
+
+---
+
+### indicator
+角标定位组件。
+
+[indicator docs](https://yami.yuelili.com/indicator)
+
+**Usage:** 在目标元素上叠加角标，如消息数量、状态标记。
+
+#### Class Names
+- `indicator`
+- `indicator-item`
+- `indicator-start`
+- `indicator-center`
+- `indicator-end`
+- `indicator-top`
+- `indicator-middle`
+- `indicator-bottom`
+
+#### Syntax
+```html
+<div class="indicator">
+  <span class="indicator-item badge badge-error">99+</span>
+  <button class="btn">通知</button>
+</div>
+```
+
+---
+
+### input
+文本输入框组件。
+
+[input docs](https://yami.yuelili.com/input)
+
+**Usage:** 通用文本输入，支持带图标、浮动标签等变体。
+
+#### Class Names
+- `input`
+- `no-focus`
+- `input-neutral`
+- `input-primary`
+- `input-secondary`
+- `input-accent`
+- `input-info`
+- `input-success`
+- `input-warning`
+- `input-error`
+- `input-ghost`
+- `input-xs`
+- `input-sm`
+- `input-md`
+- `input-lg`
+- `input-xl`
+- `input-floating`
+- `input-floating-label`
+
+#### Syntax
+```html
+<!-- 普通输入框 -->
+<input type="text" class="input input-primary" placeholder="请输入..." />
+
+<!-- 带图标（label 包裹） -->
+<label class="input input-md">
+  <span>🔍</span>
+  <input type="text" placeholder="搜索..." />
+</label>
+
+<!-- 浮动标签 -->
+<label class="input-floating">
+  <input type="text" class="input" placeholder=" " />
+  <span class="input-floating-label">用户名</span>
+</label>
+```
+
+---
+
+### kbd
+键盘按键样式。
+
+[kbd docs](https://yami.yuelili.com/kbd)
+
+**Usage:** 展示键盘快捷键说明。
+
+#### Class Names
+- `kbd`
+- `kbd-xs`
+- `kbd-sm`
+- `kbd-md`
+- `kbd-lg`
+- `kbd-xl`
+
+#### Syntax
+```html
+按 <kbd class="kbd kbd-sm">Ctrl</kbd> + <kbd class="kbd kbd-sm">C</kbd> 复制
+```
+
+---
+
+### label
+表单标签与辅助文字。
+
+[label docs](https://yami.yuelili.com/label)
+
+**Usage:** 表单字段的标签、帮助文本、验证消息。
+
+#### Class Names
+- `label-text`
+- `helper-text`
+- `success-message`
+- `error-message`
+
+#### Syntax
+```html
+<label>
+  <span class="label-text">用户名</span>
+  <input type="text" class="input" />
+  <span class="helper-text">6-20 个字符</span>
+  <span class="error-message">该用户名已被占用</span>
+</label>
+```
+
+---
+
+### link
+链接样式组件。
+
+[link docs](https://yami.yuelili.com/link)
+
+**Usage:** 为链接添加颜色、下划线动画等样式。
+
+#### Class Names
+- `link`
+- `link-hover`
+- `link-animated`
+- `link-primary`
+- `link-secondary`
+- `link-accent`
+- `link-neutral`
+- `link-success`
+- `link-info`
+- `link-warning`
+- `link-error`
+
+#### Syntax
+```html
+<a href="#" class="link link-primary">查看详情</a>
+<a href="#" class="link link-animated link-accent">动画下划线链接</a>
+```
+
+---
+
+### list / list-group
+列表组件。
+
+[list docs](https://yami.yuelili.com/list)
+
+**Usage:** 带交互的列表项，常用于设置菜单、文件列表、联系人列表。
+
+#### Class Names
+- `list-group`
+- `list-group-item`
+- `list-group-item-action`
+- `list-group-item-end`
+- `list-group-item-desc`
+- `list-group-primary`
+- `list-group-secondary`
+- `list-group-accent`
+- `list-group-success`
+- `list-group-warning`
+- `list-group-error`
+- `list-group-borderless`
+- `list-group-flush`
+- `list-group-divided`
+- `list-group-sm`
+- `list-group-lg`
+
+#### Syntax
+```html
+<ul class="list-group list-group-divided">
+  <li class="list-group-item list-group-item-action">
+    <span>列表项一</span>
+    <span class="list-group-item-end">→</span>
+  </li>
+  <li class="list-group-item list-group-item-action">
+    <span>列表项二</span>
+    <span class="list-group-item-desc">描述文字</span>
+  </li>
+</ul>
+```
+
+---
+
+### loading
+加载动画组件。
+
+[loading docs](https://yami.yuelili.com/loading)
+
+**Usage:** 用于异步操作的加载状态展示。
+
+#### Class Names
+- `loading`
+- `loading-spinner`
+- `loading-dots`
+- `loading-ring`
+- `loading-ball`
+- `loading-bars`
+- `loading-infinity`
+- `loading-xs`
+- `loading-sm`
+- `loading-md`
+- `loading-lg`
+- `loading-xl`
+
+#### Syntax
+```html
+<span class="loading loading-spinner loading-md"></span>
+<span class="loading loading-dots loading-lg text-primary"></span>
+```
+
+---
+
+### mask
+图片遮罩形状组件。
+
+[mask docs](https://yami.yuelili.com/mask)
+
+**Usage:** 将图片裁剪为特定形状，如六边形、心形、星形等。
+
+#### Class Names
+- `mask`
+- `mask-half-1`
+- `mask-half-2`
+- `mask-squircle`
+- `mask-decagon`
+- `mask-diamond`
+- `mask-heart`
+- `mask-hexagon`
+- `mask-hexagon-2`
+- `mask-circle`
+- `mask-parallelogram`
+- `mask-parallelogram-2`
+- `mask-parallelogram-3`
+- `mask-parallelogram-4`
+- `mask-pentagon`
+- `mask-square`
+- `mask-star`
+- `mask-star-2`
+- `mask-triangle`
+- `mask-triangle-2`
+- `mask-triangle-3`
+- `mask-triangle-4`
+
+#### Syntax
+```html
+<img src="/avatar.jpg" class="mask mask-hexagon w-24" />
+<img src="/photo.jpg" class="mask mask-heart w-32" />
+```
+
+---
+
+### mega-menu
+超级下拉菜单（多列导航）。
+
+[mega-menu docs](https://yami.yuelili.com/mega-menu)
+
+**Usage:** 适合内容分类多的网站导航，支持多列布局和图文混排。
+
+#### Class Names
+- `mega-menu-nav`
+- `mega-menu-brand`
+- `mega-menu-list`
+- `mega-menu-link`
+- `mega-menu-actions`
+- `mega-menu-dropdown`
+- `mega-menu-cols-2`
+- `mega-menu-cols-3`
+- `mega-menu-cols-4`
+- `mega-menu-section`
+- `mega-menu-section-title`
+- `mega-menu-item`
+- `mega-menu-item-icon`
+- `mega-menu-item-body`
+- `mega-menu-item-title`
+- `mega-menu-item-desc`
+- `mega-menu-footer`
+- `mega-menu-card`
+- `mega-menu-card-title`
+- `mega-menu-card-desc`
+- `mega-menu-divider`
+
+#### Syntax
+```html
+<nav class="mega-menu-nav">
+  <a class="mega-menu-brand" href="/">Logo</a>
+  <ul class="mega-menu-list">
+    <li>
+      <a class="mega-menu-link" href="#">产品 ▾</a>
+      <div class="mega-menu-dropdown mega-menu-cols-2">
+        <div class="mega-menu-section">
+          <h4 class="mega-menu-section-title">功能</h4>
+          <a class="mega-menu-item" href="#">
+            <span class="mega-menu-item-icon">⚡</span>
+            <div class="mega-menu-item-body">
+              <div class="mega-menu-item-title">自动化</div>
+              <div class="mega-menu-item-desc">一键自动化工作流</div>
+            </div>
+          </a>
+        </div>
+      </div>
+    </li>
+  </ul>
+</nav>
+```
+
+---
+
+### menu
+导航菜单组件。
+
+[menu docs](https://yami.yuelili.com/menu)
+
+**Usage:** 垂直/水平导航菜单，支持分组标题和禁用状态。
+
+#### Class Names
+- `menu`
+- `menu-title`
+- `menu-horizontal`
+- `menu-vertical`
+- `menu-xs`
+- `menu-sm`
+- `menu-md`
+- `menu-lg`
+- `menu-xl`
+- `menu-active`
+- `menu-disabled`
+
+#### Syntax
+```html
+<ul class="menu menu-vertical bg-base-200 rounded-box w-56">
+  <li class="menu-title">导航</li>
+  <li><a class="menu-active">首页</a></li>
+  <li><a>关于</a></li>
+  <li><a class="menu-disabled">禁用</a></li>
+</ul>
+```
+
+---
+
 ### modal
-模态对话框组件，用于展示重要信息或确认操作
+模态对话框组件。
 
 [modal docs](https://yami.yuelili.com/modal)
 
-**Usage:** 在需要用户确认或输入的场景中使用
+**Usage:** 在需要用户确认、输入或展示重要信息的场景中使用。
 
 #### Class Names
 - `modal`
@@ -202,708 +1242,266 @@ version: 1.0.0
 
 #### Syntax
 ```html
-<button class="btn modal-control" onclick="my_modal_1.showModal()">
-  open modal
-</button>
-<dialog id="my_modal_1" class="modal" v-click-modal-outside>
+<button class="btn" onclick="document.getElementById('modal1').showModal()">打开</button>
+
+<dialog id="modal1" class="modal">
   <div class="modal-content modal-content-md">
-    <h3 class="text-lg font-bold">Hello!</h3>
+    <div class="modal-header">
+      <h3 class="modal-title">标题</h3>
+      <button class="modal-close" onclick="document.getElementById('modal1').close()">✕</button>
+    </div>
+    <div class="modal-body">
+      <p>这是对话框内容</p>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-primary">确认</button>
+      <button class="btn btn-ghost" onclick="document.getElementById('modal1').close()">取消</button>
+    </div>
   </div>
 </dialog>
 ```
 
+#### Rules
+- 使用原生 `<dialog>` 元素，通过 `.showModal()` 打开
+- JS 插件：`import { Modal, initModals } from "@yuelioi/yami/plugins/modal"`
+- 支持 `data-modal-toggle="modal-id"` 触发，`data-modal-close` 关闭
+
 ---
 
-### swap
-动画切换组件，用于图标、文本或元素的可视状态切换
+### mockup
+原型展示组件。
 
-[swap docs](https://yami.yuelili.com/swap)
+[mockup docs](https://yami.yuelili.com/mockup)
 
-**Usage:** 适用于收藏、开关、加载等交互场景
+**Usage:** 展示代码块、浏览器窗口、手机屏幕等原型效果。
 
 #### Class Names
-- `swap`
-- `swap-active`
-- `swap-rotate`
-- `swap-flip`
+- `mockup-code`
+- `mockup-window`
+- `mockup-browser`
+- `mockup-browser-toolbar`
+- `mockup-phone`
+- `mockup-phone-camera`
+- `mockup-phone-display`
 
 #### Syntax
 ```html
-<label class="swap">
-  <input type="checkbox" />
-  <div class="swap-on">ON</div>
-  <div class="swap-off">OFF</div>
-</label>
-- 支持 swap-active, swap-rotate, swap-flip 等变体
+<div class="mockup-code">
+  <pre><code>npm install @yuelioi/yami</code></pre>
+</div>
+
+<div class="mockup-browser">
+  <div class="mockup-browser-toolbar">https://example.com</div>
+  <div class="p-4">页面内容</div>
+</div>
+
+<div class="mockup-phone">
+  <div class="mockup-phone-camera"></div>
+  <div class="mockup-phone-display"><p>手机屏幕内容</p></div>
+</div>
+```
+
+---
+
+### navbar
+顶部导航栏组件。
+
+[navbar docs](https://yami.yuelili.com/navbar)
+
+**Usage:** 网站顶部导航，支持固定、毛玻璃、反色等风格。
+
+#### Class Names
+- `navbar`
+- `navbar-start`
+- `navbar-center`
+- `navbar-end`
+- `navbar-brand`
+- `navbar-link`
+- `navbar-divider`
+- `navbar-toggle`
+- `navbar-menu`
+- `navbar-bordered`
+- `navbar-sticky`
+- `navbar-shadow`
+- `navbar-glass`
+- `navbar-invert`
+- `navbar-transparent`
+
+#### Syntax
+```html
+<nav class="navbar navbar-sticky navbar-shadow">
+  <div class="navbar-start">
+    <a class="navbar-brand" href="/">品牌</a>
+  </div>
+  <div class="navbar-center">
+    <a class="navbar-link navbar-link-active" href="/">首页</a>
+    <a class="navbar-link" href="/docs">文档</a>
+    <div class="navbar-divider"></div>
+    <a class="navbar-link" href="/blog">博客</a>
+  </div>
+  <div class="navbar-end">
+    <button class="btn btn-primary btn-sm">登录</button>
+  </div>
+</nav>
+```
+
+---
+
+### number
+数字增减输入框。
+
+[number docs](https://yami.yuelili.com/number)
+
+**Usage:** 需要精确数字输入且有范围限制的场景，如数量、价格。
+
+#### Class Names
+- `number-input`
+- `number-input-decrement`
+- `number-input-increment`
+- `number-input-field`
+- `number-input-primary`
+- `number-input-success`
+- `number-input-warning`
+- `number-input-error`
+- `number-input-ghost`
+- `number-input-xs`
+- `number-input-sm`
+- `number-input-lg`
+- `number-input-xl`
+- `number-input-vertical`
+
+#### Syntax
+```html
+<div class="number-input number-input-primary">
+  <button class="number-input-decrement">−</button>
+  <input type="number" class="number-input-field" value="1" min="0" />
+  <button class="number-input-increment">+</button>
+</div>
+```
+
+---
+
+### pagination
+分页器组件。
+
+[pagination docs](https://yami.yuelili.com/pagination)
+
+**Usage:** 长列表、搜索结果、文章列表的分页导航。
+
+#### Class Names
+- `pagination`
+- `pagination-item`
+- `pagination-ellipsis`
+- `pagination-prev`
+- `pagination-next`
+- `pagination-primary`
+- `pagination-secondary`
+- `pagination-accent`
+- `pagination-neutral`
+- `pagination-xs`
+- `pagination-sm`
+- `pagination-md`
+- `pagination-lg`
+- `pagination-bordered`
+- `pagination-pill`
+- `pagination-square`
+
+#### Syntax
+```html
+<nav class="pagination pagination-primary pagination-md">
+  <button class="pagination-prev">«</button>
+  <button class="pagination-item">1</button>
+  <button class="pagination-item pagination-item-active">2</button>
+  <button class="pagination-item">3</button>
+  <span class="pagination-ellipsis">…</span>
+  <button class="pagination-item">10</button>
+  <button class="pagination-next">»</button>
+</nav>
+```
+
+---
+
+### pinInput
+PIN 码输入框。
+
+[pinInput docs](https://yami.yuelili.com/pinInput)
+
+**Usage:** 验证码输入、PIN 码、OTP 确认场景。
+
+#### Class Names
+- `pin-input`
+- `pin-input-underline`
+- `pin-input-xs`
+- `pin-input-sm`
+- `pin-input-md`
+- `pin-input-lg`
+- `pin-input-xl`
+
+#### Syntax
+```html
+<div class="pin-input pin-input-md">
+  <input type="text" maxlength="1" inputmode="numeric" />
+  <input type="text" maxlength="1" inputmode="numeric" />
+  <input type="text" maxlength="1" inputmode="numeric" />
+  <input type="text" maxlength="1" inputmode="numeric" />
+</div>
+```
+
+---
+
+### popover
+弹出提示框组件。
+
+[popover docs](https://yami.yuelili.com/popover)
+
+**Usage:** 比 tooltip 更丰富的悬浮内容，如操作菜单、详细说明。
+
+#### Class Names
+- `popover`
+- `popover-title`
+- `popover-body`
+- `popover-footer`
+- `popover-arrow`
+- `popover-dark`
+- `popover-no-arrow`
+- `popover-compact`
+- `popover-sm`
+- `popover-lg`
+- `popover-xl`
+
+#### Syntax
+```html
+<button data-popover-toggle="pop1" class="btn">查看</button>
+<div id="pop1" class="popover" hidden>
+  <div class="popover-title">提示标题</div>
+  <div class="popover-body">这里是更详细的内容。</div>
+  <div class="popover-arrow"></div>
+</div>
 ```
 
 #### Rules
-- 支持 swap-active, swap-rotate, swap-flip 等变体
-
----
-
-### avatar
-头像组件，用于显示用户头像、图标或缩略图。
-
-[avatar docs](https://yami.yuelili.com/avatar)
-
-**Usage:** 常用于个人资料、聊天列表、评论区等用户展示场景。
-
-#### Class Names
-- `avatar`
-- `avatar-xs`
-- `avatar-sm`
-- `avatar-md`
-- `avatar-lg`
-- `avatar-xl`
-- `avatar-2xl`
-- `avatar-square`
-- `avatar-rounded`
-- `avatar-ring`
-- `avatar-ring-primary`
-- `avatar-ring-destructive`
-- `avatar-ring-accent`
-- `avatar-status`
-- `avatar-status-online`
-- `avatar-status-offline`
-- `avatar-status-busy`
-- `avatar-status-away`
-- `avatar-group`
-- `avatar-group-compact`
-- `avatar-hover`
-- `avatar-clickable`
-
-#### Syntax
-```html
-<div class="avatar">
-  <img src="/images/avatar.png" alt="用户头像" />
-</div>
-```
-
----
-
-### badge
-徽章组件，用于显示状态、小计或通知数量。
-
-[badge docs](https://yami.yuelili.com/badge)
-
-**Usage:** 常见于按钮、图标、标签旁显示数量或状态。
-
-#### Class Names
-- `badge`
-- `badge-primary`
-- `badge-secondary`
-- `badge-destructive`
-- `badge-muted`
-- `badge-accent`
-- `badge-info`
-- `badge-success`
-- `badge-error`
-- `badge-warning`
-- `badge-outline`
-- `badge-ghost`
-- `badge-xs`
-- `badge-sm`
-- `badge-md`
-- `badge-lg`
-- `badge-xl`
-- `badge-pill`
-- `badge-square`
-- `badge-dot`
-- `badge-closable`
-
-#### Syntax
-```html
-<div class="badge badge-primary">新</div>
-<span class="badge badge-secondary badge-outline">Beta</span>
-```
-
----
-
-### card
-卡片组件，用于容纳图文、操作等内容块。
-
-[card docs](https://yami.yuelili.com/card)
-
-**Usage:** 常用于仪表盘、商品列表、信息展示区。
-
-#### Class Names
-- `card`
-- `card-header`
-- `card-title`
-- `card-title-deco`
-- `card-title-deco-destructive`
-- `card-description`
-- `card-body`
-- `card-footer`
-- `card-hover`
-- `card-clickable`
-- `card-borderless`
-- `card-primary`
-- `card-secondary`
-- `card-destructive`
-- `card-accent`
-- `card-muted`
-- `card-sm`
-- `card-md`
-- `card-lg`
-- `card-glass`
-- `card-gradient`
-- `card-shadow`
-- `card-shadow-lg`
-- `card-header-bordered`
-- `card-header-center`
-- `card-header-row`
-- `card-footer-bordered`
-- `card-footer-center`
-- `card-footer-between`
-- `card-image`
-- `card-image-sm`
-- `card-image-md`
-- `card-image-lg`
-- `card-grid`
-- `card-grid-compact`
-- `card-grid-relaxed`
-
-#### Syntax
-```html
-<div class="card">
-  <div class="card-header">
-    <h3 class="card-title">默认卡片</h3>
-    <p class="card-description">最基础的卡片样式。</p>
-  </div>
-  <div class="card-body">这是卡片内容。</div>
-  <div class="card-footer">
-    <button class="btn btn-sm btn-primary">操作</button>
-  </div>
-  <p class="text-xs text-muted-foreground mt-2 px-6">使用类：<code>card</code></p>
-</div>
-```
-
----
-
-### carousel
-轮播组件，用于展示多张图片或内容滑块。
-
-[carousel docs](https://yami.yuelili.com/carousel)
-
-**Usage:** 适用于图片展示、横幅、广告位、产品展示等。
-
-#### Class Names
-- `carousel`
-- `carousel-container`
-- `carousel-item`
-- `carousel-title`
-- `carousel-navigation`
-- `carousel-btn`
-- `carousel-btn-prev`
-- `carousel-btn-next`
-- `carousel-indicators`
-- `carousel-indicator`
-- `carousel-indicator-active`
-- `carousel-fade`
-- `carousel-cards`
-- `carousel-cards-responsive`
-- `carousel-center`
-- `carousel-sm`
-- `carousel-md`
-- `carousel-lg`
-- `carousel-fullscreen`
-- `carousel-indicator-progress`
-- `carousel-caption`
-- `carousel-caption-title`
-- `carousel-caption-description`
-- `carousel-thumbnails`
-- `carousel-thumbnail`
-- `carousel-thumbnail-active`
-- `carousel-vertical`
-- `carousel-3d`
-- `carousel-loop`
-
-#### Syntax
-```html
-<div class="carousel carousel-md">
-  <div class="carousel-container">
-    <div class="carousel-item" v-for="i in 3" :key="i">
-      <img
-        :src="`https://picsum.photos/seed/${i}/800/400`"
-        :alt="`Slide ${i}`"
-        class="w-full h-full object-cover"
-      />
-    </div>
-  </div>
-
-  <div class="carousel-navigation">
-    <button class="carousel-btn-prev" aria-label="Previous">←</button>
-    <button class="carousel-btn-next" aria-label="Next">→</button>
-  </div>
-
-  <div class="carousel-indicators">
-    <button>1</button>
-    <button>2</button>
-    <button>3</button>
-  </div>
-</div>
-```
-
----
-
-### chat
-聊天气泡组件，用于展示会话消息。
-
-[chat docs](https://yami.yuelili.com/chat)
-
-**Usage:** 常用于消息中心、客服聊天、社交互动等。
-
-#### Class Names
-- `chat`
-- `chat-bubble`
-- `chat-image`
-- `chat-header`
-- `chat-footer`
-- `chat-start`
-- `chat-end`
-- `chat-bubble-primary`
-- `chat-bubble-muted`
-- `chat-bubble-accent`
-- `chat-bubble-destructive`
-
-#### Syntax
-```html
-<div class="chat chat-start">
-  <img src="https://i.pravatar.cc/40?img=3" class="chat-image" />
-  <div>
-    <div class="chat-header">Alice</div>
-    <div class="chat-bubble">嗨～ 你今天怎么样？</div>
-    <div class="chat-footer">10:23</div>
-  </div>
-</div>
-
-<div class="chat chat-end">
-  <div>
-    <div class="chat-header">我</div>
-    <div class="chat-bubble chat-bubble-primary">挺好的，谢谢！你呢？</div>
-    <div class="chat-footer">10:24</div>
-  </div>
-  <img src="https://i.pravatar.cc/40?img=3" class="chat-image" />
-</div>
-
-<div class="chat chat-start">
-  <div class="chat-bubble chat-bubble-destructive">系统提示：连接中断，请稍后重试。</div>
-</div>
-```
-
----
-
-### collapse
-折叠面板组件，用于隐藏/展开内容区域。
-
-[collapse docs](https://yami.yuelili.com/collapse)
-
-**Usage:** 适用于过滤器、设置项、帮助文档等场景。
-
-#### Class Names
-- `collapse`
-- `collapse-title`
-- `collapse-content`
-- `collapse-arrow`
-- `collapse-plus`
-- `collapse-open`
-- `collapse-close`
-- `collapse-primary`
-- `collapse-secondary`
-- `collapse-accent`
-- `collapse-destructive`
-- `collapse-muted`
-- `collapse-bordered`
-- `collapse-shadow`
-- `collapse-sm`
-- `collapse-lg`
-- `collapse-group`
-- `collapse-group-compact`
-- `collapse-hover`
-- `collapse-disabled`
-
-#### Syntax
-```html
-<div class="bg-card rounded-xl border border-border p-6 shadow-sm">
-<div class="mb-4 pb-3 border-b border-border">
-  <h3 class="font-semibold text-lg">默认样式</h3>
-  <p class="text-sm text-muted-foreground mt-1">
-    最简单的折叠面板，无边框无图标
-  </p>
-</div>
-
-<div class="collapse">
-  <input type="checkbox" />
-  <div class="collapse-title text-lg font-medium">
-    点击展开查看详情
-  </div>
-  <div class="collapse-content">
-    <p class="text-muted-foreground">
-      这是折叠面板的内容区域。使用
-      <code class="px-1.5 py-0.5 bg-muted rounded text-xs font-mono"
-        >input[type="checkbox"]</code
-      >
-      实现展开/收起功能。
-    </p>
-  </div>
-</div>
-        </div>
-```
-
----
-
-### kbd
-键盘提示组件，用于展示快捷键或键盘操作说明。
-
-[kbd docs](https://yami.yuelili.com/kbd)
-
-**Usage:** 在表单提示、文档、快捷说明中使用。
-
-#### Class Names
-- `kbd`
-- `kbd-primary`
-- `kbd-secondary`
-- `kbd-destructive`
-- `kbd-muted`
-- `kbd-flat`
-- `kbd-xs`
-- `kbd-sm`
-- `kbd-md`
-- `kbd-lg`
-- `kbd-group`
-- `kbd-command`
-- `kbd-shift`
-- `kbd-ctrl`
-- `kbd-alt`
-- `kbd-option`
-- `kbd-enter`
-- `kbd-delete`
-- `kbd-escape`
-- `kbd-tab`
-- `kbd-caps`
-- `kbd-up`
-- `kbd-down`
-- `kbd-left`
-- `kbd-right`
-
-#### Syntax
-```html
-<kbd class="kbd">A</kbd>
-```
-
----
-
-### list
-列表组件，用于展示项目集合或菜单项。
-
-[list docs](https://yami.yuelili.com/list)
-
-**Usage:** 用于导航菜单、侧边栏、选项列表。
-
-#### Class Names
-- `list`
-- `list-row`
-- `list-col-grow`
-- `list-col-wrap`
-- `list-borderless`
-- `list-hoverable`
-- `list-compact`
-- `list-relaxed`
-- `list-zebra`
-
-#### Syntax
-```html
-<div class="list">
-<div class="list-row">
-  <div class="font-medium">用户名</div>
-  <div class="list-col-grow text-muted-foreground">
-    邮箱
-  </div>
-</div>
-- 支持 list-decimal, list-disc, list-none
-- 支持 list-inside, list-outside
-```
-
-#### Rules
-- 支持 list-decimal, list-disc, list-none
-- 支持 list-inside, list-outside
-
----
-
-### stat
-统计数据展示组件，用于显示指标和数值。
-
-[stat docs](https://yami.yuelili.com/stat)
-
-**Usage:** 用于仪表盘、业绩报表、数据总览。
-
-#### Class Names
-- `stats`
-- `stat`
-- `stat-figure`
-- `stat-title`
-- `stat-value`
-- `stat-desc`
-- `stat-actions`
-- `stats-vertical`
-
-#### Syntax
-```html
-<div class="stats w-full">
-<div class="stat">
-  <div class="stat-figure text-primary"><Users /></div>
-  <div class="stat-title">活跃用户</div>
-  <div class="stat-value">2,430</div>
-  <div class="stat-desc"><TrendingUp class="w-3 h-3" /> +12% 本月</div>
-</div>
-
-<div class="stat">
-  <div class="stat-figure text-primary"><ShoppingBag /></div>
-  <div class="stat-title">订单量</div>
-  <div class="stat-value">312</div>
-  <div class="stat-desc text-muted-foreground">昨日完成 289 单</div>
-</div>
-
-<div class="stat">
-  <div class="stat-figure text-destructive"><DollarSign /></div>
-  <div class="stat-title">收入</div>
-  <div class="stat-value">$4.2k</div>
-  <div class="stat-desc stat-desc-error"><TrendingDown class="w-3 h-3" /> -5% 本周</div>
-</div>
-</div>
-```
-
----
-
-### table
-表格组件，用于展示结构化数据。
-
-[table docs](https://yami.yuelili.com/table)
-
-**Usage:** 用于后台管理、数据分析、信息列表。
-
-#### Class Names
-- `table`
-- `table-zebra`
-- `table-hover`
-- `table-pin-rows`
-- `table-pin-cols`
-- `table-compact`
-- `table-comfortable`
-- `table-primary`
-- `table-secondary`
-- `table-accent`
-- `table-destructive`
-- `table-borderless`
-- `table-bordered`
-- `table-horizontal`
-- `table-vertical`
-- `table-center`
-- `table-right`
-- `table-selectable`
-- `table-highlight`
-- `table-container`
-- `table-loading`
-- `table-empty`
-- `table-sortable`
-- `table-card`
-- `table-xs`
-- `table-sm`
-- `table-md`
-- `table-lg`
-- `table-xl`
-
-#### Syntax
-```html
-<table class="table">
-  <thead>
-    <tr>
-      <th>姓名</th>
-      <th>职位</th>
-      <th>状态</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>Alice</td>
-      <td>前端</td>
-      <td>在线</td>
-    </tr>
-  </tbody>
-</table>
-- 支持 table-zebra, table-compact, table-fixed
-- 支持 hover、striped、bordered 样式
-```
-
-#### Rules
-- 支持 table-zebra, table-compact, table-fixed
-- 支持 hover、striped、bordered 样式
-
----
-
-### timeline
-时间线组件，用于展示时间顺序事件。
-
-[timeline docs](https://yami.yuelili.com/timeline)
-
-**Usage:** 适用于项目进度、活动节点、历史记录。
-
-#### Class Names
-- `timeline`
-- `timeline-item`
-- `timeline-line`
-- `timeline-start`
-- `timeline-middle`
-- `timeline-end`
-- `timeline-box`
-- `timeline-icon`
-- `timeline-dot`
-- `timeline-primary`
-- `timeline-secondary`
-- `timeline-accent`
-- `timeline-muted`
-- `timeline-vertical`
-- `timeline-horizontal`
-- `timeline-compact`
-- `timeline-sm`
-- `timeline-lg`
-- `timeline-line-dashed`
-- `timeline-line-dotted`
-- `timeline-animated`
-- `timeline-rounded`
-- `timeline-alternate`
-
-#### Syntax
-```html
-<div
-        class="timeline timeline-horizontal bg-card p-8 rounded-lg shadow-sm"
-      >
-  <div class="timeline-item">
-    <div class="timeline-line bg-gray-300"></div>
-    <div class="timeline-start">
-      <div
-        class="timeline-box bg-card border rounded-lg px-4 py-3 text-sm"
-      >
-        <div class="font-semibold">项目启动</div>
-      </div>
-    </div>
-    <div class="timeline-middle">
-      <div
-        class="w-10 h-10 rounded-full bg-blue-600 flex items-center justify-center shadow-sm"
-      >
-        1
-      </div>
-    </div>
-    <div class="timeline-line bg-gray-300"></div>
-  </div>
-</div>
-```
-
----
-
-### mask
-[mask docs](https://yami.yuelili.com/mask)
-
-#### Class Names
-- `mask-bottom`
-
----
-
-### alert
-警告提示组件，用于展示重要信息、警告或状态提示。
-
-[alert docs](https://yami.yuelili.com/alert)
-
-**Usage:** 常用于表单验证、系统提示、操作结果反馈等。
-
-#### Class Names
-- `alert`
-- `alert-title`
-- `alert-description`
-- `alert-close`
-- `alert-info`
-- `alert-success`
-- `alert-warning`
-- `alert-error`
-- `alert-filled`
-- `alert-sm`
-- `alert-lg`
-- `alert-no-icon`
-- `alert-borderless`
-- `alert-enter`
-- `alert-enter-active`
-- `alert-enter-to`
-- `alert-leave`
-- `alert-leave-active`
-- `alert-leave-to`
-- `alert-fade-enter`
-- `alert-fade-enter-active`
-- `alert-fade-enter-to`
-- `alert-fade-leave`
-- `alert-fade-leave-active`
-- `alert-fade-leave-to`
-
-#### Syntax
-```html
-<div class="alert alert-info">
-  <div>
-    <div class="alert-title">信息提示</div>
-    <div class="alert-description">这是一条信息提示内容。</div>
-  </div>
-  <div class="alert-close"></div>
-</div>
-```
-
----
-
-### hover-card
-悬浮卡片组件，用于在悬停时展示额外内容。
-
-[hover-card docs](https://yami.yuelili.com/hover-card)
-
-**Usage:** 常用于显示用户简介、商品预览、提示信息等。
-
-#### Class Names
-- `hover-card`
-- `hover-card`
-- `hover-card-center`
-- `hover-card-right`
-- `hover-card-sm`
-- `hover-card-md`
-- `hover-card-lg`
-- `hover-card-delay`
-- `hover-card-compact`
-- `hover-card-simple`
-- `hover-card-open`
-
-#### Syntax
-```html
-<div class="hover-card">
-  <button class="px-3 py-2 border rounded-md bg-background">悬停查看</button>
-  <div class="hover-card-content">
-    <div class="hover-card-header">
-      <div class="hover-card-title">Hover Card 标题</div>
-      <div class="hover-card-description">这是一个简单的悬浮卡片描述。</div>
-    </div>
-    <div class="hover-card-body">内容区域可以放置任意文字、图片或操作按钮。</div>
-  </div>
-</div>
-```
+- JS 插件：`import { Popover, initPopovers } from "@yuelioi/yami/plugins/popover"`
+- 支持 12 个方位（placement）、click/hover/focus 触发方式
 
 ---
 
 ### progress
-进度条组件，用于展示任务或操作的完成进度。
+进度条组件。
 
 [progress docs](https://yami.yuelili.com/progress)
 
-**Usage:** 常用于加载状态、上传进度、任务执行等场景。
+**Usage:** 文件上传、任务完成度、步骤进度展示。
 
 #### Class Names
 - `progress`
+- `progress-label`
 - `progress-bar`
+- `progress-horizontal`
+- `progress-vertical`
+- `progress-striped`
+- `progress-animated`
+- `progress-indeterminate`
+- `progress-step`
 - `progress-primary`
 - `progress-secondary`
 - `progress-accent`
@@ -911,511 +1509,39 @@ version: 1.0.0
 - `progress-success`
 - `progress-warning`
 - `progress-error`
-- `progress-xs`
-- `progress-sm`
-- `progress-md`
-- `progress-lg`
-- `progress-xl`
-- `progress-animated`
-- `progress-striped`
-- `progress-striped-animated`
-- `progress-indeterminate`
-- `progress-rounded-none`
-- `progress-rounded-sm`
-- `progress-rounded-md`
-- `progress-rounded-lg`
-- `progress-rounded-full`
-- `progress-bordered`
-- `progress-gradient`
-- `progress-gradient-success`
-- `progress-gradient-warning`
-- `progress-gradient-error`
-- `progress-glow`
-- `progress-vertical`
-- `progress-vertical-xs`
-- `progress-vertical-sm`
-- `progress-vertical-md`
-- `progress-vertical-lg`
-- `progress-vertical-xl`
-- `progress-labeled`
-- `progress-segmented`
-- `progress-circle`
-- `progress-circle-sm`
-- `progress-circle-lg`
-- `progress-container`
 
 #### Syntax
 ```html
-<div class="progress w-full">
-  <div class="progress-bar"></div>
-</div>
-```
+<!-- 原生 -->
+<progress class="progress progress-primary" value="70" max="100"></progress>
 
----
-
-### skeleton
-骨架屏组件，用于在加载内容时显示占位。
-
-[skeleton docs](https://yami.yuelili.com/skeleton)
-
-**Usage:** 常用于页面或卡片加载等待时，提升用户体验。
-
-#### Class Names
-- `skeleton`
-- `skeleton-wave`
-- `skeleton-pulse`
-- `skeleton-text`
-- `skeleton-text-sm`
-- `skeleton-text-lg`
-- `skeleton-text-xl`
-- `skeleton-title`
-- `skeleton-title-sm`
-- `skeleton-title-lg`
-- `skeleton-avatar`
-- `skeleton-avatar-sm`
-- `skeleton-avatar-lg`
-- `skeleton-avatar-xl`
-- `skeleton-circle`
-- `skeleton-square`
-- `skeleton-rect`
-- `skeleton-image`
-- `skeleton-card`
-- `skeleton-thumbnail`
-- `skeleton-button`
-- `skeleton-button-sm`
-- `skeleton-button-lg`
-- `skeleton-input`
-- `skeleton-input-sm`
-- `skeleton-input-lg`
-- `skeleton-badge`
-- `skeleton-paragraph`
-- `skeleton-list-item`
-- `skeleton-card-layout`
-- `skeleton-static`
-- `skeleton-rounded-none`
-- `skeleton-rounded-sm`
-- `skeleton-rounded-md`
-- `skeleton-rounded-lg`
-- `skeleton-rounded-xl`
-- `skeleton-rounded-full`
-- `skeleton-container`
-- `skeleton-table-row`
-- `skeleton-progress`
-- `skeleton-tag`
-- `skeleton-rating`
-- `skeleton-primary`
-- `skeleton-secondary`
-- `skeleton-user-card`
-- `skeleton-article`
-- `skeleton-comment`
-- `skeleton-responsive`
-
-#### Syntax
-```html
-<div class="flex flex-col gap-4 bg-card p-6 rounded-lg">
-  <div class="skeleton w-full h-8"></div>
-  <div class="skeleton-text w-1/2"></div>
-  <div class="skeleton-paragraph">
-    <div></div>
-    <div></div>
-    <div></div>
+<!-- 自定义 -->
+<div class="progress progress-success">
+  <div class="progress-bar" style="width: 60%">
+    <span class="progress-label">60%</span>
   </div>
 </div>
-```
 
----
-
-### toast
-吐司提示组件，用于全局信息提示或短暂反馈。
-
-[toast docs](https://yami.yuelili.com/toast)
-
-**Usage:** 适用于操作结果反馈，如保存成功、删除失败等。
-
-#### Class Names
-- `toast`
-- `toast-title`
-- `toast-message`
-- `toast-close`
-- `toast-info`
-- `toast-success`
-- `toast-warning`
-- `toast-error`
-- `toast-filled`
-- `toast-bordered`
-- `toast-sm`
-- `toast-lg`
-- `toast-no-icon`
-- `toast-enter`
-- `toast-enter-active`
-- `toast-enter-to`
-- `toast-leave`
-- `toast-leave-active`
-- `toast-leave-to`
-
-#### Syntax
-```html
-<div class="toast toast-info">
-  <div>
-    <div class="toast-title">信息</div>
-    <div class="toast-message">这是一条普通提示消息。</div>
-  </div>
-  <div class="toast-close"></div>
-</div>
-```
-
----
-
-### tooltip
-工具提示组件，用于在悬停或聚焦时显示辅助信息。
-
-[tooltip docs](https://yami.yuelili.com/tooltip)
-
-**Usage:** 常用于按钮、图标、文本等元素的提示说明。
-
-#### Class Names
-- `tooltip`
-- `tooltip-top`
-- `tooltip-bottom`
-- `tooltip-left`
-- `tooltip-right`
-- `tooltip-primary`
-- `tooltip-secondary`
-- `tooltip-accent`
-- `tooltip-destructive`
-- `tooltip-sm`
-- `tooltip-lg`
-- `tooltip-no-arrow`
-- `tooltip-open`
-- `tooltip-delay`
-- `tooltip-wrap`
-- `tooltip-w-sm`
-- `tooltip-w-md`
-- `tooltip-w-lg`
-- `tooltip-fade`
-- `tooltip-scale`
-
-#### Syntax
-```html
-1. HTML 结构用法：
-<div class="tooltip tooltip-top">
-  <button class="btn">上方提示</button>
-  <div class="tooltip-content">这是顶部提示内容</div>
-</div>
-
-2. data-tip 属性用法：
-<button
-  class="tooltip tooltip-top btn"
-  data-tip="这是顶部提示内容">
-  上方提示
-</button>
-```
-
----
-
-### calendar
-日历选择组件，用于日期或日期区间选择。
-
-[calendar docs](https://yami.yuelili.com/calendar)
-
-**Usage:** 常用于选择生日、活动日期、预订时间等。
-
-#### Class Names
-- `calendar`
-- `calendar-header`
-- `calendar-title`
-- `calendar-nav`
-- `calendar-weekdays`
-- `calendar-weekday`
-- `calendar-days`
-- `calendar-day`
-- `calendar-day-today`
-- `calendar-day-selected`
-- `calendar-day-range-start`
-- `calendar-day-range-middle`
-- `calendar-day-range-end`
-- `calendar-day-outside`
-- `calendar-day-disabled`
-- `calendar-day-weekend`
-- `calendar-day-multiple`
-- `calendar-compact`
-- `calendar-lg`
-- `calendar-day-event`
-- `calendar-day-event-primary`
-- `calendar-day-event-destructive`
-- `calendar-months`
-- `calendar-month`
-- `calendar-years`
-- `calendar-year`
-
----
-
-### checkbox
-多选框组件，用于多项选择或状态切换。
-
-[checkbox docs](https://yami.yuelili.com/checkbox)
-
-**Usage:** 常用于表单、多选列表、设置项中。
-
-#### Class Names
-- `checkbox`
-- `checkbox-primary`
-- `checkbox-secondary`
-- `checkbox-accent`
-- `checkbox-destructive`
-- `checkbox-sm`
-- `checkbox-md`
-- `checkbox-lg`
-- `checkbox-xl`
-- `checkbox-thick`
-- `checkbox-animated`
-- `checkbox-card`
-- `checkbox-group`
-
-#### Syntax
-```html
-<label class="checkbox">
-  <input type="checkbox" />
-  <span class="checkbox-label">默认复选框</span>
-</label>
-```
-
----
-
-### fieldset
-字段集组件，用于分组相关表单控件。
-
-[fieldset docs](https://yami.yuelili.com/fieldset)
-
-**Usage:** 常用于表单逻辑分区、配置组、调查表。
-
-#### Class Names
-- `fieldset`
-- `fieldset-plain`
-- `fieldset-card`
-- `fieldset-primary`
-- `fieldset-secondary`
-- `fieldset-accent`
-- `fieldset-destructive`
-- `fieldset-sm`
-- `fieldset-md`
-- `fieldset-lg`
-- `fieldset-with-icon`
-- `fieldset-collapsible`
-- `fieldset-divided`
-- `fieldset-grid`
-- `fieldset-grid-2`
-- `fieldset-grid-3`
-- `fieldset-inline`
-- `fieldset-compact`
-- `fieldset-border-dashed`
-- `fieldset-border-dotted`
-- `fieldset-border-thick`
-- `fieldset-border-left`
-- `fieldset-border-left-secondary`
-- `fieldset-border-left-accent`
-- `fieldset-border-left-destructive`
-- `fieldset-border-top`
-- `fieldset-error`
-- `fieldset-success`
-- `fieldset-warning`
-- `fieldset-required`
-- `fieldset-label-inside`
-- `fieldset-nested`
-- `fieldset-disabled`
-
-#### Syntax
-```html
-<fieldset class="fieldset">
-  <legend>个人信息</legend>
-  <div class="fieldset-description">请填写你的基本资料。</div>
-  <div class="fieldset-content space-y-3">
-    <input type="text" class="input w-full" placeholder="姓名" />
-    <input type="email" class="input w-full" placeholder="邮箱" />
-  </div>
-</fieldset>
-```
-
----
-
-### file
-文件选择组件，用于上传文件或图片。
-
-[file docs](https://yami.yuelili.com/file)
-
-**Usage:** 常用于用户上传、头像选择、附件提交等场景。
-
-#### Class Names
-- `file-input`
-- `file-input-primary`
-- `file-input-secondary`
-- `file-input-accent`
-- `file-input-destructive`
-- `file-input-sm`
-- `file-input-md`
-- `file-input-lg`
-- `file-input-custom`
-- `file-input-dropzone`
-- `file-input-dropzone-compact`
-- `file-input-button`
-- `file-input-button-primary`
-- `file-input-button-secondary`
-- `file-input-rounded-none`
-- `file-input-rounded-sm`
-- `file-input-rounded-lg`
-- `file-input-rounded-full`
-- `file-input-error`
-- `file-input-success`
-- `file-input-full`
-
-#### Syntax
-```html
-<div class="file-input file-input-primary">
-  <input type="file" />
-</div>
-```
-
----
-
-### filter
-筛选器组件，用于多条件筛选或搜索结果过滤。
-
-[filter docs](https://yami.yuelili.com/filter)
-
-**Usage:** 常用于商品筛选、数据表格过滤等。
-
-#### Class Names
-- `filter-bar`
-- `filter-bar-compact`
-- `filter-bar-ghost`
-- `filter-group`
-- `filter-group-vertical`
-- `filter-dropdown-trigger`
-- `filter-dropdown-trigger-active`
-- `filter-dropdown-icon`
-- `filter-clear`
-- `filter-search`
-- `filter-search-input`
-- `filter-search-icon`
-- `filter-count`
-- `filter-item`
-
-#### Syntax
-```html
-<div class="filter-bar">
-  <div class="filter-item" data-active="true">全部</div>
-  <div class="filter-item">未处理</div>
-  <div class="filter-item">已完成</div>
-</div>
-```
-
----
-
-### input
-输入框组件，用于文本、数字等数据输入。
-
-[input docs](https://yami.yuelili.com/input)
-
-**Usage:** 常用于表单、搜索栏、配置项等。
-
-#### Class Names
-- `input`
-- `input-xs`
-- `input-sm`
-- `input-md`
-- `input-lg`
-- `input-xl`
-- `input-primary`
-- `input-secondary`
-- `input-destructive`
-- `input-ghost`
-- `input-filled`
-- `input-bordered`
-- `input-borderless`
-- `input-group`
-
-#### Syntax
-```html
-<input class="input" value="默认值" />
-```
-
----
-
-### label
-表单标签组件，用于标识输入字段。
-
-[label docs](https://yami.yuelili.com/label)
-
-**Usage:** 常用于 input、select、textarea 前的说明文字。
-
-#### Class Names
-- `label`
-- `label-required`
-- `label-description`
-- `label-inline`
-- `label-xs`
-- `label-sm`
-- `label-md`
-- `label-lg`
-- `label-float`
-- `label-float-required`
-- `label-float-error`
-- `label-float-success`
-- `label-float-sm`
-- `label-float-lg`
-- `label-float-icon`
-- `label-float-outlined`
-
-#### Syntax
-```html
-<div class="label">
-  <input type="text" placeholder=" " id="float1" />
-  <label for="float1">用户名</label>
-</div>
-```
-
----
-
-### number
-数字输入组件，用于输入或调整数值。
-
-[number docs](https://yami.yuelili.com/number)
-
-**Usage:** 常用于数量、价格、步进值输入等。
-
-#### Class Names
-- `input-number`
-- `input-number`
-- `input-number`
-- `input-number-disabled`
-- `input-number-separated`
-
-#### Syntax
-```html
-<div class="flex flex-nowrap items-center gap-4">
-  <div class="input-number">
-    <button>-</button>
-    <input type="number" value="1" />
-    <button>+</button>
-  </div>
-  <input type="text" class="input" value="正常的input" />
-</div>
+<!-- 不确定进度 -->
+<div class="progress progress-indeterminate progress-primary"></div>
 ```
 
 ---
 
 ### radio
-单选按钮组件，用于互斥选择。
+单选框组件。
 
 [radio docs](https://yami.yuelili.com/radio)
 
-**Usage:** 常用于表单单选、性别选择、选项组。
+**Usage:** 从多个选项中单选，支持颜色和尺寸变体。
 
 #### Class Names
 - `radio`
+- `radio-inset`
 - `radio-primary`
 - `radio-secondary`
 - `radio-accent`
+- `radio-info`
 - `radio-success`
 - `radio-warning`
 - `radio-error`
@@ -1424,63 +1550,82 @@ version: 1.0.0
 - `radio-md`
 - `radio-lg`
 - `radio-xl`
-- `radio-group`
-- `radio-group-inline`
-- `radio-card`
-- `radio-button`
-- `radio-button-group`
-- `radio-description`
-- `radio-icon`
 
 #### Syntax
 ```html
-<div class="radio-group-inline">
-  <input type="radio" id="r1" name="r" class="radio" checked />
-  <input type="radio" id="r2" name="r" class="radio" />
-  <input type="radio" id="r3" name="r" class="radio" disabled />
+<input type="radio" name="opt" class="radio radio-primary" />
+<input type="radio" name="opt" class="radio radio-primary" checked />
+```
+
+---
+
+### radialprogress
+圆形进度条。
+
+[radialprogress docs](https://yami.yuelili.com/radialprogress)
+
+**Usage:** 展示百分比、得分、圆形进度，常用于仪表盘。
+
+#### Class Names
+- `radial-progress`
+- `radial-progress-xs`
+- `radial-progress-sm`
+- `radial-progress-md`
+- `radial-progress-lg`
+- `radial-progress-xl`
+- `radial-progress-primary`
+- `radial-progress-secondary`
+- `radial-progress-accent`
+- `radial-progress-info`
+- `radial-progress-success`
+- `radial-progress-warning`
+- `radial-progress-error`
+
+#### Syntax
+```html
+<div class="radial-progress radial-progress-primary" style="--value: 75; --size: 6rem">
+  75%
 </div>
 ```
 
 ---
 
 ### range
-滑块组件，用于选择范围或调节数值。
+范围滑块组件。
 
 [range docs](https://yami.yuelili.com/range)
 
-**Usage:** 常用于音量、亮度、进度控制等场景。
+**Usage:** 音量调节、价格区间、亮度调整等滑块场景。
 
 #### Class Names
 - `range`
+- `range-primary`
+- `range-secondary`
+- `range-accent`
+- `range-neutral`
+- `range-success`
+- `range-warning`
+- `range-info`
+- `range-error`
 - `range-xs`
 - `range-sm`
 - `range-md`
 - `range-lg`
 - `range-xl`
-- `range-primary`
-- `range-secondary`
-- `range-destructive`
-- `range-accent`
-- `range-muted`
-- `range-no-fill`
-- `range-no-thumb`
-- `range-square-thumb`
-- `range-square-track`
-- `range-stepped`
 
 #### Syntax
 ```html
-<input type="range" min="0" max="100" class="range" />
+<input type="range" class="range range-primary" min="0" max="100" value="40" />
 ```
 
 ---
 
 ### rating
-评分组件，用于展示或收集用户评分。
+评分组件。
 
 [rating docs](https://yami.yuelili.com/rating)
 
-**Usage:** 常用于商品评价、反馈评分。
+**Usage:** 商品评分、服务满意度、内容质量评价。
 
 #### Class Names
 - `rating`
@@ -1496,23 +1641,52 @@ version: 1.0.0
 
 #### Syntax
 ```html
-<div class="rating" name="rating-basic">
-  <input type="radio" name="rating-basic" />
-  <input type="radio" name="rating-basic" />
-  <input type="radio" name="rating-basic" />
-  <input type="radio" name="rating-basic" />
-  <input type="radio" name="rating-basic" />
+<div class="rating rating-md">
+  <input type="radio" name="rate" class="rating-hidden" />
+  <input type="radio" name="rate" />
+  <input type="radio" name="rate" />
+  <input type="radio" name="rate" checked />
+  <input type="radio" name="rate" />
+  <input type="radio" name="rate" />
 </div>
 ```
 
 ---
 
+### select
+下拉选择框组件。
+
+[select docs](https://yami.yuelili.com/select)
+
+**Usage:** 从较多选项中选择一项，支持浮动标签。
+
+#### Class Names
+- `select`
+- `select-xs`
+- `select-sm`
+- `select-md`
+- `select-lg`
+- `select-xl`
+- `select-floating`
+- `select-floating-label`
+
+#### Syntax
+```html
+<select class="select select-md">
+  <option disabled selected>请选择</option>
+  <option>选项一</option>
+  <option>选项二</option>
+</select>
+```
+
+---
+
 ### select-checkbox
-多选下拉框组件，用于从多个选项中选择多个。
+多选下拉框组件。
 
 [select-checkbox docs](https://yami.yuelili.com/select-checkbox)
 
-**Usage:** 常用于表单、过滤器、标签选择。
+**Usage:** 需要多选的筛选场景，如标签选择、权限分配。
 
 #### Class Names
 - `select-checkbox`
@@ -1520,7 +1694,6 @@ version: 1.0.0
 - `select-checkbox-primary`
 - `select-checkbox-secondary`
 - `select-checkbox-accent`
-- `select-checkbox-destructive`
 - `select-checkbox-sm`
 - `select-checkbox-lg`
 - `select-checkbox-ghost`
@@ -1534,450 +1707,564 @@ version: 1.0.0
 
 #### Syntax
 ```html
-<div class="select-checkbox">
-   <label class="select-checkbox-item">
-     <input type="checkbox" />
-     <span>选项 A</span>
-   </label>
-   <label class="select-checkbox-item">
-     <input type="checkbox" />
-     <span>选项 B</span>
-   </label>
- </div>
+<div class="select-checkbox select-checkbox-primary">
+  <label class="select-checkbox-item">
+    <input type="checkbox" /> <span>选项 A</span>
+  </label>
+  <label class="select-checkbox-item">
+    <input type="checkbox" /> <span>选项 B</span>
+  </label>
+</div>
 ```
 
 ---
 
-### select
-下拉选择组件，用于从多个选项中选择一个。
+### sidebar
+侧边栏导航组件。
 
-[select docs](https://yami.yuelili.com/select)
+[sidebar docs](https://yami.yuelili.com/sidebar)
 
-**Usage:** 常用于表单、过滤器、设置项。
+**Usage:** 应用后台的主导航，支持折叠、子菜单、角标。
 
 #### Class Names
-- `select`
-- `select-primary`
-- `select-secondary`
-- `select-accent`
-- `select-destructive`
-- `select-xs`
-- `select-sm`
-- `select-md`
-- `select-lg`
-- `select-xl`
-- `select-wide`
-- `select-ghost`
-- `select-bordered`
-- `select-borderless`
-- `select-wrapper`
-- `select-group`
-- `select-labeled`
-- `select-multiple`
-- `select-optgroup`
-- `select-option`
+- `sidebar`
+- `sidebar-header`
+- `sidebar-header-brand`
+- `sidebar-toggle-btn`
+- `sidebar-search`
+- `sidebar-content`
+- `sidebar-section`
+- `sidebar-group-title`
+- `sidebar-divider`
+- `sidebar-item`
+- `sidebar-icon`
+- `sidebar-label`
+- `sidebar-badge`
+- `sidebar-chevron`
+- `sidebar-submenu`
+- `sidebar-submenu-list`
+- `sidebar-subitem`
+- `sidebar-footer`
+- `sidebar-user`
+- `sidebar-footer-text`
+- `sidebar-bordered`
+- `sidebar-dark`
+- `sidebar-primary`
+- `sidebar-secondary`
+- `sidebar-accent`
 
 #### Syntax
 ```html
-<select class="select">
-  <option>默认选择</option>
-  <option>选项 A</option>
-  <option>选项 B</option>
-</select>
+<aside class="sidebar sidebar-bordered">
+  <div class="sidebar-header">
+    <a class="sidebar-header-brand" href="/">Logo</a>
+    <button class="sidebar-toggle-btn">☰</button>
+  </div>
+  <div class="sidebar-content">
+    <nav class="sidebar-section">
+      <span class="sidebar-group-title">主导航</span>
+      <a class="sidebar-item" href="/">
+        <span class="sidebar-icon">🏠</span>
+        <span class="sidebar-label">首页</span>
+      </a>
+      <a class="sidebar-item" href="/docs">
+        <span class="sidebar-icon">📄</span>
+        <span class="sidebar-label">文档</span>
+        <span class="sidebar-badge badge badge-primary">新</span>
+      </a>
+    </nav>
+  </div>
+  <div class="sidebar-footer">
+    <div class="sidebar-user">
+      <img src="/avatar.png" class="avatar" />
+      <span class="sidebar-footer-text">用户名</span>
+    </div>
+  </div>
+</aside>
 ```
 
 #### Rules
-- --------------------- 变体选中背景 ----------------------
+- JS 插件：`import { Sidebar, initSidebars } from "@yuelioi/yami/plugins/sidebar"`
+- 支持 `data-sidebar-toggle` 折叠，`data-sidebar-submenu` 子菜单
+
+---
+
+### skeleton
+骨架屏加载占位符。
+
+[skeleton docs](https://yami.yuelili.com/skeleton)
+
+**Usage:** 内容加载中时的占位动画，提升感知性能。
+
+#### Class Names
+- `skeleton`
+- `skeleton-circle`
+- `skeleton-square`
+- `skeleton-box`
+- `skeleton-text`
+- `skeleton-heading`
+- `skeleton-btn`
+- `skeleton-pulse`
+- `skeleton-static`
+
+#### Syntax
+```html
+<div class="flex gap-3 items-center">
+  <div class="skeleton skeleton-circle w-12 h-12"></div>
+  <div class="space-y-2">
+    <div class="skeleton skeleton-heading w-32 h-5"></div>
+    <div class="skeleton skeleton-text w-48 h-4"></div>
+  </div>
+</div>
+```
+
+---
+
+### stat
+统计数据展示组件。
+
+[stat docs](https://yami.yuelili.com/stat)
+
+**Usage:** 仪表盘的核心指标展示，如用户数、收入、增长率。
+
+#### Class Names
+- `stats`
+- `stats-border`
+- `stat`
+- `stat-figure`
+- `stat-title`
+- `stat-value`
+- `stat-desc`
+- `stat-actions`
+- `stats-horizontal`
+- `stats-vertical`
+
+#### Syntax
+```html
+<div class="stats stats-border">
+  <div class="stat">
+    <div class="stat-figure text-primary">📊</div>
+    <div class="stat-title">总用户</div>
+    <div class="stat-value text-primary">31K</div>
+    <div class="stat-desc">较上月 +21%</div>
+  </div>
+  <div class="stat">
+    <div class="stat-title">收入</div>
+    <div class="stat-value">$4,200</div>
+    <div class="stat-desc">本月</div>
+  </div>
+</div>
+```
+
+---
+
+### status
+状态指示点。
+
+[status docs](https://yami.yuelili.com/status)
+
+**Usage:** 表示在线/离线/繁忙等实时状态。
+
+#### Class Names
+- `status`
+- `status-primary`
+- `status-secondary`
+- `status-accent`
+- `status-info`
+- `status-success`
+- `status-warning`
+- `status-error`
+- `status-xs`
+- `status-sm`
+- `status-md`
+- `status-lg`
+- `status-xl`
+
+#### Syntax
+```html
+<span class="status status-success status-md"></span>
+<span class="status status-error status-lg"></span>
+```
+
+---
+
+### swap
+内容切换组件（复选框驱动）。
+
+[swap docs](https://yami.yuelili.com/swap)
+
+**Usage:** 主题切换图标、收藏按钮、开关图标等二态切换。
+
+#### Class Names
+- `swap`
+- `swap-active`
+- `swap-rotate`
+- `swap-flip`
+
+#### Syntax
+```html
+<label class="swap swap-rotate">
+  <input type="checkbox" />
+  <div class="swap-on">🌙</div>
+  <div class="swap-off">☀️</div>
+</label>
+```
+
+---
+
+### switches
+开关组件。
+
+[switches docs](https://yami.yuelili.com/switches)
+
+**Usage:** 设置页面的开关选项，如通知开关、功能启用等。
+
+#### Class Names
+- `switch`
+- `switch-outline`
+- `switch-primary`
+- `switch-secondary`
+- `switch-accent`
+- `switch-success`
+- `switch-warning`
+- `switch-info`
+- `switch-error`
+- `switch-xs`
+- `switch-sm`
+- `switch-md`
+- `switch-lg`
+- `switch-xl`
+
+#### Syntax
+```html
+<input type="checkbox" class="switch switch-primary" />
+<input type="checkbox" class="switch switch-success switch-lg" checked />
+```
+
+---
+
+### tab
+标签页/选项卡组件。
+
+[tab docs](https://yami.yuelili.com/tab)
+
+**Usage:** 内容分组切换，适合设置页、多视图切换场景。
+
+#### Class Names
+- `tabs`
+- `tab`
+- `tab-content`
+- `tab-header`
+- `tab-body`
+- `tabs-line`
+- `tabs-boxed`
+- `tabs-pill`
+- `tabs-soft`
+- `tabs-primary`
+- `tabs-secondary`
+- `tabs-accent`
+- `tabs-neutral`
+- `tabs-success`
+- `tabs-warning`
+- `tabs-error`
+- `tabs-sm`
+- `tabs-md`
+- `tabs-lg`
+- `tabs-xl`
+- `tabs-stretch`
+- `tab-disabled`
+
+#### Syntax
+```html
+<!-- 并列结构（radio + label + content 同级） -->
+<div class="tabs tabs-boxed tabs-primary">
+  <input type="radio" name="my-tabs" id="tab1" checked />
+  <label class="tab" for="tab1">标签一</label>
+  <div class="tab-content p-4">标签一的内容</div>
+
+  <input type="radio" name="my-tabs" id="tab2" />
+  <label class="tab" for="tab2">标签二</label>
+  <div class="tab-content p-4">标签二的内容</div>
+</div>
+
+<!-- 分离结构（tab-header + tab-body） -->
+<div class="tabs tabs-line">
+  <div class="tab-header">
+    <input type="radio" name="tabs2" id="t1" checked />
+    <label class="tab" for="t1">首页</label>
+    <input type="radio" name="tabs2" id="t2" />
+    <label class="tab" for="t2">设置</label>
+  </div>
+  <div class="tab-body">
+    <div class="tab-content p-4">首页内容</div>
+    <div class="tab-content p-4">设置内容</div>
+  </div>
+</div>
+```
+
+---
+
+### table
+表格组件。
+
+[table docs](https://yami.yuelili.com/table)
+
+**Usage:** 数据列表展示，支持行 hover、条纹、排序等效果。
+
+#### Class Names
+- `table`
+- `table-wrap`
+- `table-row-hover`
+- `table-row-active`
+- `table-row-stripe`
+- `table-row-success`
+- `table-row-warning`
+- `table-row-error`
+- `table-row-info`
+- `table-col-center`
+- `table-col-right`
+- `table-col-nowrap`
+- `table-col-fixed`
+- `table-clean`
+- `table-bordered`
+- `table-borderless`
+- `table-sm`
+- `table-lg`
+- `table-sort`
+
+#### Syntax
+```html
+<div class="table-wrap">
+  <table class="table table-bordered table-row-hover">
+    <thead>
+      <tr>
+        <th>姓名</th>
+        <th>职位</th>
+        <th class="table-col-right">操作</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>张三</td>
+        <td>前端工程师</td>
+        <td class="table-col-right">
+          <button class="btn btn-xs btn-ghost">编辑</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+```
 
 ---
 
 ### textarea
-多行文本输入框组件，用于输入较长的文本。
+多行文本输入框。
 
 [textarea docs](https://yami.yuelili.com/textarea)
 
-**Usage:** 常用于留言、评论、表单输入等场景。
+**Usage:** 评论、描述、长文本输入场景。
 
 #### Class Names
 - `textarea`
-- `textarea-primary`
-- `textarea-secondary`
-- `textarea-accent`
+- `textarea-floating`
+- `textarea-floating-label`
 - `textarea-xs`
 - `textarea-sm`
 - `textarea-md`
 - `textarea-lg`
 - `textarea-xl`
-- `textarea-h-auto`
-- `textarea-h-sm`
-- `textarea-h-md`
-- `textarea-h-lg`
-- `textarea-h-full`
-- `textarea-resize-none`
-- `textarea-resize-y`
-- `textarea-resize-x`
-- `textarea-resize`
-- `textarea-ghost`
-- `textarea-bordered`
-- `textarea-borderless`
-- `textarea-wrapper`
-- `textarea-counter`
-- `textarea-icon`
-- `textarea-code`
-- `textarea-auto`
 
 #### Syntax
 ```html
-<textarea class="textarea" placeholder="请输入内容..."></textarea>
+<textarea class="textarea textarea-md" placeholder="请输入内容..."></textarea>
+```
+
+---
+
+### timeline
+时间轴组件。
+
+[timeline docs](https://yami.yuelili.com/timeline)
+
+**Usage:** 展示历史事件、项目进展、操作日志等时序内容。
+
+#### Class Names
+- `timeline`
+- `timeline-box`
+- `timeline-start`
+- `timeline-middle`
+- `timeline-end`
+- `timeline-vertical`
+- `timeline-horizontal`
+- `timeline-compact`
+- `timeline-centered`
+- `timeline-snap-icon`
+- `timeline-shift`
+
+#### Syntax
+```html
+<ul class="timeline timeline-vertical">
+  <li>
+    <div class="timeline-start">2024-01</div>
+    <div class="timeline-middle">●</div>
+    <div class="timeline-end timeline-box">项目启动</div>
+  </li>
+  <li>
+    <div class="timeline-start">2024-06</div>
+    <div class="timeline-middle">●</div>
+    <div class="timeline-end timeline-box">版本发布</div>
+  </li>
+</ul>
+```
+
+---
+
+### toast
+消息通知组件。
+
+[toast docs](https://yami.yuelili.com/toast)
+
+**Usage:** 操作反馈通知，如保存成功、错误提示，短暂显示后消失。
+
+#### Class Names
+- `toast`
+- `toast-title`
+- `toast-message`
+- `toast-close`
+- `toast-info`
+- `toast-success`
+- `toast-warning`
+- `toast-error`
+- `toast-bordered`
+- `toast-sm`
+- `toast-lg`
+- `toast-no-icon`
+
+#### Syntax
+```html
+<div class="toast toast-success">
+  <div class="toast-title">操作成功</div>
+  <div class="toast-message">数据已保存。</div>
+  <button class="toast-close">✕</button>
+</div>
 ```
 
 ---
 
 ### toggle
-开关组件，用于开/关状态切换。
+切换开关组件。
 
 [toggle docs](https://yami.yuelili.com/toggle)
 
-**Usage:** 常用于设置项、权限控制、模式切换。
+**Usage:** 设置项的启用/禁用开关。
 
 #### Class Names
 - `toggle`
 - `toggle-primary`
 - `toggle-secondary`
 - `toggle-accent`
-- `toggle-destructive`
+- `toggle-success`
+- `toggle-warning`
+- `toggle-error`
+- `toggle-info`
 - `toggle-xs`
 - `toggle-sm`
 - `toggle-md`
 - `toggle-lg`
+- `toggle-xl`
 
 #### Syntax
 ```html
-<input type="checkbox" class="toggle" />
+<input type="checkbox" class="toggle toggle-primary" />
+<input type="checkbox" class="toggle toggle-success toggle-lg" checked />
 ```
 
 ---
 
-### validator
-表单验证反馈组件，用于显示输入错误或成功提示。
+### tooltip
+提示气泡（纯 CSS）。
 
-[validator docs](https://yami.yuelili.com/validator)
+[tooltip docs](https://yami.yuelili.com/tooltip)
 
-**Usage:** 常用于输入框下方的验证状态提示。
+**Usage:** 鼠标悬停时显示简短说明，通过 `data-tip` 属性设置内容。
 
 #### Class Names
-- `validator`
-- `validator-hint`
+- `tooltip`
+- `tooltip-open`
+- `tooltip-bottom`
+- `tooltip-left`
+- `tooltip-right`
+- `tooltip-primary`
+- `tooltip-secondary`
+- `tooltip-accent`
+- `tooltip-info`
+- `tooltip-success`
+- `tooltip-warning`
+- `tooltip-error`
+- `tooltip-no-arrow`
 
 #### Syntax
 ```html
-<div class="validator">
-  <label for="input-default">默认输入</label>
-  <input id="input-default" class="input" placeholder="请输入内容..." />
-  <div class="validator-hint">这是错误提示</div>
+<div class="tooltip" data-tip="这是提示内容">
+  <button class="btn">悬停我</button>
+</div>
+
+<div class="tooltip tooltip-bottom tooltip-primary" data-tip="底部主色提示">
+  <button class="btn btn-primary">按钮</button>
 </div>
 ```
 
 ---
 
-### divider
-分隔线组件，用于分隔内容区域或元素。
+### validation
+表单验证状态样式。
 
-[divider docs](https://yami.yuelili.com/divider)
+[validation docs](https://yami.yuelili.com/validation)
 
-**Usage:** 常用于区分不同的模块、卡片内容、标题下划线等。
+**Usage:** 为表单字段添加验证通过/失败的视觉反馈。
 
 #### Class Names
-- `divider`
-- `divider-horizontal`
-- `divider-vertical`
-- `divider-primary`
-- `divider-muted`
-- `divider-accent`
-- `divider-destructive`
-- `divider-start`
-- `divider-end`
+- `validate`
+- `is-valid`
+- `is-invalid`
+- `success-message`
+- `error-message`
+- `helper-text`
 
 #### Syntax
 ```html
-<div class="divider">分割文本</div>
-<div class="divider"></div>
-```
+<div class="validate is-invalid">
+  <input type="text" class="input" value="wrong" />
+  <span class="error-message">格式不正确</span>
+</div>
 
----
-
-### drawer
-抽屉组件，用于从页面边缘滑出的内容区域。
-
-[drawer docs](https://yami.yuelili.com/drawer)
-
-**Usage:** 常用于侧边菜单、设置面板、移动端导航。
-
-#### Class Names
-- `drawer`
-- `drawer-content`
-- `drawer-side`
-- `drawer-toggle`
-- `drawer-end`
-- `drawer-open`
-
-#### Syntax
-```html
-<div class="drawer">
-  <input id="drawer-left" type="checkbox" class="drawer-toggle" />
-  <div class="drawer-content p-4 bg-muted">
-    <label for="drawer-left" class="btn btn-primary mb-4">打开抽屉</label>
-    <p>这里是主内容区，可以滚动显示页面内容。</p>
-  </div>
-  <div class="drawer-side">
-    <label for="drawer-left" aria-label="close sidebar" class="drawer-overlay"></label>
-    <ul class="menu bg-card min-h-full w-80 p-4">
-      <li class="cursor-pointer hover:bg-muted p-2 rounded">菜单项 1</li>
-      <li class="cursor-pointer hover:bg-muted p-2 rounded">菜单项 2</li>
-      <li class="cursor-pointer hover:bg-muted p-2 rounded">菜单项 3</li>
-    </ul>
-  </div>
+<div class="validate is-valid">
+  <input type="text" class="input" value="correct" />
+  <span class="success-message">验证通过</span>
 </div>
 ```
 
 ---
 
-### breadcrumb
-面包屑导航组件，用于展示当前页面的层级路径。
+## Themes
 
-[breadcrumb docs](https://yami.yuelili.com/breadcrumb)
+通过 `data-theme` 属性切换，使用 OKLCH 颜色空间：
 
-**Usage:** 常用于后台管理系统、层级页面导航。
+`light` `dark` `apple` `github` `discord` `figma` `linear` `notion-light` `notion-dark` `slack-light` `slack-dark` `spotify-light` `spotify-dark` `stripe-light` `stripe-dark` `vercel` `x` `vscode` `airbnb` `material` `claude`
 
-#### Class Names
-- `breadcrumb`
-- `breadcrumb-sm`
-- `breadcrumb-lg`
-- `breadcrumb-slash`
-- `breadcrumb-dot`
-- `breadcrumb-chevron`
-
-#### Syntax
 ```html
-<nav class="breadcrumb">
-  <ul>
-    <li><a href="#">首页</a></li>
-    <li><a href="#">分类</a></li>
-    <li><a href="#">产品</a></li>
-    <li><a href="#" class="text-muted-foreground">详情</a></li>
-  </ul>
-</nav>
+<html data-theme="dark">
+<div data-theme="github">局部主题</div>
 ```
 
 ---
 
-### dock
-停靠栏组件，用于固定在页面边缘的导航或工具栏。
+## JS Plugins
 
-[dock docs](https://yami.yuelili.com/dock)
-
-**Usage:** 常用于底部导航栏、悬浮操作条、快捷工具区。
-
-#### Class Names
-- `dock`
-- `dock-label`
-- `dock-active`
-- `dock-xs`
-- `dock-sm`
-- `dock-md`
-- `dock-lg`
-- `dock-xl`
-
-#### Syntax
-```html
-<div class="dock">
-<button>
-  <Home class="size-5" />
-  <span class="dock-label">首页</span>
-</button>
-<button>
-  <Search class="size-5" />
-  <span class="dock-label">搜索</span>
-</button>
-<button>
-  <User class="size-5" />
-  <span class="dock-label">我的</span>
-</button>
-</div>
+```ts
+import { Modal, initModals } from "@yuelioi/yami/plugins/modal"
+import { Dropdown, initDropdowns } from "@yuelioi/yami/plugins/dropdown"
+import { Popover, initPopovers } from "@yuelioi/yami/plugins/popover"
+import { Sidebar, initSidebars } from "@yuelioi/yami/plugins/sidebar"
 ```
-
----
-
-### menu
-菜单组件，用于导航链接、操作项或列表展示。
-
-[menu docs](https://yami.yuelili.com/menu)
-
-**Usage:** 常用于侧边栏、下拉菜单、导航栏中的菜单项。
-
-#### Class Names
-- `menu`
-- `menu-title`
-- `menu-horizontal`
-- `menu-vertical`
-- `menu-xs`
-- `menu-sm`
-- `menu-md`
-- `menu-lg`
-- `menu-xl`
-- `menu-active`
-
-#### Syntax
-```html
-<ul class="menu bg-card border rounded-lg w-56">
-  <li class="menu-title">主导航</li>
-  <li><a>首页</a></li>
-  <li><a class="menu-active">消息中心</a></li>
-  <li><a>设置</a></li>
-  <li></li>
-  <li class="menu-title">辅助功能</li>
-  <li><a>帮助中心</a></li>
-  <li class="menu-disabled"><a>禁用选项</a></li>
-</ul>
-```
-
----
-
-### navbar
-顶部导航栏组件，用于页面的主导航区域。
-
-[navbar docs](https://yami.yuelili.com/navbar)
-
-**Usage:** 常用于站点头部、应用顶部菜单。
-
-#### Class Names
-- `navbar`
-- `navbar-start`
-- `navbar-center`
-- `navbar-end`
-- `navbar-brand`
-- `navbar-nav`
-- `navbar-link`
-- `navbar-fixed-top`
-- `navbar-fixed-bottom`
-- `navbar-sticky`
-- `navbar-glass`
-- `navbar-borderless`
-- `navbar-shadow`
-- `navbar-primary`
-- `navbar-sm`
-- `navbar-lg`
-- `navbar-compact`
-- `navbar-divider`
-- `navbar-responsive`
-- `navbar-search`
-- `navbar-search-input`
-- `navbar-dropdown`
-- `navbar-dropdown-toggle`
-- `navbar-dropdown-icon`
-- `navbar-mobile`
-- `navbar-mobile-toggle`
-- `navbar-mobile-menu`
-- `navbar-container`
-
-#### Syntax
-```html
-<div class="navbar navbar-shadow">
-  <!-- 左侧 -->
-  <div class="navbar-start">
-    <a href="#" class="navbar-brand">TechCorp</a>
-    <span class="navbar-divider"></span>
-    <div class="navbar-nav hidden md:flex">
-      <a href="#" class="navbar-link active">产品</a>
-      <a href="#" class="navbar-link">解决方案</a>
-      <a href="#" class="navbar-link">定价</a>
-    </div>
-  </div>
-
-  <!-- 右侧 -->
-  <div class="navbar-end">
-    <div class="navbar-search hidden lg:flex">
-      <input class="navbar-search-input" placeholder="搜索..." />
-    </div>
-
-    <button class="btn btn-sm btn-primary hidden md:inline-flex">
-      开始使用
-    </button>
-
-    <button class="btn btn-ghost btn-icon md:hidden">菜单</button>
-  </div>
-</div>
-```
-
----
-
-### pagination
-分页导航组件，用于翻页或数据浏览控制。
-
-[pagination docs](https://yami.yuelili.com/pagination)
-
-**Usage:** 常用于表格、列表或内容分页。
-
-#### Class Names
-- `pagination`
-- `pagination-btn`
-- `pagination-link`
-- `pagination-active`
-- `pagination-xs`
-- `pagination-sm`
-- `pagination-md`
-- `pagination-lg`
-- `pagination-xl`
-- `pagination-ellipsis`
-- `pagination-prev`
-- `pagination-next`
-- `pagination-rounded`
-- `pagination-square`
-- `pagination-borderless`
-- `pagination-ghost`
-- `pagination-compact`
-- `pagination-simple`
-- `pagination-info`
-- `pagination-centered`
-- `pagination-start`
-- `pagination-end`
-- `pagination-between`
-
-#### Syntax
-```html
-<div class="pagination pagination-centered">
-  <button class="pagination-prev">‹</button>
-  <button class="pagination-btn">1</button>
-  <button class="pagination-btn" aria-current="page">2</button>
-  <button class="pagination-btn">3</button>
-  <span class="pagination-ellipsis">…</span>
-  <button class="pagination-btn">10</button>
-  <button class="pagination-next">›</button>
-</div>
-```
-
----
-
-### tab
-选项卡组件，用于在同一区域切换不同内容。
-
-[tab docs](https://yami.yuelili.com/tab)
-
-**Usage:** 常用于内容切换、面板切换、表单分步界面。
-
-#### Class Names
-- `tabs`
-- `tabs-primary`
-- `tab-title`
-- `tab-content`
-- `tabs-bordered`
-- `tabs-boxed`
-- `tabs-lifted`
-- `tabs-sm`
-- `tabs-md`
-- `tabs-lg`
-
-#### Rules
-- 
-
----
